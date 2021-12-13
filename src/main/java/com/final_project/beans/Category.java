@@ -1,4 +1,4 @@
 package com.final_project.beans;
 
-public class Dummy {
+public class Category {
 }

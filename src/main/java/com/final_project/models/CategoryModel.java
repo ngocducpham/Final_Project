@@ -1,4 +1,4 @@
 package com.final_project.models;
 
-public class Dummy {
+public class CategoryModel {
 }
