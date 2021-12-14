@@ -19,6 +19,14 @@ public class User {
         Seller_Expired_date = seller_Expired_date;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     public User(int userrole, String username, String email, String pass, String address, String code, LocalDateTime date_o_Birth, LocalDateTime seller_Expired_date) {
         this.userrole = userrole;
         this.username = username;
