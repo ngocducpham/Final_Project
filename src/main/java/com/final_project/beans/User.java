@@ -4,31 +4,33 @@ import java.time.LocalDateTime;
 
 public class User {
     private int User_ID,userrole;
-    private String username, email, Pass, Address;
+    private String username, email, Pass, Address,code;
     private LocalDateTime Date_o_Birth,Seller_Expired_date;
 
-    public User() {
-    }
-
-    public User(int user_ID, int userrole, String username, String email, String pass, String address, LocalDateTime date_o_Birth, LocalDateTime seller_Expired_date) {
+    public User(int user_ID, int userrole, String username, String email, String pass, String address, String code, LocalDateTime date_o_Birth, LocalDateTime seller_Expired_date) {
         User_ID = user_ID;
         this.userrole = userrole;
         this.username = username;
         this.email = email;
         Pass = pass;
         Address = address;
+        this.code = code;
         Date_o_Birth = date_o_Birth;
         Seller_Expired_date = seller_Expired_date;
     }
 
-    public User(int userrole, String username, String email, String pass, String address, LocalDateTime date_o_Birth, LocalDateTime seller_Expired_date) {
+    public User(int userrole, String username, String email, String pass, String address, String code, LocalDateTime date_o_Birth, LocalDateTime seller_Expired_date) {
         this.userrole = userrole;
         this.username = username;
         this.email = email;
         Pass = pass;
         Address = address;
+        this.code = code;
         Date_o_Birth = date_o_Birth;
         Seller_Expired_date = seller_Expired_date;
+    }
+
+    public User() {
     }
 
     public int getUser_ID() {

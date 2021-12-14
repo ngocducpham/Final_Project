@@ -40,6 +40,7 @@ public class MailSender {
             message.setFrom(new InternetAddress(fromServer));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mail_to));
             message.setSubject("Subject");
+            String code=getCode();
             message.setText("Text");
             Transport.send(message);
             success = true;
