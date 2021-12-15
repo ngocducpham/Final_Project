@@ -1,9 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Register</title>
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css"
           integrity="sha512-f0tzWhCwVFS3WeYaofoLWkTP62ObhewQ1EZn65oSYDZUg1+CyywGKkWzm8BxaJj5HGKI72PnMH9jYyIFz+GH7g=="
@@ -15,44 +14,55 @@
 
 <body>
 <form action="" method="post" id="frmRegister">
-    <div class="card">
-        <h4 class="card-header">
-            Account Registration
-        </h4>
-        <div class="card-body">
-            <h5>Account</h5>
-            <div class="form-group">
-                <label for="txtUsername">Username</label>
-                <input type="text" class="form-control" id="txtUsername" name="username">
+    <div class="container-fluid h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+            <div class="card col-6">
+                <h4 class="card-header">
+                    Đăng Kí Tài Khoản Mới
+                </h4>
+                <div class="card-body">
+                    <h5>Tài Khoản <i class="fa fa-address-card" aria-hidden="true"></i></h5>
+                    <div class="form-group">
+                        <label for="Email">Email</label>
+                        <input type="text" class="form-control" id="Email" name="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="Password">Mật Khẩu</label>
+                        <input type="password" class="form-control" id="Password" name="password">
+                    </div>
+                    <div class="form-group">
+                        <label for="Confirm">Xác Nhận Mật Khẩu</label>
+                        <input type="password" class="form-control" id="Confirm">
+                    </div>
+                    <h5 class="mt-4">Thông Tin Cá Nhân <i class="fa fa-address-book-o" aria-hidden="true"></i></h5>
+                    <div class="form-group">
+                        <label for="Name">Tên</label>
+                        <input type="text" class="form-control" id="Name" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="full_address">Địa Chỉ</label> <br>
+                        <label for="ls_province">Tỉnh/Thành Phố</label>
+                        <select class="space" name="ls_province" id="ls_province"></select>
+                        <label for="ls_district">Quận/Huyện</label>
+                        <select class="space" name="ls_district" id="ls_district"></select>
+                        <label for="ls_ward">Phường/Xã</label>
+                        <select class="space" name="ls_ward" id="ls_ward"></select><br>
+                        <label for="home_address">Số Nhà</label>
+                        <input type="text" id="home_address">
+                        <input type="text" class="form-control" id="full_address" name="full_address" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="DOB">Ngày Sinh</label>
+                        <input type="text" class="form-control" id="DOB" name="dob">
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                        Register
+                    </button>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="txtPassword">Password</label>
-                <input type="password" class="form-control" id="txtPassword" name="rawpwd">
-            </div>
-            <div class="form-group">
-                <label for="txtConfirm">Confirm</label>
-                <input type="password" class="form-control" id="txtConfirm">
-            </div>
-
-            <h5 class="mt-4">Personal Information</h5>
-            <div class="form-group">
-                <label for="txtName">Name</label>
-                <input type="text" class="form-control" id="txtName" name="name">
-            </div>
-            <div class="form-group">
-                <label for="txtEmail">Email</label>
-                <input type="text" class="form-control" id="txtEmail" name="email">
-            </div>
-            <div class="form-group">
-                <label for="txtDOB">Date of Birth</label>
-                <input type="text" class="form-control" id="txtDOB" name="dob">
-            </div>
-        </div>
-        <div class="card-footer">
-            <button type="submit" class="btn btn-primary">
-                <i class="fa fa-check" aria-hidden="true"></i>
-                Register
-            </button>
         </div>
     </div>
 </form>
@@ -66,13 +76,22 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
         integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
         crossorigin="anonymous"></script>
+<script src="${pageContext.request.contextPath}/public/scripts/vietnamlocalselector.js"></script>
+<script src="${pageContext.request.contextPath}/public/scripts/Register.js"></script>
 <script>
-    $('#txtDOB').datetimepicker({
+    let localpicker = new LocalPicker({
+        province: "ls_province",
+        district: "ls_district",
+        ward: "ls_ward"
+    });
+
+    $('#DOB').datetimepicker({
         format: 'd/m/Y',
         timepicker: false,
         mask: true
     });
-    $('#txtUsername').select();
+
+    $('#Email').select();
 </script>
 </body>
 </html>

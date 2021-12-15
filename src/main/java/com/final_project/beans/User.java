@@ -1,66 +1,11 @@
 package com.final_project.beans;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class User {
     private int User_ID,userrole;
     private String username, email, Pass, Address,code;
-    private LocalDateTime Date_o_Birth,Seller_Expired_date;
-
-    public User(int userrole, String username, String email, String pass, String address, LocalDateTime date_o_Birth, LocalDateTime seller_Expired_date) {
-        this.userrole = userrole;
-        this.username = username;
-        this.email = email;
-        Pass = pass;
-        Address = address;
-        Date_o_Birth = date_o_Birth;
-        Seller_Expired_date = seller_Expired_date;
-    }
-
-    public User(int user_ID, int userrole, String username, String email, String pass, String address, LocalDateTime date_o_Birth, LocalDateTime seller_Expired_date) {
-        User_ID = user_ID;
-        this.userrole = userrole;
-        this.username = username;
-        this.email = email;
-        Pass = pass;
-        Address = address;
-        Date_o_Birth = date_o_Birth;
-        Seller_Expired_date = seller_Expired_date;
-    }
-
-    public User(int user_ID, int userrole, String username, String email, String pass, String address, String code, LocalDateTime date_o_Birth, LocalDateTime seller_Expired_date) {
-        User_ID = user_ID;
-        this.userrole = userrole;
-        this.username = username;
-        this.email = email;
-        Pass = pass;
-        Address = address;
-        this.code = code;
-        Date_o_Birth = date_o_Birth;
-        Seller_Expired_date = seller_Expired_date;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public User(int userrole, String username, String email, String pass, String address, String code, LocalDateTime date_o_Birth, LocalDateTime seller_Expired_date) {
-        this.userrole = userrole;
-        this.username = username;
-        this.email = email;
-        Pass = pass;
-        Address = address;
-        this.code = code;
-        Date_o_Birth = date_o_Birth;
-        Seller_Expired_date = seller_Expired_date;
-    }
-
-    public User() {
-    }
+    private LocalDate Date_o_Birth,Seller_Expired_date;
 
     public int getUser_ID() {
         return User_ID;
@@ -110,19 +55,74 @@ public class User {
         Address = address;
     }
 
-    public LocalDateTime getDate_o_Birth() {
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public LocalDate getDate_o_Birth() {
         return Date_o_Birth;
     }
 
-    public void setDate_o_Birth(LocalDateTime date_o_Birth) {
+    public void setDate_o_Birth(LocalDate date_o_Birth) {
         Date_o_Birth = date_o_Birth;
     }
 
-    public LocalDateTime getSeller_Expired_date() {
+    public LocalDate getSeller_Expired_date() {
         return Seller_Expired_date;
     }
 
-    public void setSeller_Expired_date(LocalDateTime seller_Expired_date) {
+    public void setSeller_Expired_date(LocalDate seller_Expired_date) {
         Seller_Expired_date = seller_Expired_date;
+    }
+
+    public User(int user_ID, int userrole, String username, String email, String pass, String address, String code, LocalDate date_o_Birth, LocalDate seller_Expired_date) {
+        User_ID = user_ID;
+        this.userrole = userrole;
+        this.username = username;
+        this.email = email;
+        Pass = pass;
+        Address = address;
+        this.code = code;
+        Date_o_Birth = date_o_Birth;
+        Seller_Expired_date = seller_Expired_date;
+    }
+
+    public User(int userrole, String username, String email, String pass, String address, String code, LocalDate date_o_Birth, LocalDate seller_Expired_date) {
+        this.userrole = userrole;
+        this.username = username;
+        this.email = email;
+        Pass = pass;
+        Address = address;
+        this.code = code;
+        Date_o_Birth = date_o_Birth;
+        Seller_Expired_date = seller_Expired_date;
+    }
+
+    public User(int user_ID, int userrole, String username, String email, String pass, String address, LocalDate date_o_Birth, LocalDate seller_Expired_date) {
+        User_ID = user_ID;
+        this.userrole = userrole;
+        this.username = username;
+        this.email = email;
+        Pass = pass;
+        Address = address;
+        Date_o_Birth = date_o_Birth;
+        Seller_Expired_date = seller_Expired_date;
+    }
+
+    public User(int userrole, String username, String email, String pass, String address, LocalDate date_o_Birth, LocalDate seller_Expired_date) {
+        this.userrole = userrole;
+        this.username = username;
+        this.email = email;
+        Pass = pass;
+        Address = address;
+        Date_o_Birth = date_o_Birth;
+        Seller_Expired_date = seller_Expired_date;
+    }
+
+    public User() {
     }
 }
