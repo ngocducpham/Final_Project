@@ -13,13 +13,13 @@ import java.util.Random;
 
 public class MailSender {
 
-    public String getCode() {
+    public static String getCode() {
         Random r = new Random();
         int n = r.nextInt(9999);
         return String.format("%06d", n);
     }
 
-    public boolean sendMail(User user) {
+    public static boolean sendMail_to_Active_Account(User user) {
         boolean success = false;
 
         String mail_to = user.getEmail();

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
@@ -40,21 +41,27 @@
                         <input type="text" class="form-control" id="Name" name="name">
                     </div>
                     <div class="form-group">
-                        <label for="full_address">Địa Chỉ</label> <br>
                         <label for="ls_province">Tỉnh/Thành Phố</label>
                         <select class="space" name="ls_province" id="ls_province"></select>
                         <label for="ls_district">Quận/Huyện</label>
                         <select class="space" name="ls_district" id="ls_district"></select>
                         <label for="ls_ward">Phường/Xã</label>
                         <select class="space" name="ls_ward" id="ls_ward"></select><br>
-                        <label for="home_address">Số Nhà</label>
-                        <input type="text" id="home_address">
+                        <label for="home_address">Số Nhà, Tên Đướng</label>
+                        <input type="text" id="home_address" style="width: 550px">
+                        <label for="full_address">Địa Chỉ</label> <br>
                         <input type="text" class="form-control" id="full_address" name="full_address" readonly>
                     </div>
                     <div class="form-group">
                         <label for="DOB">Ngày Sinh</label>
                         <input type="text" class="form-control" id="DOB" name="dob">
                     </div>
+                    <h5 class="mt-4 ">Đăng Kí Với Vai Trò <i class="fa fa-arrows-alt" aria-hidden="true"></i>
+                        <input type="radio" id="role_seller" name="role" value="2">
+                        <label for="role_seller">Người Bán</label>
+                        <input type="radio" id="role_bidder" name="role" value="1" checked>
+                        <label for="role_bidder">Người Mua</label>
+                    </h5>
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">
@@ -94,4 +101,5 @@
     $('#Email').select();
 </script>
 </body>
+
 </html>

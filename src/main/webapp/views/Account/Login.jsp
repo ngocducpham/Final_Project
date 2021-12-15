@@ -23,9 +23,9 @@
 <%--            </c:if>--%>
             <form action="" method="post">
                 <div class="form-group">
-                    <label class="sr-only" for="txtUsername">Username</label>
+                    <label class="sr-only" for="Username">Email</label>
                     <div class="input-group">
-                        <input type="text" class="form-control form-control-lg border-right-0" id="txtUsername" name="username" autofocus placeholder="Username">
+                        <input type="text" class="form-control form-control-lg border-right-0" id="Username" name="email" autofocus placeholder="email">
                         <div class="input-group-append">
                 <span class="input-group-text bg-white">
                   <i class="fa fa-user" aria-hidden="true"></i>
@@ -34,9 +34,9 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="sr-only" for="txtPassword">Password</label>
+                    <label class="sr-only" for="Password">Mật Khẩu</label>
                     <div class="input-group">
-                        <input type="password" class="form-control form-control-lg border-right-0" id="txtPassword" name="password" placeholder="Password">
+                        <input type="password" class="form-control form-control-lg border-right-0" id="Password" name="password" placeholder="Password">
                         <div class="input-group-append">
                 <span class="input-group-text bg-white">
                   <i class="fa fa-key" aria-hidden="true"></i>

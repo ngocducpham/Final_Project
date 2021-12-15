@@ -1,11 +1,12 @@
 package com.final_project.beans;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class User {
     private int User_ID,userrole;
     private String username, email, Pass, Address,code;
-    private LocalDate Date_o_Birth,Seller_Expired_date;
+    private Date Date_o_Birth,Seller_Expired_date;
 
     public int getUser_ID() {
         return User_ID;
@@ -63,24 +64,36 @@ public class User {
         this.code = code;
     }
 
-    public LocalDate getDate_o_Birth() {
+    public Date getDate_o_Birth() {
         return Date_o_Birth;
     }
 
-    public void setDate_o_Birth(LocalDate date_o_Birth) {
+    public void setDate_o_Birth(Date date_o_Birth) {
         Date_o_Birth = date_o_Birth;
     }
 
-    public LocalDate getSeller_Expired_date() {
+    public Date getSeller_Expired_date() {
         return Seller_Expired_date;
     }
 
-    public void setSeller_Expired_date(LocalDate seller_Expired_date) {
+    public void setSeller_Expired_date(Date seller_Expired_date) {
         Seller_Expired_date = seller_Expired_date;
     }
 
-    public User(int user_ID, int userrole, String username, String email, String pass, String address, String code, LocalDate date_o_Birth, LocalDate seller_Expired_date) {
+    //constructor để select * from
+    public User(int user_ID, String username, String email, String pass, int userrole, String address, Date date_o_Birth, Date seller_Expired_date) {
         User_ID = user_ID;
+        this.username = username;
+        this.email = email;
+        Pass = pass;
+        this.userrole = userrole;
+        Address = address;
+        Date_o_Birth = date_o_Birth;
+        Seller_Expired_date = seller_Expired_date;
+    }
+
+    // constructor dùng để dk tài khoản
+    public User(int userrole, String username, String email, String pass, String address, String code, Date date_o_Birth) {
         this.userrole = userrole;
         this.username = username;
         this.email = email;
@@ -88,39 +101,6 @@ public class User {
         Address = address;
         this.code = code;
         Date_o_Birth = date_o_Birth;
-        Seller_Expired_date = seller_Expired_date;
-    }
-
-    public User(int userrole, String username, String email, String pass, String address, String code, LocalDate date_o_Birth, LocalDate seller_Expired_date) {
-        this.userrole = userrole;
-        this.username = username;
-        this.email = email;
-        Pass = pass;
-        Address = address;
-        this.code = code;
-        Date_o_Birth = date_o_Birth;
-        Seller_Expired_date = seller_Expired_date;
-    }
-
-    public User(int user_ID, int userrole, String username, String email, String pass, String address, LocalDate date_o_Birth, LocalDate seller_Expired_date) {
-        User_ID = user_ID;
-        this.userrole = userrole;
-        this.username = username;
-        this.email = email;
-        Pass = pass;
-        Address = address;
-        Date_o_Birth = date_o_Birth;
-        Seller_Expired_date = seller_Expired_date;
-    }
-
-    public User(int userrole, String username, String email, String pass, String address, LocalDate date_o_Birth, LocalDate seller_Expired_date) {
-        this.userrole = userrole;
-        this.username = username;
-        this.email = email;
-        Pass = pass;
-        Address = address;
-        Date_o_Birth = date_o_Birth;
-        Seller_Expired_date = seller_Expired_date;
     }
 
     public User() {
