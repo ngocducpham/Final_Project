@@ -4,6 +4,7 @@ let full_address = document.getElementById("full_address"),
     ward = document.getElementById("ls_ward"),
     home_address = document.getElementById("home_address");
 
+
 province.addEventListener("change", function () {
     full_address.value = home_address.value + ", " + ward.options[ward.selectedIndex].text + ", " + district.options[district.selectedIndex].text + ", " + province.options[province.selectedIndex].text;
 });
