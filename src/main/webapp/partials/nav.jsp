@@ -28,13 +28,14 @@
                            class='h-9 w-72 rounded-md bg-gray-600 pl-10 pr-5 text-white focus:outline-none'
                            placeholder='Search'>
                 </div>
-                <div class='flex space-x-2'>
-                    <a href='#' class='hover:bg-gray-700 rounded-md  px-3 py-1 text-white focus:outline-none'>Đăng
+                <div class='sign__box flex space-x-2'>
+                    <a href='${pageContext.request.contextPath}/views/Account/Login.jsp' class='hover:bg-gray-700 rounded-md  px-3 py-1 text-white focus:outline-none'>Đăng
                         nhập</a>
-                    <a href='#'
+                    <a href='${pageContext.request.contextPath}/views/Account/Register.jsp'
                        class='hover:bg-gray-700 rounded-md ring-2 ring-gray-400 px-3 py-1 text-white focus:outline-none'>Đăng
                         kí</a>
                 </div>
+
             </div>
         </div>
     </div>

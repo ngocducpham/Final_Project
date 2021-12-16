@@ -28,83 +28,83 @@ public class ProductServlet extends HttpServlet {
                 ServletUtils.forward("/views/Product/index.jsp", request, response);
                 break;
 
-             case "/Add":
-               ServletUtils.forward("/views/Product/Add.jsp", request, response);
-               break;
+            case "/Add":
+                ServletUtils.forward("/views/Product/Add.jsp", request, response);
+                break;
 
-             case "/Edit":
-               int id = 0;
-               try {
-                 id = Integer.parseInt(request.getParameter("id"));
-               } catch(NumberFormatException ignored) {
-               }
+            case "/Edit":
+                int id = 0;
+                try {
+                    id = Integer.parseInt(request.getParameter("id"));
+                } catch (NumberFormatException ignored) {
+                }
 
-               Product p = ProductModel.findById(id);
-               if (p != null) {
-                 request.setAttribute("products", p);
-                 ServletUtils.forward("/views/Product/Edit.jsp", request, response);
-               } else {
-                 ServletUtils.redirect("/Admin/Category", request, response);
-               }
-               break;
+                Product p = ProductModel.findById(id);
+                if (p != null) {
+                    request.setAttribute("products", p);
+                    ServletUtils.forward("/views/Product/Edit.jsp", request, response);
+                } else {
+                    ServletUtils.redirect("/Admin/Category", request, response);
+                }
+                break;
 
             default:
-                ServletUtils.forward("/views/404.jsp", request, response);
+                ServletUtils.forward("/views/404/index.jsp", request, response);
                 break;
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-         String path = request.getPathInfo();
-         switch (path) {
-           case "/Add":
-             addProduct(request, response);
-             break;
+        String path = request.getPathInfo();
+        switch (path) {
+            case "/Add":
+                addProduct(request, response);
+                break;
 
-           case "/Delete":
-             deleteProduct(request, response);
-             break;
+            case "/Delete":
+                deleteProduct(request, response);
+                break;
 
-           case "/Update":
-             updateProduct(request, response);
-             break;
+            case "/Update":
+                updateProduct(request, response);
+                break;
 
-           default:
-             ServletUtils.forward("/views/404.jsp", request, response);
-             break;
-         }
+            default:
+                ServletUtils.forward("/views/404/index.jsp", request, response);
+                break;
+        }
     }
 
-     private void addProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       String name = request.getParameter("Pname");
-       int Price = Integer.parseInt(request.getParameter("Price"));
-       String img = request.getParameter("img");
-       String description = request.getParameter("description");
-       int Status =  Integer.parseInt(request.getParameter("Status"));
-       int Cat_ID = Integer.parseInt(request.getParameter("Cat_ID"));
-       Product p = new Product(name, img, description, Price, Status, Cat_ID );
-       ProductModel.add(p);
-       ServletUtils.forward("/views/Product/Add.jsp", request, response);
-     }
-
-     private void updateProduct(HttpServletRequest request, HttpServletResponse response) throws IOException {
-       int id = Integer.parseInt(request.getParameter("Pro_ID"));
+    private void addProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("Pname");
         int Price = Integer.parseInt(request.getParameter("Price"));
         String img = request.getParameter("img");
         String description = request.getParameter("description");
         int Status = Integer.parseInt(request.getParameter("Status"));
         int Cat_ID = Integer.parseInt(request.getParameter("Cat_ID"));
-       Product p = new Product(id, name,img, description, Price, Status, Cat_ID );
-       ProductModel.update(p);
-       ServletUtils.redirect("/Admin/Category", request, response);
-     }
+        Product p = new Product(name, img, description, Price, Status, Cat_ID);
+        ProductModel.add(p);
+        ServletUtils.forward("/views/Product/Add.jsp", request, response);
+    }
 
-     private void deleteProduct(HttpServletRequest request, HttpServletResponse response) throws IOException {
-       int id = Integer.parseInt(request.getParameter("Pro_ID"));
-       ProductModel.delete(id);
-       ServletUtils.redirect("/Admin/Category", request, response);
-     }
+    private void updateProduct(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int id = Integer.parseInt(request.getParameter("Pro_ID"));
+        String name = request.getParameter("Pname");
+        int Price = Integer.parseInt(request.getParameter("Price"));
+        String img = request.getParameter("img");
+        String description = request.getParameter("description");
+        int Status = Integer.parseInt(request.getParameter("Status"));
+        int Cat_ID = Integer.parseInt(request.getParameter("Cat_ID"));
+        Product p = new Product(id, name, img, description, Price, Status, Cat_ID);
+        ProductModel.update(p);
+        ServletUtils.redirect("/Admin/Category", request, response);
+    }
+
+    private void deleteProduct(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int id = Integer.parseInt(request.getParameter("Pro_ID"));
+        ProductModel.delete(id);
+        ServletUtils.redirect("/Admin/Category", request, response);
+    }
 }
 
