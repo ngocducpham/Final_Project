@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class='flex items-center space-x-4'>
-                <div class='relative'>
+                <div class='relative mr-5'>
                     <div class='absolute left-2 top-2 flex items-center justify-center text-center'>
                         <svg class='fill-gray-400' xmlns="http://www.w3.org/2000/svg"
                              xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1.5em"
@@ -26,16 +26,25 @@
                     </div>
                     <input type="text"
                            class='h-9 w-72 rounded-md bg-gray-600 pl-10 pr-5 text-white focus:outline-none'
-                           placeholder='Search'>
+                           placeholder='Tìm kiếm'>
                 </div>
-                <div class='sign__box flex space-x-2'>
-                    <a href='${pageContext.request.contextPath}/views/Account/Login.jsp' class='hover:bg-gray-700 rounded-md  px-3 py-1 text-white focus:outline-none'>Đăng
+                <div class=' nav__sign-box flex space-x-2'>
+                    <a href='${pageContext.request.contextPath}/views/Account/Login.jsp'
+                       class='hover:bg-gray-700 rounded-md  px-3 py-1 text-white focus:outline-none'>Đăng
                         nhập</a>
                     <a href='${pageContext.request.contextPath}/views/Account/Register.jsp'
                        class='hover:bg-gray-700 rounded-md ring-2 ring-gray-400 px-3 py-1 text-white focus:outline-none'>Đăng
                         kí</a>
                 </div>
-
+                <div class='hidden nav__user-box flex space-x-5 items-center'>
+                    <button type='button'>
+                        <span class="iconify text-gray-400 font-bold text-2xl hover:text-white"
+                              data-icon="ri:auction-line"></span>
+                    </button>
+                    <button type='button' class='bg-white rounded-full'>
+                        <img class="h-8 w-8" src="${pageContext.request.contextPath}/public/imgs/icon.svg" alt="">
+                    </button>
+                </div>
             </div>
         </div>
     </div>

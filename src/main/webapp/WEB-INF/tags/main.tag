@@ -11,6 +11,7 @@
     <title>Workflow - Bid and Auction</title>
     <jsp:invoke fragment="css"/>
     <script src="${pageContext.request.contextPath}/public/scripts/tailwindcss.js"></script>
+    <script src="https://code.iconify.design/2/2.1.0/iconify.min.js"></script>
 </head>
 <body class="bg-white">
 <jsp:include page="../../partials/nav.jsp"/>
