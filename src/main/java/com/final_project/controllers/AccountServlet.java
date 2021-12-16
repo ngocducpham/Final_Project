@@ -18,7 +18,6 @@ public class AccountServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = request.getPathInfo();
         if (path.equals("/")) {
-
         } else {
             switch (path) {
                 case "/Register":
