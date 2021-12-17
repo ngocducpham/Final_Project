@@ -1,0 +1,7 @@
+.bid__menu:hover .bid__dropdown {
+    visibility: visible;
+}
+
+.bid__submenu:hover .bid__submenu-dropdown {
+    visibility: visible;
+}
