@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ProductServlet", value = "/Product/*")
+@WebServlet(name = "ProductServlet", value = "/Admin/Product/*")
 public class ProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -44,7 +44,7 @@ public class ProductServlet extends HttpServlet {
                     request.setAttribute("products", p);
                     ServletUtils.forward("/views/Product/Edit.jsp", request, response);
                 } else {
-                    ServletUtils.redirect("/Admin/Category", request, response);
+                    ServletUtils.redirect("/Admin/Product", request, response);
                 }
                 break;
 

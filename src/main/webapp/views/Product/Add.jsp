@@ -1,16 +1,20 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Admin
-  Date: 16/12/2021
-  Time: 8:45 AM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-</body>
-</html>
+
+<t:main>
+    <jsp:body>
+        <form action="" method="post">
+            <div class="card">
+                <h4 class="card-header d-flex justify-content-between">
+                    Thêm sản phẩm
+                </h4>
+                <div class="card-body">
+
+                </div>
+            </div>
+        </form>
+    </jsp:body>
+</t:main>
+
