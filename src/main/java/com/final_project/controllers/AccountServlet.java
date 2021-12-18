@@ -76,8 +76,8 @@ public class AccountServlet extends HttpServlet {
         System.out.println(code);
         User user = new User(Integer.parseInt(role), name, email, EnCrypted_pass, address, code, ngaysinh);
 
-        boolean isMail_Sent = MailSender.sendMail_to_Active_Account(user);
-//        boolean isMail_Sent = true;
+//        boolean isMail_Sent = ServletUtils.sendMail_to_Active_Account(user);
+        boolean isMail_Sent = true;
         if (isMail_Sent) {
             HttpSession session = request.getSession();
             session.setAttribute("New_User", user);

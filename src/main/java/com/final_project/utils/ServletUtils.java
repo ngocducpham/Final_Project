@@ -1,5 +1,7 @@
 package com.final_project.utils;
 
+import com.final_project.beans.User;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -30,5 +32,12 @@ public class ServletUtils {
         java.util.Date date2 = new java.sql.Date(
                 ((java.util.Date)new SimpleDateFormat("dd/MM/yyyy").parse("02/09/2012")).getTime());
         return new java.sql.Date(date2.getTime());
+    }
+
+    public static boolean sendMail_to_Active_Account(User user) {
+        String mail_to = user.getEmail();
+        String header = "Verify Your Account";
+        String content = "Use this code to verify your Account: " + user.getCode();
+        return MailSender.send(mail_to, header, content);
     }
 }
