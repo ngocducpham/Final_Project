@@ -1,7 +1,12 @@
 .bid__menu:hover .bid__dropdown {
-    visibility: visible;
+    visibility: visible !important;
 }
 
 .bid__submenu:hover .bid__submenu-dropdown {
-    visibility: visible;
+    visibility: visible !important;
+}
+
+a:hover{
+    color: inherit;
+    text-decoration: inherit;
 }

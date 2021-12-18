@@ -5,7 +5,6 @@ document.querySelectorAll('.bid__menu').forEach(e => {
     });
     dropdown.className = "bid__dropdown invisible z-10 transition-all delay-75 absolute bg-gray-700 w-52 text-white mt-3 rounded-md left-0 py-1";
     let dropdownItem = dropdown.querySelectorAll('li');
-    console.log(dropdownItem);
     dropdownItem.forEach(item => {
         let arrow = document.createElement('span');
         arrow.setAttribute('class', "iconify text-lg");
@@ -20,4 +19,8 @@ document.querySelectorAll('.bid__menu').forEach(e => {
             item.appendChild(arrow);
         }
     });
+
+    e.querySelectorAll('a').forEach(archor => {
+        archor.setAttribute("style", "color: inherit;text-decoration: inherit;");
+    })
 });

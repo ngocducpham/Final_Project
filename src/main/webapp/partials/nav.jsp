@@ -9,8 +9,7 @@
                 <div class='flex space-x-4 ml-6 items-center'>
                     <a href="#" class='text-sm font-medium text-white rounded-md bg-gray-900 px-3 py-2'>Trang
                         chủ</a>
-                    <div
-                            class='bid__menu relative text-sm font-medium text-gray-300 rounded-md px-3 py-2 hover:bg-gray-700'>
+                    <div class='bid__menu relative text-sm font-medium text-gray-300 rounded-md px-3 py-2 hover:bg-gray-700'>
                         <a href="#">Đấu giá</a>
                         <ul class='invisible '>
                             <li>
@@ -70,15 +69,6 @@
                         kí</a>
                 </div>
                 <div class='nav__user-box hidden flex space-x-5 items-center'>
-                    <!--
-                    <button type='button'>
-                        <span class='flex bg-gray-700 hover:bg-gray-600 px-3 py-2 rounded-md'>
-                                <span class="iconify text-gray-200 font-bold text-2xl"
-                                      data-icon="ri:auction-fill"></span>
-                            <span class='ml-2 text-gray-200 '>Đấu giá của bạn</span>
-                        </span>
-                    </button>
-                    -->
                     <button type='button' class='bg-white rounded-full'>
                         <img class="h-8 w-8 " src="${pageContext.request.contextPath}/public/imgs/icon.svg" alt="">
                     </button>
