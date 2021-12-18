@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<nav class='bg-gray-800 sticky top-0'>
+<nav class='bg-gray-800 sticky top-0 z-50'>
     <div class='max-w-7xl mx-auto px-2'>
         <div class='relative flex items-center justify-between h-16'>
             <div class='flex'>

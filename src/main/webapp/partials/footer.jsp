@@ -1,8 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div class='mt-96'>
-</div>
 
-<div style='background-image: url("${pageContext.request.contextPath}/public/imgs/footer-bg.jpg");' class='w-full bg-center bg-cover mt-2 relative pb-8'>
+<div style='background-image: url("${pageContext.request.contextPath}/public/imgs/footer-bg.jpg");' class='w-full bg-center bg-cover mt-2 relative pb-8 mt-40'>
     <div class="footer__top">
         <svg id="wave" style="transform:rotate(180deg); transition: 0.3s" viewBox="0 0 1440 140" version="1.1"
              xmlns="http://www.w3.org/2000/svg">
