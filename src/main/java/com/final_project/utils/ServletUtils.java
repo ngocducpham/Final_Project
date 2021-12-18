@@ -40,4 +40,11 @@ public class ServletUtils {
         String content = "Use this code to verify your Account: " + user.getCode();
         return MailSender.send(mail_to, header, content);
     }
+
+    public static boolean sengMail_to_Reset_Password(User user){
+        String mail_to = user.getEmail();
+        String header = "Reset Your Password";
+        String content = "Use this code to Reset Your Password: " + user.getCode();
+        return MailSender.send(mail_to, header, content);
+    }
 }
