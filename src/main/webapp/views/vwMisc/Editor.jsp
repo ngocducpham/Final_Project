@@ -34,7 +34,7 @@
                     <div class="=card-footer">
                         <div class="">
                             <button type="submit" class="btn btn-primay">
-                                <i class=" fa fa-check" aria-hidden="true"></i> SAVE
+                                <i class="fa fa-check" aria-hidden="true"></i> SAVE
                             </button>
                         </div>
                     </div>
