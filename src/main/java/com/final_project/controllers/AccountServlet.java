@@ -92,6 +92,7 @@ public class AccountServlet extends HttpServlet {
         if(code.equals(user.getCode())){
             System.out.println("true");
             UserModel.AddNewUser(user);
+            ServletUtils.redirect("/Account/Login", request, response);
         }else {
             System.out.println("false");
         }

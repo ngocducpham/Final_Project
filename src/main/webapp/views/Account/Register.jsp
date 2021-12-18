@@ -44,7 +44,7 @@
 
 
                 <div class='mt-2'>
-                    <label for='DOB' class='font-medium text-gray-600'>Ngày Sinh</label>
+                    <label for='DOB' class='font-medium text-gray-600'>Ngày Sinh (dd/MM/yyyy)</label>
                     <input id="DOB" name="DOB" type="text" required
                            class='mt-2 w-full px-2 py-1 outline-none block border-2 rounded-md  border-gray-300 text-gray-700'>
                 </div>

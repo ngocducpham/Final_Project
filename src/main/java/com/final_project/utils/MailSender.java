@@ -22,7 +22,8 @@ public class MailSender {
     public static boolean sendMail_to_Active_Account(User user) {
         boolean success = false;
 
-        String mail_to = "19110196@student.hcmute.edu.vn";
+        String mail_to = "vohuugiau2901@gmail.com";
+//        String mail_to = user.getEmail();
         String fromServer = "workflow.auction@gmail.com", password = "_work-auc";
 
         try {
@@ -40,7 +41,7 @@ public class MailSender {
             message.setFrom(new InternetAddress(fromServer));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mail_to));
             message.setSubject("Verify Your Account");
-            message.setText("Use this code to verify your Account: "+user.getCode());
+            message.setText("Use this code to verify your Account: " + user.getCode());
             Transport.send(message);
             success = true;
         } catch (Exception e) {
