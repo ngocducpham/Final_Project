@@ -10,7 +10,8 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.util.Date;
+import java.sql.Date;
+import java.text.ParseException;
 
 @WebServlet(name = "AccountServlet", value = "/Account/*")
 public class AccountServlet extends HttpServlet {
@@ -42,7 +43,11 @@ public class AccountServlet extends HttpServlet {
         } else {
             switch (path) {
                 case "/Register":
-                    Register(request, response);
+                    try {
+                        Register(request, response);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case "/Login":
                     Login(request, response);
@@ -56,22 +61,23 @@ public class AccountServlet extends HttpServlet {
         }
     }
 
-    private void Register(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void Register(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
         request.setCharacterEncoding("UTF-8");
 
         String email = request.getParameter("email");
         String Raw_pass = request.getParameter("password");
-        String EnCrypted_pass=BCrypt.withDefaults().hashToString(12, Raw_pass.toCharArray());
-        String name = request.getParameter("name");
+        String EnCrypted_pass="cc";
+//        String EnCrypted_pass=BCrypt.withDefaults().hashToString(12, Raw_pass.toCharArray());
+        String name = request.getParameter("username");
         String address = request.getParameter("full_address");
-        Date ngaysinh = ServletUtils.Parse_date_format(request.getParameter("dob"));
+        java.sql.Date ngaysinh = ServletUtils.Parse_date_format(request.getParameter("DOB"));
         String role = request.getParameter("role");
         String code = MailSender.getCode();
         System.out.println(code);
         User user = new User(Integer.parseInt(role), name, email, EnCrypted_pass, address, code, ngaysinh);
 
-//        boolean isMail_Sent = MailSender.sendMail_to_Active_Account(user);
-        boolean isMail_Sent = true;
+        boolean isMail_Sent = MailSender.sendMail_to_Active_Account(user);
+//        boolean isMail_Sent = true;
         if (isMail_Sent) {
             HttpSession session = request.getSession();
             session.setAttribute("New_User", user);

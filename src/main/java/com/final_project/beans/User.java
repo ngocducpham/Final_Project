@@ -1,7 +1,6 @@
 package com.final_project.beans;
 
-import java.time.LocalDate;
-import java.util.Date;
+import java.sql.Date;
 
 public class User {
     private int User_ID,userrole;
