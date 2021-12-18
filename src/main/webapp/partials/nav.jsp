@@ -70,6 +70,7 @@
                         kí</a>
                 </div>
                 <div class='nav__user-box hidden flex space-x-5 items-center'>
+                    <!--
                     <button type='button'>
                         <span class='flex bg-gray-700 hover:bg-gray-600 px-3 py-2 rounded-md'>
                                 <span class="iconify text-gray-200 font-bold text-2xl"
@@ -77,6 +78,7 @@
                             <span class='ml-2 text-gray-200 '>Đấu giá của bạn</span>
                         </span>
                     </button>
+                    -->
                     <button type='button' class='bg-white rounded-full'>
                         <img class="h-8 w-8 " src="${pageContext.request.contextPath}/public/imgs/icon.svg" alt="">
                     </button>

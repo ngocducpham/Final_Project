@@ -1,9 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<div style='background-image: url("${pageContext.request.contextPath}/public/imgs/footer-bg.jpg");' class='w-full bg-center bg-cover mt-2 relative pb-8 mt-40'>
+<div style='background-image: url("${pageContext.request.contextPath}/public/imgs/footer-bg.jpg");' class='w-full bg-center bg-cover mt-40 relative pb-8'>
     <div class="footer__top">
-        <svg id="wave" style="transform:rotate(180deg); transition: 0.3s" viewBox="0 0 1440 140" version="1.1"
-             xmlns="http://www.w3.org/2000/svg">
+        <svg id="wave" style="transform:rotate(180deg);" viewBox="0 0 1440 140" xmlns="http://www.w3.org/2000/svg">
             <defs>
                 <linearGradient id="sw-gradient-0" x1="0" x2="0" y1="1" y2="0">
                     <stop stop-color="rgba(253.179, 253.179, 253.179, 1)" offset="0%"></stop>
