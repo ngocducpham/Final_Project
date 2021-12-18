@@ -6,7 +6,7 @@ import java.time.temporal.ChronoUnit;
 public class DateTimeUtils {
     // fromDateTime: ngày sau
     // toDateTime: ngày trước
-    // trả
+    // trả về 1 mảng long[]{years, months, days, hours, minutes, seconds};
     public static long[] dateTimeDiff(LocalDateTime fromDateTime, LocalDateTime toDateTime) {
         LocalDateTime tempDateTime = LocalDateTime.from(fromDateTime);
 
