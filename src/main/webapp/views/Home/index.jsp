@@ -8,6 +8,49 @@
 <jsp:useBean id="top5Bid" scope="request" type="java.util.List<com.final_project.beans.ProductAuction>"/>
 
 <t:main>
+    <jsp:attribute name="js">
+        <script>
+            let timeEndList = [];
+
+            <c:forEach items="${top5Time}" var="p">
+                timeEndList.push(new Date("${p.end_Time}"));
+            </c:forEach>
+            <c:forEach items="${top5Price}" var="p">
+                timeEndList.push(new Date("${p.end_Time}"));
+            </c:forEach>
+            <c:forEach items="${top5Bid}" var="p">
+                timeEndList.push(new Date("${p.end_Time}"));
+            </c:forEach>
+
+            let timeContainer = document.querySelectorAll('.timeContainer');
+            let timeNow = new Date();
+            let datePerMilis = 1000 * 60 * 60 * 24;
+            let timeDiff = [], days, hours, mins, secs;
+
+            for (let i = 0; i < timeEndList.length; i++) {
+                timeDiff.push(new Date(timeEndList[i].getTime() - timeNow));
+            }
+
+            setInterval(()=>{
+                for (let i = 0; i < timeEndList.length; i++) {
+                    days = Math.floor((timeEndList[i].getTime() - Date.now()) / datePerMilis);
+                    hours = timeDiff[i].getUTCHours();
+                    mins = timeDiff[i].getUTCMinutes();
+                    secs = timeDiff[i].getUTCSeconds();
+
+                    timeContainer[i].querySelector('.days').textContent = days;
+                    timeContainer[i].querySelector('.hours').textContent = hours;
+                    timeContainer[i].querySelector('.minutes').textContent = mins;
+                    timeContainer[i].querySelector('.seconds').textContent = secs;
+
+                    timeDiff[i].setUTCSeconds(secs - 1);
+                }
+            },1000);
+
+
+
+        </script>
+    </jsp:attribute>
     <jsp:body>
         <!--Hero-->
         <div class='w-full h-screen'
@@ -38,28 +81,29 @@
                     <c:forEach items="${top5Time}" var="p">
                         <div>
                             <div class='w-56 pb-4 border rounded-lg bg-white overflow-hidden shadow-md'>
-                                <img class='h-60 w-full rounded-t-lg' src="${pageContext.request.contextPath}/public/imgs/appple-watch.jpg" alt="">
+                                <img class='h-60 w-full rounded-t-lg'
+                                     src="${pageContext.request.contextPath}/public/imgs/appple-watch.jpg" alt="">
                                 <div class='px-2 w-full text-center mt-2'>
                                     <a href='#' class='font-semibold w-full hover:underline'>${p.pname}</a>
                                     <div class='text-sm text-gray-500 font-semibold mt-3'>
                                         Giá hiện tại:
                                         <span>${p.current_Price} đ</span>
                                     </div>
-                                    <div class='flex justify-around text-xs mt-3 font-semibold'>
+                                    <div class='timeContainer flex justify-around text-xs mt-3 font-semibold'>
                                         <div>
-                                            <div class='text-sm'>05</div>
+                                            <div class='days text-sm'>05</div>
                                             <div class='text-gray-500'>Ngày</div>
                                         </div>
                                         <div>
-                                            <div class='text-sm'>05</div>
+                                            <div class='hours text-sm'>05</div>
                                             <div class='text-gray-500'>Giờ</div>
                                         </div>
                                         <div>
-                                            <div class='text-sm'>05</div>
+                                            <div class='minutes text-sm'>05</div>
                                             <div class='text-gray-500'>Phút</div>
                                         </div>
                                         <div>
-                                            <div class='text-sm'>05</div>
+                                            <div class='seconds text-sm'>05</div>
                                             <div class='text-gray-500'>Giây</div>
                                         </div>
                                     </div>
@@ -75,28 +119,29 @@
                     <c:forEach items="${top5Price}" var="p">
                         <div>
                             <div class='w-56 pb-4 border rounded-lg bg-white overflow-hidden shadow-md'>
-                                <img class='h-60 w-full rounded-t-lg' src="${pageContext.request.contextPath}/public/imgs/appple-watch.jpg" alt="">
+                                <img class='h-60 w-full rounded-t-lg'
+                                     src="${pageContext.request.contextPath}/public/imgs/appple-watch.jpg" alt="">
                                 <div class='px-2 w-full text-center mt-2'>
                                     <a href='#' class='font-semibold w-full hover:underline'>${p.pname}</a>
                                     <div class='text-sm text-gray-500 font-semibold mt-3'>
                                         Giá hiện tại:
                                         <span>${p.current_Price} đ</span>
                                     </div>
-                                    <div class='flex justify-around text-xs mt-3 font-semibold'>
+                                    <div class='timeContainer flex justify-around text-xs mt-3 font-semibold'>
                                         <div>
-                                            <div class='text-sm'>05</div>
+                                            <div class='days text-sm'>05</div>
                                             <div class='text-gray-500'>Ngày</div>
                                         </div>
                                         <div>
-                                            <div class='text-sm'>05</div>
+                                            <div class='hours text-sm'>05</div>
                                             <div class='text-gray-500'>Giờ</div>
                                         </div>
                                         <div>
-                                            <div class='text-sm'>05</div>
+                                            <div class='minutes text-sm'>05</div>
                                             <div class='text-gray-500'>Phút</div>
                                         </div>
                                         <div>
-                                            <div class='text-sm'>05</div>
+                                            <div class='seconds text-sm'>05</div>
                                             <div class='text-gray-500'>Giây</div>
                                         </div>
                                     </div>
@@ -112,28 +157,29 @@
                     <c:forEach items="${top5Bid}" var="p">
                         <div>
                             <div class='w-56 pb-4 border rounded-lg bg-white overflow-hidden shadow-md'>
-                                <img class='h-60 w-full rounded-t-lg' src="${pageContext.request.contextPath}/public/imgs/appple-watch.jpg" alt="">
+                                <img class='h-60 w-full rounded-t-lg'
+                                     src="${pageContext.request.contextPath}/public/imgs/appple-watch.jpg" alt="">
                                 <div class='px-2 w-full text-center mt-2'>
                                     <a href='#' class='font-semibold w-full hover:underline'>${p.pname}</a>
                                     <div class='text-sm text-gray-500 font-semibold mt-3'>
                                         Giá hiện tại:
                                         <span>${p.current_Price} đ</span>
                                     </div>
-                                    <div class='flex justify-around text-xs mt-3 font-semibold'>
+                                    <div class='timeContainer flex justify-around text-xs mt-3 font-semibold'>
                                         <div>
-                                            <div class='text-sm'>05</div>
+                                            <div class='days text-sm'>05</div>
                                             <div class='text-gray-500'>Ngày</div>
                                         </div>
                                         <div>
-                                            <div class='text-sm'>05</div>
+                                            <div class='hours text-sm'>05</div>
                                             <div class='text-gray-500'>Giờ</div>
                                         </div>
                                         <div>
-                                            <div class='text-sm'>05</div>
+                                            <div class='minutes text-sm'>05</div>
                                             <div class='text-gray-500'>Phút</div>
                                         </div>
                                         <div>
-                                            <div class='text-sm'>05</div>
+                                            <div class='seconds text-sm'>05</div>
                                             <div class='text-gray-500'>Giây</div>
                                         </div>
                                     </div>
