@@ -62,14 +62,14 @@
                            class='h-9 w-72 rounded-md bg-gray-600 pl-10 pr-5 text-white focus:outline-none'
                            placeholder='Search'>
                 </div>
-                <div class='flex space-x-2 hidden'>
+                <div class='flex space-x-2'>
                     <a href='#' class='hover:bg-gray-700 rounded-md  px-3 py-1 text-white focus:outline-none'>Đăng
                         nhập</a>
                     <a href='#'
                        class='hover:bg-gray-700 rounded-md ring-2 ring-gray-400 px-3 py-1 text-white focus:outline-none'>Đăng
                         kí</a>
                 </div>
-                <div class='nav__user-box flex space-x-5 items-center'>
+                <div class='hidden nav__user-box flex space-x-5 items-center'>
                     <button type='button'
                             class='bid__menu relative nav__user-icon rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white p-1'>
                         <img class="h-8 w-8 " src="${pageContext.request.contextPath}/public/imgs/icon.svg" alt="">
