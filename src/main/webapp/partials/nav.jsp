@@ -9,9 +9,10 @@
                 <div class='flex space-x-4 ml-6 items-center'>
                     <a href="#" class='text-sm font-medium text-white rounded-md bg-gray-900 px-3 py-2'>Trang
                         chủ</a>
-                    <div class='bid__menu relative text-sm font-medium text-gray-300 rounded-md px-3 py-2 hover:bg-gray-700'>
+                    <div
+                            class='bid__menu relative text-sm font-medium text-gray-300 rounded-md px-3 py-2 hover:bg-gray-700'>
                         <a href="#">Đấu giá</a>
-                        <ul class='invisible '>
+                        <ul class='invisible'>
                             <li>
                                 <a href="#">Đồ điện tử</a>
                                 <ul>
@@ -47,8 +48,8 @@
                     </div>
                 </div>
             </div>
-            <div class='flex items-center space-x-4 '>
-                <div class='relative mr-5'>
+            <div class='flex items-center space-x-4'>
+                <div class='relative mr-3'>
                     <div class='absolute left-2 top-2 flex items-center justify-center text-center'>
                         <svg class='fill-gray-400' xmlns="http://www.w3.org/2000/svg"
                              xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1.5em"
@@ -61,16 +62,38 @@
                            class='h-9 w-72 rounded-md bg-gray-600 pl-10 pr-5 text-white focus:outline-none'
                            placeholder='Search'>
                 </div>
-                <div class='flex space-x-2'>
-                    <a href='${pageContext.request.contextPath}/Account/Login' class='hover:bg-gray-700 rounded-md  px-3 py-1 text-white focus:outline-none'>Đăng
+                <div class='flex space-x-2 hidden'>
+                    <a href='#' class='hover:bg-gray-700 rounded-md  px-3 py-1 text-white focus:outline-none'>Đăng
                         nhập</a>
-                    <a href='${pageContext.request.contextPath}/Account/Register'
+                    <a href='#'
                        class='hover:bg-gray-700 rounded-md ring-2 ring-gray-400 px-3 py-1 text-white focus:outline-none'>Đăng
                         kí</a>
                 </div>
-                <div class='nav__user-box hidden flex space-x-5 items-center'>
-                    <button type='button' class='bg-white rounded-full'>
+                <div class='nav__user-box flex space-x-5 items-center'>
+                    <button type='button'
+                            class='bid__menu relative nav__user-icon rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white p-1'>
                         <img class="h-8 w-8 " src="${pageContext.request.contextPath}/public/imgs/icon.svg" alt="">
+                        <span class='text-left'>
+                                <ul class='right-0 text-sm font-semibold'>
+                                    <li class='flex items-center'>
+                                        <span class="iconify text-2xl mr-2" data-icon="bx:bxs-user"></span>
+                                        <a href="#">Tài khoản</a>
+                                    </li>
+                                    <li class='flex items-center'>
+                                        <span class="iconify text-2xl mr-2"  data-icon="ri:auction-fill"></span>
+                                        <a href="#">Đấu giá của bạn</a>
+
+                                    </li>
+                                    <li class='flex items-center'>
+                                        <span class="iconify text-2xl mr-2" data-icon="ri:lock-password-fill"></span>
+                                        <a href="#">Đổi mật khẩu</a>
+                                    </li>
+                                    <li class='flex items-center'>
+                                        <span class="iconify text-2xl mr-2" data-icon="ion:log-out-sharp"></span>
+                                        <a href="#">Đăng xuất</a>
+                                    </li>
+                                </ul>
+                            </span>
                     </button>
                 </div>
             </div>
