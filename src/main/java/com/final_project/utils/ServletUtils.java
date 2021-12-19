@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.sql.Date;
+import java.util.Random;
 
 public class ServletUtils {
     public static void forward(String url, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -32,6 +33,12 @@ public class ServletUtils {
         java.util.Date date2 = new java.sql.Date(
                 ((java.util.Date)new SimpleDateFormat("dd/MM/yyyy").parse("02/09/2012")).getTime());
         return new java.sql.Date(date2.getTime());
+    }
+
+    public static String get_Verify_Code() {
+        Random r = new Random();
+        int n = r.nextInt(9999);
+        return String.format("%06d", n);
     }
 
     public static boolean sendMail_to_Active_Account(User user) {

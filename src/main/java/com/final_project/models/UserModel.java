@@ -8,7 +8,7 @@ import java.util.List;
 
 public class UserModel {
 
-    public static User findByEmail(String email) {
+    public static User Find_By_Email(String email) {
         final String query = "select * from users where email = :email";
         try (Connection con = DBUtils.getConnection()) {
             List<User> list = con.createQuery(query)
@@ -21,17 +21,27 @@ public class UserModel {
         }
     }
 
-    public static void AddNewUser(User u){
-        final String query="insert into users (username, email, Pass, userrole, Address, Date_o_Birth)\n" +
+    public static void AddNewUser(User u) {
+        final String query = "insert into users (username, email, Pass, userrole, Address, Date_o_Birth)\n" +
                 "values (:username,:email,:pass,:userrole,:Address,:Date_o_Birth)";
-        try (Connection conn =DBUtils.getConnection()){
+        try (Connection conn = DBUtils.getConnection()) {
             conn.createQuery(query)
-                    .addParameter("username",u.getUsername())
-                    .addParameter("email",u.getEmail())
-                    .addParameter("pass",u.getPass())
-                    .addParameter("userrole",u.getUserrole())
-                    .addParameter("Address",u.getAddress())
-                    .addParameter("Date_o_Birth",u.getDate_o_Birth())
+                    .addParameter("username", u.getUsername())
+                    .addParameter("email", u.getEmail())
+                    .addParameter("pass", u.getPass())
+                    .addParameter("userrole", u.getUserrole())
+                    .addParameter("Address", u.getAddress())
+                    .addParameter("Date_o_Birth", u.getDate_o_Birth())
+                    .executeUpdate();
+        }
+    }
+
+    public static void Update_User(User user, String new_password) {
+        final String query = "update auctionweb.users set Pass = :pass where User_ID = :user_id;";
+        try (Connection con = DBUtils.getConnection()) {
+            con.createQuery(query)
+                    .addParameter("pass", new_password)
+                    .addParameter("user_id", user.getUser_ID())
                     .executeUpdate();
         }
     }

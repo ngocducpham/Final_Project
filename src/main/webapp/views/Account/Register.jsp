@@ -26,7 +26,7 @@
         </div>
     </div>
     <div>
-        <form action="#" method='POST'>
+        <form id="FormRegister" action="#" method='POST'>
             <div class='shadow-lg rounded-lg p-8 bg-white flex flex-col'>
                 <div>
                     <label for='user-name' class='font-medium text-gray-600'>Họ và tên</label>
@@ -73,7 +73,7 @@
                     <label for='email-address' class='font-medium text-gray-600'>Địa chỉ email</label>
                     <input id="email-address" name="email" type="email" autocomplete="email" required
                            class='mt-2 w-full px-2 py-1 outline-none block border-2 rounded-md  border-gray-300 text-gray-700'>
-                    <div class='alert__email hidden text-red-600 mt-2 text-sm'>Email đã tồn tại</div>
+                    <div id="exist_email" class='alert__email hidden text-red-600 mt-2 text-sm'>Email đã tồn tại</div>
                 </div>
                 <!--                <div class='mt-2'>-->
                 <!--                    <label for='vetification' class='font-medium text-gray-600'>Mã xác nhận</label>-->
