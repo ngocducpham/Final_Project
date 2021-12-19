@@ -62,9 +62,9 @@
                            placeholder='Search'>
                 </div>
                 <div class='flex space-x-2'>
-                    <a href='#' class='hover:bg-gray-700 rounded-md  px-3 py-1 text-white focus:outline-none'>Đăng
+                    <a href='${pageContext.request.contextPath}/Account/Login' class='hover:bg-gray-700 rounded-md  px-3 py-1 text-white focus:outline-none'>Đăng
                         nhập</a>
-                    <a href='#'
+                    <a href='${pageContext.request.contextPath}/Account/Register'
                        class='hover:bg-gray-700 rounded-md ring-2 ring-gray-400 px-3 py-1 text-white focus:outline-none'>Đăng
                         kí</a>
                 </div>
