@@ -86,7 +86,7 @@ public class MiscServlet extends HttpServlet {
                         {
                             newDir.mkdir();
                         }
-                        String destination=tagDir+"/"+filename;
+                        String destination=tagDir + "/" + filename;
                         part.write(destination);
                     }
                 }

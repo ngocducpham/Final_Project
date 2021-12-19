@@ -6,6 +6,7 @@
     <jsp:attribute name="js">
         <script src="https://cdn.tiny.cloud/1/tqma32h5o4jgstj9c1lfgu7ap5gaygxnz1x7xsumn9l0ivcn/tinymce/5/tinymce.min.js"
                 referrerpolicy="origin"></script>
+
         <script>
             tinymce.init({
                 selector: '#fullDes',

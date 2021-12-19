@@ -44,12 +44,12 @@
                     <input id="fuMain" name="fuMain" type="file"/>
                 </div>
             </div>
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-success">
-                        <i class="fa fa-check" aria-hidden="false"></i>
-                        Save
-                    </button>
-                </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-success">
+                    <i class="fa fa-check" aria-hidden="false"></i>
+                    Save
+                </button>
+            </div>
         </form>
     </jsp:body>
 </t:main>
