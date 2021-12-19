@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"  %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -10,10 +10,11 @@
             tinymce.init({
                 selector: '#fullDes',
                 height: 500,
-                plugins: 'lists link',
+                plugins: 'lists link media autolink table',
                 menubar: false,
-                toolbar: ['undo redo | bold italic underlight strikerthrough | numlist bullist | link']
+                toolbar: ['undo redo | bold italic underlight strikerthrough | numlist bullist | link autolink | table media']
             });
+
         </script>
     </jsp:attribute>
     <jsp:body>
@@ -34,7 +35,7 @@
                     <div class="=card-footer">
                         <div class="">
                             <button type="submit" class="btn btn-primay">
-                                <i class="fa fa-check" aria-hidden="true"></i> SAVE
+                                <i class=" fa fa-check-square-o" aria-hidden="true"></i> SAVE
                             </button>
                         </div>
                     </div>

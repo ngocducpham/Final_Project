@@ -19,10 +19,7 @@ public class MiscServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = request.getPathInfo();
-        /*if (path.equals("/"))
-        {
-            //ServletUtils.forward("/views/vwMisc/Upload.jsp", request, response);
-        }*/
+
         switch (path)
         {
             case "/Editor":
@@ -84,10 +81,10 @@ public class MiscServlet extends HttpServlet {
                         System.out.println(filename);
 
                         String tagDir=this.getServletContext().getRealPath("public/img2");
-                        File dir=new File(tagDir);
-                        if(!dir.exists())
+                        File newDir=new File(tagDir);
+                        if(!newDir.exists())
                         {
-                            dir.mkdir();
+                            newDir.mkdir();
                         }
                         String destination=tagDir+"/"+filename;
                         part.write(destination);
@@ -99,7 +96,15 @@ public class MiscServlet extends HttpServlet {
     }
     private  void postEditor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        System.out.println(request.getParameter("namePro"));
+        String shortDes=request.getParameter("ShortDes"); //file Editor
+        System.out.println(shortDes);
+
+        String fullDes=request.getParameter("FullDes");
+        System.out.println(fullDes);
+
+        ServletUtils.forward("views/vwMisc/Editor.jsp",request,response);
+
+
 
 
     }
