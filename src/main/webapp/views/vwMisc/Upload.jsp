@@ -13,7 +13,7 @@
 <t:main>
     <jsp:attribute name="css">
     <link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.2.5/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.2.5/js/fileinput.min.js">
+   <%-- <link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.2.5/js/fileinput.min.js">--%>
     </jsp:attribute>
     <jsp:attribute name="js">
     <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.2.5/js/fileinput.min.js"></script>
@@ -50,7 +50,7 @@
                         Save
                     </button>
                 </div>
-            </div>
+
         </form>
     </jsp:body>
 </t:main>
