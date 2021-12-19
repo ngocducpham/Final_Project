@@ -73,7 +73,7 @@
                     <button type='button'
                             class='bid__menu relative nav__user-icon rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white p-1'>
                         <img class="h-8 w-8 " src="${pageContext.request.contextPath}/public/imgs/icon.svg" alt="">
-                        <span class='text-left'>
+                        <span class='text-left invisible'>
                                 <ul class='right-0 text-sm font-semibold'>
                                     <li class='flex items-center'>
                                         <span class="iconify text-2xl mr-2" data-icon="bx:bxs-user"></span>
