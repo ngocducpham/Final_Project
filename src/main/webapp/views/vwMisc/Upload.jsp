@@ -27,6 +27,7 @@
             allowedFileExtensions: ['jpg', 'png', 'gif']
         });
     </script>
+
     </jsp:attribute>
     <jsp:body>
         <form  method="post" action="" enctype="multipart/form-data">
