@@ -13,12 +13,6 @@ import java.util.Random;
 
 public class MailSender {
 
-    public static String getCode() {
-        Random r = new Random();
-        int n = r.nextInt(9999);
-        return String.format("%06d", n);
-    }
-
     public static boolean send(String mail_to, String header, String content) {
         boolean success = false;
         String fromServer = "workflow.auction@gmail.com", password = "_work-auc";

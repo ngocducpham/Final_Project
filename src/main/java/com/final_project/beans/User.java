@@ -7,6 +7,18 @@ public class User {
     private String username, email, Pass, Address,code;
     private Date Date_o_Birth,Seller_Expired_date;
 
+    public User(int user_ID, int userrole, String username, String email, String pass, String address, String code, Date date_o_Birth, Date seller_Expired_date) {
+        User_ID = user_ID;
+        this.userrole = userrole;
+        this.username = username;
+        this.email = email;
+        Pass = pass;
+        Address = address;
+        this.code = code;
+        Date_o_Birth = date_o_Birth;
+        Seller_Expired_date = seller_Expired_date;
+    }
+
     public int getUser_ID() {
         return User_ID;
     }

@@ -11,15 +11,14 @@
     <jsp:attribute name="js">
         <script>
             let timeEndList = [];
-
             <c:forEach items="${top5Time}" var="p">
-                timeEndList.push(new Date("${p.end_Time}"));
+            timeEndList.push(new Date("${p.end_Time}"));
             </c:forEach>
             <c:forEach items="${top5Price}" var="p">
-                timeEndList.push(new Date("${p.end_Time}"));
+            timeEndList.push(new Date("${p.end_Time}"));
             </c:forEach>
             <c:forEach items="${top5Bid}" var="p">
-                timeEndList.push(new Date("${p.end_Time}"));
+            timeEndList.push(new Date("${p.end_Time}"));
             </c:forEach>
 
             let timeContainer = document.querySelectorAll('.timeContainer');
@@ -31,7 +30,7 @@
                 timeDiff.push(new Date(timeEndList[i].getTime() - timeNow));
             }
 
-            setInterval(()=>{
+            setInterval(() => {
                 for (let i = 0; i < timeEndList.length; i++) {
                     days = Math.floor((timeEndList[i].getTime() - Date.now()) / datePerMilis);
                     hours = timeDiff[i].getUTCHours();
@@ -45,8 +44,7 @@
 
                     timeDiff[i].setUTCSeconds(secs - 1);
                 }
-            },1000);
-
+            }, 1000);
 
 
         </script>
@@ -80,7 +78,10 @@
                 <div class='flex justify-between mt-10'>
                     <c:forEach items="${top5Time}" var="p">
                         <div>
-                            <div class='w-56 pb-4 border rounded-lg bg-white overflow-hidden shadow-md'>
+                            <div class='relative w-56 pb-4 border rounded-lg bg-white overflow-hidden shadow-md'>
+                                <span class='rounded-br-full absolute top-0 left-0 pl-2 py-2 pr-5 bg-gray-300 text-xs font-bold'>
+                                Số lần bid: ${p.total_Bid}
+                            </span>
                                 <img class='h-60 w-full rounded-t-lg'
                                      src="${pageContext.request.contextPath}/public/imgs/appple-watch.jpg" alt="">
                                 <div class='px-2 w-full text-center mt-2'>
@@ -118,7 +119,10 @@
                 <div class='flex justify-between mt-10'>
                     <c:forEach items="${top5Price}" var="p">
                         <div>
-                            <div class='w-56 pb-4 border rounded-lg bg-white overflow-hidden shadow-md'>
+                            <div class='relative w-56 pb-4 border rounded-lg bg-white overflow-hidden shadow-md'>
+                                <span class='rounded-br-full absolute top-0 left-0 pl-2 py-2 pr-5 bg-gray-300 text-xs font-bold'>
+                                    Số lần bid: ${p.total_Bid}
+                                 </span>
                                 <img class='h-60 w-full rounded-t-lg'
                                      src="${pageContext.request.contextPath}/public/imgs/appple-watch.jpg" alt="">
                                 <div class='px-2 w-full text-center mt-2'>
@@ -156,7 +160,10 @@
                 <div class='flex justify-between mt-10'>
                     <c:forEach items="${top5Bid}" var="p">
                         <div>
-                            <div class='w-56 pb-4 border rounded-lg bg-white overflow-hidden shadow-md'>
+                            <div class='relative w-56 pb-4 border rounded-lg bg-white overflow-hidden shadow-md'>
+                                <span class='rounded-br-full absolute top-0 left-0 pl-2 py-2 pr-5 bg-gray-300 text-xs font-bold'>
+                                    Số lần bid: ${p.total_Bid}
+                                </span>
                                 <img class='h-60 w-full rounded-t-lg'
                                      src="${pageContext.request.contextPath}/public/imgs/appple-watch.jpg" alt="">
                                 <div class='px-2 w-full text-center mt-2'>
