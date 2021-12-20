@@ -70,7 +70,7 @@
                 </div>
                 <c:choose>
                     <c:when test="${Verified}">
-                        <div class='hidden nav__user-box flex space-x-5 items-center'>
+                        <div class='nav__user-box flex space-x-5 items-center'>
                             <button type='button'
                                     class='bid__menu relative nav__user-icon rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white p-1'>
                                 <img class="h-8 w-8 " src="${pageContext.request.contextPath}/public/imgs/icon.svg" alt="">
@@ -78,7 +78,7 @@
                                 <ul class='right-0 text-sm font-semibold'>
                                     <li class='flex items-center'>
                                         <span class="iconify text-2xl mr-2" data-icon="bx:bxs-user"></span>
-                                        <a href="${pageContext.request.contextPath}/Account/Personal?id=${authUser.user_ID}">Tài khoản</a>
+                                        <a href="${pageContext.request.contextPath}/Personal/User_Information">Tài khoản</a>
                                     </li>
                                     <li class='flex items-center'>
                                         <span class="iconify text-2xl mr-2"  data-icon="ri:auction-fill"></span>
@@ -91,7 +91,7 @@
                                     </li>
                                     <li class='flex items-center'>
                                         <span class="iconify text-2xl mr-2" data-icon="ion:log-out-sharp"></span>
-                                        <a href="#">Đăng xuất</a>
+                                        <a href="${pageContext.request.contextPath}/Personal/Logout">Đăng xuất</a>
                                     </li>
                                 </ul>
                             </span>

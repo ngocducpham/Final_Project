@@ -28,7 +28,7 @@
                 <div>
                     <label for='email-address' class='font-medium text-gray-600'>Địa chỉ email</label>
                     <input id="email-address" name="email" type="email" autocomplete="email" required
-                           class='mt-2 w-full px-2 py-1 outline-none block border-2 rounded-md  border-gray-300 text-gray-700'>
+                           class='mt-2 w-full px-2 py-1 outline-none block border-2 rounded-md  border-gray-300 text-gray-700' autofocus>
                 </div>
                 <div class='mt-5'>
                     <div class='flex justify-between'>

@@ -5,6 +5,7 @@ import com.final_project.beans.User;
 import com.final_project.utils.DBUtils;
 import org.sql2o.Connection;
 
+import java.util.Date;
 import java.util.List;
 
 public class UserModel {
@@ -80,6 +81,34 @@ public class UserModel {
             con.createQuery(query)
                     .addParameter("pass", new_password)
                     .addParameter("user_id", user.getUser_ID())
+                    .executeUpdate();
+        }
+    }
+
+    public static void Update_User_Information(String username, String email, String Address, Date Date_o_Birth, int user_id) {
+        final String query = "update auctionweb.users" +
+                " set username=:username, " +
+                " email=:email," +
+                "Address=:Address," +
+                "Date_o_Birth=:Date_o_Birth " +
+                "where User_ID = :user_id;";
+        try (Connection conn = DBUtils.getConnection()) {
+            conn.createQuery(query)
+                    .addParameter("username", username)
+                    .addParameter("email", email)
+                    .addParameter("Address", Address)
+                    .addParameter("Date_o_Birth", Date_o_Birth)
+                    .addParameter("user_id", user_id)
+                    .executeUpdate();
+        }
+    }
+
+    public static void Update_User_Password(String new_pass,int id){
+        final  String query="update auctionweb.users set Pass=:pass where user_id=:id";
+        try (Connection conn=DBUtils.getConnection()){
+            conn.createQuery(query)
+                    .addParameter("pass",new_pass)
+                    .addParameter("id",id)
                     .executeUpdate();
         }
     }

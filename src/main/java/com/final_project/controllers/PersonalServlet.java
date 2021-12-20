@@ -1,11 +1,17 @@
 package com.final_project.controllers;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
+import com.final_project.beans.User;
+import com.final_project.models.UserModel;
 import com.final_project.utils.ServletUtils;
 
+import javax.mail.Session;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.sql.Date;
+import java.text.ParseException;
 
 @WebServlet(name = "PersonalServlet", value = "/Personal/*")
 public class PersonalServlet extends HttpServlet {
@@ -13,11 +19,20 @@ public class PersonalServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = request.getPathInfo();
         if (path.equals("/") || path == null) {
-            ServletUtils.forward("/views/Account/Personal.jsp", request, response);
+//            ServletUtils.forward("/views/Account/Personal.jsp", request, response);
         } else {
             switch (path) {
-                default:
+                case "/User_Information":
                     ServletUtils.forward("/views/Account/Personal.jsp", request, response);
+                    break;
+                case "/User_Change_Password":
+                    ServletUtils.forward("/views/Account/Change_Password.jsp", request, response);
+                    break;
+                case "/Logout":
+                    Logout(request, response);
+                    break;
+                default:
+                    ServletUtils.forward("/views/404/index.jsp", request, response);
                     break;
             }
         }
@@ -25,6 +40,66 @@ public class PersonalServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        String path = request.getPathInfo();
+        if (path.equals("/") || path == null) {
+            ServletUtils.forward("/views/Account/Personal.jsp", request, response);
+        } else {
+            switch (path) {
+                case "/User_Information":
+                    try {
+                        Update_User_Information(request, response);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case "/User_Change_Password":
+                    Update_User_Password(request, response);
+                default:
+                    break;
+            }
+        }
     }
+
+    private void Update_User_Information(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
+        request.setCharacterEncoding("UTF-8");
+        String new_name = request.getParameter("username");
+        String new_email = request.getParameter("email");
+        Date new_dob = ServletUtils.Parse_date_format(request.getParameter("dob"));
+        String new_address = request.getParameter("address");
+
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("authUser");
+        User new_user = new User(user.getUser_ID(), new_name, new_email, user.getPass(), user.getUserrole(), new_address, new_dob, user.getSeller_Expired_date());
+
+        UserModel.Update_User_Information(new_name, new_email, new_address, new_dob, user.getUser_ID());
+
+        session.setAttribute("authUser", new_user);
+        ServletUtils.redirect("/Personal/User_Information", request, response);
+    }
+
+    private void Update_User_Password(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("authUser");
+        String new_pass = request.getParameter("new_pass");
+        String old_pass = request.getParameter("old_pass");
+        BCrypt.Result result = BCrypt.verifyer().verify(old_pass.toCharArray(), user.getPass());
+        if (result.verified) {
+            new_pass=BCrypt.withDefaults().hashToString(12, new_pass.toCharArray());
+            User new_user = new User(user.getUser_ID(), user.getUsername(), user.getEmail(), new_pass, user.getUserrole(), user.getAddress(), user.getDate_o_Birth(), user.getSeller_Expired_date());
+            session.setAttribute("authUser", new_user);
+            UserModel.Update_User_Password(new_pass, user.getUser_ID());
+        } else {
+            session.setAttribute("false_old_pass", true);
+        }
+
+        ServletUtils.redirect("/Personal/User_Information", request, response);
+    }
+
+    private void Logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        session.setAttribute("Verified", false);
+        session.setAttribute("authUser", new User());
+        ServletUtils.redirect("/", request, response);
+    }
+
 }

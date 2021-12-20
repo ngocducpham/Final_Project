@@ -1,9 +1,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:useBean id="authUser" scope="session" type="com.final_project.beans.User"/>
 
-<ul>
-    <li><a></a> Hồ Sơ Của Tôi</li>
-    <li>Đấu Giá Của Tôi</li>
-    <li>Đổi Mật Khẩu</li>
-    <li>Đăng Xuất</li>
-</ul>
+<div class="navUser">
+    <figure class="avatar"><img src="${pageContext.request.contextPath}/public/imgs/user.svg" alt="User picture"></figure>
+    <p class="info">${authUser.username}</p>
+    <p class="info">${authUser.email}</p>
+    <div class="navigateBox">
+        <div class="myProfile"><a href="${pageContext.request.contextPath}/Personal/User_Information" class="a__myProfile"><i class="blue fas fa-user pr-2"></i> Hồ sơ của tôi </a>
+        </div>
+        <div class="myProfile"><a href="${pageContext.request.contextPath}/Personal/User_Change_Password" class="a__myProfile"><i class="blue fas fa-lock pr-2"></i> Đổi mật khẩu </a></div>
+<%--        <div class="myProfile"><a href="" class="a__myProfile"><i class="blue fas fa-map-marker-alt pr-2"></i> Địa--%>
+<%--            chỉ</a></div>--%>
+        <div class="myProfile"><a href="" class="a__myProfile"><i class="blue fas fa-wallet pr-2"></i> Đấu Giá Của Tôi </a></div>
+        <div class="myProfile"><a href="${pageContext.request.contextPath}/Personal/User_Watch_List" class="a__myProfile"><i class="blue fas fa-stream pr-2"></i>Sản Phẩm Yêu Thích</a></div>
+        <div class="myProfile"><a href="${pageContext.request.contextPath}/Personal/Logout" class="a__myProfile"><i class="blue fa fa-sign-out" aria-hidden="true"></i> Đăng xuất </a></div>
+    </div>
+</div>
 

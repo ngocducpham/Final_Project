@@ -37,7 +37,7 @@ public class ServletUtils {
 
     public static String get_Verify_Code() {
         Random r = new Random();
-        int n = r.nextInt(9999);
+        int n = r.nextInt(999999);
         return String.format("%06d", n);
     }
 
