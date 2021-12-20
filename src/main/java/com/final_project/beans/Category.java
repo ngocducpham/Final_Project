@@ -1,35 +1,50 @@
 package com.final_project.beans;
 
 public class Category {
-    int Cat_ID, Cparent_ID;
-    String Cname;
+    private String CatName;
+    private int CatID, CatparentID, Level;
 
-    public Category(String cname, int cparent_ID) {
+    public Category(String catName, int catID, int catparentID, int level) {
+        CatName = catName;
+        CatID = catID;
+        CatparentID = catparentID;
+        Level = level;
     }
 
-
-
-    public Category(int cat_ID, int cparent_ID, String cname) {
-        Cat_ID = cat_ID;
-        Cparent_ID = cparent_ID;
-        Cname = cname;
+    public Category(String name) {
     }
 
-    public Category(String cname) {
-        this.Cat_ID =-1;
-        Cname = cname;
+    public String getCatName() {
+        return CatName;
     }
 
-    public int getCat_ID() {
-        return Cat_ID;
+    public void setCatName(String catName) {
+        CatName = catName;
     }
 
-    public int getCparent_ID() {
-        return Cparent_ID;
+    public int getCatID() {
+        return CatID;
     }
 
-    public String getCname() {
-        return Cname;
+    public void setCatID(int catID) {
+        CatID = catID;
+    }
+
+    public int getCatparentID() {
+        return CatparentID;
+    }
+
+    public void setCatparentID(int catparentID) {
+        CatparentID = catparentID;
+    }
+
+    public int getLevel() {
+        return Level;
+    }
+
+    public void setLevel(int level) {
+        Level = level;
     }
 }
+
 

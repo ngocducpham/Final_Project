@@ -19,6 +19,13 @@ public class User {
         Seller_Expired_date = seller_Expired_date;
     }
 
+    public User() {
+
+    }
+
+    public User(int id, String username, String email, String pass, int role, String address) {
+    }
+
     public int getUser_ID() {
         return User_ID;
     }
@@ -114,6 +121,6 @@ public class User {
         Date_o_Birth = date_o_Birth;
     }
 
-    public User() {
+    public User(int id, int role) {
     }
 }

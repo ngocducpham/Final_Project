@@ -3,16 +3,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<jsp:useBean id="products" scope="request" type="java.util.List<com.final_project.beans.Product>" />
+<jsp:useBean id="users" scope="request" type="java.util.List<com.final_project.beans.User>" />
 <t:admin>
     <jsp:body>
 
         <div class="card ">
             <h4 class="card-header d-flex justify-content-between">
-                Danh sách sản phẩm
+                Danh sách người dùng
             </h4>
             <c:choose>
-                <c:when test="${products.size() == 0}">
+                <c:when test="${users.size() == 0}">
                     <div class="card-body">
                         <p class="card-text">Không có dữ liệu.</p>
                     </div>
@@ -23,23 +23,30 @@
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Tên sản phẩm</th>
-                                <th>Giá</th>
-                                <th>Tình trạng</th>
+                                <th>Tên user</th>
+                                <th>Email</th>
+                                <th>Vai trò</th>
                                 <th>&nbsp;</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${products}" var="c">
+                            <c:forEach items="${users}" var="c">
                                 <tr>
-                                    <td>${c.pro_ID}</td>
-                                    <td>${c.pname}</td>
+                                    <td>${c.user_ID}</td>
+                                    <td>${c.username}</td>
+                                    <td>${c.email}</td>
                                     <td>
-                                        <fmt:formatNumber value="${c.price}" type="number" />
+                                    <c:choose>
+                                        <c:when test="${c.userrole== 1}">
+                                            Người mua
+                                        </c:when>
+                                        <c:otherwise>
+                                            Người bán
+                                        </c:otherwise>
+                                    </c:choose>
                                     </td>
-                                    <td>${c.status}</td>
                                     <td class="text-right">
-                                        <a class="btn btn-sm btn-outline-primary" href="${pageContext.request.contextPath}/Admin/Product/Edit?id=${c.pro_ID}" role="button">
+                                        <a class="btn btn-sm btn-outline-primary" href="${pageContext.request.contextPath}/Admin/User/Edit?id=${c.user_ID}" role="button">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </a>
                                     </td>

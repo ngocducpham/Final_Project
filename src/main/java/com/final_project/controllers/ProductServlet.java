@@ -58,47 +58,15 @@ public class ProductServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = request.getPathInfo();
         switch (path) {
-            case "/Add":
-                addProduct(request, response);
-                break;
-
             case "/Delete":
                 deleteProduct(request, response);
                 break;
 
-            case "/Update":
-                updateProduct(request, response);
-                break;
 
             default:
                 ServletUtils.forward("/views/404/index.jsp", request, response);
                 break;
         }
-    }
-
-    private void addProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String name = request.getParameter("Pname");
-        int Price = Integer.parseInt(request.getParameter("Price"));
-        String img = request.getParameter("img");
-        String description = request.getParameter("description");
-        int Status = Integer.parseInt(request.getParameter("Status"));
-        int Cat_ID = Integer.parseInt(request.getParameter("Cat_ID"));
-        Product p = new Product(name, img, description, Price, Status, Cat_ID);
-        ProductModel.add(p);
-        ServletUtils.forward("/views/Product/Add.jsp", request, response);
-    }
-
-    private void updateProduct(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int id = Integer.parseInt(request.getParameter("Pro_ID"));
-        String name = request.getParameter("Pname");
-        int Price = Integer.parseInt(request.getParameter("Price"));
-        String img = request.getParameter("img");
-        String description = request.getParameter("description");
-        int Status = Integer.parseInt(request.getParameter("Status"));
-        int Cat_ID = Integer.parseInt(request.getParameter("Cat_ID"));
-        Product p = new Product(id, name, img, description, Price, Status, Cat_ID);
-        ProductModel.update(p);
-        ServletUtils.redirect("/Admin/Category", request, response);
     }
 
     private void deleteProduct(HttpServletRequest request, HttpServletResponse response) throws IOException {

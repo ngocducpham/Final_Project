@@ -39,34 +39,6 @@ public class ProductModel {
         }
     }
 
-    public static void add(Product p) {
-        String insertSql = "INSERT INTO products (Pname, Price, img, description, Status, Cat_ID) VALUES (:Pname,:Price,:img,:description,:Status,:Cat_ID)";
-        try (Connection con = DBUtils.getConnection()) {
-            con.createQuery(insertSql)
-                    .addParameter("Pname", p.getPname())
-                    .addParameter("Price", p.getPrice())
-                    .addParameter("img", p.getImg())
-                    .addParameter("description", p.getDescription())
-                    .addParameter("Status", p.getStatus())
-                    .addParameter("Cat_ID", p.getCat_ID())
-                    .executeUpdate();
-        }
-    }
-
-    public static void update(Product p) {
-        String sql = "UPDATE products SET  Pname = :Pname, Price = :Price, img = :img, description = :description, Status = :Status, Cat_ID= :Cat_ID WHERE Pro_ID = :Pro_id";
-        try (Connection con = DBUtils.getConnection()) {
-            con.createQuery(sql)
-                    .addParameter("Pname", p.getPname())
-                    .addParameter("Price", p.getPrice())
-                    .addParameter("img", p.getImg())
-                    .addParameter("description", p.getDescription())
-                    .addParameter("Status", p.getStatus())
-                    .addParameter("Cat_ID", p.getCat_ID())
-                    .addParameter("Pro_ID", p.getPro_ID())
-                    .executeUpdate();
-        }
-    }
 
     public static void delete(int id) {
         String sql = "delete from products where Pro_ID = :Pro_ID";

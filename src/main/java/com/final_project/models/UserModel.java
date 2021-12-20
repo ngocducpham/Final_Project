@@ -1,5 +1,6 @@
 package com.final_project.models;
 
+import com.final_project.beans.Product;
 import com.final_project.beans.User;
 import com.final_project.utils.DBUtils;
 import org.sql2o.Connection;
@@ -7,6 +8,43 @@ import org.sql2o.Connection;
 import java.util.List;
 
 public class UserModel {
+
+    public static List<User> findAll() {
+        final String query = "select * from users";
+        try (Connection con = DBUtils.getConnection()) {
+            return con.createQuery(query)
+                    .executeAndFetch(User.class);
+        }
+    }
+
+    public static void update(User u) {
+        String updateSql = "UPDATE users SET  username = :username, email = :email, Pass = :pass, userrole = :userrole, Address = :address WHERE User_ID = :userId";
+        try (Connection con = DBUtils.getConnection()) {
+            con.createQuery(updateSql)
+                    .addParameter("username", u.getUsername())
+                    .addParameter("email", u.getEmail())
+                    .addParameter("pass", u.getPass())
+                    .addParameter("userrole", u.getUserrole())
+                    .addParameter("Address", u.getAddress())
+                    .addParameter("userId", u.getUser_ID());
+        }
+    }
+
+    public static User findById(int id) {
+        final String query = "select * from users where User_ID = :user_id";
+        try (Connection con = DBUtils.getConnection()) {
+            List<User> list = con.createQuery(query)
+                    .addParameter("user_id", id)
+                    .executeAndFetch(User.class);
+
+            if (list.size() == 0) {
+                return null;
+            }
+
+            return list.get(0);
+        }
+    }
+
 
     public static User Find_By_Email(String email) {
         final String query = "select * from users where email = :email";

@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 
 <t:admin>
@@ -13,9 +12,10 @@
                 </div>
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="txtCatName">Category</label>
-                        <input type="text" class="form-control" id="txtCatName" name="Cname" autofocus>
+                        <label for="txtCatName">Tên</label>
+                        <input type="text" class="form-control" id="txtCatName" name="CatName" autofocus>
                     </div>
+
                 </div>
                 <div class="card-footer d-flex justify-between">
                     <a class="btn btn-outline-success" href="${pageContext.request.contextPath}/Admin/Category/" role="button">
