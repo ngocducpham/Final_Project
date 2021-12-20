@@ -13,8 +13,16 @@ public class ProductAuction {
     private LocalDateTime Start_Time;
     private LocalDateTime End_Time;
     private int Pro_ID;
+    private int User_ID;
+    private String username;
+    private int Price_of_User;
+    private String Total_Products;
 
-    public ProductAuction(int total_Bid,String pname,int current_Price, int pro_Auc_ID, int start_Price, int immediate_Pice, int distance_Price, LocalDateTime start_Time, LocalDateTime end_Time, int pro_ID) {
+    public ProductAuction(String total_Products, int price_of_User, int user_ID, String username, int total_Bid, String pname, int current_Price, int pro_Auc_ID, int start_Price, int immediate_Pice, int distance_Price, LocalDateTime start_Time, LocalDateTime end_Time, int pro_ID) {
+        Total_Products = total_Products;
+        Price_of_User = price_of_User;
+        User_ID = user_ID;
+        this.username = username;
         Total_Bid = total_Bid;
         Pname = pname;
         Current_Price = current_Price;
@@ -25,6 +33,39 @@ public class ProductAuction {
         Start_Time = start_Time;
         End_Time = end_Time;
         Pro_ID = pro_ID;
+
+    }
+
+    public void setTotal_Products(String total_Products) {
+        Total_Products = total_Products;
+    }
+
+    public String getTotal_Products() {
+        return Total_Products;
+    }
+
+    public void setPrice_of_User(int price_of_User) {
+        Price_of_User = price_of_User;
+    }
+
+    public int getPrice_of_User() {
+        return Price_of_User;
+    }
+
+    public void setUser_ID(int user_ID) {
+        User_ID = user_ID;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public int getUser_ID() {
+        return User_ID;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public int getTotal_Bid() {

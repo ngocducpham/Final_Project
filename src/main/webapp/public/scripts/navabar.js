@@ -1,3 +1,4 @@
+// generate dropdown submenu
 document.querySelectorAll('.bid__menu').forEach(e => {
     let dropdown = e.querySelector('ul');
     dropdown.querySelectorAll('a').forEach(i => {
@@ -5,7 +6,6 @@ document.querySelectorAll('.bid__menu').forEach(e => {
     });
     dropdown.className = dropdown.className + " shadow-lg bid__dropdown invisible z-10 transition-all delay-75 absolute bg-white w-52 text-gray-700 mt-3 rounded-md py-1";
     let dropdownItem = dropdown.querySelectorAll('li');
-    console.log(dropdownItem);
     dropdownItem.forEach(item => {
         let arrow = document.createElement('span');
         arrow.setAttribute('class', "iconify text-lg");
@@ -24,3 +24,19 @@ document.querySelectorAll('.bid__menu').forEach(e => {
         archor.setAttribute("style", "color: inherit;text-decoration: inherit;");
     });
 });
+
+// submit form after user press enter in searchbox
+document.getElementById('nav__searchform').addEventListener('keydown', ev => {
+    if(ev.key === "Enter") {
+        ev.preventDefault();
+    }
+})
+
+document.getElementById('nav__searchproduct').addEventListener('keydown', ev => {
+    if(ev.key === "Enter"){
+        if( document.getElementById('nav__searchproduct').value === '') {
+            return;
+        }
+        document.getElementById('nav__searchform').submit();
+    }
+})

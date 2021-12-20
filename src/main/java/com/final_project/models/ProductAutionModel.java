@@ -32,16 +32,75 @@ public class ProductAutionModel {
     }
 
     public static List<ProductAuction> getTop5Bid(){
-        final String query = "select Pname, Current_Price, End_Time, count(Auction_ID) as Total_Bid\n" +
+        final String query = "select Pname, Current_Price, End_Time, Total_Bid\n" +
                 "from product_auction join auction a on product_auction.Pro_Auc_ID = a.Pro_Auc_ID\n" +
                 "    join products p on p.Pro_ID = product_auction.Pro_ID\n" +
                 "where End_Time > NOW() " +
-                "group by a.Pro_Auc_ID\n" +
                 "order by Total_Bid desc\n" +
                 "limit 5";
         try (Connection con = DBUtils.getConnection()) {
             return con.createQuery(query)
                     .executeAndFetch(ProductAuction.class);
+        }
+    }
+
+    public static List<ProductAuction> searchGetProduct(String product, String sortType){
+        String query = "select pa.Pro_ID, Pname, Pro_Auc_ID, End_Time, Start_Time, Current_Price, Total_Bid\n" +
+                "from products\n" +
+                "         join product_auction pa on products.Pro_ID = pa.Pro_ID\n" +
+                "where End_Time > NOW() and Pname like :p";
+
+        switch (sortType)
+        {
+            default:
+            case "1":
+                query += " order by End_Time DESC";
+                break;
+            case "2":
+                query += " order by End_Time";
+                break;
+            case "3":
+                query += " order by Current_Price";
+                break;
+            case "4":
+                query += " order by Current_Price DESC";
+                break;
+        }
+
+        product = "%" + product + "%";
+        try (Connection con = DBUtils.getConnection()) {
+            return con.createQuery(query)
+                    .addParameter("p", product)
+                    .executeAndFetch(ProductAuction.class);
+        }
+    }
+
+    public static List<ProductAuction> searchProductGetBidder(String product){
+        String query = "select u.username, u.User_ID, pa.Pro_Auc_ID, p.Pro_ID, MAX(Price_of_User) as Price_of_User\n" +
+                "from auction\n" +
+                "         join product_auction pa on pa.Pro_Auc_ID = auction.Pro_Auc_ID\n" +
+                "         join products p on p.Pro_ID = pa.Pro_ID\n" +
+                "         join users u on auction.User_ID = u.User_ID\n" +
+                "where End_Time > NOW() and Pname LIKE :p\n" +
+                "group by pa.Pro_Auc_ID";
+        product = "%" + product + "%";
+        try (Connection con = DBUtils.getConnection()) {
+            return con.createQuery(query)
+                    .addParameter("p", product)
+                    .executeAndFetch(ProductAuction.class);
+        }
+    }
+
+    public static String searchProductGetTotalProducts(String product){
+        String query = "select count(Pro_Auc_ID) as Total_Products\n" +
+                "from product_auction join products p on p.Pro_ID = product_auction.Pro_ID\n" +
+                "where End_Time > NOW() and Pname like :p";
+        product = "%" + product + "%";
+        try (Connection con = DBUtils.getConnection()) {
+            List<ProductAuction> pa = con.createQuery(query)
+                    .addParameter("p", product)
+                    .executeAndFetch(ProductAuction.class);
+            return pa.get(0).getTotal_Products();
         }
     }
 }
