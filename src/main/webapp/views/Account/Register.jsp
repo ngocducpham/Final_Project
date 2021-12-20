@@ -62,9 +62,9 @@
                     <label for="home_address" class='font-medium text-gray-600'>Số Nhà, Tên Đường</label>
                     <input id="home_address" name="username" type="text" required
                            class='mt-2 w-full px-2 py-1 outline-none block border-2 rounded-md  border-gray-300 text-gray-700'>
-                    <label for="full_address" class='font-medium text-gray-600'>Địa Chỉ</label>
+                    <label for="full_address" class='font-medium text-gray-600 hidden'>Địa Chỉ</label>
                     <input id="full_address" name="full_address" type="text" required
-                           class='mt-2 w-full px-2 py-1 outline-none block border-2 rounded-md  border-gray-300 text-gray-700'
+                           class='mt-2 w-full px-2 py-1 outline-none block border-2 rounded-md  border-gray-300 text-gray-700 hidden'
                            readonly>
                 </div>
 

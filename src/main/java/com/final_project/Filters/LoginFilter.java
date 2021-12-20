@@ -22,7 +22,7 @@ public class LoginFilter implements Filter {
         HttpSession session = request.getSession();
         if (session.getAttribute("Verified") == null) {
             session.setAttribute("Verified", false);
-            session.setAttribute("User_logged_in", new User());
+            session.setAttribute("authUser", new User());
         }
         chain.doFilter(request, response);
     }
