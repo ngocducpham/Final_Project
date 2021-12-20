@@ -1,4 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<jsp:useBean id="Verified" scope="session" type="java.lang.Boolean"/>
+<jsp:useBean id="authUser" scope="session" type="com.final_project.beans.User"/>
+
 <nav class='bg-gray-800 sticky top-0 z-50'>
     <div class='max-w-7xl mx-auto px-2'>
         <div class='relative flex items-center justify-between h-16'>
@@ -64,31 +68,26 @@
                            placeholder='Tìm sản phẩm'>
                     </form>
                 </div>
-                <div class='flex space-x-2'>
-                    <a href='#' class='hover:bg-gray-700 rounded-md  px-3 py-1 text-white focus:outline-none'>Đăng
-                        nhập</a>
-                    <a href='#'
-                       class='hover:bg-gray-700 rounded-md ring-2 ring-gray-400 px-3 py-1 text-white focus:outline-none'>Đăng
-                        kí</a>
-                </div>
-                <div class='hidden nav__user-box flex space-x-5 items-center'>
-                    <button type='button'
-                            class='bid__menu relative nav__user-icon rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white p-1'>
-                        <img class="h-8 w-8 " src="${pageContext.request.contextPath}/public/imgs/icon.svg" alt="">
-                        <span class='text-left invisible'>
+                <c:choose>
+                    <c:when test="${Verified}">
+                        <div class='hidden nav__user-box flex space-x-5 items-center'>
+                            <button type='button'
+                                    class='bid__menu relative nav__user-icon rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white p-1'>
+                                <img class="h-8 w-8 " src="${pageContext.request.contextPath}/public/imgs/icon.svg" alt="">
+                                <span class='text-left invisible'>
                                 <ul class='right-0 text-sm font-semibold'>
                                     <li class='flex items-center'>
                                         <span class="iconify text-2xl mr-2" data-icon="bx:bxs-user"></span>
-                                        <a href="#">Tài khoản</a>
+                                        <a href="${pageContext.request.contextPath}/Account/Personal?id=${authUser.user_ID}">Tài khoản</a>
                                     </li>
                                     <li class='flex items-center'>
                                         <span class="iconify text-2xl mr-2"  data-icon="ri:auction-fill"></span>
-                                        <a href="#">Đấu giá của bạn</a>
+                                        <a href="">Đấu giá của bạn</a>
 
                                     </li>
                                     <li class='flex items-center'>
                                         <span class="iconify text-2xl mr-2" data-icon="ri:lock-password-fill"></span>
-                                        <a href="#">Đổi mật khẩu</a>
+                                        <a href="${pageContext.request.contextPath}/Account/Forget_Password">Đổi mật khẩu</a>
                                     </li>
                                     <li class='flex items-center'>
                                         <span class="iconify text-2xl mr-2" data-icon="ion:log-out-sharp"></span>
@@ -96,8 +95,19 @@
                                     </li>
                                 </ul>
                             </span>
-                    </button>
-                </div>
+                            </button>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <div class='flex space-x-2'>
+                            <a href='${pageContext.request.contextPath}/Account/Login' class='hover:bg-gray-700 rounded-md  px-3 py-1 text-white focus:outline-none'>Đăng
+                                nhập</a>
+                            <a href='${pageContext.request.contextPath}/Account/Register'
+                               class='hover:bg-gray-700 rounded-md ring-2 ring-gray-400 px-3 py-1 text-white focus:outline-none'>Đăng
+                                kí</a>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
             </div>
         </div>
     </div>
