@@ -63,8 +63,6 @@ public class MiscServlet extends HttpServlet {
             for(String headName: part.getHeaderNames())
                 System.out.println(headName);
             */
-
-
             if(part.getName().equals("fuMain"))
             {
                 String contentDisposition = part.getHeader("content-disposition");
@@ -97,8 +95,10 @@ public class MiscServlet extends HttpServlet {
     }
     private  void postEditor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        String shortDes=request.getParameter("ShortDes"); //file Editor
-        System.out.println(shortDes);
+        request.setCharacterEncoding("UTF-8");
+        //response.setCharacterEncoding("UTF-8");
+        String productName=request.getParameter("ProductName"); //in file Editor
+        System.out.println(productName);
 
         String fullDes=request.getParameter("FullDes");
         System.out.println(fullDes);
