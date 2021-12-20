@@ -86,12 +86,13 @@ public class MiscServlet extends HttpServlet {
                         {
                             newDir.mkdir();
                         }
-                        String destination=tagDir+"/"+filename;
+                        String destination=tagDir + "/" + filename;
                         part.write(destination);
                     }
                 }
             }
         }
+
         ServletUtils.forward("views/vwMisc/Upload.jsp", request,response);
     }
     private  void postEditor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
