@@ -61,7 +61,7 @@
                         keep visiting our website
                         that you don’t miss out on the next opportunity.
                     </div>
-                    <a href='#'
+                    <a href='#getting_scroll'
                        class='block font-semibold bg-indigo-600 hover:bg-indigo-700 text-white text-xl px-7 py-3 w-64 mt-8 rounded-full text-center'>GETTING
                         STARTED</a>
                 </div>
@@ -69,7 +69,7 @@
                     <img src="${pageContext.request.contextPath}/public/imgs/main-banner.png" alt="">
                 </div>
             </div>
-            <img src="${pageContext.request.contextPath}/public/imgs/main-banner-bottom.png" alt="">
+            <img id="getting_scroll" src="${pageContext.request.contextPath}/public/imgs/main-banner-bottom.png" alt="">
         </div>
 
         <div class='max-w-7xl mx-auto'>

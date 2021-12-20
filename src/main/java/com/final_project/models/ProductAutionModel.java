@@ -48,7 +48,7 @@ public class ProductAutionModel {
         String query = "select pa.Pro_ID, Pname, Pro_Auc_ID, End_Time, Start_Time, Current_Price, Total_Bid\n" +
                 "from products\n" +
                 "         join product_auction pa on products.Pro_ID = pa.Pro_ID\n" +
-                "where End_Time > NOW() and Pname like :p";
+                "where End_Time > NOW() and match(Pname) against(:p)";
 
         switch (sortType)
         {
@@ -81,7 +81,7 @@ public class ProductAutionModel {
                 "         join product_auction pa on pa.Pro_Auc_ID = auction.Pro_Auc_ID\n" +
                 "         join products p on p.Pro_ID = pa.Pro_ID\n" +
                 "         join users u on auction.User_ID = u.User_ID\n" +
-                "where End_Time > NOW() and Pname LIKE :p\n" +
+                "where End_Time > NOW() and match(Pname) against(:p)\n" +
                 "group by pa.Pro_Auc_ID";
         product = "%" + product + "%";
         try (Connection con = DBUtils.getConnection()) {
@@ -94,7 +94,7 @@ public class ProductAutionModel {
     public static String searchProductGetTotalProducts(String product){
         String query = "select count(Pro_Auc_ID) as Total_Products\n" +
                 "from product_auction join products p on p.Pro_ID = product_auction.Pro_ID\n" +
-                "where End_Time > NOW() and Pname like :p";
+                "where End_Time > NOW() and match(Pname) against(:p)";
         product = "%" + product + "%";
         try (Connection con = DBUtils.getConnection()) {
             List<ProductAuction> pa = con.createQuery(query)

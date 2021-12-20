@@ -10,3 +10,7 @@ a:hover{
     color: inherit;
     text-decoration: inherit;
 }
+
+html {
+    scroll-behavior: smooth;
+}
