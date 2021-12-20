@@ -3,7 +3,6 @@ package com.final_project.controllers;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.final_project.beans.User;
 import com.final_project.models.UserModel;
-import com.final_project.utils.MailSender;
 import com.final_project.utils.ServletUtils;
 
 import javax.servlet.*;
@@ -32,8 +31,6 @@ public class AccountServlet extends HttpServlet {
                     ServletUtils.forward("/views/Account/Login.jsp", request, response);
                     break;
                 case "/Verify":
-                    ServletUtils.forward("/views/Account/Verify.jsp", request, response);
-                    break;
                 case "/Verify_Reset_Password":
                     ServletUtils.forward("/views/Account/Verify.jsp", request, response);
                     break;
@@ -95,7 +92,7 @@ public class AccountServlet extends HttpServlet {
         String EnCrypted_pass = BCrypt.withDefaults().hashToString(12, Raw_pass.toCharArray());
         String name = request.getParameter("username");
         String address = request.getParameter("full_address");
-        java.sql.Date ngaysinh = ServletUtils.Parse_date_format(request.getParameter("DOB"));
+        Date ngaysinh = ServletUtils.Parse_date_format(request.getParameter("DOB"));
         String role = request.getParameter("role");
         String code = ServletUtils.get_Verify_Code();
 //        System.out.println(code);
@@ -146,16 +143,16 @@ public class AccountServlet extends HttpServlet {
             BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), user.getPass());
             if (result.verified) {
                 System.out.println("true");
-//                HttpSession session = request.getSession();
-//                session.setAttribute("auth", true);
-//                session.setAttribute("authUser", user);
-                // response.addCookie(new Cookie("ecWebAppAuthUser", user.getUsername()));
+                HttpSession session = request.getSession();
+                session.setAttribute("auth", true);
+                session.setAttribute("authUser", user);
 
-//                String url = (String) session.getAttribute("retUrl");
-//                if (url == null)
-//                    url = "/Home";
-//                ServletUtils.redirect(url, request, response);
+                String url = (String) session.getAttribute("retUrl");
+                if (url == null)
+                    url = "/";
+                ServletUtils.redirect(url, request, response);
             } else {
+                // sai password
                 System.out.println("false");
                 request.setAttribute("hasError", true);
                 ServletUtils.forward("/views/Account/Login.jsp", request, response);
