@@ -109,13 +109,13 @@
     </jsp:attribute>
     <jsp:body>
         <div class='max-w-7xl mx-auto mt-20'>
-            <div class='flex justify-between items-center py-4 px-4 bg-indigo-50 font-semibold rounded-lg'>
+            <div class='flex justify-between text-white items-center py-3 px-4 bg-gray-800 font-semibold rounded-lg'>
                 <div>
                     <div>Hiển thị 1-10 trên ${searchProductGetTotalProduct} sản phẩm</div>
                 </div>
                 <div>
                     <span>Sắp xếp theo:</span>
-                    <select class="focus:outline-none bg-indigo-50 font-semibold" name="sort" id="productsort">
+                    <select class="focus:outline-none text-white bg-gray-800" name="sort" id="productsort">
                         <option value="1">Thời gian kết thúc giảm dần</option>
                         <option value="2">Thời gian kết thúc tăng dần</option>
                         <option value="3">Giá tăng dần</option>
