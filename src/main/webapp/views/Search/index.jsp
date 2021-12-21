@@ -17,26 +17,26 @@
         <script>
             let bidderList = [];
             <c:forEach items="${searchProductGetBidder}" var="p">
-                bidderList.push(["${p.pro_Auc_ID}", "${p.username}"]);
+            bidderList.push(["${p.pro_Auc_ID}", "${p.username}"]);
             </c:forEach>
 
             let productTime = [];
             <c:forEach items="${searchProducts}" var="p">
-                productTime.push([new Date("${p.start_Time}"), new Date("${p.end_Time}")]);
+            productTime.push([new Date("${p.start_Time}"), new Date("${p.end_Time}")]);
             </c:forEach>
 
             // current bidder
-           let productCard = document.querySelectorAll('.product_Card');
+            let productCard = document.querySelectorAll('.product_Card');
 
-            productCard.forEach(card =>{
+
+            productCard.forEach(card => {
                 let proID = card.querySelector('.productID').value;
                 let currentBidder = card.querySelector('.current_Bidder');
                 let startTime = card.querySelector('.start_Time');
                 for (const bidder of bidderList) {
-                    if(bidder[0] == proID){
-                        currentBidder.innerText =  "Bidder hiện tại: " + bidder[1];
-                    }
-                    else currentBidder.innerText =  "Bidder hiện tại: chưa có";
+                    if (bidder[0] == proID) {
+                        currentBidder.innerText = "Bidder hiện tại: " + bidder[1];
+                    } else currentBidder.innerText = "Bidder hiện tại: chưa có";
                 }
 
             });
@@ -81,7 +81,7 @@
                 paginationChoose.appendChild(option);
             }
 
-            paginationChoose.addEventListener('change', () =>{
+            paginationChoose.addEventListener('change', () => {
                 let url = new URL(location.href);
                 url.searchParams.set('page', paginationChoose.value);
                 location.href = url.href;
@@ -90,7 +90,7 @@
             // sort
             let productSort = document.getElementById('productsort');
 
-            productSort.addEventListener('change', () =>{
+            productSort.addEventListener('change', () => {
                 let url = new URL(location.href);
                 url.searchParams.set('sort', productSort.value);
                 location.href = url.href;
@@ -98,7 +98,7 @@
 
             let url = new URL(location.href);
             let sortType = url.searchParams.get('sort');
-            if(sortType != null){
+            if (sortType != null) {
                 productSort.options.selectedIndex = +sortType - 1;
             }
 
@@ -107,13 +107,18 @@
     <jsp:body>
         <div class='max-w-7xl mx-auto mt-20'>
             <div class='flex justify-between items-center py-4 px-4 bg-indigo-50 font-semibold rounded-lg'>
-                <div>Hiển thị 1-10 trên ${searchProductGetTotalProduct} sản phẩm</div>
-                    <select class="focus:outline-none bg-indigo-50" name="sort" id="productsort">
+                <div>
+                    <div>Hiển thị 1-10 trên ${searchProductGetTotalProduct} sản phẩm</div>
+                </div>
+                <div>
+                    <span>Sắp xếp theo:</span>
+                    <select class="focus:outline-none bg-indigo-50 font-semibold" name="sort" id="productsort">
                         <option value="1">Thời gian kết thúc giảm dần</option>
                         <option value="2">Thời gian kết thúc tăng dần</option>
                         <option value="3">Giá tăng dần</option>
                         <option value="4">Giá giảm dần</option>
                     </select>
+                </div>
             </div>
             <div class='flex flex-wrap justify-between mt-8'>
                 <c:forEach items="${searchProducts}" var="p">
@@ -122,6 +127,9 @@
                         <div class='text-center total_Bid rounded-br-full absolute top-0 left-0 pl-2 py-2 pr-5 bg-gray-300 text-xs font-bold'>
                             Số lần bid: ${p.total_Bid}
                         </div>
+                        <button type="button" class="btn_watch_list absolute top-2 right-3">
+                            <span class="iconify text-red-300 hover:text-red-500" data-icon="ant-design:heart-filled"></span>
+                        </button>
                         <img class='h-60 w-full rounded-t-lg'
                              src="${pageContext.request.contextPath}/public/imgs/appple-watch.jpg" alt="">
                         <div class='p-3 w-full text-center'>
@@ -165,7 +173,8 @@
             <!-- Pagination -->
             <div class='w-full relative h-10 mt-8'>
                 <div class='absolute right-0'>
-                    <nav class="pagination py-2 px-4 border-2 mr-auto relative z-0 inline-flex -space-x-px border-gray-300" aria-label="Pagination">
+                    <nav class="pagination py-2 px-4 border-2 mr-auto relative z-0 inline-flex -space-x-px border-gray-300"
+                         aria-label="Pagination">
                         <span class="mr-3 font-semibold">
                         Chuyển đến:
                         </span>

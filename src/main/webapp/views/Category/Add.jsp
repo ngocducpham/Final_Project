@@ -6,6 +6,36 @@
 <jsp:useBean id="categories" scope="request" type="java.util.List<com.final_project.beans.Category>" />
 
 <t:admin>
+    <jsp:attribute name="js" >
+             <script>
+                    let danhMucCap1 = [];
+                    <c:forEach items="${categories}" var="c">
+                    console.log(${c.cname});
+                    </c:forEach>
+
+                    let selectCap1 = document.getElementById('txtCatParentID');
+
+
+                    for (let index = 0; index < danhMucCap1.length; index++) {
+                        let option = document.createElement('option');
+                        option.value = danhMucCap1[index][0];
+                        option.innerText = danhMucCap1[index][1];
+
+                        selectCap1.appendChild(option);
+                    }
+
+                    let selectChonCap = document.getElementById('txtLevel');
+
+                    selectChonCap.addEventListener('change',()=>{
+                        if(selectChonCap.value == 2){
+                            txtCatParentID.classList.remove('hidden');
+                        }
+                        else{
+                            txtCatParentID.classList.add('hidden');
+                        }
+                    })
+                </script>
+        </jsp:attribute>
     <jsp:body>
         <form action="" method="post">
             <div class="card">
@@ -43,38 +73,6 @@
                 </div>
             </div>
         </form>
-        <jsp:attribute name="js" >
-             <script>
-                    let danhMucCap1 = [];
-                    <c:forEach items="${categories}" var="c">
-                    <div>
-                        ${c.cname}
-                    </div>
-
-                    </c:forEach>
-                    let selectCap1 = document.getElementById('txtCatParentID');
-
-
-                    for (let index = 0; index < danhMucCap1.length; index++) {
-                        let option = document.createElement('option');
-                        option.value = danhMucCap1[index][0];
-                        option.innerText = danhMucCap1[index][1];
-
-                        selectCap1.appendChild(option);
-                    }
-
-                    let selectChonCap = document.getElementById('txtLevel');
-
-                    selectChonCap.addEventListener('change',()=>{
-                        if(selectChonCap.value == 2){
-                            txtCatParentID.classList.remove('hidden');
-                        }
-                        else{
-                            txtCatParentID.classList.add('hidden');
-                        }
-                    })
-                </script>
-        </jsp:attribute>
     </jsp:body>
 
 </t:admin>
