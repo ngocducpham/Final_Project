@@ -96,7 +96,7 @@
                                     </li>
                                     <li class='flex items-center'>
                                         <span class="iconify text-2xl mr-2" data-icon="ri:lock-password-fill"></span>
-                                        <a href="${pageContext.request.contextPath}/Account/Forget_Password">Đổi mật khẩu</a>
+                                        <a href="${pageContext.request.contextPath}/Personal/User_Change_Password">Đổi mật khẩu</a>
                                     </li>
                                     <c:if test="${authUser.userrole==1}">
                                         <li class='flex items-center'>
