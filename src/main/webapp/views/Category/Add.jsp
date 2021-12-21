@@ -18,6 +18,7 @@
 
                     selectChonCap.addEventListener('change',()=>{
                         if(selectChonCap.value == 2){
+                            // tạo select, bỏ option vô select, bỏ select vô category1
                             selectCap1 = document.createElement('select');
                             selectCap1.setAttribute('name','Cparent_ID');
                             selectCap1.setAttribute('id','txtCatParentID');
@@ -60,6 +61,7 @@
                 </div>
                 <div class="card-body category1">
                     <label for="txtCatParentID">Mặt hàng</label>
+
                 </div>
                 <div class="card-footer d-flex justify-between">
                     <a class="btn btn-outline-success" href="${pageContext.request.contextPath}/Admin/Category/" role="button">
