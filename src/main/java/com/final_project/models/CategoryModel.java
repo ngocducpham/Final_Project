@@ -17,10 +17,10 @@ public class CategoryModel {
   }
 
   public static Category findById(int id) {
-    final String query = "select * from categories where CatID = :CatID";
+    final String query = "select * from categories where Cat_ID = :Cat_ID";
     try (Connection con = DBUtils.getConnection()) {
       List<Category> list = con.createQuery(query)
-        .addParameter("CatID", id)
+        .addParameter("Cat_ID", id)
         .executeAndFetch(Category.class);
 
       if (list.size() == 0) {
@@ -32,11 +32,34 @@ public class CategoryModel {
   }
 
   public static void add(Category c) {
-    String insertSql = "insert into categories(Cname) values (:Cname)";
+    String insertSql = "insert into categories(Cname, Cparent_ID, Level) values (:Cname, :Cparent_ID, :Level)";
     try (Connection con = DBUtils.getConnection()) {
       con.createQuery(insertSql)
         .addParameter("Cname", c.getCname())
+        .addParameter("Cparent_ID", c.getCparent_ID())
+        .addParameter("Level", c.getLevel())
         .executeUpdate();
+    }
+  }
+
+  public static void update(Category c) {
+    String Sql = "update categories set Cname = :Cname, Cparent_ID = :Cparent_ID, Level = :Level where Cat_ID = :Cat_ID";
+    try (Connection con = DBUtils.getConnection()) {
+      con.createQuery(Sql)
+              .addParameter("Cat_ID", c.getCat_ID())
+              .addParameter("Cname", c.getCname())
+              .addParameter("Cparent_ID", c.getCparent_ID())
+              .addParameter("Level", c.getLevel())
+              .executeUpdate();
+    }
+  }
+
+  public static void delete(int id) {
+    String Sql = "delete from categories where Cat_ID = :Cat_ID";
+    try (Connection con = DBUtils.getConnection()) {
+      con.createQuery(Sql)
+              .addParameter("Cat_ID", id)
+              .executeUpdate();
     }
   }
 

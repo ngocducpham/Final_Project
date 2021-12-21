@@ -20,15 +20,11 @@ public class UserModel {
     }
 
     public static void update(User u) {
-        String updateSql = "UPDATE users SET  username = :username, email = :email, Pass = :pass, userrole = :userrole, Address = :address WHERE User_ID = :userId";
+        String updateSql = "UPDATE users SET userrole = :userrole WHERE User_ID = :user_ID";
         try (Connection con = DBUtils.getConnection()) {
             con.createQuery(updateSql)
-                    .addParameter("username", u.getUsername())
-                    .addParameter("email", u.getEmail())
-                    .addParameter("pass", u.getPass())
                     .addParameter("userrole", u.getUserrole())
-                    .addParameter("Address", u.getAddress())
-                    .addParameter("userId", u.getUser_ID());
+                    .addParameter("User_Id", u.getUser_ID());
         }
     }
 
