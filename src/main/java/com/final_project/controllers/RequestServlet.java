@@ -26,21 +26,6 @@ public class RequestServlet extends HttpServlet {
                 request.setAttribute("requests", list);
                 ServletUtils.forward("/views/Request/Index.jsp", request, response);
                 break;
-//            case "/Edit":
-//                int id = 0;
-//                try {
-//                    id = Integer.parseInt(request.getParameter("id"));
-//                } catch (NumberFormatException ignored) {
-//                }
-//
-//                User u = UserModel.findById(id);
-//                if (u != null) {
-//                    request.setAttribute("users", u);
-//                    ServletUtils.forward("/views/User/Edit.jsp", request, response);
-//                } else {
-//                    ServletUtils.redirect("/Admin/User", request, response);
-//                }
-//                break;
 
             default:
                 ServletUtils.forward("/views/404/index.jsp", request, response);
@@ -53,23 +38,10 @@ public class RequestServlet extends HttpServlet {
         String path = request.getPathInfo();
         switch (path){
 
-//            case "/Delete":
-//                //deleteUser(request, response);
-//                break;
-//            case "/Update":
-//                updateUser(request, response);
-//                break;
             default:
                 ServletUtils.forward("/views/404.jsp", request, response);
                 break;
         }
     }
 
-//    private void updateUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
-//        int id = Integer.parseInt(request.getParameter("User_ID"));
-//        int userrole = Integer.parseInt(request.getParameter("userrole"));
-//        User u = new User(id, userrole);
-//        UserModel.update(u);
-//        ServletUtils.redirect("/Admin/User", request, response);
-//    }
 }

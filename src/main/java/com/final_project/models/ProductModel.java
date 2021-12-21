@@ -24,6 +24,14 @@ public class ProductModel {
         }
     }
 
+    public static List<Product> GetPriceProAuction() {
+        final String query = "select  Start_Price, Current_Price, End_Time, Start_Time from product_auction join products p on p.Pro_ID = product_auction.Pro_ID";
+        try (Connection con = DBUtils.getConnection()) {
+            return con.createQuery(query)
+                    .executeAndFetch(Product.class);
+        }
+    }
+
     public static Product findById(int id) {
         final String query = "select * from products where Pro_ID = :ProID";
         try (Connection con = DBUtils.getConnection()) {

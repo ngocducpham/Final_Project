@@ -24,7 +24,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>ID người dùng</th>
-                                <th>&nbsp;</th>
+                                <th>Vai trò</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -32,6 +32,7 @@
                                 <tr>
                                     <td>${r.request_ID}</td>
                                     <td>${r.user_ID}</td>
+                                    <td></td>
                                     <td class="text-right">
                                         <a class="btn btn-sm btn-outline-primary" href="${pageContext.request.contextPath}/Admin/User/Edit?id=${r.user_ID}" role="button">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
