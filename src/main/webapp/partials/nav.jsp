@@ -72,6 +72,7 @@
                 <c:choose>
                     <c:when test="${Verified}">
                         <form id="Form_Request" method="post"
+
                               action="${pageContext.request.contextPath}/Personal/Request?id=${authUser.user_ID}"></form>
                         <div class='nav__user-box flex space-x-5 items-center'>
                             <button type='button'
