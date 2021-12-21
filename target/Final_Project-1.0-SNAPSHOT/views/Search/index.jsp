@@ -17,7 +17,7 @@
         <script>
             let bidderList = [];
             <c:forEach items="${searchProductGetBidder}" var="p">
-            bidderList.push(["${p.pro_ID}", "${p.username}"]);
+                bidderList.push(["${p.pro_ID}", "${p.username}"]);
             </c:forEach>
 
             let productTime = [];

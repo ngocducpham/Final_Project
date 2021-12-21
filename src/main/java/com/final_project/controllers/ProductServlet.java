@@ -24,8 +24,8 @@ public class ProductServlet extends HttpServlet {
 
         switch (path) {
             case "/Index":
-                List<Product> list = ProductModel.Join();
-                request.setAttribute("join", list);
+                List<Product> list = ProductModel.findAll();
+                request.setAttribute("products", list);
                 ServletUtils.forward("/views/Product/index.jsp", request, response);
                 break;
 
