@@ -22,11 +22,11 @@ home_address.addEventListener("keyup", function () {
 })
 
 $('#FormRegister').on('submit', function (e) {
-    e.preventDefault();
 
     const email = $('#email').val();
     if ($('#password').val() !== $('#re-password').val()) {
         alert('Mật Khẩu Không Khớp !');
+        e.preventDefault();
         return;
     }
 

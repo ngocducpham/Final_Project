@@ -76,7 +76,6 @@ public class AccountServlet extends HttpServlet {
                 case "/Set_New_Password":
                     Set_New_Password(request, response);
                     break;
-
                 default:
                     break;
             }
