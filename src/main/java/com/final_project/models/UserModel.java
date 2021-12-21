@@ -103,12 +103,21 @@ public class UserModel {
         }
     }
 
-    public static void Update_User_Password(String new_pass,int id){
-        final  String query="update auctionweb.users set Pass=:pass where user_id=:id";
-        try (Connection conn=DBUtils.getConnection()){
+    public static void Update_User_Password(String new_pass, int id) {
+        final String query = "update auctionweb.users set Pass=:pass where user_id=:id";
+        try (Connection conn = DBUtils.getConnection()) {
             conn.createQuery(query)
-                    .addParameter("pass",new_pass)
-                    .addParameter("id",id)
+                    .addParameter("pass", new_pass)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        }
+    }
+
+    public static void Add_Request(int id) {
+        final String query = "Insert into auctionweb.request(user_id) values(:id)";
+        try (Connection conn = DBUtils.getConnection()) {
+            conn.createQuery(query)
+                    .addParameter("id", id)
                     .executeUpdate();
         }
     }

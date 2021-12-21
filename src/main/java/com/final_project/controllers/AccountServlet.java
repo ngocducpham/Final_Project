@@ -154,15 +154,15 @@ public class AccountServlet extends HttpServlet {
                 ServletUtils.redirect(url, request, response);
             } else {
                 // sai password
-                System.out.println("false");
+//                System.out.println("false");
                 request.setAttribute("hasError", true);
                 ServletUtils.forward("/views/Account/Login.jsp", request, response);
             }
         } else {
-            System.out.println("no_user");
-//            request.setAttribute("hasError", true);
-//            request.setAttribute("errorMessage", "Invalid login.");
-//            ServletUtils.forward("/views/vwAccount/Login.jsp", request, response);
+//            System.out.println("no_user");
+//            System.out.println("false");
+            request.setAttribute("hasError", true);
+            ServletUtils.forward("/views/Account/Login.jsp", request, response);
         }
     }
 

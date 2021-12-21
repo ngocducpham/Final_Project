@@ -54,6 +54,10 @@ public class PersonalServlet extends HttpServlet {
                     break;
                 case "/User_Change_Password":
                     Update_User_Password(request, response);
+                    break;
+                case "/Request":
+                    Get_Request(request, response);
+                    break;
                 default:
                     break;
             }
@@ -84,7 +88,7 @@ public class PersonalServlet extends HttpServlet {
         String old_pass = request.getParameter("old_pass");
         BCrypt.Result result = BCrypt.verifyer().verify(old_pass.toCharArray(), user.getPass());
         if (result.verified) {
-            new_pass=BCrypt.withDefaults().hashToString(12, new_pass.toCharArray());
+            new_pass = BCrypt.withDefaults().hashToString(12, new_pass.toCharArray());
             User new_user = new User(user.getUser_ID(), user.getUsername(), user.getEmail(), new_pass, user.getUserrole(), user.getAddress(), user.getDate_o_Birth(), user.getSeller_Expired_date());
             session.setAttribute("authUser", new_user);
             UserModel.Update_User_Password(new_pass, user.getUser_ID());
@@ -93,6 +97,12 @@ public class PersonalServlet extends HttpServlet {
         }
 
         ServletUtils.redirect("/Personal/User_Information", request, response);
+    }
+
+    private void Get_Request(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        UserModel.Add_Request(id);
+        ServletUtils.redirect("/", request, response);
     }
 
     private void Logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

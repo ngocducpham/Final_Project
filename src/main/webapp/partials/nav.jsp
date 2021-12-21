@@ -11,7 +11,8 @@
                     <img class='h-8' src="${pageContext.request.contextPath}/public/imgs/logo.svg" alt="">
                 </div>
                 <div class='flex space-x-4 ml-6 items-center'>
-                    <a href="${pageContext.request.contextPath}" class='text-sm font-medium text-white rounded-md bg-gray-900 px-3 py-2'>Trang
+                    <a href="${pageContext.request.contextPath}"
+                       class='text-sm font-medium text-white rounded-md bg-gray-900 px-3 py-2'>Trang
                         chủ</a>
                     <div
                             class='bid__menu relative text-sm font-medium text-gray-300 rounded-md px-3 py-2 hover:bg-gray-700'>
@@ -63,17 +64,20 @@
                         </svg>
                     </div>
                     <form id="nav__searchform" action="${pageContext.request.contextPath}/Search" method="GET">
-                    <input id="nav__searchproduct" name="searchproduct" type="text"
-                           class='h-9 w-72 rounded-md bg-gray-600 pl-10 pr-5 text-white focus:outline-none'
-                           placeholder='Tìm sản phẩm'>
+                        <input id="nav__searchproduct" name="searchproduct" type="text"
+                               class='h-9 w-72 rounded-md bg-gray-600 pl-10 pr-5 text-white focus:outline-none'
+                               placeholder='Tìm sản phẩm'>
                     </form>
                 </div>
                 <c:choose>
                     <c:when test="${Verified}">
+                        <form id="Form_Request" method="post"
+                              action="${pageContext.request.contextPath}/Personal/Request?id=${authUser.user_ID}"></form>
                         <div class='nav__user-box flex space-x-5 items-center'>
                             <button type='button'
                                     class='bid__menu relative nav__user-icon rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white p-1'>
-                                <img class="h-8 w-8 " src="${pageContext.request.contextPath}/public/imgs/icon.svg" alt="">
+                                <img class="h-8 w-8 " src="${pageContext.request.contextPath}/public/imgs/icon.svg"
+                                     alt="">
                                 <span class='text-left invisible'>
                                 <ul class='right-0 text-sm font-semibold'>
                                     <li class='flex items-center'>
@@ -81,7 +85,7 @@
                                         <a href="${pageContext.request.contextPath}/Personal/User_Information">Tài khoản</a>
                                     </li>
                                     <li class='flex items-center'>
-                                        <span class="iconify text-2xl mr-2"  data-icon="ri:auction-fill"></span>
+                                        <span class="iconify text-2xl mr-2" data-icon="ri:auction-fill"></span>
                                         <a href="">Đấu giá của bạn</a>
 
                                     </li>
@@ -89,6 +93,12 @@
                                         <span class="iconify text-2xl mr-2" data-icon="ri:lock-password-fill"></span>
                                         <a href="${pageContext.request.contextPath}/Account/Forget_Password">Đổi mật khẩu</a>
                                     </li>
+                                    <c:if test="${authUser.userrole==1}">
+                                        <li class='flex items-center'>
+                                        <span class="iconify text-2xl mr-2" data-icon="ri:lock-password-fill"></span>
+                                        <a href="javascript: $('#Form_Request').submit()">Đăng Kí Bán</a>
+                                    </li>
+                                    </c:if>
                                     <li class='flex items-center'>
                                         <span class="iconify text-2xl mr-2" data-icon="ion:log-out-sharp"></span>
                                         <a href="${pageContext.request.contextPath}/Personal/Logout">Đăng xuất</a>
@@ -100,7 +110,8 @@
                     </c:when>
                     <c:otherwise>
                         <div class='flex space-x-2'>
-                            <a href='${pageContext.request.contextPath}/Account/Login' class='hover:bg-gray-700 rounded-md  px-3 py-1 text-white focus:outline-none'>Đăng
+                            <a href='${pageContext.request.contextPath}/Account/Login'
+                               class='hover:bg-gray-700 rounded-md  px-3 py-1 text-white focus:outline-none'>Đăng
                                 nhập</a>
                             <a href='${pageContext.request.contextPath}/Account/Register'
                                class='hover:bg-gray-700 rounded-md ring-2 ring-gray-400 px-3 py-1 text-white focus:outline-none'>Đăng
