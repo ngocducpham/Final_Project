@@ -8,6 +8,7 @@ import java.io.IOException;
 
 @WebFilter(filterName = "SearchFilter", value = "/Search")
 public class SearchFilter implements Filter {
+
     public void init(FilterConfig config) throws ServletException {
     }
 
