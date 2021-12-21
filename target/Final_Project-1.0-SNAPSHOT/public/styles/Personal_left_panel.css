@@ -1,0 +1,102 @@
+.container {
+    width: auto;
+    height: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 50px;
+    font-size: 24px;
+}
+
+.avatar img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.avatar {
+    height: 100px;
+}
+
+.boxFlex {
+    display: flex;
+
+}
+
+.h__profile {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+.navUser {
+    text-align: center;
+    width: 415px;
+    border-right: 1px solid black;
+    height: 60vh;
+}
+
+.boxMoney {
+    border: 2px solid gray;
+    border-radius: 10px;
+    margin: 0 10px;
+    padding-top: 10px;
+}
+
+.labelRedeemable {
+    margin: 0;
+}
+
+.navigateBox {
+    display: flex;
+    flex-direction: column;
+    width: 375px;
+    margin: 40px 0 0 60px;
+}
+
+.myProfile {
+    align-self: flex-start;
+    margin: 5px 20px;
+    padding: 5px 0;
+}
+
+.blue {
+    color: blueviolet;
+    /* padding-right: 5px; */
+}
+
+.a__myProfile {
+    text-decoration: none;
+    color: black;
+}
+
+.a__myProfile:hover {
+    font-size: 32px;
+    text-decoration: none;
+    background-color: rgba(108, 92, 231, 0.1);
+}
+
+.profile {
+    width: 100%;
+    margin: 30px 40px;
+}
+
+/*.background {*/
+/*    background-color: rgb(230, 230, 230)!important;*/
+/*}*/
+
+.top_header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.small {
+    height: 40px;
+}
+
+.info {
+    font-size: 20px !important;
+}
+
+.red{
+    color: red;
+}
