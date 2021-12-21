@@ -51,7 +51,7 @@
                 <div style="font-weight: bold;font-size: 36px">Sản Phẩm Bạn Đang Tham Gia Đấu Giá</div>
                 <div class='flex justify-between mt-10'>
                     <c:forEach items="${User_Auction_Product_List}" var="p">
-                        <div>
+                        <a href="#">
                             <div class='relative w-56 pb-4 border rounded-lg bg-white overflow-hidden shadow-md'>
                                 <span class='rounded-br-full absolute top-0 left-0 pl-2 py-2 pr-5 bg-gray-300 text-xs font-bold'>
                                 Số lần bid: ${p.total_Bid}
@@ -60,11 +60,12 @@
                                      src="${pageContext.request.contextPath}/public/imgProduct/${p.pro_ID}/1.jpg"
                                      alt="">
                                 <div class='px-2 w-full text-center mt-2'>
-                                    <a href='#' class='font-semibold w-full hover:underline'>${p.pname}</a>
+                                    <a class='font-semibold w-full hover:underline'>${p.pname}</a>
                                     <div class='text-sm text-gray-500 font-semibold mt-3'>
                                         Giá hiện tại:
-                                        <span>${p.current_Price} đ</span>
+                                        <span>${p.max_price} đ</span>
                                     </div>
+                                    <div><i class="red fa fa-trophy fa-sm"> ${p.username}</i></div>
                                     <div class='timeContainer flex justify-around text-xs mt-3 font-semibold'>
                                         <div>
                                             <div class='days text-sm'>05</div>
@@ -85,7 +86,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </c:forEach>
                 </div>
             </c:otherwise>
