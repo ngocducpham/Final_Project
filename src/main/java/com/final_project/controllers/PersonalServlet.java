@@ -45,6 +45,9 @@ public class PersonalServlet extends HttpServlet {
                 case "/Logout":
                     Logout(request, response);
                     break;
+                case "/Add_To_Watch_List":
+                    Add_to_Watch_list(request, response);
+                    break;
                 default:
                     ServletUtils.forward("/views/404/index.jsp", request, response);
                     break;
@@ -108,7 +111,6 @@ public class PersonalServlet extends HttpServlet {
         } else {
             session.setAttribute("false_old_pass", true);
         }
-
         ServletUtils.redirect("/Personal/User_Information", request, response);
     }
 
@@ -125,4 +127,12 @@ public class PersonalServlet extends HttpServlet {
         ServletUtils.redirect("/", request, response);
     }
 
+    private void Add_to_Watch_list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("authUser");
+        int Pro_Id = Integer.parseInt(request.getParameter("Pro_Id"));
+        if (!UserModel.Check_Watch_List(Pro_Id, user.getUser_ID()))
+            UserModel.Add_To_Watch_List(Pro_Id, user.getUser_ID());
+//        ServletUtils.redirect('');
+    }
 }
