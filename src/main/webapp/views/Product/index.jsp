@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<jsp:useBean id="join" scope="request" type="java.util.List<com.final_project.beans.Product>" />
+<jsp:useBean id="products" scope="request" type="java.util.List<com.final_project.beans.Product>" />
 <t:admin>
     <jsp:body>
 
@@ -12,7 +12,7 @@
                 Danh sách sản phẩm
             </h4>
             <c:choose>
-                <c:when test="${join.size() == 0}">
+                <c:when test="${products.size() == 0}">
                     <div class="card-body">
                         <p class="card-text">Không có dữ liệu.</p>
                     </div>
@@ -30,12 +30,12 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${join}" var="c">
+                            <c:forEach items="${products}" var="c">
                                 <tr>
                                     <td>${c.pro_ID}</td>
                                     <td>${c.pname}</td>
                                     <td>
-                                        <fmt:formatNumber value="${c.current_price}" type="number" />
+                                        <fmt:formatNumber value="${c.price}" type="number" />
                                     </td>
                                     <td>${c.status}</td>
                                     <td class="text-right">
