@@ -10,28 +10,31 @@
              <script>
                     let danhMucCap1 = [];
                     <c:forEach items="${categoriess}" var="c">
-                    console.log(${c.cname});
+                        danhMucCap1.push(["${c.cat_ID}","${c.cname}"]);
                     </c:forEach>
 
-                    let selectCap1 = document.getElementById('txtCatParentID');
-
-
-                    for (let index = 0; index < danhMucCap1.length; index++) {
-                        let option = document.createElement('option');
-                        option.value = danhMucCap1[index][0];
-                        option.innerText = danhMucCap1[index][1];
-
-                        selectCap1.appendChild(option);
-                    }
-
                     let selectChonCap = document.getElementById('txtLevel');
+                    let selectCap1;
 
                     selectChonCap.addEventListener('change',()=>{
                         if(selectChonCap.value == 2){
-                            txtCatParentID.classList.remove('hidden');
+                            selectCap1 = document.createElement('select');
+                            selectCap1.setAttribute('name','Cparent_ID');
+                            selectCap1.setAttribute('id','txtCatParentID');
+
+                            for (let index = 0; index < danhMucCap1.length; index++) {
+                                let option = document.createElement('option');
+                                option.value = danhMucCap1[index][0];
+                                option.innerText = danhMucCap1[index][1];
+
+                                selectCap1.appendChild(option);
+                            }
+
+                            let cardBody = document.querySelector('.category1');
+                            cardBody.appendChild(selectCap1);
                         }
                         else{
-                            txtCatParentID.classList.add('hidden');
+                            selectCap1.remove();
                         }
                     })
                 </script>
@@ -55,11 +58,8 @@
                     <option value="2">Cấp 2</option>
                 </select>
                 </div>
-                <div class="card-body">
+                <div class="card-body category1">
                     <label for="txtCatParentID">Mặt hàng</label>
-                    <select class='hidden' name="Cparent_ID" id="txtCatParentID">
-
-                    </select>
                 </div>
                 <div class="card-footer d-flex justify-between">
                     <a class="btn btn-outline-success" href="${pageContext.request.contextPath}/Admin/Category/" role="button">
