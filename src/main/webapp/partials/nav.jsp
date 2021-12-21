@@ -86,7 +86,12 @@
                                     </li>
                                     <li class='flex items-center'>
                                         <span class="iconify text-2xl mr-2" data-icon="ri:auction-fill"></span>
-                                        <a href="">Đấu giá của bạn</a>
+                                        <a href="${pageContext.request.contextPath}/Personal/User_Auction">Đấu giá của bạn</a>
+
+                                    </li>
+                                     <li class='flex items-center'>
+                                        <span class="iconify text-2xl mr-2" data-icon="ri:auction-fill"></span>
+                                        <a href="${pageContext.request.contextPath}/Personal/User_Watch_List">Sản Phẩm Yêu Thích</a>
 
                                     </li>
                                     <li class='flex items-center'>

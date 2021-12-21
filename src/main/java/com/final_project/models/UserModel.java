@@ -1,6 +1,7 @@
 package com.final_project.models;
 
 import com.final_project.beans.Product;
+import com.final_project.beans.ProductAuction;
 import com.final_project.beans.User;
 import com.final_project.utils.DBUtils;
 import org.sql2o.Connection;
@@ -119,6 +120,31 @@ public class UserModel {
             conn.createQuery(query)
                     .addParameter("id", id)
                     .executeUpdate();
+        }
+    }
+
+    public static List<Product> Get_Watch_List(int user_id) {
+        final String query = "select *from products where Pro_ID in(\n" +
+                "    select Pro_ID\n" +
+                "    from favorite\n" +
+                "    where User_ID=:user_id\n" +
+                "    );";
+        try (Connection conn = DBUtils.getConnection()) {
+            return conn.createQuery(query)
+                    .addParameter("user_id", user_id)
+                    .executeAndFetch(Product.class);
+        }
+    }
+
+    public static List<ProductAuction> Get_User_Auction_Product_List(int user_id) {
+        final String query = "select pa.*,p.Pname from product_auction pa join products p on p.Pro_ID = pa.Pro_ID where pa.Pro_ID in(\n" +
+                "                    select distinct Pro_ID\n" +
+                "                    from auction a join product_auction pa on a.Pro_Auc_ID = pa.Pro_Auc_ID \n" +
+                "                    where User_ID=:user_id)";
+        try (Connection conn = DBUtils.getConnection()) {
+            return conn.createQuery(query)
+                    .addParameter("user_id", user_id)
+                    .executeAndFetch(ProductAuction.class);
         }
     }
 }
