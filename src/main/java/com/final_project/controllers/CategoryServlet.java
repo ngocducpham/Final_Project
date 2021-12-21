@@ -62,8 +62,6 @@ public class CategoryServlet extends HttpServlet {
       case "/Add":
         addCategory(request, response);
         break;
-
-
       default:
         ServletUtils.forward("/views/404.jsp", request, response);
         break;
@@ -71,10 +69,10 @@ public class CategoryServlet extends HttpServlet {
   }
 
   private void addCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    String name = request.getParameter("CatName");
-    Category c = new Category(name);
+    String Cname = request.getParameter("Cname");
+    Category c = new Category(Cname);
     CategoryModel.add(c);
-    ServletUtils.forward("/views/vwCategory/Add.jsp", request, response);
+    ServletUtils.forward("/views/Category/Add.jsp", request, response);
   }
 
 }

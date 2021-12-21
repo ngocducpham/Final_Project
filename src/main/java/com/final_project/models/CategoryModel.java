@@ -32,30 +32,12 @@ public class CategoryModel {
   }
 
   public static void add(Category c) {
-    String insertSql = "insert into categories(CatName) values (:CatName)";
+    String insertSql = "insert into categories(Cname) values (:Cname)";
     try (Connection con = DBUtils.getConnection()) {
       con.createQuery(insertSql)
-        .addParameter("CatName", c.getCatName())
+        .addParameter("Cname", c.getCname())
         .executeUpdate();
     }
   }
 
-  public static void update(Category c) {
-    String sql = "update categories set CatName = :CatName where CatID = :CatID";
-    try (Connection con = DBUtils.getConnection()) {
-      con.createQuery(sql)
-        .addParameter("CatID", c.getCatID())
-        .addParameter("CatName", c.getCatName())
-        .executeUpdate();
-    }
-  }
-
-  public static void delete(int id) {
-    String sql = "delete from categories where CatID = :CatID";
-    try (Connection con = DBUtils.getConnection()) {
-      con.createQuery(sql)
-        .addParameter("CatID", id)
-        .executeUpdate();
-    }
-  }
 }

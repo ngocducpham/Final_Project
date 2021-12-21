@@ -35,10 +35,10 @@
                             <tbody>
                             <c:forEach items="${categories}" var="c">
                                 <tr>
-                                    <td>${c.catID}</td>
-                                    <td>${c.catName}</td>
+                                    <td>${c.cat_ID}</td>
+                                    <td>${c.cname}</td>
                                     <td class="text-right">
-                                        <a class="btn btn-sm btn-outline-primary" href="${pageContext.request.contextPath}/Admin/Category/Edit?id=${c.catID}" role="button">
+                                        <a class="btn btn-sm btn-outline-primary" href="${pageContext.request.contextPath}/Admin/Category/Edit?id=${c.cat_ID}" role="button">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </a>
                                     </td>
