@@ -19,6 +19,19 @@ public class Category {
         this.Cat_ID = -1;
     }
 
+    public Category(String cname, int cparent_id, int level) {
+        Cname = cname;
+        this.Cparent_ID = cparent_id;
+        Level = level;
+    }
+
+    public Category(int id, String cname, int cparent_id, int level) {
+        Cname = cname;
+        Cat_ID = id;
+        Cparent_ID = cparent_id;
+        Level = level;
+    }
+
     public String getCname() {
         return Cname;
     }

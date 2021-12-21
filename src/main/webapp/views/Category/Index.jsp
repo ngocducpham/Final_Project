@@ -29,6 +29,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Mặt hàng</th>
+                                <th>ID cấp 1</th>
                                 <th>&nbsp;</th>
                             </tr>
                             </thead>
@@ -37,8 +38,11 @@
                                 <tr>
                                     <td>${c.cat_ID}</td>
                                     <td>${c.cname}</td>
+                                    <td>
+                                       ${c.cparent_ID}
+                                    </td>
                                     <td class="text-right">
-                                        <a class="btn btn-sm btn-outline-primary" href="${pageContext.request.contextPath}/Admin/Category/Edit?id=${c.cat_ID}" role="button">
+                                        <a class="btn btn-sm btn-outline-primary" href="${pageContext.request.contextPath}/Admin/Category/Edit?id=${c.cat_ID}"  role="button">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </a>
                                     </td>

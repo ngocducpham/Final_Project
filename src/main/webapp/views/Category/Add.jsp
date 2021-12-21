@@ -41,7 +41,7 @@
                 </script>
         </jsp:attribute>
     <jsp:body>
-        <form action="" method="post">
+        <form method="post">
             <div class="card">
                 <div class="card-header">
                     + Thêm danh mục
@@ -60,7 +60,7 @@
                 </select>
                 </div>
                 <div class="card-body category1">
-                    <label for="txtCatParentID">Mặt hàng</label>
+                    <label>Mặt hàng</label>
 
                 </div>
                 <div class="card-footer d-flex justify-between">

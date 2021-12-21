@@ -35,6 +35,8 @@ public class CategoryServlet extends HttpServlet {
         break;
 
       case "/Edit":
+        List<Category> list3 = CategoryModel.findAll();
+        request.setAttribute("categoriesss", list3);
         int id = 0;
         try {
           id = Integer.parseInt(request.getParameter("id"));
@@ -47,12 +49,12 @@ public class CategoryServlet extends HttpServlet {
           ServletUtils.forward("/views/Category/Edit.jsp", request, response);
         } else {
           ServletUtils.redirect("/Admin/Category", request, response);
-          // ServletUtils.forward("/views/204.jsp", request, response);
+
         }
         break;
 
       default:
-        ServletUtils.forward("/views/404.jsp", request, response);
+        ServletUtils.forward("/views/404/index.jsp  ", request, response);
         break;
     }
   }
@@ -64,17 +66,43 @@ public class CategoryServlet extends HttpServlet {
       case "/Add":
         addCategory(request, response);
         break;
+      case "/Update":
+        updateCategory(request, response);
+        break;
+      case "/Delete":
+        deleteCategory(request, response);
+        break;
       default:
-        ServletUtils.forward("/views/404.jsp", request, response);
+        ServletUtils.forward("/views/404/index.jsp", request, response);
         break;
     }
   }
 
-  private void addCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+  private void addCategory(HttpServletRequest request, HttpServletResponse response) throws  IOException {
+    request.setCharacterEncoding("UTF-8");
     String Cname = request.getParameter("Cname");
-    Category c = new Category(Cname);
+    int Cparent_ID =Integer.parseInt(request.getParameter("Cparent_ID"));
+    int Level = Integer.parseInt(request.getParameter("Level"));
+    Category c = new Category(Cname, Cparent_ID, Level);
     CategoryModel.add(c);
-    ServletUtils.forward("/views/Category/Add.jsp", request, response);
+    ServletUtils.redirect("/Admin/Category", request, response);
+  }
+
+  private void updateCategory(HttpServletRequest request, HttpServletResponse response) throws  IOException {
+    request.setCharacterEncoding("UTF-8");
+    int id = Integer.parseInt(request.getParameter("Cat_ID"));
+    String Cname = request.getParameter("Cname");
+    int Cparent_ID =Integer.parseInt(request.getParameter("Cparent_ID"));
+    int Level = Integer.parseInt(request.getParameter("Level"));
+    Category c = new Category(id, Cname, Cparent_ID, Level);
+    CategoryModel.update(c);
+    ServletUtils.redirect("/Admin/Category", request, response);
+  }
+
+  private void deleteCategory(HttpServletRequest request, HttpServletResponse response) throws  IOException {
+    int id = Integer.parseInt(request.getParameter("Cat_ID"));
+    CategoryModel.delete(id);
+    ServletUtils.redirect("/Admin/Category", request, response);
   }
 
 }

@@ -19,15 +19,15 @@
                     </div>
                     <div class="form-group">
                         <label for="txtUserName">Tên</label>
-                        <input type="text" class="form-control" id="txtUserName" name="UserName" readonly value="${users.username}">
+                        <input type="text" class="form-control" id="txtUserName" name="username" readonly value="${users.username}">
                     </div>
                     <div class="form-group">
                         <label for="txtEmail">Tên</label>
-                        <input type="text" class="form-control" id="txtEmail" name="Email" readonly value="${users.email}">
+                        <input type="text" class="form-control" id="txtEmail" name="email" readonly value="${users.email}">
                     </div>
                     <div class="form-group">
                         <label for="txtPass">Password</label>
-                        <input type="password" class="form-control" id="txtPass" name="Password" readonly value="${users.pass}">
+                        <input type="password" class="form-control" id="txtPass" name="Pass" readonly value="${users.pass}">
                     </div>
                     <div class="form-group">
                         <label for="txtAddress">Địa chỉ</label>
@@ -35,31 +35,31 @@
                     </div>
                     <div class="form-group">
                         <label for="txtDob">Ngày sinh</label>
-                        <input type="date" class="form-control" id="txtDob" name="Dob" readonly value="${users.date_o_Birth}">
+                        <input type="date" class="form-control" id="txtDob" name="Date_o_Birth" readonly value="${users.date_o_Birth}">
                     </div>
                     <div class="form-group">
                         <label for="txtSed">Ngày hết hạn</label>
-                        <input type="date" class="form-control" id="txtSed" name="Sed" readonly value="${users.seller_Expired_date}">
+                        <input type="date" class="form-control" id="txtSed" name="Seller_Expired_Date" readonly value="${users.seller_Expired_date}">
                     </div>
 
                     <c:choose>
                         <c:when test="${users.userrole == 1}">
                         <div class="custom-control custom-radio">
-                            <input type="radio" id="customRadio1" name="UserRole" class="custom-control-input" checked>
+                            <input type="radio" id="customRadio1" name="userrole" class="custom-control-input" checked>
                             <label class="custom-control-label" for="customRadio1">Người mua</label>
                         </div>
                         <div class="custom-control custom-radio">
-                            <input type="radio" id="customRadio2" name="UserRole" class="custom-control-input">
+                            <input type="radio" id="customRadio2" name="userrole" class="custom-control-input">
                             <label class="custom-control-label" for="customRadio2">Người bán</label>
                         </div>
                         </c:when>
                         <c:otherwise>
                         <div class="custom-control custom-radio">
-                            <input type="radio" id="customRadio3" name="UserRole" class="custom-control-input">
+                            <input type="radio" id="customRadio3" name="userrole" class="custom-control-input">
                             <label class="custom-control-label" for="customRadio3">Người mua</label>
                         </div>
                         <div class="custom-control custom-radio">
-                            <input type="radio" id="customRadio4" name="UserRole" class="custom-control-input" checked>
+                            <input type="radio" id="customRadio4" name="userrole" class="custom-control-input" checked>
                             <label class="custom-control-label" for="customRadio4">Người bán</label>
                         </div>
                         </c:otherwise>
