@@ -38,10 +38,10 @@
                                     <td>
                                     <c:choose>
                                         <c:when test="${c.userrole== 1}">
-                                            Người mua
+                                            Bidder
                                         </c:when>
                                         <c:otherwise>
-                                            Người bán
+                                            Seller
                                         </c:otherwise>
                                     </c:choose>
                                     </td>

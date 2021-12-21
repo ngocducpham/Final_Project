@@ -82,7 +82,7 @@
                                 </span>
                         </a>
                         <a class="w-full text-gray-400 flex items-center pl-6 p-2 my-2 transition-colors duration-200 justify-start hover:text-gray-800 border-l-4 border-transparent"
-                           href="#">
+                           href="${pageContext.request.contextPath}/Admin/Request/">
                                 <span class="text-left">
                                     <svg width="20" height="20" fill="currentColor" viewBox="0 0 2048 1792"
                                          xmlns="http://www.w3.org/2000/svg">
