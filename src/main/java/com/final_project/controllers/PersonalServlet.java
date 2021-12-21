@@ -33,7 +33,7 @@ public class PersonalServlet extends HttpServlet {
                     ServletUtils.forward("/views/Account/Change_Password.jsp", request, response);
                     break;
                 case "/User_Watch_List":
-                    List<Product> list = UserModel.Get_Watch_List(user.getUser_ID());
+                    List<ProductAuction> list = UserModel.Get_Watch_List(user.getUser_ID());
                     request.setAttribute("Watch_List", list);
                     ServletUtils.forward("/views/Account/Watch_List.jsp", request, response);
                     break;

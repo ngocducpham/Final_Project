@@ -121,22 +121,26 @@ public class UserModel {
         }
     }
 
-    public static List<Product> Get_Watch_List(int user_id) {
-        final String query = "select *from products where Pro_ID in(\n" +
+    public static List<ProductAuction> Get_Watch_List(int user_id) {
+        final String query = "select pa.*, p.Pname, max(a.Price_of_User) as max_price, username\n" +
+                "from products p\n" +
+                "         left join product_auction pa on p.Pro_ID = pa.Pro_ID\n" +
+                "         left join auction a on pa.Pro_Auc_ID = a.Pro_Auc_ID\n" +
+                "         left join users u on u.User_ID = a.User_ID\n" +
+                "where pa.Pro_ID in (\n" +
                 "    select Pro_ID\n" +
-                "    from favorite\n" +
-                "    where User_ID=:user_id\n" +
-                "    );";
+                "    from favorite where User_ID=:user_id)\n" +
+                "group by a.Pro_Auc_ID;";
         try (Connection conn = DBUtils.getConnection()) {
             return conn.createQuery(query)
                     .addParameter("user_id", user_id)
-                    .executeAndFetch(Product.class);
+                    .executeAndFetch(ProductAuction.class);
         }
     }
 
     public static List<ProductAuction> Get_User_Auction_Product_List(int user_id) {
         final String query = "select pa.*,p.Pname,max(a.Price_of_User) as max_price,username\n" +
-                "from products p join product_auction pa on p.Pro_ID = pa.Pro_ID join auction a on pa.Pro_Auc_ID = a.Pro_Auc_ID join users u on u.User_ID = a.User_ID\n" +
+                "from products p left join product_auction pa on p.Pro_ID = pa.Pro_ID left join auction a on pa.Pro_Auc_ID = a.Pro_Auc_ID left join users u on u.User_ID = a.User_ID\n" +
                 "where pa.Pro_ID in(\n" +
                 "    select distinct Pro_ID\n" +
                 "    from auction a join product_auction pa on a.Pro_Auc_ID = pa.Pro_Auc_ID\n" +
