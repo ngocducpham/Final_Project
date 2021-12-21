@@ -1,6 +1,7 @@
 package com.final_project.models;
 
 import com.final_project.beans.Product;
+import com.final_project.beans.ProductAuction;
 import com.final_project.utils.DBUtils;
 import org.sql2o.Connection;
 
@@ -24,8 +25,9 @@ public class ProductModel {
         }
     }
 
-    public static List<Product> GetPriceProAuction() {
-        final String query = "select  Start_Price, Current_Price, End_Time, Start_Time from product_auction join products p on p.Pro_ID = product_auction.Pro_ID";
+    public static List<Product> Join() {
+        final String query = "select Current_Price, End_Time, Start_Price, Start_Time, Pname, Pro_ID from product_auction " +
+                "join products p on p.Pro_ID = product_auction.Pro_ID ";
         try (Connection con = DBUtils.getConnection()) {
             return con.createQuery(query)
                     .executeAndFetch(Product.class);

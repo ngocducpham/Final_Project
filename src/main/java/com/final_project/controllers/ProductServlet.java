@@ -16,6 +16,7 @@ import java.util.List;
 public class ProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         String path = request.getPathInfo();
         if (path == null || path.equals("/")) {
             path = "/Index";
@@ -23,8 +24,8 @@ public class ProductServlet extends HttpServlet {
 
         switch (path) {
             case "/Index":
-                List<Product> list = ProductModel.findAll();
-                request.setAttribute("products", list);
+                List<Product> list = ProductModel.Join();
+                request.setAttribute("join", list);
                 ServletUtils.forward("/views/Product/index.jsp", request, response);
                 break;
 
