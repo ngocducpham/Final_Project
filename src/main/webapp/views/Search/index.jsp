@@ -32,11 +32,14 @@
             productCard.forEach(card => {
                 let proID = card.querySelector('.productID').value;
                 let currentBidder = card.querySelector('.current_Bidder');
-                let startTime = card.querySelector('.start_Time');
                 for (const bidder of bidderList) {
                     if (bidder[0] == proID) {
                         currentBidder.innerText = "Bidder hiện tại: " + bidder[1];
-                    } else currentBidder.innerText = "Bidder hiện tại: chưa có";
+                        break;
+                    } else
+                    {
+                        currentBidder.innerText = "Bidder hiện tại: chưa có";
+                    }
                 }
 
             });
