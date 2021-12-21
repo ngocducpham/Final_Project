@@ -29,6 +29,8 @@ public class CategoryServlet extends HttpServlet {
         break;
 
       case "/Add":
+        List<Category> list1 = CategoryModel.findAll();
+        request.setAttribute("categoriess", list1);
         ServletUtils.forward("/views/Category/Add.jsp", request, response);
         break;
 

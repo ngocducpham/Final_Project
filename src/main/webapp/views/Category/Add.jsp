@@ -3,13 +3,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<jsp:useBean id="categories" scope="request" type="java.util.List<com.final_project.beans.Category>" />
+<jsp:useBean id="categoriess" scope="request" type="java.util.List<com.final_project.beans.Category>" />
 
 <t:admin>
     <jsp:attribute name="js" >
              <script>
                     let danhMucCap1 = [];
-                    <c:forEach items="${categories}" var="c">
+                    <c:forEach items="${categoriess}" var="c">
                     console.log(${c.cname});
                     </c:forEach>
 
