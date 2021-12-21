@@ -1,5 +1,6 @@
 package com.final_project.models;
 
+import com.final_project.beans.Favorite;
 import com.final_project.beans.Product;
 import com.final_project.beans.ProductAuction;
 import com.final_project.beans.User;
@@ -147,4 +148,32 @@ public class UserModel {
                     .executeAndFetch(ProductAuction.class);
         }
     }
+
+    public static Boolean Check_Watch_List(int Pro_Id, int User_Id) {
+        final String query = "select * from favorite f where f.Pro_ID=:Pro_Id and f.User_ID=:User_Id;";
+        try (Connection conn = DBUtils.getConnection()) {
+            List<Favorite> list = conn.createQuery(query)
+                    .addParameter("Pro_Id", Pro_Id)
+                    .addParameter("User_Id", User_Id)
+                    .executeAndFetch(Favorite.class);
+            if (list.size() != 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+    public static void Add_To_Watch_List(int Pro_Id, int User_Id) {
+        final String query = "insert into favorite (Pro_ID, User_ID)\n" +
+                "values (:Pro_Id,:User_Id);";
+        try (Connection conn = DBUtils.getConnection()) {
+            conn.createQuery(query).
+                    addParameter("Pro_Id", Pro_Id).
+                    addParameter("User_Id", User_Id).
+                    executeUpdate();
+        }
+    }
+
+
 }

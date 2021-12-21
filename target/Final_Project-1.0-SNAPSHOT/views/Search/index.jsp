@@ -17,7 +17,7 @@
         <script>
             let bidderList = [];
             <c:forEach items="${searchProductGetBidder}" var="p">
-            bidderList.push(["${p.pro_ID}", "${p.username}"]);
+                bidderList.push(["${p.pro_ID}", "${p.username}"]);
             </c:forEach>
 
             let productTime = [];
@@ -36,7 +36,8 @@
                     if (bidder[0] == proID) {
                         currentBidder.innerText = "Bidder hiện tại: " + bidder[1];
                         break;
-                    } else {
+                    } else
+                    {
                         currentBidder.innerText = "Bidder hiện tại: chưa có";
                     }
                 }
@@ -129,10 +130,8 @@
                         <div class='text-center total_Bid rounded-br-full absolute top-0 left-0 pl-2 py-2 pr-5 bg-gray-300 text-xs font-bold'>
                             Số lần bid: ${p.total_Bid}
                         </div>
-                        <a href="${pageContext.request.contextPath}/Personal/Add_To_Watch_List?Pro_Id=${p.pro_ID}"
-                           class="btn_watch_list absolute top-2 right-3">
-                            <span class="iconify text-red-300 hover:text-red-500"
-                                  data-icon="ant-design:heart-filled"></span>
+                        <a href="${pageContext.request.contextPath}/Personal/Add_To_Watch_List?Pro_Id=${p.pro_ID}" class="btn_watch_list absolute top-2 right-3">
+                            <span class="iconify text-red-300 hover:text-red-500" data-icon="ant-design:heart-filled"></span>
                         </a>
                         <img class='h-60 w-full rounded-t-lg'
                              src="${pageContext.request.contextPath}/public/imgs/appple-watch.jpg" alt="">
