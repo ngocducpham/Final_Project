@@ -31,7 +31,7 @@
   <div class='text-indigo-600 font-bold mt-12 text-center'>404 ERROR</div>
   <div class='font-bold text-5xl mt-2'>Page not found.</div>
   <div class='text-gray-400 text-base mt-5 font-medium'>Xin lỗi, không thể tìm thấy trang cho bạn.</div>
-  <a href='#' class='flex items-center justify-center mt-7 hover:decoration-indigo-600 hover:underline'>
+  <a href='${pageContext.request.contextPath}' class='flex items-center justify-center mt-7 hover:decoration-indigo-600 hover:underline'>
     <div class='text-indigo-600 font-medium text-lg'>
       Trở về trang chủ
     </div>

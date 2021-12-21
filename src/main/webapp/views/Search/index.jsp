@@ -17,7 +17,7 @@
         <script>
             let bidderList = [];
             <c:forEach items="${searchProductGetBidder}" var="p">
-            bidderList.push(["${p.pro_Auc_ID}", "${p.username}"]);
+                bidderList.push(["${p.pro_ID}", "${p.username}"]);
             </c:forEach>
 
             let productTime = [];
@@ -126,7 +126,7 @@
             <div class='flex flex-wrap justify-between mt-8'>
                 <c:forEach items="${searchProducts}" var="p">
                     <div class='product_Card relative w-56 border rounded-lg bg-white overflow-hidden mb-14'>
-                        <input hidden class="productID" value="${p.pro_Auc_ID}">
+                        <input hidden class="productID" value="${p.pro_ID}">
                         <div class='text-center total_Bid rounded-br-full absolute top-0 left-0 pl-2 py-2 pr-5 bg-gray-300 text-xs font-bold'>
                             Số lần bid: ${p.total_Bid}
                         </div>
