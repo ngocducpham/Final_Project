@@ -48,7 +48,7 @@
                 <p style="font-size: 90">Khong tham gia dau gia bat ki san pham nao</p>
             </c:when>
             <c:otherwise>
-                <div style="font-weight: bold;font-size: 36px">Sản Phẩm Bạn Đang Tham Gia Đấu Giá</div>
+                <div style="font-weight: bold;font-size: 36px">Sản Phẩm Bạn <span style="color:red;">Đang Tham Gia</span> Đấu Giá</div>
                 <div class='flex justify-between mt-10'>
                     <c:forEach items="${User_Auction_Product_List}" var="p">
                         <a href="#">

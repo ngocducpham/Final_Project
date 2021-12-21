@@ -90,7 +90,7 @@
 
                                     </li>
                                      <li class='flex items-center'>
-                                        <span class="iconify text-2xl mr-2" data-icon="ri:auction-fill"></span>
+                                        <span class="iconify text-2xl mr-2" data-icon="ant-design:heart-filled"></span>
                                         <a href="${pageContext.request.contextPath}/Personal/User_Watch_List">Sản Phẩm Yêu Thích</a>
 
                                     </li>
@@ -100,7 +100,7 @@
                                     </li>
                                     <c:if test="${authUser.userrole==1}">
                                         <li class='flex items-center'>
-                                        <span class="iconify text-2xl mr-2" data-icon="ri:lock-password-fill"></span>
+                                        <span class="iconify text-2xl mr-2" data-icon="codicon:request-changes"></span>
                                         <a href="javascript: $('#Form_Request').submit()">Đăng Kí Bán</a>
                                     </li>
                                     </c:if>

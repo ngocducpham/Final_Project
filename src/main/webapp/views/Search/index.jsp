@@ -114,13 +114,6 @@
                     <div>Hiển thị 1-10 trên ${searchProductGetTotalProduct} sản phẩm</div>
                 </div>
                 <div>
-                    <span>Danh mục:</span>
-                    <select name="productsort" id="product_categories" class='bg-gray-800 mr-5'>
-                        <option value="pricedown">Đồ gia dụng</option>
-                        <option value="timeup" selected>Đồ điện tử</option>
-                        <option value="priceup">Giá tăng dần</option>
-                        <option value="pricedown">Giá giảm dần</option>
-                    </select>
                     <span>Sắp xếp theo:</span>
                     <select class="focus:outline-none text-white bg-gray-800" name="sort" id="productsort">
                         <option value="1">Thời gian kết thúc giảm dần</option>
@@ -131,60 +124,52 @@
                 </div>
             </div>
             <div class='flex flex-wrap justify-between mt-8'>
-                <c:choose>
-                    <c:when test="${searchProducts.size() == 0}">
-                        <div class='text-3xl text-gray-400 mx-auto mt-10 font-semibold' style='height: 400px;'>Không tìm thấy sản phẩm</div>
-                    </c:when>
-                    <c:when test="${searchProducts.size() != 0}">
-                        <c:forEach items="${searchProducts}" var="p">
-                            <div class='product_Card relative w-56 border rounded-lg bg-white overflow-hidden mb-14'>
-                                <input hidden class="productID" value="${p.pro_ID}">
-                                <div class='text-center total_Bid rounded-br-full absolute top-0 left-0 pl-2 py-2 pr-5 bg-gray-300 text-xs font-bold'>
-                                    Số lần bid: ${p.total_Bid}
+                <c:forEach items="${searchProducts}" var="p">
+                    <div class='product_Card relative w-56 border rounded-lg bg-white overflow-hidden mb-14'>
+                        <input hidden class="productID" value="${p.pro_ID}">
+                        <div class='text-center total_Bid rounded-br-full absolute top-0 left-0 pl-2 py-2 pr-5 bg-gray-300 text-xs font-bold'>
+                            Số lần bid: ${p.total_Bid}
+                        </div>
+                        <a href="${pageContext.request.contextPath}/Personal/Add_To_Watch_List?Pro_Id=${p.pro_ID}" class="btn_watch_list absolute top-2 right-3">
+                            <span class="iconify text-red-300 hover:text-red-500" data-icon="ant-design:heart-filled"></span>
+                        </a>
+                        <img class='h-60 w-full rounded-t-lg'
+                             src="${pageContext.request.contextPath}/public/imgs/appple-watch.jpg" alt="">
+                        <div class='p-3 w-full text-center'>
+                            <a href='#' class='font-semibold w-full hover:underline'>${p.pname}</a>
+                            <div class='text-sm text-gray-500 font-semibold'>
+                                <div class=' mt-3'>
+                                    Giá hiện tại: ${p.current_Price}
                                 </div>
-                                <button type="button" class="btn_watch_list absolute top-2 right-3">
-                                    <span class="iconify text-red-300 hover:text-red-500" data-icon="ant-design:heart-filled"></span>
-                                </button>
-                                <img class='h-60 w-full rounded-t-lg'
-                                     src="${pageContext.request.contextPath}/public/imgs/appple-watch.jpg" alt="">
-                                <div class='p-3 w-full text-center'>
-                                    <a href='#' class='font-semibold w-full hover:underline'>${p.pname}</a>
-                                    <div class='text-sm text-gray-500 font-semibold'>
-                                        <div class=' mt-3'>
-                                            Giá hiện tại: ${p.current_Price}
-                                        </div>
-                                        <div class='w-full truncate mt-1 current_Bidder'>
-                                        </div>
-                                        <div class='mt-1'>Ngày đăng:
-                                            <span class="start_Time">
+                                <div class='w-full truncate mt-1 current_Bidder'>
+                                </div>
+                                <div class='mt-1'>Ngày đăng:
+                                    <span class="start_Time">
 
                                     </span>
-                                        </div>
-                                    </div>
-                                    <div class='timeContainer flex justify-around text-xs mt-3 font-semibold'>
-                                        <div>
-                                            <div class='days text-sm'>0</div>
-                                            <div class='text-gray-500'>Ngày</div>
-                                        </div>
-                                        <div>
-                                            <div class='hours text-sm'>0</div>
-                                            <div class='text-gray-500'>Giờ</div>
-                                        </div>
-                                        <div>
-                                            <div class='minutes text-sm'>0</div>
-                                            <div class='text-gray-500'>Phút</div>
-                                        </div>
-                                        <div>
-                                            <div class='seconds text-sm'>0</div>
-                                            <div class='text-gray-500'>Giây</div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
-                        </c:forEach>
-                    </c:when>
-                </c:choose>
-
+                            <div class='timeContainer flex justify-around text-xs mt-3 font-semibold'>
+                                <div>
+                                    <div class='days text-sm'>0</div>
+                                    <div class='text-gray-500'>Ngày</div>
+                                </div>
+                                <div>
+                                    <div class='hours text-sm'>0</div>
+                                    <div class='text-gray-500'>Giờ</div>
+                                </div>
+                                <div>
+                                    <div class='minutes text-sm'>0</div>
+                                    <div class='text-gray-500'>Phút</div>
+                                </div>
+                                <div>
+                                    <div class='seconds text-sm'>0</div>
+                                    <div class='text-gray-500'>Giây</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
 
             </div>
 

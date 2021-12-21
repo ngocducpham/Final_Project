@@ -33,7 +33,7 @@ public class PersonalServlet extends HttpServlet {
                     ServletUtils.forward("/views/Account/Change_Password.jsp", request, response);
                     break;
                 case "/User_Watch_List":
-                    List<Product> list = UserModel.Get_Watch_List(user.getUser_ID());
+                    List<ProductAuction> list = UserModel.Get_Watch_List(user.getUser_ID());
                     request.setAttribute("Watch_List", list);
                     ServletUtils.forward("/views/Account/Watch_List.jsp", request, response);
                     break;
@@ -44,6 +44,9 @@ public class PersonalServlet extends HttpServlet {
                     break;
                 case "/Logout":
                     Logout(request, response);
+                    break;
+                case "/Add_To_Watch_List":
+                    Add_to_Watch_list(request, response);
                     break;
                 default:
                     ServletUtils.forward("/views/404/index.jsp", request, response);
@@ -108,7 +111,6 @@ public class PersonalServlet extends HttpServlet {
         } else {
             session.setAttribute("false_old_pass", true);
         }
-
         ServletUtils.redirect("/Personal/User_Information", request, response);
     }
 
@@ -125,4 +127,15 @@ public class PersonalServlet extends HttpServlet {
         ServletUtils.redirect("/", request, response);
     }
 
+    private void Add_to_Watch_list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("authUser");
+        int Pro_Id = Integer.parseInt(request.getParameter("Pro_Id"));
+        if (!UserModel.Check_Watch_List(Pro_Id, user.getUser_ID()))
+            UserModel.Add_To_Watch_List(Pro_Id, user.getUser_ID());
+
+        String url=(String) session.getAttribute("retUrl");
+        if (url==null) url="/";
+        ServletUtils.redirect(url,request,response);
+    }
 }
