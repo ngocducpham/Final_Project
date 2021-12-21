@@ -99,8 +99,8 @@ public class AccountServlet extends HttpServlet {
         System.out.println(code);
         User user = new User(Integer.parseInt(role), name, email, EnCrypted_pass, address, code, ngaysinh);
 
-//        boolean isMail_Sent = ServletUtils.sendMail_to_Active_Account(user);
-        boolean isMail_Sent = true;
+        boolean isMail_Sent = ServletUtils.sendMail_to_Active_Account(user);
+//        boolean isMail_Sent = true;
         if (isMail_Sent) {
             HttpSession session = request.getSession();
             session.setAttribute("New_User", user);
@@ -173,8 +173,8 @@ public class AccountServlet extends HttpServlet {
         System.out.println(code);
         if (user != null) {
             User new_user = new User(user.getUser_ID(), user.getUserrole(), user.getUsername(), user.getEmail(), user.getPass(), user.getAddress(), code, user.getDate_o_Birth(), user.getSeller_Expired_date());
-//            boolean isMailSent = ServletUtils.sengMail_to_Reset_Password(new_user);
-            boolean isMailSent = true;
+            boolean isMailSent = ServletUtils.sengMail_to_Reset_Password(new_user);
+//            boolean isMailSent = true;
             if (isMailSent) {
                 HttpSession session = request.getSession();
                 session.setAttribute("User_Forget_Password", new_user);

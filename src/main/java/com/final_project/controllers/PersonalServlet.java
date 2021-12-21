@@ -22,7 +22,6 @@ public class PersonalServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = request.getPathInfo();
         if (path.equals("/") || path == null) {
-//            ServletUtils.forward("/views/Account/Personal.jsp", request, response);
         } else {
             HttpSession session = request.getSession();
             User user = (User) session.getAttribute("authUser");
@@ -56,8 +55,7 @@ public class PersonalServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = request.getPathInfo();
-        if (path.equals("/") || path == null) {
-            ServletUtils.forward("/views/Account/Personal.jsp", request, response);
+        if (path.equals("/")) {
         } else {
             switch (path) {
                 case "/User_Information":
