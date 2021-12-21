@@ -17,6 +17,7 @@ public class ProductAuction {
     private String username;
     private int Price_of_User;
     private String Total_Products;
+    private int max_price;
 
     public ProductAuction(String total_Products, int price_of_User, int user_ID, String username, int total_Bid, String pname, int current_Price, int pro_Auc_ID, int start_Price, int immediate_Pice, int distance_Price, LocalDateTime start_Time, LocalDateTime end_Time, int pro_ID) {
         Total_Products = total_Products;
@@ -33,7 +34,24 @@ public class ProductAuction {
         Start_Time = start_Time;
         End_Time = end_Time;
         Pro_ID = pro_ID;
+    }
 
+    public ProductAuction(String pname, int total_Bid, int pro_Auc_ID, int start_Price, int immediate_Pice, int distance_Price, int current_Price, LocalDateTime start_Time, LocalDateTime end_Time, int pro_ID, int user_ID, String username, int price_of_User, String total_Products, int max_price) {
+        Pname = pname;
+        Total_Bid = total_Bid;
+        Pro_Auc_ID = pro_Auc_ID;
+        Start_Price = start_Price;
+        Immediate_Pice = immediate_Pice;
+        Distance_Price = distance_Price;
+        Current_Price = current_Price;
+        Start_Time = start_Time;
+        End_Time = end_Time;
+        Pro_ID = pro_ID;
+        User_ID = user_ID;
+        this.username = username;
+        Price_of_User = price_of_User;
+        Total_Products = total_Products;
+        this.max_price = max_price;
     }
 
     public void setTotal_Products(String total_Products) {
@@ -146,5 +164,13 @@ public class ProductAuction {
 
     public void setPro_ID(int pro_ID) {
         Pro_ID = pro_ID;
+    }
+
+    public int getMax_price() {
+        return max_price;
+    }
+
+    public void setMax_price(int max_price) {
+        this.max_price = max_price;
     }
 }

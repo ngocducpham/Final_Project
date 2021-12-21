@@ -1,6 +1,8 @@
 package com.final_project.controllers;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
+import com.final_project.beans.Product;
+import com.final_project.beans.ProductAuction;
 import com.final_project.beans.User;
 import com.final_project.models.UserModel;
 import com.final_project.utils.ServletUtils;
@@ -12,6 +14,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.Date;
 import java.text.ParseException;
+import java.util.List;
 
 @WebServlet(name = "PersonalServlet", value = "/Personal/*")
 public class PersonalServlet extends HttpServlet {
@@ -19,14 +22,25 @@ public class PersonalServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = request.getPathInfo();
         if (path.equals("/") || path == null) {
-//            ServletUtils.forward("/views/Account/Personal.jsp", request, response);
         } else {
+            HttpSession session = request.getSession();
+            User user = (User) session.getAttribute("authUser");
             switch (path) {
                 case "/User_Information":
                     ServletUtils.forward("/views/Account/Personal.jsp", request, response);
                     break;
                 case "/User_Change_Password":
                     ServletUtils.forward("/views/Account/Change_Password.jsp", request, response);
+                    break;
+                case "/User_Watch_List":
+                    List<Product> list = UserModel.Get_Watch_List(user.getUser_ID());
+                    request.setAttribute("Watch_List", list);
+                    ServletUtils.forward("/views/Account/Watch_List.jsp", request, response);
+                    break;
+                case "/User_Auction":
+                    List<ProductAuction> list1 = UserModel.Get_User_Auction_Product_List(user.getUser_ID());
+                    request.setAttribute("User_Auction_Product_List", list1);
+                    ServletUtils.forward("/views/Account/User_Auction.jsp", request, response);
                     break;
                 case "/Logout":
                     Logout(request, response);
@@ -41,8 +55,7 @@ public class PersonalServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = request.getPathInfo();
-        if (path.equals("/") || path == null) {
-            ServletUtils.forward("/views/Account/Personal.jsp", request, response);
+        if (path.equals("/")) {
         } else {
             switch (path) {
                 case "/User_Information":
@@ -54,6 +67,10 @@ public class PersonalServlet extends HttpServlet {
                     break;
                 case "/User_Change_Password":
                     Update_User_Password(request, response);
+                    break;
+                case "/Request":
+                    Get_Request(request, response);
+                    break;
                 default:
                     break;
             }
@@ -84,7 +101,7 @@ public class PersonalServlet extends HttpServlet {
         String old_pass = request.getParameter("old_pass");
         BCrypt.Result result = BCrypt.verifyer().verify(old_pass.toCharArray(), user.getPass());
         if (result.verified) {
-            new_pass=BCrypt.withDefaults().hashToString(12, new_pass.toCharArray());
+            new_pass = BCrypt.withDefaults().hashToString(12, new_pass.toCharArray());
             User new_user = new User(user.getUser_ID(), user.getUsername(), user.getEmail(), new_pass, user.getUserrole(), user.getAddress(), user.getDate_o_Birth(), user.getSeller_Expired_date());
             session.setAttribute("authUser", new_user);
             UserModel.Update_User_Password(new_pass, user.getUser_ID());
@@ -93,6 +110,12 @@ public class PersonalServlet extends HttpServlet {
         }
 
         ServletUtils.redirect("/Personal/User_Information", request, response);
+    }
+
+    private void Get_Request(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        UserModel.Add_Request(id);
+        ServletUtils.redirect("/", request, response);
     }
 
     private void Logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

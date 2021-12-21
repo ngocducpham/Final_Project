@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.List;
 
 @WebServlet(name = "UserServlet", value = "/Admin/User/*")
@@ -67,12 +68,8 @@ public class UserServlet extends HttpServlet {
 
     private void updateUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int id = Integer.parseInt(request.getParameter("User_ID"));
-        String username = request.getParameter("UserName");
-        String email = request.getParameter("Email");
-        String pass = request.getParameter("Password");
-        int role = Integer.parseInt(request.getParameter("UserRole"));
-        String address = request.getParameter("Address");
-        User u = new User(id, username, email, pass, role, address);
+        int userrole = Integer.parseInt(request.getParameter("userrole"));
+        User u = new User(id, userrole);
         UserModel.update(u);
         ServletUtils.redirect("/Admin/User", request, response);
     }

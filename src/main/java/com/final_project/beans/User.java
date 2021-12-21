@@ -23,7 +23,10 @@ public class User {
 
     }
 
-    public User(int id, String username, String email, String pass, int role, String address) {
+
+    public User(int id, int role) {
+        User_ID = id;
+        this.userrole = role;
     }
 
     public int getUser_ID() {
@@ -121,6 +124,4 @@ public class User {
         Date_o_Birth = date_o_Birth;
     }
 
-    public User(int id, int role) {
-    }
 }

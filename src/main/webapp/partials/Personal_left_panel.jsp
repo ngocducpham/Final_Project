@@ -9,9 +9,7 @@
         <div class="myProfile"><a href="${pageContext.request.contextPath}/Personal/User_Information" class="a__myProfile"><i class="blue fas fa-user pr-2"></i> Hồ sơ của tôi </a>
         </div>
         <div class="myProfile"><a href="${pageContext.request.contextPath}/Personal/User_Change_Password" class="a__myProfile"><i class="blue fas fa-lock pr-2"></i> Đổi mật khẩu </a></div>
-<%--        <div class="myProfile"><a href="" class="a__myProfile"><i class="blue fas fa-map-marker-alt pr-2"></i> Địa--%>
-<%--            chỉ</a></div>--%>
-        <div class="myProfile"><a href="" class="a__myProfile"><i class="blue fas fa-wallet pr-2"></i> Đấu Giá Của Tôi </a></div>
+        <div class="myProfile"><a href="${pageContext.request.contextPath}/Personal/User_Auction" class="a__myProfile"><i class="blue fas fa-wallet pr-2"></i> Đấu Giá Của Tôi </a></div>
         <div class="myProfile"><a href="${pageContext.request.contextPath}/Personal/User_Watch_List" class="a__myProfile"><i class="blue fas fa-stream pr-2"></i>Sản Phẩm Yêu Thích</a></div>
         <div class="myProfile"><a href="${pageContext.request.contextPath}/Personal/Logout" class="a__myProfile"><i class="blue fa fa-sign-out" aria-hidden="true"></i> Đăng xuất </a></div>
     </div>

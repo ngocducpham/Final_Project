@@ -1,6 +1,7 @@
 package com.final_project.models;
 
 import com.final_project.beans.Product;
+import com.final_project.beans.ProductAuction;
 import com.final_project.beans.User;
 import com.final_project.utils.DBUtils;
 import org.sql2o.Connection;
@@ -19,15 +20,11 @@ public class UserModel {
     }
 
     public static void update(User u) {
-        String updateSql = "UPDATE users SET  username = :username, email = :email, Pass = :pass, userrole = :userrole, Address = :address WHERE User_ID = :userId";
+        String updateSql = "UPDATE users SET userrole = :userrole WHERE User_ID = :user_ID";
         try (Connection con = DBUtils.getConnection()) {
             con.createQuery(updateSql)
-                    .addParameter("username", u.getUsername())
-                    .addParameter("email", u.getEmail())
-                    .addParameter("pass", u.getPass())
                     .addParameter("userrole", u.getUserrole())
-                    .addParameter("Address", u.getAddress())
-                    .addParameter("userId", u.getUser_ID());
+                    .addParameter("User_Id", u.getUser_ID());
         }
     }
 
@@ -103,13 +100,50 @@ public class UserModel {
         }
     }
 
-    public static void Update_User_Password(String new_pass,int id){
-        final  String query="update auctionweb.users set Pass=:pass where user_id=:id";
-        try (Connection conn=DBUtils.getConnection()){
+    public static void Update_User_Password(String new_pass, int id) {
+        final String query = "update auctionweb.users set Pass=:pass where user_id=:id";
+        try (Connection conn = DBUtils.getConnection()) {
             conn.createQuery(query)
-                    .addParameter("pass",new_pass)
-                    .addParameter("id",id)
+                    .addParameter("pass", new_pass)
+                    .addParameter("id", id)
                     .executeUpdate();
+        }
+    }
+
+    public static void Add_Request(int id) {
+        final String query = "Insert into auctionweb.request(user_id) values(:id)";
+        try (Connection conn = DBUtils.getConnection()) {
+            conn.createQuery(query)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        }
+    }
+
+    public static List<Product> Get_Watch_List(int user_id) {
+        final String query = "select *from products where Pro_ID in(\n" +
+                "    select Pro_ID\n" +
+                "    from favorite\n" +
+                "    where User_ID=:user_id\n" +
+                "    );";
+        try (Connection conn = DBUtils.getConnection()) {
+            return conn.createQuery(query)
+                    .addParameter("user_id", user_id)
+                    .executeAndFetch(Product.class);
+        }
+    }
+
+    public static List<ProductAuction> Get_User_Auction_Product_List(int user_id) {
+        final String query = "select pa.*,p.Pname,max(a.Price_of_User) as max_price,username\n" +
+                "from products p join product_auction pa on p.Pro_ID = pa.Pro_ID join auction a on pa.Pro_Auc_ID = a.Pro_Auc_ID join users u on u.User_ID = a.User_ID\n" +
+                "where pa.Pro_ID in(\n" +
+                "    select distinct Pro_ID\n" +
+                "    from auction a join product_auction pa on a.Pro_Auc_ID = pa.Pro_Auc_ID\n" +
+                "    where User_ID=:user_id)\n" +
+                "group by a.Pro_Auc_ID;";
+        try (Connection conn = DBUtils.getConnection()) {
+            return conn.createQuery(query)
+                    .addParameter("user_id", user_id)
+                    .executeAndFetch(ProductAuction.class);
         }
     }
 }

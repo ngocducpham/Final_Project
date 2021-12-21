@@ -26,7 +26,7 @@
         </div>
     </div>
     <div>
-        <form id="FormRegister" action="#" method='POST'>
+        <form id="FormRegister" method="post">
             <div class='shadow-lg rounded-lg p-8 bg-white flex flex-col'>
                 <div>
                     <label for='user-name' class='font-medium text-gray-600'>Họ và tên</label>
