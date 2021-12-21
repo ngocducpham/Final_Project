@@ -133,6 +133,8 @@ public class PersonalServlet extends HttpServlet {
         int Pro_Id = Integer.parseInt(request.getParameter("Pro_Id"));
         if (!UserModel.Check_Watch_List(Pro_Id, user.getUser_ID()))
             UserModel.Add_To_Watch_List(Pro_Id, user.getUser_ID());
-
+        String url=(String) session.getAttribute("retUrl");
+        if (url==null) url="/";
+        ServletUtils.redirect(url,request,response);
     }
 }
