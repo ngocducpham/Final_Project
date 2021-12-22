@@ -185,7 +185,7 @@
                                     <span class="iconify text-red-300 hover:text-red-500" data-icon="ant-design:heart-filled"></span>
                                 </a>
                                 <img class='h-60 w-full rounded-t-lg'
-                                     src="${pageContext.request.contextPath}/public/imgs/appple-watch.jpg" alt="">
+                                     src="${pageContext.request.contextPath}/public/imgProduct/${p.pro_ID}/main.jpg" alt="">
                                 <div class='p-3 w-full text-center'>
                                     <a href='#' class='font-semibold w-full hover:underline'>${p.pname}</a>
                                     <div class='text-sm text-gray-500 font-semibold'>
