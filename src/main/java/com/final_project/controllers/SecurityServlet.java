@@ -48,15 +48,14 @@ public class SecurityServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = request.getPathInfo();
         if (path.equals("/")) {
-
-        } else {
-            switch (path) {
-                case "/Login":
-                    Login(request, response);
-                    break;
-                default:
-                    break;
-            }
+            path = "/Login";
+        }
+        switch (path) {
+            case "/Login":
+                Login(request, response);
+                break;
+            default:
+                break;
         }
     }
 
