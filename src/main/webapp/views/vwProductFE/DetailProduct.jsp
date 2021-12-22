@@ -114,6 +114,7 @@
                    </div>
                </div>
 
+
                <div class="mt-8">
                    <div class="font-weight-light text-lg mt-3 text-gray-500">ĐẤU GIÁ NGAY</div>
                    <div class="flex">
