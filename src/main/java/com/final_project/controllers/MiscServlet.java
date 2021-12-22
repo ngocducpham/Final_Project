@@ -96,7 +96,7 @@ public class MiscServlet extends HttpServlet {
     private  void postEditor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         request.setCharacterEncoding("UTF-8");
-        //response.setCharacterEncoding("UTF-8");
+
         String productName=request.getParameter("ProductName"); //in file Editor
         System.out.println(productName);
 

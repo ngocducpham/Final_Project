@@ -61,19 +61,19 @@
                <%--Deadline--%>
                <div class="flex justify-content-between text mt-8 font-weight-light text-center w-4/5">
                    <div>
-                       <div class="text-lg"></div>
+                       <div class="text-lg">#</div>
                        <div class="text-gray-500">Ngày</div>
                    </div>
                    <div>
-                       <div class="text-lg"></div>
+                       <div class="text-lg">#</div>
                        <div class="text-gray-500">Giờ</div>
                    </div>
                    <div>
-                       <div class="text-lg"></div>
+                       <div class="text-lg">#</div>
                        <div class="text-gray-500">Phút</div>
                    </div>
                    <div>
-                       <div class="text-lg"></div>
+                       <div class="text-lg">#</div>
                        <div class="text-gray-500">Giây</div>
                    </div>
                </div>
@@ -82,7 +82,7 @@
                        <%--Gia --%>
                    <div>
                        <div class="font-weight-light text-lg text-gray-500">
-                           GIÁ HIỆN TẠI
+                           GIÁ HIỆN TẠI:
                        </div>
                        <div class="text-lg text-green-600 font-weight-light">
                            <fmt:formatNumber value="${proAuction.current_Price}" type="number"/>
@@ -97,7 +97,7 @@
                        </div>
                        <div class="flex-space-x-2 align-items-center text-indigo-600">
                            <span class="iconify text-lg" data-icon="si-glyph:champion-cup"></span>
-                           <div class="text-lg font-weight-light">${proAuction.username}
+                           <div class="text-lg font-weight-light">${proAuctio.user_ID}
                            </div>
                        </div>
                    </div>
@@ -106,7 +106,7 @@
                <div class="flex">
                    <div>
                        <div class="font-weight-light text-lg mt-3 text-gray-500">NGƯỜI BÁN: </div>
-                       <div class="text-lg font-weight-light">${proUser.username}<span>${proUser.userrole}</span></div>
+                       <div class="text-lg font-weight-light">${proUser.username}<span>${proUser.user_ID}</span></div>
                    </div>
                    <div class="ml-32">
                        <div class="font-weight-light text-lg mt-3 text-gray-500">THỜI ĐIỂM ĐĂNG:</div>

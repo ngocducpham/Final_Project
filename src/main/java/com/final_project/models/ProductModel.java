@@ -75,8 +75,7 @@ public class ProductModel {
     }
 
     public static List<ProductAuction> getAllProductAuction(){
-        String query = "select *" +
-                "from product_auction";
+        String query = "select *from product_auction";
 
         try (Connection con = DBUtils.getConnection()) {
             return con.createQuery(query)

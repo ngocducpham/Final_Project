@@ -2,7 +2,8 @@ package com.final_project.beans;
 
 import java.time.LocalDateTime;
 
-public class ProductAuction {
+public class
+ProductAuction {
     private String Pname;
     private int Total_Bid;
     private int Pro_Auc_ID;

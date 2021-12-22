@@ -10,7 +10,7 @@
 </body>
 </html>
 
-<t:main>
+<t:personal_page>
     <jsp:attribute name="css">
     <link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.2.5/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
    <%-- <link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.2.5/js/fileinput.min.js">--%>
@@ -52,4 +52,4 @@
             </div>
         </form>
     </jsp:body>
-</t:main>
+</t:personal_page>
