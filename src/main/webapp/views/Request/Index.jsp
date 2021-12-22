@@ -24,7 +24,8 @@
                             <tr>
                                 <th>#</th>
                                 <th>ID người dùng</th>
-                                <th>Vai trò</th>
+                                <th>Tên user</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -32,9 +33,9 @@
                                 <tr>
                                     <td>${r.request_ID}</td>
                                     <td>${r.user_ID}</td>
-                                    <td></td>
+                                    <td>${r.username}</td>
                                     <td class="text-right">
-                                        <a class="btn btn-sm btn-outline-primary" href="${pageContext.request.contextPath}/Admin/User/Edit?id=${r.user_ID}" role="button">
+                                        <a class="btn btn-sm btn-outline-primary" href="${pageContext.request.contextPath}/Admin/User/Edit?id=${r.user_ID}&userRequest=1" role="button">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </a>
                                     </td>
