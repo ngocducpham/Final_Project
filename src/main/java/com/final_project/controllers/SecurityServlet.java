@@ -19,23 +19,22 @@ public class SecurityServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = request.getPathInfo();
-        if (path.equals("/")) {
+        if (path.equals("/") || path==null) {
             path = "/Login";
-        } else {
-            switch (path) {
-                case "/Login":
-                    ServletUtils.forward("/views/Admin/Login.jsp", request, response);
-                    break;
-                case "/Dashboard":
-                    ServletUtils.forward("/views/Admin/Dashboard.jsp", request, response);
-                    break;
-                case "/Logout":
-                    logoutAdmin(request, response);
-                    break;
-                default:
-                    ServletUtils.forward("/views/404/index.jsp", request, response);
-                    break;
-            }
+        }
+        switch (path) {
+            case "/Login":
+                ServletUtils.forward("/views/Admin/Login.jsp", request, response);
+                break;
+            case "/Dashboard":
+                ServletUtils.forward("/views/Admin/Dashboard.jsp", request, response);
+                break;
+            case "/Logout":
+                logoutAdmin(request, response);
+                break;
+            default:
+                ServletUtils.forward("/views/404/index.jsp", request, response);
+                break;
         }
     }
 
@@ -67,7 +66,7 @@ public class SecurityServlet extends HttpServlet {
 
         User user = UserModel.Find_By_Email(email);
 
-        if (user != null && user.getUserrole()==3) {
+        if (user != null && user.getUserrole() == 3) {
             BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), user.getPass());
             if (result.verified) {
                 HttpSession session = request.getSession();
