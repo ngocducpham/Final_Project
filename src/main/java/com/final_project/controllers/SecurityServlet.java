@@ -19,7 +19,7 @@ public class SecurityServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = request.getPathInfo();
-        if (path.equals("/") || path==null) {
+        if (path == null || path.equals("/")) {
             path = "/Login";
         }
         switch (path) {
@@ -47,7 +47,7 @@ public class SecurityServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = request.getPathInfo();
-        if (path.equals("/")) {
+        if (path == null || path.equals("/")) {
             path = "/Login";
         }
         switch (path) {
