@@ -62,8 +62,6 @@ public class ProductServlet extends HttpServlet {
             case "/Delete":
                 deleteProduct(request, response);
                 break;
-
-
             default:
                 ServletUtils.forward("/views/404/index.jsp", request, response);
                 break;
