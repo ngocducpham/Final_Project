@@ -8,7 +8,9 @@
         <div class='relative flex items-center justify-between h-16'>
             <div class='flex'>
                 <div class='flex items-center'>
+                    <a href="${pageContext.request.contextPath}">
                     <img class='h-8' src="${pageContext.request.contextPath}/public/imgs/logo.svg" alt="">
+                    </a>
                 </div>
                 <div class='flex space-x-4 ml-6 items-center'>
                     <a href="${pageContext.request.contextPath}"

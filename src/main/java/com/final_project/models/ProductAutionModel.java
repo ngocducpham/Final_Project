@@ -7,6 +7,7 @@ import com.final_project.utils.DBUtils;
 import org.sql2o.Connection;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ProductAutionModel {
     public static List<ProductAuction> getTop5Time(){
@@ -50,11 +51,13 @@ public class ProductAutionModel {
                 "from products\n" +
                 "         join product_auction pa on products.Pro_ID = pa.Pro_ID\n" +
                 "         join categories c on c.Cat_ID = products.Cat_ID\n" +
-                "where End_Time > NOW()\n" +
-                "  and match(Pname) against(:p)";
+                "where End_Time > NOW()";
 
+        if(!Objects.equals(product, "")){
+            query += " and match(Pname) against(:p) ";
+        }
         if(cate != null){
-            query += " and c.Cat_ID = " + cate;
+            query += " and (c.Cat_ID = " + cate + " or c.Cparent_ID = " + cate + " )";
         }
         switch (sortType)
         {
@@ -73,9 +76,15 @@ public class ProductAutionModel {
                 break;
         }
         try (Connection con = DBUtils.getConnection()) {
-            return con.createQuery(query)
-                    .addParameter("p", product)
-                    .executeAndFetch(ProductAuction.class);
+            if(product != "") {
+                return con.createQuery(query)
+                        .addParameter("p", product)
+                        .executeAndFetch(ProductAuction.class);
+            }
+            else {
+                return con.createQuery(query)
+                        .executeAndFetch(ProductAuction.class);
+            }
         }
     }
 
@@ -86,19 +95,28 @@ public class ProductAutionModel {
                 "         join products p on p.Pro_ID = pa.Pro_ID\n" +
                 "         join users u on auction.User_ID = u.User_ID\n" +
                 "         join categories c on c.Cat_ID = p.Cat_ID\n" +
-                "where End_Time > NOW()\n" +
-                "  and match(Pname) against(:p) ";
+                "where End_Time > NOW() ";
+
+        if(product != ""){
+            query += " and match(Pname) against(:p) ";
+        }
 
         if(cate != null){
-            query += " and c.Cat_ID = " + cate + " group by pa.Pro_Auc_ID";;
+            query += " and (c.Cat_ID = " + cate + " or c.Cparent_ID = " + cate + " ) " + " group by pa.Pro_Auc_ID";;
         }
         else{
             query += " group by pa.Pro_Auc_ID";;
         }
         try (Connection con = DBUtils.getConnection()) {
-            return con.createQuery(query)
-                    .addParameter("p", product)
-                    .executeAndFetch(ProductAuction.class);
+            if(product != "") {
+                return con.createQuery(query)
+                        .addParameter("p", product)
+                        .executeAndFetch(ProductAuction.class);
+            }
+            else {
+                return con.createQuery(query)
+                        .executeAndFetch(ProductAuction.class);
+            }
         }
     }
 
@@ -107,16 +125,26 @@ public class ProductAutionModel {
                 "from product_auction\n" +
                 "         join products p on p.Pro_ID = product_auction.Pro_ID\n" +
                 "         join categories c on c.Cat_ID = p.Cat_ID\n" +
-                "where End_Time > NOW()\n" +
-                "  and match(Pname) against(:p) ";
+                "where End_Time > NOW() ";
 
+        if(product != ""){
+            query += " and match(Pname) against(:p) ";
+        }
         if(cate != null){
-            query += " and c.Cat_ID = " + cate;
+            query += " and (c.Cat_ID = " + cate + " or c.Cparent_ID = " + cate + " ) ";
         }
         try (Connection con = DBUtils.getConnection()) {
-            List<ProductAuction> pa = con.createQuery(query)
-                    .addParameter("p", product)
-                    .executeAndFetch(ProductAuction.class);
+            List<ProductAuction> pa;
+            if(product != ""){
+                pa = con.createQuery(query)
+                        .addParameter("p", product)
+                        .executeAndFetch(ProductAuction.class);
+            }
+            else{
+                pa = con.createQuery(query)
+                        .executeAndFetch(ProductAuction.class);
+            }
+
             return pa.get(0).getTotal_Products();
         }
     }

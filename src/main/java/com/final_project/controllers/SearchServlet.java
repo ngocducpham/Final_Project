@@ -12,6 +12,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @WebServlet(name = "SearchServlet", value = "/Search")
 public class SearchServlet extends HttpServlet {
@@ -34,7 +35,7 @@ public class SearchServlet extends HttpServlet {
         }
 
         String cate = request.getParameter("cate");
-        if(cate == ""){
+        if(Objects.equals(cate, "") || Objects.equals(cate, "all")){
             cate = null;
         }
 
@@ -44,12 +45,17 @@ public class SearchServlet extends HttpServlet {
         List<Category> allCategories = ProductAutionModel.getAllCategories();
 
         int totalPage = 1;
-        List<ProductAuction> productOfPage = searchProducts;
+        List<ProductAuction> productOfPage = new ArrayList<>(searchProducts);
 
         if(Integer.parseInt(searchProductGetTotalProduct) > 10){
-            totalPage = (int) Math.ceil(Integer.parseInt(searchProductGetTotalProduct) / 10);
+            totalPage = (int) Math.ceil(Integer.parseInt(searchProductGetTotalProduct) / 10.0);
             productOfPage.clear();
-            for (int i = Integer.parseInt(productPage)*10-10; i < Integer.parseInt(productPage)*10; i++) {
+            int start = Integer.parseInt(productPage)*10-10;
+            int end = Integer.parseInt(productPage)*10;
+            if (end > searchProducts.size())
+                end = searchProducts.size();
+
+            for (int i = start; i < end; i++) {
                 if(searchProducts.get(i) == null)
                     break;
                 productOfPage.add(searchProducts.get(i));

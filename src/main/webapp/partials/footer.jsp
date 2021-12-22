@@ -79,9 +79,9 @@
                     <div class='h-1 w-20 bg-white mt-1'></div>
                     <div class='mt-10 flex flex-col space-y-3 text-white text-lg'>
                         <a class='hover:text-cyan-500' href="#">Đồ điện tử</a>
-                        <a class='hover:text-cyan-500' href="#">Đồ gia dụng</a>
-                        <a class='hover:text-cyan-500' href="#">Thể thao</a>
+                        <a class='hover:text-cyan-500' href="#">Thiết bị đeo</a>
                         <a class='hover:text-cyan-500' href="#">Thời trang</a>
+                        <a class='hover:text-cyan-500' href="#">Sức khỏe</a>
                         <a class='hover:text-cyan-500' href="#">Khác</a>
                     </div>
                 </div>

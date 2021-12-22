@@ -24,6 +24,7 @@ public class LoginFilter implements Filter {
             session.setAttribute("Verified", false);
             session.setAttribute("authUser", new User());
         }
+
         chain.doFilter(request, response);
     }
 }

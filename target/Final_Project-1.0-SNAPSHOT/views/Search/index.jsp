@@ -91,12 +91,20 @@
                 location.href = url.href;
             });
 
+            let pageNav = new URL(location.href).searchParams.get('page');
+            if(pageNav != null) {
+                paginationChoose.options.selectedIndex = +pageNav - 1;
+            }
+            else paginationChoose.options.selectedIndex = 0;
+
+
             // sort
             let productSort = document.getElementById('productsort');
 
             productSort.addEventListener('change', () => {
                 let url = new URL(location.href);
                 url.searchParams.set('sort', productSort.value);
+                url.searchParams.set('page','1');
                 location.href = url.href;
             });
 
@@ -123,6 +131,7 @@
             selectCategories.addEventListener('change', () => {
                 let url = new URL(location.href);
                 url.searchParams.set('cate', selectCategories.value);
+                url.searchParams.set('page','1');
                 location.href = url.href;
             });
 
@@ -149,7 +158,7 @@
                 <div>
                     <span>Danh mục:</span>
                     <select class="focus:outline-none text-white bg-gray-800 mr-2" name="sort" id="search_category">
-                        <option value="">Tất cả</option>
+                        <option value="all">Tất cả</option>
                     </select>
                     <span>Sắp xếp theo:</span>
                     <select class="focus:outline-none text-white bg-gray-800" name="sort" id="productsort">
