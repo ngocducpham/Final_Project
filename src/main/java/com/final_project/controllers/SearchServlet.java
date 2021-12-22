@@ -1,5 +1,6 @@
 package com.final_project.controllers;
 
+import com.final_project.beans.Category;
 import com.final_project.beans.Product;
 import com.final_project.beans.ProductAuction;
 import com.final_project.models.ProductAutionModel;
@@ -16,6 +17,8 @@ import java.util.List;
 public class SearchServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+
         String searchProductName = request.getParameter("searchproduct");
         if (searchProductName == null) {
             searchProductName = "";
@@ -30,9 +33,15 @@ public class SearchServlet extends HttpServlet {
             productPage = "1";
         }
 
-        List<ProductAuction> searchProducts = ProductAutionModel.searchGetProduct(searchProductName, sortType);
-        List<ProductAuction> searchProductGetBidder = ProductAutionModel.searchProductGetBidder(searchProductName);
-        String searchProductGetTotalProduct = ProductAutionModel.searchProductGetTotalProducts(searchProductName);
+        String cate = request.getParameter("cate");
+        if(cate == ""){
+            cate = null;
+        }
+
+        List<ProductAuction> searchProducts = ProductAutionModel.searchGetProduct(searchProductName, sortType, cate);
+        List<ProductAuction> searchProductGetBidder = ProductAutionModel.searchProductGetBidder(searchProductName, cate);
+        String searchProductGetTotalProduct = ProductAutionModel.searchProductGetTotalProducts(searchProductName, cate);
+        List<Category> allCategories = ProductAutionModel.getAllCategories();
 
         int totalPage = 1;
         List<ProductAuction> productOfPage = searchProducts;
@@ -54,6 +63,7 @@ public class SearchServlet extends HttpServlet {
         request.setAttribute("sortType", sortType);
         request.setAttribute("searchProductName", searchProductName);
         request.setAttribute("totalPage", Integer.toString(totalPage));
+        request.setAttribute("categories", allCategories);
 
         ServletUtils.forward("views/Search/index.jsp", request, response);
     }
