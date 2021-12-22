@@ -22,11 +22,13 @@ public class RequestServlet extends HttpServlet {
 
         switch (path) {
             case "/Index":
-                List<Request> list = RequestModel.findAll();
+                List<Request> list = RequestModel.getUser();
                 request.setAttribute("requests", list);
                 ServletUtils.forward("/views/Request/Index.jsp", request, response);
                 break;
-
+            case "/Delete":
+                deleteRequest(request, response);
+                break;
             default:
                 ServletUtils.forward("/views/404/index.jsp", request, response);
                 break;
@@ -37,11 +39,19 @@ public class RequestServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = request.getPathInfo();
         switch (path){
-
+            case "/Delete":
+                deleteRequest(request, response);
+                break;
             default:
                 ServletUtils.forward("/views/404.jsp", request, response);
                 break;
         }
+    }
+
+    private void deleteRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int id = Integer.parseInt(request.getParameter("Request_ID"));
+        RequestModel.delete(id);
+        ServletUtils.redirect("/Admin/Request", request, response);
     }
 
 }

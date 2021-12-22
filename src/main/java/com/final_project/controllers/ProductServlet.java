@@ -24,7 +24,7 @@ public class ProductServlet extends HttpServlet {
 
         switch (path) {
             case "/Index":
-                List<Product> list = ProductModel.findAll();
+                List<Product> list = ProductModel.Join();
                 request.setAttribute("products", list);
                 ServletUtils.forward("/views/Product/index.jsp", request, response);
                 break;
@@ -71,7 +71,7 @@ public class ProductServlet extends HttpServlet {
     }
 
     private void deleteProduct(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int id = Integer.parseInt(request.getParameter("Pro_ID"));
+        int id = Integer.parseInt(request.getParameter("Request_ID"));
         ProductModel.delete(id);
         ServletUtils.redirect("/Admin/Category", request, response);
     }

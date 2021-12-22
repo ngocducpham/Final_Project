@@ -1,32 +1,31 @@
 package com.final_project.beans;
 
+import java.time.LocalDateTime;
+
 public class Product {
     private int Pro_ID;
     private String Pname, img, description;
     private int Price, Status, Cat_ID;
+    private int Start_Price, Current_Price, Total_Bid;
+    private LocalDateTime Start_Time, End_Time;
 
     public Product() {
     }
 
-    public Product(String pname, String img, String description, int price, int status, int cat_ID) {
+    public Product(int pro_ID, String pname, String img, String description, int price, int status, int cat_ID, int start_Price, int current_Price, int total_Bid, LocalDateTime start_Time, LocalDateTime end_Time) {
+        Pro_ID = pro_ID;
         Pname = pname;
         this.img = img;
         this.description = description;
         Price = price;
         Status = status;
         Cat_ID = cat_ID;
+        Start_Price = start_Price;
+        Current_Price = current_Price;
+        Total_Bid = total_Bid;
+        Start_Time = start_Time;
+        End_Time = end_Time;
     }
-
-    public Product(int pro_ID, String pname, String img, String description, int price, int status, int cat_ID) {
-        this.Pro_ID = pro_ID;
-        this.Pname = pname;
-        this.img = img;
-        this.description = description;
-        this.Price = price;
-        this.Status = status;
-        this.Cat_ID = cat_ID;
-    }
-
 
     public int getPro_ID() {
         return Pro_ID;
@@ -56,4 +55,23 @@ public class Product {
         return Cat_ID;
     }
 
+    public int getStart_Price() {
+        return Start_Price;
+    }
+
+    public int getCurrent_Price() {
+        return Current_Price;
+    }
+
+    public int getTotal_Bid() {
+        return Total_Bid;
+    }
+
+    public LocalDateTime getStart_Time() {
+        return Start_Time;
+    }
+
+    public LocalDateTime getEnd_Time() {
+        return End_Time;
+    }
 }
