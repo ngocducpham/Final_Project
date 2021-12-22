@@ -15,6 +15,7 @@
                  </c:forEach>
 
                  let selectChonCap = document.getElementById('txtLevel');
+
                  let selectCap1;
 
                  selectChonCap.addEventListener('change',()=>{
@@ -23,6 +24,7 @@
                          selectCap1 = document.createElement('select');
                          selectCap1.setAttribute('name','Cparent_ID');
                          selectCap1.setAttribute('id','txtCatParentID');
+                         selectCap1.classList.add("custom-select");
 
                          for (let index = 0; index < danhMucCap1.length; index++) {
                              let option = document.createElement('option');
@@ -56,15 +58,18 @@
                             <label for="txtCatName">Tên</label>
                             <input type="text" class="form-control" id="txtCatName" name="Cname" autofocus value="${category.cname}">
                         </div>
-                        <div class="card-body">
+                        <div class="form-group">
                             <label for="txtLevel">Cấp danh mục</label>
-                            <select name="Level" id="txtLevel">
+                        </div>
+                        <div class="input-group mb-3">
+                            <select class="custom-select" name="Level" id="txtLevel">
                                 <option value="1">Cấp 1</option>
                                 <option value="2">Cấp 2</option>
                             </select>
                         </div>
-                        <div class="card-body category1">
-                            <label>Mặt hàng</label>
+
+                        <div class="form-group category1 mt-4 ">
+                            <label class="pr-3">Mặt hàng</label>
 
                         </div>
                     </div>
