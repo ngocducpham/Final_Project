@@ -189,6 +189,7 @@
             <div class='mt-20'>
                 <div class='font-bold text-2xl text-gray-500'>Sản phẩm liên quan</div>
                 <div class='flex justify-between'>
+
                     <div class='flex justify-between mt-10'>
                         <div class='relative w-56 border rounded-lg bg-white overflow-hidden'>
                             <div
