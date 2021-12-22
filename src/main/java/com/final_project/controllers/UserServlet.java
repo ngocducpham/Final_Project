@@ -9,9 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Date;
 import java.util.List;
-import java.util.Objects;
 
 @WebServlet(name = "UserServlet", value = "/Admin/User/*")
 public class UserServlet extends HttpServlet {
@@ -35,9 +33,7 @@ public class UserServlet extends HttpServlet {
                 } catch (NumberFormatException ignored) {
                 }
                 String userRequest = request.getParameter("requests");
-//                if(userRequest.equals("1")){
-//                    ServletUtils.forward("/views/Request/Delete.jsp", request, response);
-//                }
+
                 User u = UserModel.findById(id);
                 if (u != null) {
                     request.setAttribute("users", u);
