@@ -24,7 +24,7 @@ public class AccountServlet extends HttpServlet {
                 case "/Register":
                     ServletUtils.forward("/views/Account/Register.jsp", request, response);
                     break;
-                case "CheckAvailable":
+                case "/CheckAvailable":
                     CheckAvailable(request, response);
                     break;
                 case "/Login":
@@ -87,7 +87,7 @@ public class AccountServlet extends HttpServlet {
 
         String email = request.getParameter("email");
         String Raw_pass = request.getParameter("password");
-//        String EnCrypted_pass="cc";
+
         String EnCrypted_pass = BCrypt.withDefaults().hashToString(12, Raw_pass.toCharArray());
         String name = request.getParameter("username");
         String address = request.getParameter("full_address");
@@ -99,7 +99,7 @@ public class AccountServlet extends HttpServlet {
         User user = new User(Integer.parseInt(role), name, email, EnCrypted_pass, address, code, ngaysinh);
 
         boolean isMail_Sent = ServletUtils.sendMail_to_Active_Account(user);
-//        boolean isMail_Sent = true;
+
         if (isMail_Sent) {
             HttpSession session = request.getSession();
             session.setAttribute("New_User", user);
@@ -170,7 +170,7 @@ public class AccountServlet extends HttpServlet {
         if (user != null) {
             User new_user = new User(user.getUser_ID(), user.getUserrole(), user.getUsername(), user.getEmail(), user.getPass(), user.getAddress(), code, user.getDate_o_Birth(), user.getSeller_Expired_date());
             boolean isMailSent = ServletUtils.sengMail_to_Reset_Password(new_user);
-//            boolean isMailSent = true;
+
             if (isMailSent) {
                 HttpSession session = request.getSession();
                 session.setAttribute("User_Forget_Password", new_user);
