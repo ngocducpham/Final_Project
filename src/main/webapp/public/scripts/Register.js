@@ -23,7 +23,7 @@ home_address.addEventListener("keyup", function () {
 
 $('#FormRegister').on('submit', function (e) {
 
-    const email = $('#email').val();
+    const email = $('#email-address').val();
     if ($('#password').val() !== $('#re-password').val()) {
         alert('Mật Khẩu Không Khớp !');
         e.preventDefault();
