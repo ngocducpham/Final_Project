@@ -26,6 +26,21 @@ public class ProductModel {
         }
     }
 
+    public static Product findByProId(int proID) {
+        final String query = "select * from products where Pro_ID = :ProID";
+        try (Connection con = DBUtils.getConnection()) {
+            List<Product> list = con.createQuery(query)
+                    .addParameter("Pro_ID", proID)
+                    .executeAndFetch(Product.class);
+
+            if (list.size() == 0) {
+                return null;
+            }
+
+            return list.get(0);
+        }
+    }
+
     public static List<Product> Join() {
         final String query = "select Current_Price, End_Time, Start_Price, Start_Time, Pname, pa.Pro_ID from products join product_auction pa on pa.Pro_ID = products.Pro_ID";
         try (Connection con = DBUtils.getConnection()) {

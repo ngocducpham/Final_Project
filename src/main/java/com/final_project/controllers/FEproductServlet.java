@@ -28,9 +28,9 @@ public class FEproductServlet extends HttpServlet {
 
             case "/Detail":
                 int proID=Integer.parseInt(request.getParameter("id"));
-                Product proDetail = ProductModel.findById(proID);
+                Product proDetail = ProductModel.findByProId(proID);
 
-                request.setAttribute("productDetail",proID);
+                request.setAttribute("productDetail",proDetail);
                 ServletUtils.forward("/views/vwProductFE/DetailProduct.jsp", request, response);
                 break;
 
