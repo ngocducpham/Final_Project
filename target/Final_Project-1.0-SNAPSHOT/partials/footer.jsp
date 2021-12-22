@@ -78,19 +78,19 @@
                     <div class='text-white text-xl font-medium'>Auction Categories</div>
                     <div class='h-1 w-20 bg-white mt-1'></div>
                     <div class='mt-10 flex flex-col space-y-3 text-white text-lg'>
-                        <a class='hover:text-cyan-500' href="#">Đồ điện tử</a>
-                        <a class='hover:text-cyan-500' href="#">Thiết bị đeo</a>
-                        <a class='hover:text-cyan-500' href="#">Thời trang</a>
-                        <a class='hover:text-cyan-500' href="#">Sức khỏe</a>
-                        <a class='hover:text-cyan-500' href="#">Khác</a>
+                        <a class='hover:text-cyan-500' href="${pageContext.request.contextPath}/Search?cate=1">Đồ điện tử</a>
+                        <a class='hover:text-cyan-500' href="${pageContext.request.contextPath}/Search?cate=4">Thiết bị đeo</a>
+                        <a class='hover:text-cyan-500' href="${pageContext.request.contextPath}/Search?cate=2">Thời trang</a>
+                        <a class='hover:text-cyan-500' href="${pageContext.request.contextPath}/Search?cate=3">Sức khỏe</a>
+                        <a class='hover:text-cyan-500' href="${pageContext.request.contextPath}/Search?cate=5">Khác</a>
                     </div>
                 </div>
                 <div>
                     <div class='text-white text-xl font-medium'>Account</div>
                     <div class='h-1 w-12 bg-white mt-1'></div>
                     <div class='mt-10 flex flex-col space-y-3 text-white text-lg'>
-                        <a class='hover:text-cyan-500' href="#">Đăng nhập</a>
-                        <a class='hover:text-cyan-500' href="#">Đăng kí</a>
+                        <a class='hover:text-cyan-500' href="${pageContext.request.contextPath}/Account/Login">Đăng nhập</a>
+                        <a class='hover:text-cyan-500' href="${pageContext.request.contextPath}/Account/Register">Đăng kí</a>
                     </div>
                 </div>
                 <div>

@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:useBean id="Verified" scope="session" type="java.lang.Boolean"/>
 <jsp:useBean id="authUser" scope="session" type="com.final_project.beans.User"/>
+<jsp:useBean id="categories" scope="session" type="java.util.List<com.final_project.beans.Category>"/>
 
 <nav class='bg-gray-800 sticky top-0 z-50'>
     <div class='max-w-7xl mx-auto px-2'>
@@ -17,40 +18,10 @@
                        class='text-sm font-medium text-white rounded-md bg-gray-900 px-3 py-2'>Trang
                         chủ</a>
                     <div
-                            class='bid__menu relative text-sm font-medium text-gray-300 rounded-md px-3 py-2 hover:bg-gray-700'>
-                        <a href="#">Đấu giá</a>
+                            class='bid__menu categories__menu relative text-sm font-medium text-gray-300 rounded-md px-3 py-2 hover:bg-gray-700'>
+                        <a href="${pageContext.request.contextPath}/Search?searchproduct">Đấu giá</a>
                         <ul class='invisible'>
-                            <li>
-                                <a href="#">Đồ điện tử</a>
-                                <ul>
-                                    <li><a href="#">Máy tính</a></li>
-                                    <li><a href="#">Điện thoại</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">Đồ gia dụng</a>
-                                <ul>
-                                    <li><a href="#">Bàn ghế</a></li>
-                                    <li><a href="#">Bàn</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">Thời trang</a>
-                                <ul>
-                                    <li><a href="#">Quần áo</a></li>
-                                    <li><a href="#">Dày dép</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">Thời trang</a>
-                                <ul>
-                                    <li><a href="#">Quần áo</a></li>
-                                    <li><a href="#">Dày dép</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">Khác</a>
-                            </li>
+
                         </ul>
                     </div>
                 </div>
@@ -129,4 +100,56 @@
             </div>
         </div>
     </div>
+    <script>
+        let categories = [];
+        <c:forEach items="${categories}" var="c">
+        categories.push(['${c.cat_ID}','${c.cname}','${c.cparent_ID}']);
+        </c:forEach>
+
+        let categoriesMenu = document.querySelector('.categories__menu').querySelector('ul');
+        for (const iterator of categories) {
+            if(iterator[2] == 0){
+                let listItem = document.createElement('li');
+
+                let achor = document.createElement('a');
+                achor.innerText = iterator[1];
+                achor.href = "${pageContext.request.contextPath}/Search?cate=" + iterator[0];
+
+                let cateIDInput = document.createElement('input');
+                cateIDInput.setAttribute('type','hidden');
+                cateIDInput.value = iterator[0];
+
+                listItem.appendChild(cateIDInput);
+                listItem.appendChild(achor);
+
+                categoriesMenu.appendChild(listItem);
+            }
+        }
+
+        let cateList = categoriesMenu.querySelectorAll('li');
+        for (const iterator of categories) {
+            if(iterator[2] != 0){
+                cateList.forEach(item =>{
+                    let getID = item.querySelector('input').value;
+
+                    if(getID == iterator[2]){
+                        let checkUl = item.querySelector('ul');
+                        if(checkUl == null){
+                            checkUl = document.createElement('ul');
+                            item.appendChild(checkUl);
+                        }
+
+                        let achor = document.createElement('a');
+                        achor.innerText = iterator[1];
+                        achor.href = "${pageContext.request.contextPath}/Search?cate=" + iterator[0];
+
+                        let subListItem = document.createElement('li');
+                        subListItem.appendChild(achor);
+
+                        checkUl.appendChild(subListItem);
+                    }
+                });
+            }
+        }
+    </script>
 </nav>

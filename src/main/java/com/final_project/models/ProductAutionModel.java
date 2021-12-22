@@ -35,11 +35,9 @@ public class ProductAutionModel {
 
     public static List<ProductAuction> getTop5Bid(){
         final String query = "select Pname, Current_Price, End_Time, Total_Bid\n" +
-                "from product_auction join auction a on product_auction.Pro_Auc_ID = a.Pro_Auc_ID\n" +
-                "    join products p on p.Pro_ID = product_auction.Pro_ID\n" +
-                "where End_Time > NOW() " +
+                "from products join product_auction pa on products.Pro_ID = pa.Pro_ID\n" +
                 "order by Total_Bid desc\n" +
-                "limit 5";
+                "limit 5;";
         try (Connection con = DBUtils.getConnection()) {
             return con.createQuery(query)
                     .executeAndFetch(ProductAuction.class);
