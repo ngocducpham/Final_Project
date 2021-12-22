@@ -16,6 +16,7 @@ public class ProductModel {
                     .executeAndFetch(Product.class);
         }
     }
+
     public static List<Product> findByCatId(int catId) {
         final String query = "select * from products where Cat_ID = :CatID";
         try (Connection con = DBUtils.getConnection()) {
