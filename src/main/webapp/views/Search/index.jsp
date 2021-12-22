@@ -12,6 +12,7 @@
 <jsp:useBean id="searchProductName" scope="request" type="java.lang.String"/>
 <jsp:useBean id="totalPage" scope="request" type="java.lang.String"/>
 <jsp:useBean id="categories" scope="request" type="java.util.List<com.final_project.beans.Category>"/>
+<jsp:useBean id="Verified" scope="session" type="java.lang.Boolean"/>
 
 <t:main>
     <jsp:attribute name="js">
@@ -181,9 +182,11 @@
                                 <div class='text-center total_Bid rounded-br-full absolute top-0 left-0 pl-2 py-2 pr-5 bg-gray-300 text-xs font-bold'>
                                     Số lần bid: ${p.total_Bid}
                                 </div>
+                                <c:if test="${Verified}">
                                 <a href="${pageContext.request.contextPath}/Personal/Add_To_Watch_List?Pro_Id=${p.pro_ID}" class="btn_watch_list absolute top-2 right-3">
                                     <span class="iconify text-red-300 hover:text-red-500" data-icon="ant-design:heart-filled"></span>
                                 </a>
+                                </c:if>
                                 <img class='h-60 w-full rounded-t-lg'
                                      src="${pageContext.request.contextPath}/public/imgProduct/${p.pro_ID}/main.jpg" alt="">
                                 <div class='p-3 w-full text-center'>
