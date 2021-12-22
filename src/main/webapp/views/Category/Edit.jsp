@@ -78,11 +78,11 @@
                             <i class="fa fa-backward" aria-hidden="true"></i>
                             List
                         </a>
-                        <button type="submit" class="btn btn-danger" formaction="${pageContext.request.contextPath}/Admin/Category/Delete">
+                        <button type="submit" class="btn btn-danger text-red-600" formaction="${pageContext.request.contextPath}/Admin/Category/Delete">
                             <i class="fa fa-trash" aria-hidden="true"></i>
                             Delete
                         </button>
-                        <button type="submit" class="btn btn-primary" formaction="${pageContext.request.contextPath}/Admin/Category/Update">
+                        <button type="submit" class="btn btn-primary text-blue-600" formaction="${pageContext.request.contextPath}/Admin/Category/Update">
                             <i class="fa fa-check" aria-hidden="true"></i>
                             Save
                         </button>

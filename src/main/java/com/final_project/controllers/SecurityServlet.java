@@ -29,11 +29,20 @@ public class SecurityServlet extends HttpServlet {
                 case "/Dashboard":
                     ServletUtils.forward("/views/Admin/Dashboard.jsp", request, response);
                     break;
+                case "/Logout":
+                    logoutAdmin(request, response);
+                    break;
                 default:
                     ServletUtils.forward("/views/404/index.jsp", request, response);
                     break;
             }
         }
+    }
+
+    private void logoutAdmin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        session.setAttribute("adminlogin", false);
+        ServletUtils.redirect("/Admin/Login", request, response);
     }
 
     @Override
