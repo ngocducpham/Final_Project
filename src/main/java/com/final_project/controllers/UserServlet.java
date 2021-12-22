@@ -1,5 +1,6 @@
 package com.final_project.controllers;
 import com.final_project.beans.User;
+import com.final_project.models.RequestModel;
 import com.final_project.models.UserModel;
 import com.final_project.utils.ServletUtils;
 
@@ -32,7 +33,6 @@ public class UserServlet extends HttpServlet {
                     id = Integer.parseInt(request.getParameter("id"));
                 } catch (NumberFormatException ignored) {
                 }
-                String userRequest = request.getParameter("requests");
 
                 User u = UserModel.findById(id);
                 if (u != null) {
@@ -54,9 +54,6 @@ public class UserServlet extends HttpServlet {
         String path = request.getPathInfo();
         switch (path){
 
-            case "/Delete":
-                //deleteUser(request, response);
-                break;
             case "/Update":
                 updateUser(request, response);
                 break;
@@ -71,7 +68,9 @@ public class UserServlet extends HttpServlet {
         int userrole = Integer.parseInt(request.getParameter("userrole"));
         User u = new User(id, userrole);
         UserModel.update(u);
+        RequestModel.delete(id);
         ServletUtils.redirect("/Admin/User", request, response);
+
     }
 }
 
