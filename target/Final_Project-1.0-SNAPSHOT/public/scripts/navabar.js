@@ -40,3 +40,4 @@ document.getElementById('nav__searchproduct').addEventListener('keydown', ev => 
         document.getElementById('nav__searchform').submit();
     }
 })
+

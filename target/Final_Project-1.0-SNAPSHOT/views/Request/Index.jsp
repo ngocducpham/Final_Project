@@ -35,7 +35,7 @@
                                     <td>${r.user_ID}</td>
                                     <td>${r.username}</td>
                                     <td class="text-right">
-                                        <a class="btn btn-sm btn-outline-primary" href="${pageContext.request.contextPath}/Admin/User/Edit?id=${r.user_ID}&userRequest=1" role="button">
+                                        <a class="btn btn-sm btn-outline-primary" href="${pageContext.request.contextPath}/Admin/User/Edit?id=${r.user_ID}&userRequest=${r.request_ID}" role="button">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </a>
                                     </td>

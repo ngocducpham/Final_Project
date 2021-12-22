@@ -8,7 +8,7 @@
         <form action="" method="post">
             <div class="card">
                 <h4 class="card-header  d-flex justify-content-between">
-                    Sửa sản phẩm
+                    Xem sản phẩm
                 </h4>
                 <div class="card-body">
                     <div class="form-group">
