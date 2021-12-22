@@ -17,7 +17,7 @@ public class RequestModel {
     }
 
     public static List<Request> getUser() {
-        final String query = "select username, userrole, request.User_ID from request join users u on u.User_ID = request.User_ID";
+        final String query = "select username, userrole, request.User_ID, request.Request_ID from request join users u on u.User_ID = request.User_ID";
         try (Connection con = DBUtils.getConnection()) {
             return con.createQuery(query)
                     .executeAndFetch(Request.class);
