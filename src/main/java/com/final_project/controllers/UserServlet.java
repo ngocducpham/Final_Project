@@ -1,5 +1,6 @@
 package com.final_project.controllers;
 import com.final_project.beans.User;
+import com.final_project.models.RequestModel;
 import com.final_project.models.UserModel;
 import com.final_project.utils.ServletUtils;
 
@@ -9,9 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Date;
 import java.util.List;
-import java.util.Objects;
 
 @WebServlet(name = "UserServlet", value = "/Admin/User/*")
 public class UserServlet extends HttpServlet {
@@ -34,10 +33,7 @@ public class UserServlet extends HttpServlet {
                     id = Integer.parseInt(request.getParameter("id"));
                 } catch (NumberFormatException ignored) {
                 }
-                String userRequest = request.getParameter("requests");
-//                if(userRequest.equals("1")){
-//                    ServletUtils.forward("/views/Request/Delete.jsp", request, response);
-//                }
+
                 User u = UserModel.findById(id);
                 if (u != null) {
                     request.setAttribute("users", u);
@@ -58,9 +54,6 @@ public class UserServlet extends HttpServlet {
         String path = request.getPathInfo();
         switch (path){
 
-            case "/Delete":
-                //deleteUser(request, response);
-                break;
             case "/Update":
                 updateUser(request, response);
                 break;
@@ -75,7 +68,9 @@ public class UserServlet extends HttpServlet {
         int userrole = Integer.parseInt(request.getParameter("userrole"));
         User u = new User(id, userrole);
         UserModel.update(u);
+        RequestModel.delete(id);
         ServletUtils.redirect("/Admin/User", request, response);
+
     }
 }
 

@@ -26,9 +26,6 @@ public class RequestServlet extends HttpServlet {
                 request.setAttribute("requests", list);
                 ServletUtils.forward("/views/Request/Index.jsp", request, response);
                 break;
-            case "/Delete":
-                deleteRequest(request, response);
-                break;
             default:
                 ServletUtils.forward("/views/404/index.jsp", request, response);
                 break;

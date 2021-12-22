@@ -17,7 +17,7 @@ public class RequestModel {
     }
 
     public static List<Request> getUser() {
-        final String query = "select username, userrole, request.User_ID from request join users u on u.User_ID = request.User_ID";
+        final String query = "select username, userrole, request.User_ID, request.Request_ID from request join users u on u.User_ID = request.User_ID";
         try (Connection con = DBUtils.getConnection()) {
             return con.createQuery(query)
                     .executeAndFetch(Request.class);
@@ -42,10 +42,10 @@ public class RequestModel {
     }
 
     public static void delete(int id) {
-        String Sql = "delete from request where Request_ID = :Request_ID";
+        String Sql = "delete from request where User_ID = :User_ID";
         try (Connection con = DBUtils.getConnection()) {
             con.createQuery(Sql)
-                    .addParameter("Request_ID", id)
+                    .addParameter("User_ID", id)
                     .executeUpdate();
         }
     }

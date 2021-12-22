@@ -61,16 +61,10 @@
                         <i class="fa fa-trash" aria-hidden="true"></i>
                         Delete
                     </button>
-                    <button type="submit" class="btn btn-primary text-blue-600" formaction="${pageContext.request.contextPath}/Admin/User/Update">
+                    <button type="submit" class="btn btn-primary text-blue-600" formaction="${pageContext.request.contextPath}/Admin/User/Update?Request_ID=${users.user_ID}">
                         <i class="fa fa-check" aria-hidden="true"></i>
                         Save
                     </button>
-                    <c:if test="">
-                        <button type="submit" class="btn btn-danger" formaction="${pageContext.request.contextPath}/Admin/Request/Delete">
-                            <i class="fa fa-trash" aria-hidden="true"></i>
-                            Delete
-                        </button>
-                    </c:if>
                 </div>
             </div>
         </form>

@@ -40,8 +40,11 @@
                                         <c:when test="${c.userrole== 1}">
                                             Bidder
                                         </c:when>
-                                        <c:otherwise>
+                                        <c:when test="${c.userrole== 2}">
                                             Seller
+                                        </c:when>
+                                        <c:otherwise>
+                                           Admin
                                         </c:otherwise>
                                     </c:choose>
                                     </td>

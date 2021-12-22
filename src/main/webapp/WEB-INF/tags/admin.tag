@@ -43,13 +43,13 @@
                             <a class="w-full text-gray-800  flex items-center pl-6 p-2 my-2 transition-colors duration-200 justify-start border-l-4 border-purple-500"
                                href="${pageContext.request.contextPath}/Admin/Dashboard">
                                     <span class="text-left">
-                                        <span class="iconify h-5 w-5" data-icon="bx:bxs-user"></span>
+                                        <span class="iconify h-5 w-5" data-icon="ant-design:home-filled"></span>
                                     </span>
                                 <span class="mx-2 text-sm font-normal">
                                         Trang chính
                                     </span>
                             </a>
-                            <a class="w-full text-gray-800  flex items-center pl-6 p-2 my-2 transition-colors duration-200 justify-start border-l-4 border-purple-500"
+                            <a class="w-full text-gray-800  flex items-center pl-6 p-2 my-2 transition-colors duration-200 justify-start hover:text-gray-800 border-l-4 border-transparent"
                                href="${pageContext.request.contextPath}/Admin/User/">
                                     <span class="text-left">
                                         <span class="iconify h-5 w-5" data-icon="bx:bxs-user"></span>
@@ -74,7 +74,10 @@
                             </a>
                             <a class="w-full text-gray-400 flex items-center pl-6 p-2 my-2 transition-colors duration-200 justify-start hover:text-gray-800 border-l-4 border-transparent"
                                href="${pageContext.request.contextPath}/Admin/Category/">
-                                <span class="w-5 h-5 iconify" data-icon="bx:bx-category"></span>
+                                <span class="text-left">
+                                    <span class="w-5 h-5 iconify" data-icon="bx:bx-category"></span>
+                                </span>
+
                                 <span class="mx-4 text-sm font-normal">
                                         Danh mục
                                     </span>
