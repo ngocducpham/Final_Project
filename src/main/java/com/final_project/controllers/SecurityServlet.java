@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 
@@ -57,6 +58,8 @@ public class SecurityServlet extends HttpServlet {
         if (user != null && user.getUserrole()==3) {
             BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), user.getPass());
             if (result.verified) {
+                HttpSession session = request.getSession();
+                session.setAttribute("adminlogin", true);
                 ServletUtils.forward("/views/Admin/Dashboard.jsp", request, response);
             } else {
                 // sai password
