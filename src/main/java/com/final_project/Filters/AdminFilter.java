@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(filterName = "AdminFilter", value = "/Admin")
+@WebFilter(filterName = "AdminFilter", value = "/Admin/*")
 public class AdminFilter implements Filter {
     public void init(FilterConfig config) throws ServletException {
     }

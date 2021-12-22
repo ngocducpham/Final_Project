@@ -26,6 +26,9 @@ public class SecurityServlet extends HttpServlet {
                 case "/Login":
                     ServletUtils.forward("/views/Admin/Login.jsp", request, response);
                     break;
+                case "/Dashboard":
+                    ServletUtils.forward("/views/Admin/Dashboard.jsp", request, response);
+                    break;
                 default:
                     ServletUtils.forward("/views/404/index.jsp", request, response);
                     break;

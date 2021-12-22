@@ -27,14 +27,30 @@
             <%-- Img Mini --%>
                 <div class="img__mini-preview flex-column space-y-5 mr-3 overflow-auto pr-2" style="height: 450px">
                     <div class="border-indigo-400 rounded-md cursor-pointer">
-                        <img class="w-20 h-25 rounded-md" src="" alt="${proDetail.pname}">
+                        <img class="w-20 h-25 rounded-md"
+                         src="${pageContext.request.contextPath}/public/imgProduct/${proDetail.pro_ID}/1.jpg"
+                         alt="${proDetail.pname}">
+                    </div>
+
+                    <div class="border-indigo-400 rounded-md cursor-pointer">
+                        <img class="w-20 h-25 rounded-md"
+                             src="${pageContext.request.contextPath}/public/imgProduct/${proDetail.pro_ID}/2.jpg"
+                             alt="${proDetail.pname}">
+                    </div>
+
+                    <div class="border-indigo-400 rounded-md cursor-pointer">
+                        <img class="w-20 h-25 rounded-md"
+                             src="${pageContext.request.contextPath}/public/imgProduct/${proDetail.pro_ID}/3.jpg"
+                             alt="${proDetail.pname}">
                     </div>
                     <%--3anh--%>
                 </div>
             <%-- Img Main --%>
                 <div class="rounded-lg border border-indigo-400" style="height: 450px">
                     <div class="border-indigo-400 rounded-md cursor-pointer">
-                        <img class="rounded-lg" style="height: 450px; width: 350px" src="" alt="${proDetail.pname}">
+                        <img class="rounded-lg" style="height: 450px; width: 350px"
+                             src="${pageContext.request.contextPath}/public/imgProduct/${proDetail.pro_ID}/main.jpg"
+                             alt="${proDetail.pname}">
                     </div>
                 </div>
             </div>
@@ -42,7 +58,7 @@
             <%--Info --%>
            <div>
                <div class="text-3xl text-gray-700 font-weight-bold">${proDetail.pname}</div>
-               <%--time--%>
+               <%--Deadline--%>
                <div class="flex justify-content-between text mt-8 font-weight-light text-center w-4/5">
                    <div>
                        <div class="text-lg"></div>
@@ -62,7 +78,6 @@
                    </div>
                </div>
 
-
                <div class="flex mt-8">
                        <%--Gia --%>
                    <div>
@@ -78,7 +93,7 @@
                    <%--Bidder cao nhat--%>
                    <div class="ml-16">
                        <div class="font-weight-light text-lg text-gray-500">
-                           NGƯỜI ĐẶT GIÁ CAO NHẤT
+                           NGƯỜI ĐẶT GIÁ CAO NHẤT:
                        </div>
                        <div class="flex-space-x-2 align-items-center text-indigo-600">
                            <span class="iconify text-lg" data-icon="si-glyph:champion-cup"></span>
@@ -91,13 +106,14 @@
                <div class="flex">
                    <div>
                        <div class="font-weight-light text-lg mt-3 text-gray-500">NGƯỜI BÁN: </div>
-                       <div class="text-lg font-weight-light"></div>
+                       <div class="text-lg font-weight-light">${proUser.username}<span>${proUser.userrole}</span></div>
                    </div>
                    <div class="ml-32">
                        <div class="font-weight-light text-lg mt-3 text-gray-500">THỜI ĐIỂM ĐĂNG:</div>
                        <div class="text-lg font-weight-light">${proAuction.start_Time}</div>
                    </div>
                </div>
+
 
                <div class="mt-8">
                    <div class="font-weight-light text-lg mt-3 text-gray-500">ĐẤU GIÁ NGAY</div>
@@ -151,7 +167,15 @@
         <div class="mt-20">
             <h4 class="font-weight-bold text-2xl text-gray-500">CÁC SẢN PHẦM CÙNG LOẠI</h4>
             <div class="flex justify-content-between mt-10">
-                <div class=
+                <img class="h-60 w-100 rounded-t-lg" src="" alt></img>
+                <div class="p-3 w-100 text-center">
+                    <a href="#" class="font-weight-bold w-100 hover:underline">
+
+                    </a>
+                    <div class="text-sm text-gray-500 font-weight-bold mt-3">
+                        Giá hiện tại:  <span> </span>
+                    </div>
+                </div>
             </div>
         </div>
 
