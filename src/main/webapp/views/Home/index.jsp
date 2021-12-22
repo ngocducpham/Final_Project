@@ -78,7 +78,7 @@
         <div class='max-w-7xl mx-auto'>
             <div class='mt-20'>
                 <div class='font-bold text-3xl text-gray-500'>Sắp hết giờ</div>
-                <div class='flex justify-between mt-10'>
+                <div class='grid grid-cols-5 mt-10'>
                     <c:forEach items="${top5Time}" var="p">
                         <div>
                             <div class='relative w-56 pb-4 border rounded-lg bg-white overflow-hidden shadow-md'>
@@ -119,7 +119,7 @@
             </div>
             <div class='mt-20'>
                 <div class='font-bold text-3xl text-gray-500'>Giá cao nhất</div>
-                <div class='flex justify-between mt-10'>
+                <div class='grid grid-cols-5 mt-10'>
                     <c:forEach items="${top5Price}" var="p">
                         <div>
                             <div class='relative w-56 pb-4 border rounded-lg bg-white overflow-hidden shadow-md'>
@@ -160,7 +160,7 @@
             </div>
             <div class='mt-20'>
                 <div class='font-bold text-3xl text-gray-500'>Nhiều lượt đấu giá</div>
-                <div class='flex justify-between mt-10'>
+                <div class='grid grid-cols-5  mt-10'>
                     <c:forEach items="${top5Bid}" var="p">
                         <div>
                             <div class='relative w-56 pb-4 border rounded-lg bg-white overflow-hidden shadow-md'>
