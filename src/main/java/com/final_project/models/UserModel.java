@@ -30,6 +30,15 @@ public class UserModel {
         }
     }
 
+    public static void delete(int id) {
+        String sql = "DELETE FROM users WHERE User_ID = :User_ID";
+        try (Connection con = DBUtils.getConnection()) {
+            con.createQuery(sql)
+                    .addParameter("User_ID", id)
+                    .executeUpdate();
+        }
+    }
+
     public static User findById(int id) {
         final String query = "select * from users where User_ID = :user_id";
         try (Connection con = DBUtils.getConnection()) {
