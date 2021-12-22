@@ -37,6 +37,9 @@
                     mins = timeDiff[i].getUTCMinutes();
                     secs = timeDiff[i].getUTCSeconds();
 
+                    if(days == 0 && hours == 0 && mins == 0 && secs == 0)
+                        continue;
+
                     timeContainer[i].querySelector('.days').textContent = days;
                     timeContainer[i].querySelector('.hours').textContent = hours;
                     timeContainer[i].querySelector('.minutes').textContent = mins;
@@ -83,7 +86,7 @@
                                 Số lần bid: ${p.total_Bid}
                             </span>
                                 <img class='h-60 w-full rounded-t-lg'
-                                     src="${pageContext.request.contextPath}/public/imgs/appple-watch.jpg" alt="">
+                                     src="${pageContext.request.contextPath}/public/imgProduct/${p.pro_ID}/main.jpg" alt="">
                                 <div class='px-2 w-full text-center mt-2'>
                                     <a href='#' class='font-semibold w-full hover:underline'>${p.pname}</a>
                                     <div class='text-sm text-gray-500 font-semibold mt-3'>
@@ -124,7 +127,7 @@
                                     Số lần bid: ${p.total_Bid}
                                  </span>
                                 <img class='h-60 w-full rounded-t-lg'
-                                     src="${pageContext.request.contextPath}/public/imgs/appple-watch.jpg" alt="">
+                                     src="${pageContext.request.contextPath}/public/imgProduct/${p.pro_ID}/main.jpg" alt="">
                                 <div class='px-2 w-full text-center mt-2'>
                                     <a href='#' class='font-semibold w-full hover:underline'>${p.pname}</a>
                                     <div class='text-sm text-gray-500 font-semibold mt-3'>
@@ -165,7 +168,7 @@
                                     Số lần bid: ${p.total_Bid}
                                 </span>
                                 <img class='h-60 w-full rounded-t-lg'
-                                     src="${pageContext.request.contextPath}/public/imgs/appple-watch.jpg" alt="">
+                                     src="${pageContext.request.contextPath}/public/imgProduct/${p.pro_ID}/main.jpg" alt="">
                                 <div class='px-2 w-full text-center mt-2'>
                                     <a href='#' class='font-semibold w-full hover:underline'>${p.pname}</a>
                                     <div class='text-sm text-gray-500 font-semibold mt-3'>

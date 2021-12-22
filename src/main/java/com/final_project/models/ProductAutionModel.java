@@ -11,10 +11,12 @@ import java.util.Objects;
 
 public class ProductAutionModel {
     public static List<ProductAuction> getTop5Time(){
-        final String query = "select  Pname, Current_Price, End_Time from product_auction " +
-                "join products p on p.Pro_ID = product_auction.Pro_ID " +
-                "where End_Time > NOW() " +
-                "order by End_Time limit 5 ";
+        final String query = "select p.Pro_ID, Pname, Current_Price, End_Time\n" +
+                "from product_auction\n" +
+                "         join products p on p.Pro_ID = product_auction.Pro_ID\n" +
+                "where End_Time > NOW()\n" +
+                "order by End_Time\n" +
+                "limit 5";
         try (Connection con = DBUtils.getConnection()) {
             return con.createQuery(query)
                     .executeAndFetch(ProductAuction.class);
@@ -22,7 +24,7 @@ public class ProductAutionModel {
     }
 
     public static List<ProductAuction> getTop5Price(){
-        final String query = "select  Pname, Current_Price, End_Time from product_auction " +
+        final String query = "select p.Pro_ID, Pname, Current_Price, End_Time from product_auction " +
                 "join products p on p.Pro_ID = product_auction.Pro_ID\n" +
                 "where End_Time > NOW() " +
                 "order by Current_Price desc \n" +
@@ -34,10 +36,11 @@ public class ProductAutionModel {
     }
 
     public static List<ProductAuction> getTop5Bid(){
-        final String query = "select Pname, Current_Price, End_Time, Total_Bid\n" +
-                "from products join product_auction pa on products.Pro_ID = pa.Pro_ID\n" +
+        final String query = "select products.Pro_ID, Pname, Current_Price, End_Time, Total_Bid\n" +
+                "from products\n" +
+                "         join product_auction pa on products.Pro_ID = pa.Pro_ID\n" +
                 "order by Total_Bid desc\n" +
-                "limit 5;";
+                "limit 5";
         try (Connection con = DBUtils.getConnection()) {
             return con.createQuery(query)
                     .executeAndFetch(ProductAuction.class);
