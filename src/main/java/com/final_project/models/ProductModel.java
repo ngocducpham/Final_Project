@@ -3,6 +3,7 @@ package com.final_project.models;
 import com.final_project.beans.Category;
 import com.final_project.beans.Product;
 import com.final_project.beans.ProductAuction;
+import com.final_project.beans.product5;
 import com.final_project.utils.DBUtils;
 import org.sql2o.Connection;
 
@@ -62,6 +63,19 @@ public class ProductModel {
             }
 
             return list.get(0);
+        }
+    }
+
+    public static List<product5> find5(int id)
+    {
+        final  String query= "select Pname, pa.Pro_ID, Current_Price, End_Time\n" +
+                "from products join product_auction pa on products.Pro_ID = pa.Pro_ID join categories c on c.Cat_ID = products.Cat_ID\n" +
+                "where c.Cat_ID = 1 or Cparent_ID = 1\n limit 5";
+        try(Connection con =DBUtils.getConnection())
+        {
+            return con.createQuery(query)
+                    .addParameter("id",id)
+                    .executeAndFetch(product5.class);
         }
     }
 

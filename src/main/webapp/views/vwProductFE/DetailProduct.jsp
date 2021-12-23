@@ -5,8 +5,8 @@
 
 
 <jsp:useBean id="proDetail" scope="request" type="com.final_project.beans.FEDetail"/>
-<jsp:useBean id="proAuction" scope="request" type="com.final_project.beans.ProductAuction"/>
-<jsp:useBean id="proUser" scope="request" type="com.final_project.beans.User"/>
+<jsp:useBean id="proDetail2" scope="request" type="com.final_project.beans.product5"/>
+
 
 <t:main>
     <jsp:attribute name="css">
@@ -168,7 +168,7 @@
             <h4 class="font-weight-bold text-2xl text-gray-500">CÁC SẢN PHẦM CÙNG LOẠI</h4>
             <div class="flex justify-content-between mt-10">
 
-                <c:forEach var="${proDetail.}" begin="0">
+                <c:forEach var="${proDetail.cat_ID}" begin="0" step="1">
 
                     <c:forEach var = "index" begin="1" >
                         <c:set scope="request" var="ProNext" value="${proDetail.pro_ID}+${index}"/>

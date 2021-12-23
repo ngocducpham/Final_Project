@@ -21,6 +21,7 @@ public class FEDetail {
         End_Time=end_Time;
         Pro_ID=pro_ID;
         Cat_ID = cat_ID;
+
         Price_of_User=price_of_User;
         Status=status;
         this.max_price=max_price;
@@ -58,6 +59,14 @@ public class FEDetail {
 
     public String getDescription() {
         return description;
+    }
+
+    public int getCat_ID() {
+        return Cat_ID;
+    }
+
+    public void setCat_ID(int cat_ID) {
+        Cat_ID = cat_ID;
     }
 
     public void setDescription(String description) {

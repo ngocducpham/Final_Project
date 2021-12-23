@@ -31,8 +31,13 @@ public class FEproductServlet extends HttpServlet {
                 Product proDetail = ProductModel.findByProId(proID);
 
                 request.setAttribute("productDetail",proDetail);
+                //request.setAttribute("productDetail",proDetail);
                 ServletUtils.forward("/views/vwProductFE/DetailProduct.jsp", request, response);
+
+
                 break;
+
+
 
             default:
                 ServletUtils.forward("/views/404/index.jsp", request, response);
