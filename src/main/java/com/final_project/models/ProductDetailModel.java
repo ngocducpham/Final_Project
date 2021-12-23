@@ -33,7 +33,7 @@ public class ProductDetailModel {
                 "         inner join users U2 on U2.User_ID = auction.User_ID\n" +
                 "where End_Time > now()\n" +
                 "  and Status = 1\n" +
-                "  and products.Pro_ID = :id\n" +
+                "  and products.Pro_ID = :id" +
                 "group by product_auction.Pro_ID;";
 
         try (Connection con = DBUtils.getConnection()) {

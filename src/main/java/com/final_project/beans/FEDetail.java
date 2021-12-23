@@ -4,19 +4,20 @@ import  java.time.LocalDateTime;
 
 public class FEDetail {
     private int Pro_ID, Status,Total_Bid, Cat_ID;
-    private String Pname, username;
+    private String Pname, Owner,Holder;
     private LocalDateTime Start_Time, End_Time;
     private int Price_of_User, max_price;
     private int Current_Price;
     private String description;
 
 
-    public FEDetail(String pname, String username, String description,LocalDateTime start_Time, LocalDateTime end_Time,
+    public FEDetail(String pname, String Owner,String Holder, String description,LocalDateTime start_Time, LocalDateTime end_Time,
         int pro_ID, int price_of_User, int status, int total_Bid, int max_price, int current_Price,int cat_ID )
     {
         Total_Bid=total_Bid;
         Pname=pname;
-        this.username=username;
+        this.Owner=Owner;
+        this.Holder=Holder;
         Start_Time=start_Time;
         End_Time=end_Time;
         Pro_ID=pro_ID;
@@ -65,6 +66,14 @@ public class FEDetail {
         return Cat_ID;
     }
 
+    public String getHolder() {
+        return Holder;
+    }
+
+    public void setHolder(String holder) {
+        Holder = holder;
+    }
+
     public void setCat_ID(int cat_ID) {
         Cat_ID = cat_ID;
     }
@@ -81,8 +90,8 @@ public class FEDetail {
         return Current_Price;
     }
 
-    public String getUsername() {
-        return username;
+    public String getOwner() {
+        return Owner;
     }
 
     public String getPname() {
@@ -121,7 +130,7 @@ public class FEDetail {
         Start_Time = start_Time;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setOwner(String Owner) {
+        this.Owner = Owner;
     }
 }
