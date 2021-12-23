@@ -1,5 +1,6 @@
 package com.final_project.models;
 
+import com.final_project.beans.FEDetail;
 import com.final_project.beans.Product;
 import com.final_project.beans.ProductAuction;
 import com.final_project.beans.Product5;
@@ -68,6 +69,32 @@ public class ProductModel {
             return list.get(0);
         }
     }
+
+    public static List<FEDetail> productDetail(int id)
+    {
+        final String query= "select products.Pro_ID, products.Pname, products.Cat_ID, products.Status, product_auction.Total_Bid, product_auction.Current_Price\n" +
+                ",max(auction.Price_of_User) as GiaCaoNhat,product_auction.Start_Time, product_auction.End_Time,U1.username as Owner,U2.username as Holder, products.description\n" +
+                "from products inner join magage  on products.Pro_ID= magage.Pro_ID\n" +
+                "inner join users  as U1 on U1.User_ID=magage.User_ID\n" +
+                "inner join product_auction on product_auction.Pro_ID = products.Pro_ID\n" +
+                "inner join auction on auction.Pro_Auc_ID=product_auction.Pro_Auc_ID\n" +
+                "inner join users U2 on U2.User_ID= auction.User_ID\n" +
+                "where products.Pro_ID= :Pro_ID " +
+                " group by product_auction.Pro_ID\n";
+        try(Connection con=DBUtils.getConnection())
+        {
+            con.createQuery(query)
+                    .addParameter("",id)
+                    .executeAndFetch();
+
+        }
+//        try (Connection con = DBUtils.getConnection()) {
+//            con.createQuery(sql)
+//                    .addParameter("Pro_ID", id)
+//                    .executeUpdate();
+//        }
+    }
+
     public static List<Product5> find5(int id)
     {
         final  String query= "select Pname, pa.Pro_ID, Current_Price, End_Time\n" +

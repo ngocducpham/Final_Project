@@ -5,7 +5,7 @@
 
 
 <jsp:useBean id="proDetail" scope="request" type="com.final_project.beans.FEDetail"/>
-<jsp:useBean id="proDetail2" scope="request" type="com.final_project.beans.Product5"/>
+<jsp:useBean id="proDetail2" scope="request" type="java.util.List<com.final_project.beans.Product5>"/>
 
 
 <t:main>
@@ -168,17 +168,17 @@
             <h4 class="font-weight-bold text-2xl text-gray-500">CÁC SẢN PHẦM CÙNG LOẠI</h4>
             <div class="flex justify-content-between mt-10">
 
-                <c:forEach var="${proDetail.cat_ID}" begin="0" step="1">
+<%--                <c:forEach var="${proDetail.cat_ID}" begin="0" step="1">--%>
 
-                    <c:forEach var = "index" begin="1" >
-                        <c:set scope="request" var="ProNext" value="${proDetail.pro_ID}+${index}"/>
-                        <c:choose>
-                            <c:when test=""></c:when>
-                        </c:choose>
+<%--                    <c:forEach var = "index" begin="1" >--%>
+<%--                        <c:set scope="request" var="ProNext" value="${proDetail.pro_ID}+${index}"/>--%>
+<%--                        <c:choose>--%>
+<%--                            <c:when test=""></c:when>--%>
+<%--                        </c:choose>--%>
                         <img class="h-60 w-100 rounded-t-lg"
-                             src="${pageContext.request.contextPath}/public/imgProduct/${ProNext}/main.jpg" alt=""/>
-                    </c:forEach>
-                </c:forEach>
+                             src="${pageContext.request.contextPath}/public/imgProduct/${proDetail.pro_ID}/main.jpg" alt=""/>
+<%--                    </c:forEach>--%>
+<%--                </c:forEach>--%>
 
 
 

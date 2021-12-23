@@ -41,8 +41,6 @@ public class FEproductServlet extends HttpServlet {
                 ServletUtils.forward("/views/vwProductFE/DetailProduct.jsp", request, response);
                 break;
 
-
-
             default:
                 ServletUtils.forward("/views/404/index.jsp", request, response);
                 break;
