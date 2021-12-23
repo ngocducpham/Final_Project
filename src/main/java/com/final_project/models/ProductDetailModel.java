@@ -26,11 +26,11 @@ public class ProductDetailModel {
                 "     , Distance_Price\n" +
                 "     , auction.Pro_Auc_ID\n" +
                 "from products\n" +
-                "         inner join magage on products.Pro_ID = magage.Pro_ID\n" +
-                "         inner join users as U1 on U1.User_ID = magage.User_ID\n" +
-                "         inner join product_auction on product_auction.Pro_ID = products.Pro_ID\n" +
-                "         inner join auction on auction.Pro_Auc_ID = product_auction.Pro_Auc_ID\n" +
-                "         inner join users U2 on U2.User_ID = auction.User_ID\n" +
+                "         left join magage on products.Pro_ID = magage.Pro_ID\n" +
+                "         left join users as U1 on U1.User_ID = magage.User_ID\n" +
+                "         left join product_auction on product_auction.Pro_ID = products.Pro_ID\n" +
+                "         left join auction on auction.Pro_Auc_ID = product_auction.Pro_Auc_ID\n" +
+                "         left join users U2 on U2.User_ID = auction.User_ID\n" +
                 "where End_Time > now()\n" +
                 "  and Status = 1\n" +
                 "  and products.Pro_ID = :id\n" +

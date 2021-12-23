@@ -6,6 +6,7 @@
 <jsp:useBean id="proDetail" scope="request" type="com.final_project.beans.ProductDetail"/>
 <jsp:useBean id="relative" scope="request" type="java.util.List<com.final_project.beans.ProductDetail>"/>
 <jsp:useBean id="history" scope="request" type="java.util.List<com.final_project.beans.ProductDetail>"/>
+<jsp:useBean id="Verified" scope="session" type="java.lang.Boolean"/>
 
 
 <t:main>
@@ -27,6 +28,16 @@
                 background: #555;
             }
         </style>
+    </jsp:attribute>
+    <jsp:attribute name="js">
+        <script>
+            let mainImg = document.querySelector('.main__img');
+            document.querySelectorAll('.sub__img').forEach(item =>{
+                item.addEventListener('click', e =>{
+                    mainImg.src = e.target.src;
+                });
+            });
+        </script>
     </jsp:attribute>
     <jsp:body>
         <fmt:setLocale value="vi_VN"/>
@@ -51,23 +62,29 @@
                             <!-- hình bên -->
                             <div class='img__mini-preview flex-col space-y-4 mr-3 overflow-auto pr-2'
                                  style='height: 450px;'>
-                                <div class=' border rounded-md cursor-pointer'>
+                                <div class='sub__img border rounded-md cursor-pointer'>
                                     <img class='w-20 h-24 rounded-md' src="${pageContext.request.contextPath}/public/imgProduct/${proDetail.pro_ID}/main.jpg" alt="">
                                 </div>
                                 <div class=' border rounded-md cursor-pointer'>
-                                    <img class='w-20 h-24 rounded-md' src="${pageContext.request.contextPath}/public/imgProduct/${proDetail.pro_ID}/1.jpg" alt="">
+                                    <img class='sub__img w-20 h-24 rounded-md' src="${pageContext.request.contextPath}/public/imgProduct/${proDetail.pro_ID}/1.jpg" alt="">
                                 </div>
                                 <div class=' border rounded-md cursor-pointer'>
-                                    <img class='w-20 h-24 rounded-md' src="${pageContext.request.contextPath}/public/imgProduct/${proDetail.pro_ID}/2.jpg" alt="">
+                                    <img class='sub__img w-20 h-24 rounded-md' src="${pageContext.request.contextPath}/public/imgProduct/${proDetail.pro_ID}/2.jpg" alt="">
                                 </div>
                                 <div class=' border rounded-md cursor-pointer'>
-                                    <img class='w-20 h-24 rounded-md' src="${pageContext.request.contextPath}/public/imgProduct/${proDetail.pro_ID}/3.jpg" alt="">
+                                    <img class='sub__img w-20 h-24 rounded-md' src="${pageContext.request.contextPath}/public/imgProduct/${proDetail.pro_ID}/3.jpg" alt="">
                                 </div>
 
                             </div>
                             <!-- hình chính -->
-                            <div class='rounded-lg border border-indigo-400 overflow-hidden' style="height: 440px">
-                                <img class='rounded-lg' style='width: 343px; height: 440px;' src="${pageContext.request.contextPath}/public/imgProduct/${proDetail.pro_ID}/main.jpg"
+                            <div class='relative rounded-lg border border-indigo-400 overflow-hidden' style="height: 440px">
+                                <c:if test="${Verified}">
+                                    <a href="#">
+                                    <span class="iconify absolute top-1 right-1 text-lg text-red-400 hover:text-red-500" data-icon="ant-design:heart-filled"></span>
+                                    </a>
+                                </c:if>
+
+                                <img class='rounded-lg main__img' style='width: 343px; height: 440px;' src="${pageContext.request.contextPath}/public/imgProduct/${proDetail.pro_ID}/main.jpg"
                                      alt="">
                             </div>
                         </div>
@@ -119,9 +136,17 @@
                                     <span class='flex items-center justify-center bg-gray-800 text-white px-3 h-9 rounded-l-md absolute left-0'>VNĐ</span>
                                     <input class='tracking-wide font-medium border-2 w-96 h-9 focus:outline-none py-1 pl-20 pr-20 rounded-md border-gray-500'
                                            type="text" value='99999999'>
-                                    <button
-                                            class='bg-gray-800 h-9 px-4 absolute right-0 rounded-r-md text-white text-lg hover:bg-gray-700'>Ra
-                                        giá</button>
+                                    <c:if test="${Verified}">
+                                        <button
+                                                class='bg-gray-800 h-9 px-4 absolute right-0 rounded-r-md text-white text-lg hover:bg-gray-700'>Ra
+                                            giá</button>
+                                    </c:if>
+                                    <c:if test="${!Verified}">
+                                        <a href="javascript: alert('Bạn chưa đăng nhập')"
+                                                class='py-1 bg-gray-800 h-9 px-4 absolute right-0 rounded-r-md text-white text-lg hover:bg-gray-700'>Ra
+                                            giá</a>
+                                    </c:if>
+
                                 </form>
                             </div>
                         </div>
@@ -157,7 +182,7 @@
             <!-- 5 sp cung loai -->
             <div class='mt-20'>
                 <div class='font-bold text-2xl text-gray-500'>Sản phẩm liên quan</div>
-                <div class='flex justify-between'>
+                <div class='grid grid-cols-5'>
                     <c:forEach items="${relative}" var="p">
                         <div class='flex justify-between mt-10'>
                             <div class='relative w-56 border rounded-lg bg-white overflow-hidden'>
@@ -166,7 +191,7 @@
                                         ${p.total_Bid}</div>
                                 <img class='h-60 w-full rounded-t-lg' src="${pageContext.request.contextPath}/public/imgProduct/${p.pro_ID}/main.jpg" alt="">
                                 <div class='p-3 w-full text-center'>
-                                    <a href='#' class='font-semibold w-full hover:underline'>${p.pname}</a>
+                                    <a href='${pageContext.request.contextPath}/ProductDetail?id=${p.pro_ID}' class='font-semibold w-full hover:underline'>${p.pname}</a>
                                     <div class='text-sm text-gray-500 font-semibold mt-3'>
                                         Giá hiện tại:
                                         <span><fmt:formatNumber value="${p.current_Price}" type="currency"/></span>

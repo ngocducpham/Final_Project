@@ -170,7 +170,7 @@
                     </select>
                 </div>
             </div>
-            <div class='grid grid-cols-5 grid-rows-2 mt-8'>
+            <div class='grid grid-cols-5 auto-rows-min mt-8'>
                 <c:choose>
                     <c:when test="${searchProducts.size() == 0}">
                         <div class="mt-5 h-96 text-center text-2xl text-gray-400 font-semibold ml-10 w-96">Không tìm thấy sản phẩm</div>
