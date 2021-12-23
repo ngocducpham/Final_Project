@@ -167,13 +167,27 @@
         <div class="mt-20">
             <h4 class="font-weight-bold text-2xl text-gray-500">CÁC SẢN PHẦM CÙNG LOẠI</h4>
             <div class="flex justify-content-between mt-10">
-                <img class="h-60 w-100 rounded-t-lg" src="" alt></img>
+
+                <c:forEach var="${proDetail.}" begin="0">
+
+                    <c:forEach var = "index" begin="1" >
+                        <c:set scope="request" var="ProNext" value="${proDetail.pro_ID}+${index}"/>
+                        <c:choose>
+                            <c:when test=""></c:when>
+                        </c:choose>
+                        <img class="h-60 w-100 rounded-t-lg"
+                             src="${pageContext.request.contextPath}/public/imgProduct/${ProNext}/main.jpg" alt=""/>
+                    </c:forEach>
+                </c:forEach>
+
+
+
                 <div class="p-3 w-100 text-center">
                     <a href="#" class="font-weight-bold w-100 hover:underline">
 
                     </a>
                     <div class="text-sm text-gray-500 font-weight-bold mt-3">
-                        Giá hiện tại:  <span> </span>
+                        Giá hiện tại:  <span>${proDetail.current_Price}</span>
                     </div>
                 </div>
             </div>

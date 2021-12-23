@@ -3,7 +3,7 @@ package com.final_project.beans;
 import  java.time.LocalDateTime;
 
 public class FEDetail {
-    private int Pro_ID, Status,Total_Bid;
+    private int Pro_ID, Status,Total_Bid, Cat_ID;
     private String Pname, username;
     private LocalDateTime Start_Time, End_Time;
     private int Price_of_User, max_price;
@@ -11,8 +11,8 @@ public class FEDetail {
     private String description;
 
 
-    public FEDetail(String pname, String username, LocalDateTime start_Time, LocalDateTime end_Time,
-        int pro_ID, int price_of_User, int status, int total_Bid, int max_price, int current_Price, String description)
+    public FEDetail(String pname, String username, String description,LocalDateTime start_Time, LocalDateTime end_Time,
+        int pro_ID, int price_of_User, int status, int total_Bid, int max_price, int current_Price,int cat_ID )
     {
         Total_Bid=total_Bid;
         Pname=pname;
@@ -20,6 +20,7 @@ public class FEDetail {
         Start_Time=start_Time;
         End_Time=end_Time;
         Pro_ID=pro_ID;
+        Cat_ID = cat_ID;
         Price_of_User=price_of_User;
         Status=status;
         this.max_price=max_price;
