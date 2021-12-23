@@ -1,7 +1,10 @@
 package com.final_project.controllers;
 
 import com.final_project.beans.Category;
+import com.final_project.beans.Product;
+import com.final_project.beans.User;
 import com.final_project.models.CategoryModel;
+import com.final_project.models.UserModel;
 import com.final_project.utils.ServletUtils;
 
 import javax.servlet.ServletException;
@@ -10,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 @WebServlet(name = "CategoryServlet", value = "/Admin/Category/*")
@@ -52,12 +56,22 @@ public class CategoryServlet extends HttpServlet {
 
         }
         break;
+      case "/IsAvailable":
+        PrintWriter out = response.getWriter();
+        response.setContentType("application/json");
+        response.setCharacterEncoding("utf-8");
+        out.print(false);
+        out.flush();
+        //IsAvailable(request, response);
+        break;
 
       default:
         ServletUtils.forward("/views/404/index.jsp  ", request, response);
         break;
     }
   }
+
+
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -103,6 +117,11 @@ public class CategoryServlet extends HttpServlet {
     int id = Integer.parseInt(request.getParameter("Cat_ID"));
     CategoryModel.delete(id);
     ServletUtils.redirect("/Admin/Category", request, response);
+  }
+
+  private void IsAvailable(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+
   }
 
 }

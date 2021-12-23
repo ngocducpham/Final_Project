@@ -9,7 +9,7 @@
     <jsp:attribute name="js">
         <script>
             document.getElementById('open_edit').addEventListener("click", function () {
-                alert("open edit");
+                alert("Bạn đang chỉnh sửa thông tin người dùng");
                 document.getElementById('username').disabled = false;
                 document.getElementById('email').disabled = false;
                 document.getElementById('dob').disabled = false;
@@ -17,7 +17,7 @@
             });
 
             document.getElementById('close_edit').addEventListener("click", function () {
-                alert("close edit");
+                alert("Hủy chỉnh sửa thông tin người dùng ");
                 window.location.reload();
             });
         </script>

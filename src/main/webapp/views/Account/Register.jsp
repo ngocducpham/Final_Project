@@ -34,14 +34,6 @@
                            class='mt-2 w-full px-2 py-1 outline-none block border-2 rounded-md  border-gray-300 text-gray-700'>
                 </div>
 
-                <div class="mt-2">
-                    <h5>Đăng kí với vai trò</h5>
-                    <input type="radio" id="role_seller" name="role" value="2">
-                    <label for="role_seller"  class='font-medium text-gray-600'>Người Bán</label>
-                    <input type="radio" id="role_bidder" name="role" value="1" checked>
-                    <label for="role_bidder" class='font-medium text-gray-600'>Người Mua</label>
-                </div>
-
 
                 <div class='mt-2'>
                     <label for='DOB' class='font-medium text-gray-600'>Ngày Sinh (dd/MM/yyyy)</label>

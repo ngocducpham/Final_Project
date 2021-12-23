@@ -1,9 +1,6 @@
 package com.final_project.models;
 
-import com.final_project.beans.FEDetail;
-import com.final_project.beans.Product;
-import com.final_project.beans.ProductAuction;
-import com.final_project.beans.Product5;
+import com.final_project.beans.*;
 import com.final_project.utils.DBUtils;
 import org.sql2o.Connection;
 
@@ -135,4 +132,6 @@ public class ProductModel {
                     .executeUpdate();
         }
     }
+
+
 }
