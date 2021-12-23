@@ -1,10 +1,14 @@
 package com.final_project.models;
 
+import com.final_project.beans.ProductAuction;
 import com.final_project.beans.ProductDetail;
 import com.final_project.utils.DBUtils;
 import org.sql2o.Connection;
 
+import org.sql2o.Connection;
+
 import java.util.List;
+import java.util.Objects;
 
 public class ProductDetailModel {
     public static ProductDetail getByID(String id) {
@@ -30,7 +34,7 @@ public class ProductDetailModel {
                 "where End_Time > now()\n" +
                 "  and Status = 1\n" +
                 "  and products.Pro_ID = :id " +
-                "group by product_auction.Pro_ID;";
+                " group by product_auction.Pro_ID;";
 
         try (Connection con = DBUtils.getConnection()) {
             List<ProductDetail> detail = con.createQuery(query)
