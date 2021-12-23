@@ -108,6 +108,7 @@ public class PersonalServlet extends HttpServlet {
         String new_pass = request.getParameter("new_pass");
         String old_pass = request.getParameter("old_pass");
         BCrypt.Result result = BCrypt.verifyer().verify(old_pass.toCharArray(), user.getPass());
+
         if (result.verified) {
             session.setAttribute("false_old_pass", false);
             session.setAttribute("success_change_pass",true);
