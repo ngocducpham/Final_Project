@@ -10,7 +10,7 @@
             <div class='flex'>
                 <div class='flex items-center'>
                     <a href="${pageContext.request.contextPath}">
-                    <img class='h-8' src="${pageContext.request.contextPath}/public/imgs/logo.svg" alt="">
+                        <img class='h-8' src="${pageContext.request.contextPath}/public/imgs/logo.svg" alt="">
                     </a>
                 </div>
                 <div class='flex space-x-4 ml-6 items-center'>
@@ -103,12 +103,12 @@
     <script>
         let categories = [];
         <c:forEach items="${categories}" var="c">
-        categories.push(['${c.cat_ID}','${c.cname}','${c.cparent_ID}']);
+        categories.push(['${c.cat_ID}', '${c.cname}', '${c.cparent_ID}']);
         </c:forEach>
 
         let categoriesMenu = document.querySelector('.categories__menu').querySelector('ul');
         for (const iterator of categories) {
-            if(iterator[2] == 0){
+            if (iterator[2] == 0) {
                 let listItem = document.createElement('li');
 
                 let achor = document.createElement('a');
@@ -116,7 +116,7 @@
                 achor.href = "${pageContext.request.contextPath}/Search?cate=" + iterator[0];
 
                 let cateIDInput = document.createElement('input');
-                cateIDInput.setAttribute('type','hidden');
+                cateIDInput.setAttribute('type', 'hidden');
                 cateIDInput.value = iterator[0];
 
                 listItem.appendChild(cateIDInput);
@@ -128,13 +128,13 @@
 
         let cateList = categoriesMenu.querySelectorAll('li');
         for (const iterator of categories) {
-            if(iterator[2] != 0){
-                cateList.forEach(item =>{
+            if (iterator[2] != 0) {
+                cateList.forEach(item => {
                     let getID = item.querySelector('input').value;
 
-                    if(getID == iterator[2]){
+                    if (getID == iterator[2]) {
                         let checkUl = item.querySelector('ul');
-                        if(checkUl == null){
+                        if (checkUl == null) {
                             checkUl = document.createElement('ul');
                             item.appendChild(checkUl);
                         }
