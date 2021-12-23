@@ -48,6 +48,9 @@ public class PersonalServlet extends HttpServlet {
                 case "/Add_To_Watch_List":
                     Add_to_Watch_list(request, response);
                     break;
+                case "/Post_Products":
+                    Post_Products(request, response);
+                    break;
                 default:
                     ServletUtils.forward("/views/404/index.jsp", request, response);
                     break;
@@ -137,5 +140,10 @@ public class PersonalServlet extends HttpServlet {
         String url=(String) session.getAttribute("retUrl");
         if (url==null) url="/";
         ServletUtils.redirect(url,request,response);
+    }
+
+    private void Post_Products(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("authUser");
     }
 }

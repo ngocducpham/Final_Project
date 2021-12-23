@@ -12,4 +12,8 @@
         <error-code>404</error-code>
         <location>/views/404/index.jsp</location>
     </error-page>
+
+    <listener>
+        <listener-class>com.final_project.Thread.Check_Win</listener-class>
+    </listener>
 </web-app>
