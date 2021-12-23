@@ -65,7 +65,7 @@ public class ProductDetailModel {
                 "         join auction a on product_auction.Pro_Auc_ID = a.Pro_Auc_ID\n" +
                 "         join users u on u.User_ID = a.User_ID\n" +
                 "where a.Pro_Auc_ID = :id " +
-                "order by Price_of_User";
+                "order by Price_of_User DESC ";
         try (Connection con = DBUtils.getConnection()) {
             return con.createQuery(query)
                     .addParameter("id", proAuID)
