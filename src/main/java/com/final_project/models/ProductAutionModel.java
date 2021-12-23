@@ -14,9 +14,9 @@ public class ProductAutionModel {
         final String query = "select p.Pro_ID, Pname, Current_Price, End_Time\n" +
                 "from product_auction\n" +
                 "         join products p on p.Pro_ID = product_auction.Pro_ID\n" +
-                "where End_Time > NOW()\n" +
+                "where End_Time > NOW() and Status = 1\n" +
                 "order by End_Time\n" +
-                "limit 5";
+                "limit 5 ";
         try (Connection con = DBUtils.getConnection()) {
             return con.createQuery(query)
                     .executeAndFetch(ProductAuction.class);
@@ -24,10 +24,11 @@ public class ProductAutionModel {
     }
 
     public static List<ProductAuction> getTop5Price(){
-        final String query = "select p.Pro_ID, Pname, Current_Price, End_Time from product_auction " +
-                "join products p on p.Pro_ID = product_auction.Pro_ID\n" +
-                "where End_Time > NOW() " +
-                "order by Current_Price desc \n" +
+        final String query = "select p.Pro_ID, Pname, Current_Price, End_Time\n" +
+                "from product_auction\n" +
+                "         join products p on p.Pro_ID = product_auction.Pro_ID\n" +
+                "where End_Time > NOW() and Status = 1\n" +
+                "order by Current_Price desc\n" +
                 "limit 5";
         try (Connection con = DBUtils.getConnection()) {
             return con.createQuery(query)
@@ -39,8 +40,9 @@ public class ProductAutionModel {
         final String query = "select products.Pro_ID, Pname, Current_Price, End_Time, Total_Bid\n" +
                 "from products\n" +
                 "         join product_auction pa on products.Pro_ID = pa.Pro_ID\n" +
+                "where End_Time > NOW() and Status = 1\n" +
                 "order by Total_Bid desc\n" +
-                "limit 5";
+                "limit 5 ";
         try (Connection con = DBUtils.getConnection()) {
             return con.createQuery(query)
                     .executeAndFetch(ProductAuction.class);
@@ -52,7 +54,7 @@ public class ProductAutionModel {
                 "from products\n" +
                 "         join product_auction pa on products.Pro_ID = pa.Pro_ID\n" +
                 "         join categories c on c.Cat_ID = products.Cat_ID\n" +
-                "where End_Time > NOW()";
+                "where End_Time > NOW() and Status = 1 ";
 
         if(!Objects.equals(product, "")){
             query += " and match(Pname) against(:p) ";
@@ -96,7 +98,7 @@ public class ProductAutionModel {
                 "         join products p on p.Pro_ID = pa.Pro_ID\n" +
                 "         join users u on auction.User_ID = u.User_ID\n" +
                 "         join categories c on c.Cat_ID = p.Cat_ID\n" +
-                "where End_Time > NOW() ";
+                "where End_Time > NOW() and Status = 1 ";
 
         if(product != ""){
             query += " and match(Pname) against(:p) ";
@@ -126,7 +128,7 @@ public class ProductAutionModel {
                 "from product_auction\n" +
                 "         join products p on p.Pro_ID = product_auction.Pro_ID\n" +
                 "         join categories c on c.Cat_ID = p.Cat_ID\n" +
-                "where End_Time > NOW() ";
+                "where End_Time > NOW() and Status = 1  ";
 
         if(product != ""){
             query += " and match(Pname) against(:p) ";
