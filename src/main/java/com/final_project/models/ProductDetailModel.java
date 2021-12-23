@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class ProductDetailModel {
-    public static ProductDetail getByID(String id){
+    public static ProductDetail getByID(String id) {
         String query = "select products.Pro_ID\n" +
                 "     , products.Pname\n" +
                 "     , products.description\n" +
@@ -26,11 +26,11 @@ public class ProductDetailModel {
                 "     , Distance_Price\n" +
                 "     , auction.Pro_Auc_ID\n" +
                 "from products\n" +
-                "         inner join magage on products.Pro_ID = magage.Pro_ID\n" +
-                "         inner join users as U1 on U1.User_ID = magage.User_ID\n" +
-                "         inner join product_auction on product_auction.Pro_ID = products.Pro_ID\n" +
-                "         inner join auction on auction.Pro_Auc_ID = product_auction.Pro_Auc_ID\n" +
-                "         inner join users U2 on U2.User_ID = auction.User_ID\n" +
+                "         left join magage on products.Pro_ID = magage.Pro_ID\n" +
+                "         left join users as U1 on U1.User_ID = magage.User_ID\n" +
+                "         left join product_auction on product_auction.Pro_ID = products.Pro_ID\n" +
+                "         left join auction on auction.Pro_Auc_ID = product_auction.Pro_Auc_ID\n" +
+                "         left join users U2 on U2.User_ID = auction.User_ID\n" +
                 "where End_Time > now()\n" +
                 "  and Status = 1\n" +
                 "  and products.Pro_ID = :id" +
@@ -44,7 +44,7 @@ public class ProductDetailModel {
         }
     }
 
-    public static List<ProductDetail> get5ProductRelative(String catID){
+    public static List<ProductDetail> get5ProductRelative(String catID) {
         String query = "select Pname, pa.Pro_ID, Current_Price, End_Time, Total_Bid \n" +
                 "from products\n" +
                 "         join product_auction pa on products.Pro_ID = pa.Pro_ID\n" +
@@ -59,7 +59,7 @@ public class ProductDetailModel {
         }
     }
 
-    public static List<ProductDetail> bidHistory(String proAuID){
+    public static List<ProductDetail> bidHistory(String proAuID) {
         String query = "select Pro_ID, username, Price_Time, Price_of_User\n" +
                 "from product_auction\n" +
                 "         join auction a on product_auction.Pro_Auc_ID = a.Pro_Auc_ID\n" +
@@ -70,6 +70,29 @@ public class ProductDetailModel {
             return con.createQuery(query)
                     .addParameter("id", proAuID)
                     .executeAndFetch(ProductDetail.class);
+        }
+    }
+
+    public static void bid(String uid, String proAuID, String price) {
+        String query = "insert into auction (price_of_user, price_time, pro_auc_id, user_id)\n" +
+                "values (:price, NOW(), :proauid, :uid);\n";
+        try (Connection con = DBUtils.getConnection()) {
+            con.createQuery(query)
+                    .addParameter("proauid", proAuID)
+                    .addParameter("uid",uid)
+                    .addParameter("price", price)
+                    .executeUpdate();
+        }
+
+        query = "update product_auction\n" +
+                "set Current_Price = :price,\n" +
+                "    Total_Bid     = Total_Bid + 1\n" +
+                "where Pro_Auc_ID = :proauid";
+        try (Connection con = DBUtils.getConnection()) {
+            con.createQuery(query)
+                    .addParameter("price", price)
+                    .addParameter("proauid", proAuID)
+                    .executeUpdate();
         }
     }
 }

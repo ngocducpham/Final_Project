@@ -33,6 +33,7 @@ public class PersonalServlet extends HttpServlet {
                 case "/User_Change_Password":
                     ServletUtils.forward("/views/Account/Change_Password.jsp", request, response);
                     session.setAttribute("success_change_pass",false);
+                    session.setAttribute("false_old_pass", false);
                     break;
                 case "/User_Watch_List":
                     List<ProductAuction> list = UserModel.Get_Watch_List(user.getUser_ID());
