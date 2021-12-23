@@ -32,7 +32,6 @@ public class ProductDetailModel {
                 "         left join auction on auction.Pro_Auc_ID = product_auction.Pro_Auc_ID\n" +
                 "         left join users U2 on U2.User_ID = auction.User_ID\n" +
                 "where End_Time > now()\n" +
-                "  and Status = 1\n" +
                 "  and products.Pro_ID = :id " +
                 " group by product_auction.Pro_ID;";
 

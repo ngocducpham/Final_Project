@@ -22,6 +22,7 @@ public class ProductServlet extends HttpServlet {
             path = "/Index";
         }
 
+
         switch (path) {
             case "/Index":
                 List<Product> list = ProductModel.Join();
