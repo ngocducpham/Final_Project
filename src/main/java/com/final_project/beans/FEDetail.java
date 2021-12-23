@@ -7,10 +7,12 @@ public class FEDetail {
     private String Pname, username;
     private LocalDateTime Start_Time, End_Time;
     private int Price_of_User, max_price;
+    private int Current_Price;
+    private String description;
 
 
     public FEDetail(String pname, String username, LocalDateTime start_Time, LocalDateTime end_Time,
-        int pro_ID, int price_of_User, int status, int total_Bid, int max_price)
+        int pro_ID, int price_of_User, int status, int total_Bid, int max_price, int current_Price, String description)
     {
         Total_Bid=total_Bid;
         Pname=pname;
@@ -21,6 +23,8 @@ public class FEDetail {
         Price_of_User=price_of_User;
         Status=status;
         this.max_price=max_price;
+        Current_Price=current_Price;
+        this.description=description;
     }
 
     public LocalDateTime getEnd_Time() {
@@ -49,6 +53,22 @@ public class FEDetail {
 
     public int getStatus() {
         return Status;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setCurrent_Price(int current_Price) {
+        Current_Price = current_Price;
+    }
+
+    public int getCurrent_Price() {
+        return Current_Price;
     }
 
     public String getUsername() {
