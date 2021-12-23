@@ -40,7 +40,7 @@ public class ProductServlet extends HttpServlet {
                 } catch (NumberFormatException ignored) {
                 }
 
-                Product p = ProductModel.findById1(id);
+                Product p = ProductModel.findById(id);
                 if (p != null) {
                     request.setAttribute("products", p);
                     ServletUtils.forward("/views/Product/Edit.jsp", request, response);
