@@ -70,7 +70,7 @@ public class ProductModel {
         }
     }
 
-    public static List<FEDetail> productDetail(int id)
+    public static FEDetail productDetail(int id)
     {
         final String query= "select products.Pro_ID, products.Pname, products.Cat_ID, products.Status, product_auction.Total_Bid, product_auction.Current_Price\n" +
                 ",max(auction.Price_of_User) as GiaCaoNhat,product_auction.Start_Time, product_auction.End_Time,U1.username as Owner,U2.username as Holder, products.description\n" +
@@ -83,16 +83,12 @@ public class ProductModel {
                 " group by product_auction.Pro_ID\n";
         try(Connection con=DBUtils.getConnection())
         {
-            con.createQuery(query)
-                    .addParameter("",id)
-                    .executeAndFetch();
+            return  con.createQuery(query)
+                    .addParameter("Pro_ID",id)
+                    .executeAndFetch(FEDetail.class).get(0);
 
         }
-//        try (Connection con = DBUtils.getConnection()) {
-//            con.createQuery(sql)
-//                    .addParameter("Pro_ID", id)
-//                    .executeUpdate();
-//        }
+
     }
 
     public static List<Product5> find5(int id)
