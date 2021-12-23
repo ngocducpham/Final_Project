@@ -4,7 +4,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <jsp:useBean id="authUser" scope="session" type="com.final_project.beans.User"/>
-<%--<jsp:useBean id="false_old_pass" scope="session" type="java.lang.Boolean"/>--%>
+<jsp:useBean id="false_old_pass" scope="session" type="java.lang.Boolean"/>
+<jsp:useBean id="success_change_pass" scope="session" type="java.lang.Boolean"/>
 
 <t:personal_page>
     <jsp:attribute name="js">
@@ -25,6 +26,7 @@
                 if (document.getElementById('new-pass').value !== document.getElementById('re-new-pass').value) {
                     e.preventDefault();
                     alert("Passwords do not match!");
+                    window.location.reload();
                 }
             })
         </script>
@@ -49,6 +51,9 @@
                     </div>
                     <c:if test="${false_old_pass}">
                         <div class='alert__login text-red-500 mt-3'>Sai Mật Khẩu Cũ</div>
+                    </c:if>
+                    <c:if test="${success_change_pass}">
+                        <div class='alert__login mt-3' style="color: limegreen">Đổi Mật Khẩu Thành Công</div>
                     </c:if>
                     <div class="form-row">
                         <div class="form-group col-md-6">

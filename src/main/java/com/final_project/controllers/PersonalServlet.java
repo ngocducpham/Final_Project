@@ -32,6 +32,7 @@ public class PersonalServlet extends HttpServlet {
                     break;
                 case "/User_Change_Password":
                     ServletUtils.forward("/views/Account/Change_Password.jsp", request, response);
+                    session.setAttribute("success_change_pass",false);
                     break;
                 case "/User_Watch_List":
                     List<ProductAuction> list = UserModel.Get_Watch_List(user.getUser_ID());
@@ -108,14 +109,17 @@ public class PersonalServlet extends HttpServlet {
         String old_pass = request.getParameter("old_pass");
         BCrypt.Result result = BCrypt.verifyer().verify(old_pass.toCharArray(), user.getPass());
         if (result.verified) {
+            session.setAttribute("false_old_pass", false);
+            session.setAttribute("success_change_pass",true);
             new_pass = BCrypt.withDefaults().hashToString(12, new_pass.toCharArray());
             User new_user = new User(user.getUser_ID(), user.getUsername(), user.getEmail(), new_pass, user.getUserrole(), user.getAddress(), user.getDate_o_Birth(), user.getSeller_Expired_date());
             session.setAttribute("authUser", new_user);
             UserModel.Update_User_Password(new_pass, user.getUser_ID());
         } else {
             session.setAttribute("false_old_pass", true);
+            session.setAttribute("success_change_pass",false);
         }
-        ServletUtils.redirect("/Personal/User_Information", request, response);
+        ServletUtils.redirect("/Personal/User_Change_Password", request, response);
     }
 
     private void Get_Request(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -128,6 +132,7 @@ public class PersonalServlet extends HttpServlet {
         HttpSession session = request.getSession();
         session.setAttribute("Verified", false);
         session.setAttribute("authUser", new User());
+        session.setAttribute("false_old_pass", false);
         ServletUtils.redirect("/", request, response);
     }
 
@@ -138,9 +143,9 @@ public class PersonalServlet extends HttpServlet {
         if (!UserModel.Check_Watch_List(Pro_Id, user.getUser_ID()))
             UserModel.Add_To_Watch_List(Pro_Id, user.getUser_ID());
 
-        String url=(String) session.getAttribute("retUrl");
-        if (url==null) url="/";
-        ServletUtils.redirect(url,request,response);
+        String url = (String) session.getAttribute("retUrl");
+        if (url == null) url = "/";
+        ServletUtils.redirect(url, request, response);
     }
 
     private void Post_Products(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
