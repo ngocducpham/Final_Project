@@ -24,6 +24,7 @@ public class ProductDetailModel {
                 "     , U2.username                as Holder\n" +
                 "     , Cat_ID\n" +
                 "     , Distance_Price\n" +
+                "     , auction.Pro_Auc_ID\n" +
                 "from products\n" +
                 "         inner join magage on products.Pro_ID = magage.Pro_ID\n" +
                 "         inner join users as U1 on U1.User_ID = magage.User_ID\n" +
@@ -31,7 +32,7 @@ public class ProductDetailModel {
                 "         inner join auction on auction.Pro_Auc_ID = product_auction.Pro_Auc_ID\n" +
                 "         inner join users U2 on U2.User_ID = auction.User_ID\n" +
                 "where End_Time > now()\n" +
-                "  and Status = :id\n" +
+                "  and Status = 1\n" +
                 "  and products.Pro_ID = :id\n" +
                 "group by product_auction.Pro_ID;";
 
@@ -40,6 +41,35 @@ public class ProductDetailModel {
                     .addParameter("id", id)
                     .executeAndFetch(ProductDetail.class);
             return detail.get(0);
+        }
+    }
+
+    public static List<ProductDetail> get5ProductRelative(String catID){
+        String query = "select Pname, pa.Pro_ID, Current_Price, End_Time, Total_Bid \n" +
+                "from products\n" +
+                "         join product_auction pa on products.Pro_ID = pa.Pro_ID\n" +
+                "         join categories c on c.Cat_ID = products.Cat_ID\n" +
+                "where c.Cat_ID = :id \n" +
+                "   or Cparent_ID = :id \n" +
+                "limit 5";
+        try (Connection con = DBUtils.getConnection()) {
+            return con.createQuery(query)
+                    .addParameter("id", catID)
+                    .executeAndFetch(ProductDetail.class);
+        }
+    }
+
+    public static List<ProductDetail> bidHistory(String proAuID){
+        String query = "select Pro_ID, username, Price_Time, Price_of_User\n" +
+                "from product_auction\n" +
+                "         join auction a on product_auction.Pro_Auc_ID = a.Pro_Auc_ID\n" +
+                "         join users u on u.User_ID = a.User_ID\n" +
+                "where a.Pro_Auc_ID = :id " +
+                "order by Price_of_User";
+        try (Connection con = DBUtils.getConnection()) {
+            return con.createQuery(query)
+                    .addParameter("id", proAuID)
+                    .executeAndFetch(ProductDetail.class);
         }
     }
 }

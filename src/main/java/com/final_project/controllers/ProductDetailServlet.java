@@ -8,6 +8,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "ProductDetailServlet", value = "/ProductDetail")
 public class ProductDetailServlet extends HttpServlet {
@@ -16,6 +17,15 @@ public class ProductDetailServlet extends HttpServlet {
         String proID = request.getParameter("id");
 
         ProductDetail productDetail = ProductDetailModel.getByID(proID);
+
+        int cateID = productDetail.getCat_ID();
+        List<ProductDetail> fiveRelative = ProductDetailModel.get5ProductRelative(Integer.toString(cateID));
+
+        int proAuID = productDetail.getPro_Auc_ID();
+        List<ProductDetail> history = ProductDetailModel.bidHistory(Integer.toString(proAuID));
+
+        request.setAttribute("history", history);
+        request.setAttribute("relative", fiveRelative);
         request.setAttribute("proDetail", productDetail);
         ServletUtils.forward("views/ProductDetail/detail.jsp", request, response);
     }

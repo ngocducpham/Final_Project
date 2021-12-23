@@ -83,9 +83,12 @@ public class ProductModel {
                 " group by product_auction.Pro_ID\n";
         try(Connection con=DBUtils.getConnection())
         {
+            /*
             con.createQuery(query)
                     .addParameter("",id)
                     .executeAndFetch();
+                    */
+             return null;
 
         }
 //        try (Connection con = DBUtils.getConnection()) {

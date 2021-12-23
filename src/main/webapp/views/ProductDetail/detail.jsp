@@ -4,6 +4,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <jsp:useBean id="proDetail" scope="request" type="com.final_project.beans.ProductDetail"/>
+<jsp:useBean id="relative" scope="request" type="java.util.List<com.final_project.beans.ProductDetail>"/>
+<jsp:useBean id="history" scope="request" type="java.util.List<com.final_project.beans.ProductDetail>"/>
+
 
 <t:main>
     <jsp:attribute name="css">
@@ -113,7 +116,7 @@
                             </div>
                             <div class='mt-4 relative'>
                                 <form action="">
-                                    <span class='text-lg bg-gray-800 text-white py-1 px-3 rounded-l-md absolute left-0'>VNĐ</span>
+                                    <span class='flex items-center justify-center bg-gray-800 text-white px-3 h-9 rounded-l-md absolute left-0'>VNĐ</span>
                                     <input class='tracking-wide font-medium border-2 w-96 h-9 focus:outline-none py-1 pl-20 pr-20 rounded-md border-gray-500'
                                            type="text" value='99999999'>
                                     <button
@@ -124,7 +127,9 @@
                         </div>
                     </div>
                 </div>
-                <table class="table mt-16">
+
+                <h4 class='text-2xl font-semibold mt-16 mb-3'>LỊCH SỬ ĐẤU GIÁ</h4>
+                <table class="table">
                     <thead>
                     <tr>
                         <th scope="col">Người đấu giá</th>
@@ -133,60 +138,19 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
+                    <c:forEach items="${history}" var="h">
+                        <tr>
+                            <td>${h.username}</td>
+                            <td><fmt:formatNumber value="${h.price_of_User}" type="currency"/></td>
+                            <td>${h.price_Time.toLocalDate()} ${h.price_Time.toLocalTime()}</td>
+                        </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
                 <!-- mô tả sản phẩm -->
                 <div class='mt-5'>
-                    <h4 class='text-lg font-semibold mb-3'>MÔ TẢ SẢN PHẨM</h4>
-                    <div class="content has-table">
-                        <table>
-                            <tbody>
-                            <tr>
-                                <td>Thời gian pin</td>
-                                <td>12h</td>
-                            </tr>
-                            <tr>
-                                <td>Thời gian sạc</td>
-                                <td>8h</td>
-                            </tr>
-                            <tr>
-                                <td>Tốc độ CPU</td>
-                                <td>4.5Ghz</td>
-                            </tr>
-                            <tr>
-                                <td>Hiển thị màu sắc</td>
-                                <td>HD</td>
-                            </tr>
-                            <tr>
-                                <td>Bluetooth</td>
-                                <td>Bluetooth 5.0 </td>
-                            </tr>
-                            <tr>
-                                <td>Bộ nhớ đồ họa</td>
-                                <td>Tối đa 64GB</td>
-                            </tr>
-                            <tr>
-                                <td>Thương hiệu</td>
-                                <td>Dell</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <h4 class='text-2xl font-semibold mb-3'>MÔ TẢ SẢN PHẨM</h4>
+                    ${proDetail.description}
                 </div>
             </div>
 
@@ -194,91 +158,27 @@
             <div class='mt-20'>
                 <div class='font-bold text-2xl text-gray-500'>Sản phẩm liên quan</div>
                 <div class='flex justify-between'>
-                    <div class='flex justify-between mt-10'>
-                        <div class='relative w-56 border rounded-lg bg-white overflow-hidden'>
-                            <div class='rounded-br-full absolute top-0 left-0 pl-2 py-2 pr-5 bg-gray-300 text-xs font-bold'>
-                                Số lần Bid
-                                0123456</div>
-                            <img class='h-60 w-full rounded-t-lg' src="./imgs/appple-watch.jpg" alt="">
-                            <div class='p-3 w-full text-center'>
-                                <a href='#' class='font-semibold w-full hover:underline'>Apple Watch S6 LTE 40mm</a>
-                                <div class='text-sm text-gray-500 font-semibold mt-3'>
-                                    Giá hiện tại:
-                                    <span>1.500.000 VNĐ</span>
+                    <c:forEach items="${relative}" var="p">
+                        <div class='flex justify-between mt-10'>
+                            <div class='relative w-56 border rounded-lg bg-white overflow-hidden'>
+                                <div class='rounded-br-full absolute top-0 left-0 pl-2 py-2 pr-5 bg-gray-300 text-xs font-bold'>
+                                    Số lần Bid
+                                        ${p.total_Bid}</div>
+                                <img class='h-60 w-full rounded-t-lg' src="${pageContext.request.contextPath}/public/imgProduct/${p.pro_ID}/main.jpg" alt="">
+                                <div class='p-3 w-full text-center'>
+                                    <a href='#' class='font-semibold w-full hover:underline'>${p.pname}</a>
+                                    <div class='text-sm text-gray-500 font-semibold mt-3'>
+                                        Giá hiện tại:
+                                        <span><fmt:formatNumber value="${p.current_Price}" type="currency"/></span>
+                                    </div>
+
                                 </div>
 
                             </div>
-
                         </div>
-                    </div>
-                    <div class='flex justify-between mt-10'>
-                        <div class='relative w-56 border rounded-lg bg-white overflow-hidden'>
-                            <div class='rounded-br-full absolute top-0 left-0 pl-2 py-2 pr-5 bg-gray-300 text-xs font-bold'>
-                                Số lần Bid
-                                0123456</div>
-                            <img class='h-60 w-full rounded-t-lg' src="./imgs/appple-watch.jpg" alt="">
-                            <div class='p-3 w-full text-center'>
-                                <a href='#' class='font-semibold w-full hover:underline'>Apple Watch S6 LTE 40mm</a>
-                                <div class='text-sm text-gray-500 font-semibold mt-3'>
-                                    Giá hiện tại:
-                                    <span>1.500.000 VNĐ</span>
-                                </div>
+                    </c:forEach>
 
-                            </div>
 
-                        </div>
-                    </div>
-                    <div class='flex justify-between mt-10'>
-                        <div class='relative w-56 border rounded-lg bg-white overflow-hidden'>
-                            <div class='rounded-br-full absolute top-0 left-0 pl-2 py-2 pr-5 bg-gray-300 text-xs font-bold'>
-                                Số lần Bid
-                                0123456</div>
-                            <img class='h-60 w-full rounded-t-lg' src="./imgs/appple-watch.jpg" alt="">
-                            <div class='p-3 w-full text-center'>
-                                <a href='#' class='font-semibold w-full hover:underline'>Apple Watch S6 LTE 40mm</a>
-                                <div class='text-sm text-gray-500 font-semibold mt-3'>
-                                    Giá hiện tại:
-                                    <span>1.500.000 VNĐ</span>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class='flex justify-between mt-10'>
-                        <div class='relative w-56 border rounded-lg bg-white overflow-hidden'>
-                            <div class='rounded-br-full absolute top-0 left-0 pl-2 py-2 pr-5 bg-gray-300 text-xs font-bold'>
-                                Số lần Bid
-                                0123456</div>
-                            <img class='h-60 w-full rounded-t-lg' src="./imgs/appple-watch.jpg" alt="">
-                            <div class='p-3 w-full text-center'>
-                                <a href='#' class='font-semibold w-full hover:underline'>Apple Watch S6 LTE 40mm</a>
-                                <div class='text-sm text-gray-500 font-semibold mt-3'>
-                                    Giá hiện tại:
-                                    <span>1.500.000 VNĐ</span>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class='flex justify-between mt-10'>
-                        <div class='relative w-56 border rounded-lg bg-white overflow-hidden'>
-                            <div class='rounded-br-full absolute top-0 left-0 pl-2 py-2 pr-5 bg-gray-300 text-xs font-bold'>
-                                Số lần Bid
-                                0123456</div>
-                            <img class='h-60 w-full rounded-t-lg' src="./imgs/appple-watch.jpg" alt="">
-                            <div class='p-3 w-full text-center'>
-                                <a href='#' class='font-semibold w-full hover:underline'>Apple Watch S6 LTE 40mm</a>
-                                <div class='text-sm text-gray-500 font-semibold mt-3'>
-                                    Giá hiện tại:
-                                    <span>1.500.000 VNĐ</span>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

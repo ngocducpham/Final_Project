@@ -15,9 +15,17 @@ public class ProductDetail {
     private String Holder;
     private int Distance_Price;
     private int Cat_ID;
+    private int Pro_Auc_ID;
+    private String username;
+    private LocalDateTime Price_Time;
+    private int Price_of_User;
 
 
-    public ProductDetail(int cat_ID, int distance_Price, int pro_ID, String pname, String description, int status, int total_Bid, LocalDateTime start_Time, int current_Price, LocalDateTime end_Time, String owner, String holder) {
+    public ProductDetail(String username, LocalDateTime price_Time, int price_of_User, int pro_Auc_ID , int cat_ID, int distance_Price, int pro_ID, String pname, String description, int status, int total_Bid, LocalDateTime start_Time, int current_Price, LocalDateTime end_Time, String owner, String holder) {
+        this.username = username;
+        Price_Time = price_Time;
+        Price_of_User = price_of_User;
+        Pro_Auc_ID = pro_Auc_ID;
         Cat_ID = cat_ID;
         Distance_Price = distance_Price;
         Pro_ID = pro_ID;
@@ -30,6 +38,38 @@ public class ProductDetail {
         End_Time = end_Time;
         Owner = owner;
         Holder = holder;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPrice_Time(LocalDateTime price_Time) {
+        Price_Time = price_Time;
+    }
+
+    public void setPrice_of_User(int price_of_User) {
+        Price_of_User = price_of_User;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public LocalDateTime getPrice_Time() {
+        return Price_Time;
+    }
+
+    public int getPrice_of_User() {
+        return Price_of_User;
+    }
+
+    public void setPro_Auc_ID(int pro_Auc_ID) {
+        Pro_Auc_ID = pro_Auc_ID;
+    }
+
+    public int getPro_Auc_ID() {
+        return Pro_Auc_ID;
     }
 
     public void setCat_ID(int cat_ID) {
