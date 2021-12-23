@@ -178,17 +178,4 @@ public class UserModel {
                     executeUpdate();
         }
     }
-
-    public static void Post_Products(int Pro_Id, int User_Id) {
-        final String query = "insert into favorite (Pro_ID, User_ID)\n" +
-                "values (:Pro_Id,:User_Id);";
-        try (Connection conn = DBUtils.getConnection()) {
-            conn.createQuery(query).
-                    addParameter("Pro_Id", Pro_Id).
-                    addParameter("User_Id", User_Id).
-                    executeUpdate();
-        }
-    }
-
-
 }

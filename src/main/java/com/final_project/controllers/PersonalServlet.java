@@ -4,6 +4,7 @@ import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.final_project.beans.Product;
 import com.final_project.beans.ProductAuction;
 import com.final_project.beans.User;
+import com.final_project.models.ProductModel;
 import com.final_project.models.UserModel;
 import com.final_project.utils.ServletUtils;
 
@@ -49,7 +50,7 @@ public class PersonalServlet extends HttpServlet {
                     Add_to_Watch_list(request, response);
                     break;
                 case "/Post_Products":
-                    Post_Products(request, response);
+                    ServletUtils.forward("/views/Account/Post_Products.jsp", request, response);
                     break;
                 default:
                     ServletUtils.forward("/views/404/index.jsp", request, response);
