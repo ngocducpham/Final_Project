@@ -4,6 +4,7 @@ import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.final_project.beans.Product;
 import com.final_project.beans.ProductAuction;
 import com.final_project.beans.User;
+import com.final_project.models.ProductModel;
 import com.final_project.models.UserModel;
 import com.final_project.utils.ServletUtils;
 
@@ -47,6 +48,9 @@ public class PersonalServlet extends HttpServlet {
                     break;
                 case "/Add_To_Watch_List":
                     Add_to_Watch_list(request, response);
+                    break;
+                case "/Post_Products":
+                    ServletUtils.forward("/views/Account/Post_Products.jsp", request, response);
                     break;
                 default:
                     ServletUtils.forward("/views/404/index.jsp", request, response);
@@ -137,5 +141,10 @@ public class PersonalServlet extends HttpServlet {
         String url=(String) session.getAttribute("retUrl");
         if (url==null) url="/";
         ServletUtils.redirect(url,request,response);
+    }
+
+    private void Post_Products(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("authUser");
     }
 }
