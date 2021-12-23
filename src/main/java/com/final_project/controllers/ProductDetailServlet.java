@@ -17,6 +17,7 @@ public class ProductDetailServlet extends HttpServlet {
         String proID = request.getParameter("id");
 
         ProductDetail productDetail = ProductDetailModel.getByID(proID);
+        productDetail.setMin_Price(productDetail.getCurrent_Price() + productDetail.getDistance_Price());
 
         int cateID = productDetail.getCat_ID();
         List<ProductDetail> fiveRelative = ProductDetailModel.get5ProductRelative(Integer.toString(cateID));
