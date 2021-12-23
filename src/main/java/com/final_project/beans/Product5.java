@@ -1,11 +1,11 @@
 package com.final_project.beans;
 import java.time.LocalDateTime;
-public class product5 {
+public class Product5 {
     private int Pro_ID, Current_Price, Cat_ID;
     private String Pname;
     private LocalDateTime End_Time;
 
-    public product5 (int pro_ID, int current_Price, LocalDateTime end_Time, int cat_ID, String pname)
+    public Product5(int pro_ID, int current_Price, LocalDateTime end_Time, int cat_ID, String pname)
     {
         Pro_ID=pro_ID;
         Current_Price=current_Price;

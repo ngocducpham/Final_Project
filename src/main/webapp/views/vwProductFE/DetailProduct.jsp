@@ -5,7 +5,7 @@
 
 
 <jsp:useBean id="proDetail" scope="request" type="com.final_project.beans.FEDetail"/>
-<jsp:useBean id="proDetail2" scope="request" type="com.final_project.beans.product5"/>
+<jsp:useBean id="proDetail2" scope="request" type="com.final_project.beans.Product5"/>
 
 
 <t:main>

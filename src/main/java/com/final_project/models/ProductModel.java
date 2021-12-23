@@ -1,9 +1,8 @@
 package com.final_project.models;
 
-import com.final_project.beans.Category;
 import com.final_project.beans.Product;
 import com.final_project.beans.ProductAuction;
-import com.final_project.beans.product5;
+import com.final_project.beans.Product5;
 import com.final_project.utils.DBUtils;
 import org.sql2o.Connection;
 
@@ -28,20 +27,7 @@ public class ProductModel {
         }
     }
 
-    public static Product findByProId(int proID) {
-        final String query = "select * from products where Pro_ID = :ProID";
-        try (Connection con = DBUtils.getConnection()) {
-            List<Product> list = con.createQuery(query)
-                    .addParameter("Pro_ID", proID)
-                    .executeAndFetch(Product.class);
 
-            if (list.size() == 0) {
-                return null;
-            }
-
-            return list.get(0);
-        }
-    }
 
     public static List<Product> Join() {
         final String query = "select Current_Price, End_Time, Start_Price, Start_Time, Pname, pa.Pro_ID from products join product_auction pa on pa.Pro_ID = products.Pro_ID";
@@ -52,7 +38,8 @@ public class ProductModel {
     }
 
     public static Product findById(int id) {
-        final String query = "select Current_Price, End_Time, Start_Price, Start_Time, Total_Bid, description, Pname, pa.Pro_ID from products join product_auction pa on pa.Pro_ID = products.Pro_ID where products.Pro_ID = :Pro_ID";
+        final String query = "select Current_Price, End_Time, Start_Price, Start_Time, Total_Bid, description, Pname, pa.Pro_ID " +
+                "from products join product_auction pa on pa.Pro_ID = products.Pro_ID where products.Pro_ID = :Pro_ID";
         try (Connection con = DBUtils.getConnection()) {
             List<Product> list = con.createQuery(query)
                     .addParameter("Pro_ID", id)
@@ -66,7 +53,22 @@ public class ProductModel {
         }
     }
 
-    public static List<product5> find5(int id)
+    public static Product findProID(int id)
+    {
+        final  String query="select * from products where Pro_ID = :Pro_ID";
+        try(Connection con =DBUtils.getConnection())
+        {
+            List<Product> list= con.createQuery(query)
+                    .addParameter("Pro_ID",id)
+                    .executeAndFetch(Product.class);
+            if (list.size() == 0) {
+                return null;
+            }
+
+            return list.get(0);
+        }
+    }
+    public static List<Product5> find5(int id)
     {
         final  String query= "select Pname, pa.Pro_ID, Current_Price, End_Time\n" +
                 "from products join product_auction pa on products.Pro_ID = pa.Pro_ID join categories c on c.Cat_ID = products.Cat_ID\n" +
@@ -74,8 +76,8 @@ public class ProductModel {
         try(Connection con =DBUtils.getConnection())
         {
             return con.createQuery(query)
-                    .addParameter("id",id)
-                    .executeAndFetch(product5.class);
+                    //.addParameter("Cat_ID",id)
+                    .executeAndFetch(Product5.class);
         }
     }
 
