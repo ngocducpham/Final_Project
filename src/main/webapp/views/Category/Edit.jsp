@@ -42,6 +42,7 @@
                      }
                  })
              </script>
+
         </jsp:attribute>
         <jsp:body>
             <form action="" method="post">

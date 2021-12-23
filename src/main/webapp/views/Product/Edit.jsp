@@ -4,6 +4,27 @@
 
 <jsp:useBean id="products" scope="request" type="com.final_project.beans.Product" />
 <t:admin>
+     <jsp:attribute name="js">
+        <script src="https://cdn.tiny.cloud/1/tqma32h5o4jgstj9c1lfgu7ap5gaygxnz1x7xsumn9l0ivcn/tinymce/5/tinymce.min.js"
+                referrerpolicy="origin"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.2.5/js/locales/vi.min.js"></script>
+
+        <script>
+            tinymce.init({
+                selector: '#fullDes',
+                height: 300,
+                width: 1000,
+                plugins: 'lists link media autolink table image paste autosave',
+                language: 'vi',
+                menubar: false,
+                toolbar: [
+                    'undo redo | bold italic underline strikethrough | numlist bullist | link autolink | table media | restoredraft| forecolor backcolor',
+                ],
+                entity_encoding :"raw",
+            });
+
+        </script>
+    </jsp:attribute>
     <jsp:body>
         <form action="" method="post">
             <div class="card">
@@ -37,8 +58,8 @@
                     </div>
                     <div class="card">
                         <div class="card-body">
-                            <label for="txtDes">Mô tả sản phẩm</label>
-                            <input type="text" class="form-control" id="txtDes" name="description" readonly value="${products.description}">
+                            <label for="fullDes">Mô tả sản phẩm</label>
+                            <textarea id="fullDes" name="description"></textarea>
                         </div>
                     </div>
                 </div>
