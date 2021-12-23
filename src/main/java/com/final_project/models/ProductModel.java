@@ -1,5 +1,6 @@
 package com.final_project.models;
 
+import com.final_project.beans.Category;
 import com.final_project.beans.Product;
 import com.final_project.beans.ProductAuction;
 import com.final_project.utils.DBUtils;
@@ -80,6 +81,19 @@ public class ProductModel {
         try (Connection con = DBUtils.getConnection()) {
             return con.createQuery(query)
                     .executeAndFetch(ProductAuction.class);
+        }
+    }
+
+
+    public static void add(Product p) {
+        String insertSql = "insert into products(Pname , img, description, Cat_ID) values (:Pname, :img, :description, :Cat_ID)";
+        try (Connection con = DBUtils.getConnection()) {
+            con.createQuery(insertSql)
+                    .addParameter("Pname", p.getPname())
+                    .addParameter("img", p.getImg())
+                    .addParameter("description", p.getDescription())
+                    .addParameter("Cat_ID", p.getCat_ID())
+                    .executeUpdate();
         }
     }
 }

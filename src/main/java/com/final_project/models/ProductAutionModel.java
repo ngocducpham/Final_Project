@@ -159,4 +159,18 @@ public class ProductAutionModel {
                     .executeAndFetch(Category.class);
         }
     }
+
+    public static void add(ProductAuction pa) {
+        String insertSql = "insert into product_auction(Start_Price, Current_Price, Start_Time, End_Time, Total_Bid, Pro_ID) values (:Start_Price, :Current_Price, :Start_Time, :End_Time, :Total_Bid, :Pro_ID)";
+        try (Connection con = DBUtils.getConnection()) {
+            con.createQuery(insertSql)
+                    .addParameter("Start_Price", pa.getStart_Price())
+                    .addParameter("Current_Price", pa.getCurrent_Price())
+                    .addParameter("Start_Time", pa.getStart_Time())
+                    .addParameter("End_Time", pa.getEnd_Time())
+                    .addParameter("Total_Bid", pa.getTotal_Bid())
+                    .addParameter("Pro_ID", pa.getPro_ID())
+                    .executeUpdate();
+        }
+    }
 }
