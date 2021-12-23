@@ -7,6 +7,7 @@
 <jsp:useBean id="relative" scope="request" type="java.util.List<com.final_project.beans.ProductDetail>"/>
 <jsp:useBean id="history" scope="request" type="java.util.List<com.final_project.beans.ProductDetail>"/>
 <jsp:useBean id="Verified" scope="session" type="java.lang.Boolean"/>
+<jsp:useBean id="authUser" scope="session" type="com.final_project.beans.User"/>
 
 
 <t:main>
@@ -132,10 +133,13 @@
                                 </div>
                             </div>
                             <div class='mt-4 relative'>
-                                <form action="">
+                                <form method="post">
                                     <span class='flex items-center justify-center bg-gray-800 text-white px-3 h-9 rounded-l-md absolute left-0'>VNĐ</span>
+                                    <input type="hidden" value="${authUser.user_ID}" name="uid">
+                                    <input type="hidden" value="${proDetail.pro_Auc_ID}" name="proauid">
+                                    <input type="hidden" value="${proDetail.pro_ID}" name="proid">
                                     <input class='tracking-wide font-medium border-2 w-96 h-9 focus:outline-none py-1 pl-20 pr-20 rounded-md border-gray-500'
-                                           type="text" value='99999999'>
+                                           name="bidprice" type="text" value='99999999'>
                                     <c:if test="${Verified}">
                                         <button
                                                 class='bg-gray-800 h-9 px-4 absolute right-0 rounded-r-md text-white text-lg hover:bg-gray-700'>Ra

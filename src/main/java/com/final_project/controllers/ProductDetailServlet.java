@@ -32,6 +32,14 @@ public class ProductDetailServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String proAuID = request.getParameter("proauid");
+        String bidPrice = request.getParameter("bidprice");
+        String uid = request.getParameter("uid");
+        String proID = request.getParameter("proid");
+
+        ProductDetailModel.bid(uid,proAuID,bidPrice);
+        ServletUtils.redirect("/ProductDetail?id=" + proID, request, response);
+
 
     }
 }
