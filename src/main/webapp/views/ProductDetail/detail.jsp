@@ -55,6 +55,7 @@
                     let priceUp = inputPrice.value - minPrice;
                     if (inputPrice.value < minPrice) {
                         alert('Giá phải từ giá thấp nhất trở lên');
+                        inputPrice.value = minPrice;
                         return;
                     } else if (priceUp % priceStep != 0) {
                         alert('Giá phải là bội của bước giá');
