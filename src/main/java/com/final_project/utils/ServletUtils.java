@@ -48,26 +48,26 @@ public class ServletUtils {
         return MailSender.send(mail_to, header, content);
     }
 
-    public static boolean sengMail_to_Reset_Password(User user){
+    public static boolean sengMail_to_Reset_Password(User user) {
         String mail_to = user.getEmail();
         String header = "Reset Your Password";
         String content = "Use this code to Reset Your Password: " + user.getCode();
         return MailSender.send(mail_to, header, content);
     }
 
-    public static void send_mail_to_owner_when_no_one_bid(){
-
+    public static void send_mail_to_owner_when_no_one_bid(String mail_to, String header, String content) {
+        boolean sent = MailSender.send(mail_to, header, content);
     }
 
-    public static void send_mail_to_winner(){
-
+    public static void send_mail_to_winner(String mail_to, String header, String content) {
+        boolean sent = MailSender.send(mail_to, header, content);
     }
 
-    public static void send_mail_to_owner_when_somebody_win(){
-
+    public static void send_mail_to_owner_when_somebody_win(String mail_to, String header, String content) {
+        boolean sent = MailSender.send(mail_to, header, content);
     }
 
-    public static void send_mail_when_bid_successfully(){
+    public static void send_mail_when_bid_successfully() {
 
     }
 }
