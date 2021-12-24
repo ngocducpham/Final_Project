@@ -100,12 +100,17 @@
                     <div class='mr-16' style='width: 450px;'>
                         <div class='flex justify-between items-center px-4 py-2 mb-3 rounded-md bg-gray-800 text-white '
                              style='width: 450px;'>
-                            <div class='text-lg font-medium'>
-                                Còn lại:
-                            </div>
-                            <div id="detail_count_down" class='font-semibold text-lg'>
-
-                            </div>
+                            <c:if test="${proDetail.status == 0}">
+                                <div class="text-lg text-red-500 font-medium">Phiên đấu giá đã kết thúc
+                                </div>
+                            </c:if>
+                            <c:if test="${proDetail.status == 1}">
+                                <div class='text-lg font-medium'>
+                                    Còn lại:
+                                </div>
+                                <div id="detail_count_down" class='font-semibold text-lg'>
+                                </div>
+                            </c:if>
                         </div>
                         <div class='flex'>
                             <!-- hình bên -->
@@ -193,36 +198,43 @@
                                 </div>
                             </div>
                             <div class='mt-4 relative'>
-                                <c:if test="${blacklist.value != 1}">
-                                    <c:if test="${Verified}">
-                                        <form id="frm__bid" method="post">
-                                            <span class='flex items-center justify-center bg-gray-800 text-white px-3 h-9 rounded-l-md absolute left-0'>VNĐ</span>
-                                            <input type="hidden" value="${authUser.user_ID}" name="uid">
-                                            <input type="hidden" value="${proDetail.pro_Auc_ID}" name="proauid">
-                                            <input type="hidden" value="${proDetail.pro_ID}" name="proid">
-                                            <input id="input__price"
-                                                   class='tracking-wide font-medium border-2 w-96 h-9 focus:outline-none py-1 pl-20 pr-20 rounded-md border-gray-500'
-                                                   name="bidprice" type="text" value='${proDetail.min_Price}'>
+                                <c:if test="${proDetail.status == 1}">
+                                    <c:if test="${blacklist.value != 1}">
+                                        <c:if test="${Verified}">
+                                            <form id="frm__bid" method="post">
+                                                <span class='flex items-center justify-center bg-gray-800 text-white px-3 h-9 rounded-l-md absolute left-0'>VNĐ</span>
+                                                <input type="hidden" value="${authUser.user_ID}" name="uid">
+                                                <input type="hidden" value="${proDetail.pro_Auc_ID}" name="proauid">
+                                                <input type="hidden" value="${proDetail.pro_ID}" name="proid">
+                                                <input id="input__price"
+                                                       class='tracking-wide font-medium border-2 w-96 h-9 focus:outline-none py-1 pl-20 pr-20 rounded-md border-gray-500'
+                                                       name="bidprice" type="text" value='${proDetail.min_Price}'>
 
-                                            <c:if test="${Verified}">
-                                                <button type="button" id="btn__bid"
-                                                        class='bg-gray-800 h-9 px-4 absolute right-0 rounded-r-md text-white text-lg hover:bg-gray-700'>
-                                                    Ra
-                                                    giá
-                                                </button>
-                                            </c:if>
-                                        </form>
+                                                <c:if test="${Verified}">
+                                                    <button type="button" id="btn__bid"
+                                                            class='bg-gray-800 h-9 px-4 absolute right-0 rounded-r-md text-white text-lg hover:bg-gray-700'>
+                                                        Ra
+                                                        giá
+                                                    </button>
+                                                </c:if>
+                                            </form>
+                                        </c:if>
+                                    </c:if>
+                                    <c:if test="${blacklist.value == 1}">
+                                        <div class="text-lg text-red-500 font-medium">Bạn không có quyền đấu giá sản
+                                            phẩm này
+                                        </div>
+                                    </c:if>
+                                    <c:if test="${!Verified}">
+                                        <div class="text-lg text-red-500 font-medium">Đăng nhập để đấu giá sản phẩm
+                                        </div>
                                     </c:if>
                                 </c:if>
-                                <c:if test="${blacklist.value == 1}">
-                                    <div class="text-lg text-red-500 font-medium">Bạn không có quyền đấu giá sản
-                                        phẩm này
+                                <c:if test="${proDetail.status == 0}">
+                                    <div class="text-lg text-red-500 font-medium">Phiên đấu giá đã kết thúc
                                     </div>
                                 </c:if>
-                                <c:if test="${!Verified}">
-                                    <div class="text-lg text-red-500 font-medium">Đăng nhập để đấu giá sản phẩm
-                                    </div>
-                                </c:if>
+
                             </div>
                         </div>
                     </div>
