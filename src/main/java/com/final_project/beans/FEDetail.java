@@ -10,7 +10,6 @@ public class FEDetail {
     private int Current_Price;
     private String description;
 
-
     public FEDetail(String pname, String Owner,String Holder, String description,LocalDateTime start_Time, LocalDateTime end_Time,
         int pro_ID, int price_of_User, int status, int total_Bid, int max_price, int current_Price,int cat_ID )
     {

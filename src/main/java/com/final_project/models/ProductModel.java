@@ -16,11 +16,11 @@ public class ProductModel {
         }
     }
 
-    public static List<Product> findByCatId(int catId) {
-        final String query = "select * from products where Cat_ID = :CatID";
+    public static List<Product> findByCatId(int id) {
+        final String query = "select * from products where Cat_ID = :Cat_ID";
         try (Connection con = DBUtils.getConnection()) {
             return con.createQuery(query)
-                    .addParameter("CatID", catId)
+                    .addParameter("Cat_ID", id)
                     .executeAndFetch(Product.class);
         }
     }
@@ -35,9 +35,9 @@ public class ProductModel {
         }
     }
 
+
     public static Product findById(int id) {
-        final String query = "select Current_Price, End_Time, Start_Price, Start_Time, Total_Bid, description, Pname, pa.Pro_ID " +
-                "from products join product_auction pa on pa.Pro_ID = products.Pro_ID where products.Pro_ID = :Pro_ID";
+        final String query = "select Current_Price, End_Time, Start_Price, Start_Time, Pname, pa.Pro_ID from products join product_auction pa on pa.Pro_ID = products.Pro_ID where products.Pro_ID = :Pro_ID";
         try (Connection con = DBUtils.getConnection()) {
             List<Product> list = con.createQuery(query)
                     .addParameter("Pro_ID", id)
@@ -50,23 +50,37 @@ public class ProductModel {
             return list.get(0);
         }
     }
+//    public static Product findById1(int id) {
+//        final String query = "select * from products";
+//
+//        try (Connection con = DBUtils.getConnection()) {
+//            List<Product> list = con.createQuery(query)
+//                    .addParameter("id", id)
+//                    .executeAndFetch(Product.class);
+//            if (list.size() == 0) {
+//                return null;
+//            }
+//            return list.get(0);
+//        }
+//    }
 
-    public static Product findProID(int id)
-    {
-        final  String query="select * from products where Pro_ID = :Pro_ID";
-        try(Connection con =DBUtils.getConnection())
-        {
-            List<Product> list= con.createQuery(query)
-                    .addParameter("Pro_ID",id)
-                    .executeAndFetch(Product.class);
-            if (list.size() == 0) {
-                return null;
-            }
-
-            return list.get(0);
-        }
-    }
-
+//    //Tim theo Pro_ID
+//    public static Product findProID(int id)
+//    {
+//        final  String query="select * from products where Pro_ID = :Pro_ID";
+//        try(Connection con =DBUtils.getConnection())
+//        {
+//            List<Product> list= con.createQuery(query)
+//                    .addParameter("Pro_ID",id)
+//                    .executeAndFetch(Product.class);
+//            if (list.size() == 0) {
+//                return null;
+//            }
+//
+//            return list.get(0);
+//        }
+//    }
+    //Truy van Chi tiet SP
     public static FEDetail productDetail(int id)
     {
         final String query= "select products.Pro_ID, products.Pname, products.Cat_ID, products.Status, product_auction.Total_Bid, product_auction.Current_Price\n" +
@@ -87,16 +101,15 @@ public class ProductModel {
         }
 
     }
-
-    public static List<Product5> find5(int id)
+//    Tim 5 sp cung loai
+    public static List<Product5> find5(String id)
     {
-        final  String query= "select Pname, pa.Pro_ID, Current_Price, End_Time\n" +
+        final  String query= "select Pname, pa.Pro_ID, Current_Price, End_Time, Total_Bid \n" +
                 "from products join product_auction pa on products.Pro_ID = pa.Pro_ID join categories c on c.Cat_ID = products.Cat_ID\n" +
-                "where c.Cat_ID = 1 or Cparent_ID = 1\n limit 5";
-        try(Connection con =DBUtils.getConnection())
-        {
+                "where c.Cat_ID = :id or Cparent_ID = :id limit 5";
+        try (Connection con = DBUtils.getConnection()) {
             return con.createQuery(query)
-                    //.addParameter("Cat_ID",id)
+                    .addParameter("id", id)
                     .executeAndFetch(Product5.class);
         }
     }

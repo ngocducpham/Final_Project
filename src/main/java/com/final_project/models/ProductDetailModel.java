@@ -1,5 +1,6 @@
 package com.final_project.models;
 
+import com.final_project.beans.MyIntType;
 import com.final_project.beans.ProductAuction;
 import com.final_project.beans.ProductDetail;
 import com.final_project.utils.DBUtils;
@@ -22,9 +23,10 @@ public class ProductDetailModel {
                 "     , product_auction.End_Time\n" +
                 "     , U1.username                as Owner\n" +
                 "     , U2.username                as Holder\n" +
+                "     , U1.User_ID                as OwnerID\n" +
                 "     , Cat_ID\n" +
                 "     , Distance_Price\n" +
-                "     , auction.Pro_Auc_ID\n" +
+                "     , product_auction.Pro_Auc_ID\n" +
                 "from products\n" +
                 "         left join magage on products.Pro_ID = magage.Pro_ID\n" +
                 "         left join users as U1 on U1.User_ID = magage.User_ID\n" +
@@ -39,7 +41,9 @@ public class ProductDetailModel {
             List<ProductDetail> detail = con.createQuery(query)
                     .addParameter("id", id)
                     .executeAndFetch(ProductDetail.class);
-            return detail.get(0);
+            if (detail.size() > 0)
+                return detail.get(0);
+            return null;
         }
     }
 
@@ -78,7 +82,7 @@ public class ProductDetailModel {
         try (Connection con = DBUtils.getConnection()) {
             con.createQuery(query)
                     .addParameter("proauid", proAuID)
-                    .addParameter("uid",uid)
+                    .addParameter("uid", uid)
                     .addParameter("price", price)
                     .executeUpdate();
         }
@@ -94,4 +98,66 @@ public class ProductDetailModel {
                     .executeUpdate();
         }
     }
+
+    public static String currentBidder(String proAuID) {
+        String query = "select username\n" +
+                "from auction join users u on u.User_ID = auction.User_ID\n" +
+                "where Pro_Auc_ID = :id\n" +
+                "order by Price_of_User desc\n" +
+                "limit 1\n";
+        try (Connection con = DBUtils.getConnection()) {
+            List<String> result = con.createQuery(query)
+                    .addParameter("id", proAuID)
+                    .executeAndFetch(String.class);
+            if (result.size() > 0)
+                return result.get(0);
+            return "";
+        }
+    }
+
+    public static ProductDetail getOwner(String proAuID) {
+        String query = "select m.User_ID, username\n" +
+                "from users\n" +
+                "         join magage m on users.User_ID = m.User_ID\n" +
+                "         join product_auction pa on m.Pro_ID = pa.Pro_ID\n" +
+                "where Pro_Auc_ID = :id";
+        try (Connection con = DBUtils.getConnection()) {
+            List<ProductDetail> result = con.createQuery(query)
+                    .addParameter("id", proAuID)
+                    .executeAndFetch(ProductDetail.class);
+            if (result.size() > 0)
+                return result.get(0);
+            return new ProductDetail();
+        }
+    }
+
+    public static MyIntType checkBlackList(String uid, String proAuid) {
+        String query = "select User_ID from black_list\n" +
+                "where User_ID = :uid and product_auction_ID = :proauid";
+        try (Connection con = DBUtils.getConnection()) {
+            List<String> result = con.createQuery(query)
+                    .addParameter("proauid", proAuid)
+                    .addParameter("uid", uid)
+                    .executeAndFetch(String.class);
+            if (result.size() > 0)
+                return new MyIntType(1);
+            return new MyIntType(0);
+        }
+    }
+
+    public static List<ProductDetail> getBidUser(String proAuID) {
+        String query = "select a.User_ID, Pro_ID, username, Price_Time, Price_of_User\n" +
+                "from product_auction\n" +
+                "    join auction a\n" +
+                "on product_auction.Pro_Auc_ID = a.Pro_Auc_ID\n" +
+                "    join users u on u.User_ID = a.User_ID\n" +
+                "where a.Pro_Auc_ID = :id\n" +
+                "group by a.User_ID";
+        try (Connection con = DBUtils.getConnection()) {
+            return con.createQuery(query)
+                    .addParameter("id", proAuID)
+                    .executeAndFetch(ProductDetail.class);
+        }
+    }
+
 }

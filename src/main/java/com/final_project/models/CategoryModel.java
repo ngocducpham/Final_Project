@@ -18,8 +18,19 @@ public class CategoryModel {
 
   public static Category findById(int id) {
     final String query = "select * from categories where Cat_ID = :Cat_ID";
-    return getCategory(id, query);
+    try (Connection con = DBUtils.getConnection()) {
+      List<Category> list = con.createQuery(query)
+              .addParameter("Cat_ID", id)
+              .executeAndFetch(Category.class);
+
+      if (list.size() == 0) {
+        return null;
+      }
+
+      return list.get(0);
+    }
   }
+
 
   public static void add(Category c) {
     String insertSql = "insert into categories(Cname, Cparent_ID, Level) values (:Cname, :Cparent_ID, :Level)";
@@ -53,21 +64,5 @@ public class CategoryModel {
     }
   }
 
-  public static Category Find_By_Cat_ID(int Cat_ID) {
-    final String query = "select * from products as p where p.Cat_ID = :Cat_ID";
-    return getCategory(Cat_ID, query);
-  }
-
-  private static Category getCategory(int Cat_ID, String query) {
-    try (Connection con = DBUtils.getConnection()) {
-      List<Category> list = con.createQuery(query)
-              .addParameter("Cat_ID", Cat_ID)
-              .executeAndFetch(Category.class);
-      if (list.size() == 0) {
-        return null;
-      }
-      return list.get(0);
-    }
-  }
 
 }

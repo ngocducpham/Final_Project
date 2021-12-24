@@ -35,10 +35,6 @@
                         <label for="txtTotal">Tổng bidder</label>
                         <input type="text" class="form-control" id="txtTotal" name="Total_Bid" readonly value="${products.total_Bid}">
                     </div>
-                    <div class="mb-3">
-                        <label for="fullDes" class="form-label">Mô tả sản phẩm</label>
-                        <textarea class="form-control" id="fullDes" rows="3">${products.description}</textarea>
-                    </div>
                 </div>
 
                 <div class="card-footer">

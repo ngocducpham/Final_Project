@@ -53,6 +53,7 @@
         </script>
     </jsp:attribute>
     <jsp:body>
+        <fmt:setLocale value="vi_VN"/>
         <!--Hero-->
         <div class='w-full h-screen'
              style='background-image: url("${pageContext.request.contextPath}/public/imgs/main-banner-bg.png");'>
@@ -91,7 +92,7 @@
                                     <a href='${pageContext.request.contextPath}/ProductDetail?id=${p.pro_ID}' class='font-semibold w-full hover:underline'>${p.pname}</a>
                                     <div class='text-sm text-gray-500 font-semibold mt-3'>
                                         Giá hiện tại:
-                                        <span>${p.current_Price} đ</span>
+                                        <fmt:formatNumber value="${p.current_Price}" type="currency"/>
                                     </div>
                                     <div class='timeContainer flex justify-around text-xs mt-3 font-semibold'>
                                         <div>
@@ -132,7 +133,7 @@
                                     <a href='${pageContext.request.contextPath}/ProductDetail?id=${p.pro_ID}' class='font-semibold w-full hover:underline'>${p.pname}</a>
                                     <div class='text-sm text-gray-500 font-semibold mt-3'>
                                         Giá hiện tại:
-                                        <span>${p.current_Price} đ</span>
+                                        <fmt:formatNumber value="${p.current_Price}" type="currency"/>
                                     </div>
                                     <div class='timeContainer flex justify-around text-xs mt-3 font-semibold'>
                                         <div>
@@ -173,7 +174,7 @@
                                     <a href='${pageContext.request.contextPath}/ProductDetail?id=${p.pro_ID}' class='font-semibold w-full hover:underline'>${p.pname}</a>
                                     <div class='text-sm text-gray-500 font-semibold mt-3'>
                                         Giá hiện tại:
-                                        <span>${p.current_Price} đ</span>
+                                        <fmt:formatNumber value="${p.current_Price}" type="currency"/>
                                     </div>
                                     <div class='timeContainer flex justify-around text-xs mt-3 font-semibold'>
                                         <div>
