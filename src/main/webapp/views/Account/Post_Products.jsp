@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
+<jsp:useBean id="Cate" scope="request" type="java.util.List<com.final_project.beans.Category>"/>
 
 <t:personal_page>
     <jsp:attribute name="js">
@@ -26,43 +27,49 @@
         </script>
     </jsp:attribute>
     <jsp:body>
-    <div class="profile">
+    <div class="profile ">
 
         <div class="top_header">
             <p class="h__profile">SẢN PHẦM ĐĂNG BÁN</p>
         </div>
 
-        <div class="boxProfile container-fluid">
-            <form method="post" action="" enctype="multipart/form-data">
+        <div class="boxProfile ">
+            <form  action="" method="post" enctype="multipart/form-data">
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="pname">Tên sản phẩm</label>
-                        <input type="text" class="form-control background" name="Pname" id="pname"
-                               value="">
+                        <input type="text" class="form-control background" name="Pname" id="pname" placeholder="iPhone 13"
+                               value="" >
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="startprice">Giá khởi điểm</label>
-                        <input type="text" class="form-control background" name="Start_Price" id="startprice"
-                               value="" >
+                        <label for="price">Giá khởi điểm</label>
+                        <input type="text" class="form-control background" name="Price" id="price"
+                               value="" placeholder="16.000.000 VND">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="catid">Chọn danh mục</label>
                     <select class="custom-select" name="Cat_ID" id="catid">
-                        <option value="1">đổ dữ liệu vào</option>
+                        <option >6--Quần áo</option>
+                        <option>7--Giày dép</option>
+                        <option>8--Dụng cụ thể thao</option>
+                        <option>9--Thực phẩm hỗ trợ</option>
+                        <option>10--Laptop</option>
+                        <option>11--Điện thoại</option>
+                        <option>12--Đồng hồ</option>
                     </select>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group ">
 
-                    <label for="start_time" class="#">
-                        Ngày đấu giá: </label>
-                    <input id="start_time" name="start_time" type="date" required
+                    <label for="start_time" >
+                        Ngày đấu giá: </label><br />
+                    <input id="start_time" name="Start_Time" type="date" required
                        class="mt-2 w-full px-2 py-1 outline-none block border-2 rounded-md  border-gray-300 text-gray-700">
 
-                    <label for="end_time" class="#">
-                        Ngày kết thúc: </label>
-                    <input id="end_time" name="end_time" type="date" required
+                    <label for="end_time" >
+                        Ngày kết thúc: </label> <br />
+                    <input id="end_time" name="End_Time" type="date" required
                        class="mt-2 w-full px-2 py-1 outline-none block border-2 rounded-md  border-gray-300 text-gray-700">
 
                 </div>
@@ -79,10 +86,12 @@
                         <textarea id="fullDes" name="description"></textarea>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-outline-success"><i class="fa fa-check"></i>
+                <button type="submit" class="btn btn-outline-success">
+                    <i class="fa fa-check"></i>
                     Lưu
                 </button>
-                <button type="button" class="btn btn-outline-danger" id="close_edit"><i class="fa fa-times"></i>
+                <button type="button" class="btn btn-outline-danger" id="close_edit">
+                    <i class="fa fa-times"></i>
                     Huỷ
                 </button>
             </form>

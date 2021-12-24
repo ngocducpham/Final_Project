@@ -35,6 +35,17 @@ public class AddProduct
         this.img=img;
     }
 
+    public AddProduct(String pname, int price, int cat_id, LocalDateTime start_time, LocalDateTime end_time, String img, String description)
+    {
+        this.Pname=pname;
+        this.Price=price;
+        this.Cat_ID=cat_id;
+        this.Start_Time=start_time;
+        this.End_Time=end_time;
+        this.img=img;
+        this.description=description;
+    }
+
     public int getPro_ID() {
         return Pro_ID;
     }

@@ -1,20 +1,24 @@
 package com.final_project.controllers;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
-import com.final_project.beans.Product;
+import com.final_project.beans.AddProduct;
+import com.final_project.beans.Category;
 import com.final_project.beans.ProductAuction;
 import com.final_project.beans.User;
-import com.final_project.models.ProductModel;
+import com.final_project.models.InsertProductModel;
 import com.final_project.models.UserModel;
 import com.final_project.utils.ServletUtils;
 
-import javax.mail.Session;
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Date;
 import java.text.ParseException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @WebServlet(name = "PersonalServlet", value = "/Personal/*")
@@ -51,7 +55,11 @@ public class PersonalServlet extends HttpServlet {
                 case "/Add_To_Watch_List":
                     Add_to_Watch_list(request, response);
                     break;
+//                    Post SP
                 case "/Post_Products":
+
+                    List<Category> Catlist = InsertProductModel.getCate();
+                    request.setAttribute("Cate",Catlist);
                     ServletUtils.forward("/views/Account/Post_Products.jsp", request, response);
                     break;
                 default:
@@ -80,11 +88,28 @@ public class PersonalServlet extends HttpServlet {
                 case "/Request":
                     Get_Request(request, response);
                     break;
+
+                case "/Post_Products":
+                    String pname= request.getParameter("Pname");
+                    int price=Integer.parseInt("Price");
+                    int cat_ID= Integer.parseInt("Cat_ID");
+                    LocalDateTime start_Time = LocalDateTime.parse("Start_Time") ;
+                    LocalDateTime end_Time = LocalDateTime.parse("End_Time") ;
+                    String img = request.getParameter("img");
+                    String description =request.getParameter("description");
+
+
+                    AddProduct s=new AddProduct(pname,price,cat_ID,start_Time,end_Time,img,description);
+                    InsertProductModel.InsertProduct(s);
+
+                    ServletUtils.forward("views/Account/Post_Products.jsp",request,response);
+
                 default:
                     break;
             }
         }
     }
+
 
     private void Update_User_Information(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
         request.setCharacterEncoding("UTF-8");
