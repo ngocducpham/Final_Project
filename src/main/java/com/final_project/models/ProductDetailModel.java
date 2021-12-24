@@ -1,5 +1,6 @@
 package com.final_project.models;
 
+import com.final_project.beans.MyIntType;
 import com.final_project.beans.ProductAuction;
 import com.final_project.beans.ProductDetail;
 import com.final_project.utils.DBUtils;
@@ -92,6 +93,34 @@ public class ProductDetailModel {
                     .addParameter("price", price)
                     .addParameter("proauid", proAuID)
                     .executeUpdate();
+        }
+    }
+
+    public static String currentBidder(String proAuID){
+        String query = "select username\n" +
+                "from auction join users u on u.User_ID = auction.User_ID\n" +
+                "where Pro_Auc_ID = :id\n" +
+                "order by Price_of_User desc\n" +
+                "limit 1\n";
+        try (Connection con = DBUtils.getConnection()) {
+            List<String> result = con.createQuery(query)
+                    .addParameter("id", proAuID)
+                    .executeAndFetch(String.class);
+            return result.get(0);
+        }
+    }
+
+    public static MyIntType checkBlackList(String uid, String proAuid){
+        String query = "select User_ID from black_list\n" +
+                "where User_ID = :uid and product_auction_ID = :proauid";
+        try (Connection con = DBUtils.getConnection()) {
+            List<String> result = con.createQuery(query)
+                    .addParameter("proauid", proAuid)
+                    .addParameter("uid", uid)
+                    .executeAndFetch(String.class);
+            if(result.size() > 0)
+                return new MyIntType(1);
+            return new MyIntType(0);
         }
     }
 }

@@ -9,14 +9,19 @@
         <div class='relative flex items-center justify-between h-16'>
             <div class='flex'>
                 <div class='flex items-center'>
-                    <a href="${pageContext.request.contextPath}">
+                    <a href="${pageContext.request.contextPath}" style="text-decoration: none">
                         <img class='h-8' src="${pageContext.request.contextPath}/public/imgs/logo.svg" alt="">
                     </a>
                 </div>
                 <div class='flex space-x-4 ml-6 items-center'>
-                    <a href="${pageContext.request.contextPath}"
-                       class='text-sm font-medium text-white rounded-md bg-gray-900 px-3 py-2'>Trang
-                        chủ</a>
+                    <button id="btn__home" type="button" class="text-sm font-medium text-gray-300 rounded-md px-3 py-2 hover:bg-gray-700">
+                        <span>Trang chủ</span>
+                    </button>
+                    <script>
+                        document.getElementById('btn__home').addEventListener('click' ,()=>{
+                            location.href = "${pageContext.request.contextPath}";
+                        })
+                    </script>
                     <div
                             class='bid__menu categories__menu relative text-sm font-medium text-gray-300 rounded-md px-3 py-2 hover:bg-gray-700'>
                         <a href="${pageContext.request.contextPath}/Search?searchproduct">Đấu giá</a>

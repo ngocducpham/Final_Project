@@ -1,6 +1,8 @@
 package com.final_project.controllers;
 
+import com.final_project.beans.MyIntType;
 import com.final_project.beans.ProductDetail;
+import com.final_project.beans.User;
 import com.final_project.models.ProductDetailModel;
 import com.final_project.utils.ServletUtils;
 
@@ -25,6 +27,18 @@ public class ProductDetailServlet extends HttpServlet {
         int proAuID = productDetail.getPro_Auc_ID();
         List<ProductDetail> history = ProductDetailModel.bidHistory(Integer.toString(proAuID));
 
+        String currentBid = ProductDetailModel.currentBidder(Integer.toString(proAuID));
+
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("authUser");
+        if(user.getUsername() != null) {
+            MyIntType checkBlackList = ProductDetailModel.checkBlackList(Integer.toString(user.getUser_ID()), Integer.toString(proAuID));
+            request.setAttribute("blacklist", checkBlackList);
+        }
+        else {
+            request.setAttribute("blacklist",new MyIntType(3));
+        }
+        request.setAttribute("currentBid", currentBid);
         request.setAttribute("history", history);
         request.setAttribute("relative", fiveRelative);
         request.setAttribute("proDetail", productDetail);
@@ -38,7 +52,7 @@ public class ProductDetailServlet extends HttpServlet {
         String uid = request.getParameter("uid");
         String proID = request.getParameter("proid");
 
-        ProductDetailModel.bid(uid,proAuID,bidPrice);
+        ProductDetailModel.bid(uid, proAuID, bidPrice);
         ServletUtils.redirect("/ProductDetail?id=" + proID, request, response);
 
 
