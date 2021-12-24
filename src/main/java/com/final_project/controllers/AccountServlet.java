@@ -92,11 +92,11 @@ public class AccountServlet extends HttpServlet {
         String name = request.getParameter("username");
         String address = request.getParameter("full_address");
         Date ngaysinh = ServletUtils.Parse_date_format(request.getParameter("DOB"));
-        String role = request.getParameter("role");
+//        String role = request.getParameter("role");
 
         String code = ServletUtils.get_Verify_Code();
         System.out.println(code);
-        User user = new User(Integer.parseInt(role), name, email, EnCrypted_pass, address, code, ngaysinh);
+        User user = new User(1, name, email, EnCrypted_pass, address, code, ngaysinh);
 
         boolean isMail_Sent = ServletUtils.sendMail_to_Active_Account(user);
 
