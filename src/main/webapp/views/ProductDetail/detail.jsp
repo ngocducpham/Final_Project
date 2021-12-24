@@ -145,7 +145,7 @@
                             <div class='relative rounded-lg border border-indigo-400 overflow-hidden'
                                  style="height: 440px">
                                 <c:if test="${Verified}">
-                                    <a href="#">
+                                    <a href="${pageContext.request.contextPath}/Personal/Add_To_Watch_List?Pro_Id=${proDetail.pro_ID}">
                                         <span class="iconify absolute top-1 right-1 text-lg text-red-400 hover:text-red-500"
                                               data-icon="ant-design:heart-filled"></span>
                                     </a>
