@@ -35,39 +35,34 @@ public class ProductModel {
         }
     }
 
-    public static ProductDetail findById(String id) {
-        final String query =
-                "select products.Pro_ID, products.Pname, products.description, products.Status, product_auction.Total_Bid"
-+",product_auction.Start_Time, max(auction.Price_of_User) as GiaCaoNhat,product_auction.End_Time,U1.username as Owner,U2.username as Holder"
-        +"from products inner join magage  on products.Pro_ID= magage.Pro_ID"
-        +"inner join users  as U1 on U1.User_ID=magage.User_ID"
-        +"inner join product_auction on product_auction.Pro_ID = products.Pro_ID"
-        +"inner join auction on auction.Pro_Auc_ID=product_auction.Pro_Auc_ID"
-        +"inner join users U2 on U2.User_ID= auction.User_ID"
-        +"where products.Pro_ID=1"
-        +"group by product_auction.Pro_ID";
 
-        try (Connection con = DBUtils.getConnection()) {
-            List<ProductDetail> detail = con.createQuery(query)
-                    .addParameter("Pro_ID", id)
-                    .executeAndFetch(ProductDetail.class);
-            return detail.get(0);
-        }
-    }
-
-    public static Product findById1(int id) {
-        final String query = "select * from products";
-
+    public static Product findById(int id) {
+        final String query = "select Current_Price, End_Time, Start_Price, Start_Time, Pname, pa.Pro_ID from products join product_auction pa on pa.Pro_ID = products.Pro_ID where products.Pro_ID = :Pro_ID";
         try (Connection con = DBUtils.getConnection()) {
             List<Product> list = con.createQuery(query)
-                    .addParameter("id", id)
+                    .addParameter("Pro_ID", id)
                     .executeAndFetch(Product.class);
+
             if (list.size() == 0) {
                 return null;
             }
+
             return list.get(0);
         }
     }
+//    public static Product findById1(int id) {
+//        final String query = "select * from products";
+//
+//        try (Connection con = DBUtils.getConnection()) {
+//            List<Product> list = con.createQuery(query)
+//                    .addParameter("id", id)
+//                    .executeAndFetch(Product.class);
+//            if (list.size() == 0) {
+//                return null;
+//            }
+//            return list.get(0);
+//        }
+//    }
 
 //    //Tim theo Pro_ID
 //    public static Product findProID(int id)
