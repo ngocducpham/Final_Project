@@ -1,6 +1,8 @@
 package com.final_project.beans;
 import java.time.LocalDateTime;
-public class Product5 {
+
+public class Product5
+{
     private int Pro_ID, Current_Price, Cat_ID;
     private String Pname;
     private LocalDateTime End_Time;
