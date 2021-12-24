@@ -19,6 +19,10 @@ public class ProductDetailServlet extends HttpServlet {
         String proID = request.getParameter("id");
 
         ProductDetail productDetail = ProductDetailModel.getByID(proID);
+        if(productDetail == null){
+            ServletUtils.forward("views/404/index.jsp", request, response);
+            return;
+        }
         productDetail.setMin_Price(productDetail.getCurrent_Price() + productDetail.getDistance_Price());
 
         int cateID = productDetail.getCat_ID();
@@ -38,6 +42,12 @@ public class ProductDetailServlet extends HttpServlet {
         else {
             request.setAttribute("blacklist",new MyIntType(3));
         }
+
+        List<ProductDetail> bidderList = ProductDetailModel.getBidUser(Integer.toString(proAuID));
+        ProductDetail owner = ProductDetailModel.getOwner(Integer.toString(proAuID));
+
+        request.setAttribute("owner", owner);
+        request.setAttribute("bidderList", bidderList);
         request.setAttribute("currentBid", currentBid);
         request.setAttribute("history", history);
         request.setAttribute("relative", fiveRelative);

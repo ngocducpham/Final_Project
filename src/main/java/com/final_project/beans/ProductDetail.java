@@ -20,9 +20,16 @@ public class ProductDetail {
     private LocalDateTime Price_Time;
     private int Price_of_User;
     private int Min_Price;
+    private int OwnerID;
+    private int User_ID;
 
+    public ProductDetail(){
 
-    public ProductDetail(String username, LocalDateTime price_Time, int price_of_User, int pro_Auc_ID , int cat_ID, int distance_Price, int pro_ID, String pname, String description, int status, int total_Bid, LocalDateTime start_Time, int current_Price, LocalDateTime end_Time, String owner, String holder) {
+    }
+
+    public ProductDetail(int user_ID, int ownerID, String username, LocalDateTime price_Time, int price_of_User, int pro_Auc_ID , int cat_ID, int distance_Price, int pro_ID, String pname, String description, int status, int total_Bid, LocalDateTime start_Time, int current_Price, LocalDateTime end_Time, String owner, String holder) {
+        User_ID = user_ID;
+        OwnerID = ownerID;
         this.username = username;
         Price_Time = price_Time;
         Price_of_User = price_of_User;
@@ -39,6 +46,22 @@ public class ProductDetail {
         End_Time = end_Time;
         Owner = owner;
         Holder = holder;
+    }
+
+    public void setUser_ID(int user_ID) {
+        User_ID = user_ID;
+    }
+
+    public int getUser_ID() {
+        return User_ID;
+    }
+
+    public void setOwnerID(int ownerID) {
+        OwnerID = ownerID;
+    }
+
+    public int getOwnerID() {
+        return OwnerID;
     }
 
     public void setMin_Price(int min_Price) {

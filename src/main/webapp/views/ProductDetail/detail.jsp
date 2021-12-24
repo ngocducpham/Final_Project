@@ -10,7 +10,8 @@
 <jsp:useBean id="authUser" scope="session" type="com.final_project.beans.User"/>
 <jsp:useBean id="currentBid" scope="request" type="java.lang.String"/>
 <jsp:useBean id="blacklist" scope="request" type="com.final_project.beans.MyIntType"/>
-
+<jsp:useBean id="bidderList" scope="request" type="java.util.List<com.final_project.beans.ProductDetail>"/>
+<jsp:useBean id="owner" scope="request" type="com.final_project.beans.ProductDetail"/>
 
 <t:main>
     <jsp:attribute name="css">
@@ -163,7 +164,7 @@
                             <div class='text-gray-600'>
                                 <div class='flex justify-between border-b-2 border-dashed font-medium  mb-3'>
                                     <div>Thông tin người bán:</div>
-                                    <div>${proDetail.owner}</div>
+                                    <div>${owner.username}</div>
                                 </div>
                                 <div class='flex justify-between border-b-2 border-dashed font-medium  mb-3'>
                                     <div>Thời điểm đăng bán:</div>
@@ -259,6 +260,25 @@
                     </c:forEach>
                     </tbody>
                 </table>
+
+                <c:if test="${(owner.user_ID == authUser.user_ID) && (history.size() > 0)}">
+                    <h4 class='text-2xl font-semibold mt-16 mb-3'>TỪ CHỐI RA GIÁ</h4>
+                    <form action="${pageContext.request.contextPath}/BlockBidder" method='post'>
+                        <input type="hidden" name="proid" value="${proDetail.pro_ID}">
+                        <input type="hidden" name="proauid" value="${proDetail.pro_Auc_ID}">
+                        <label for="uid" class="mr-2">Bidder</label>
+                        <select name="uid" id="uid" class="bg-gray-800 text-white w-56">
+                            <c:forEach items="${bidderList}" var="b">
+                                <option value="${b.user_ID}">${b.username} - UID: ${b.user_ID}</option>
+                            </c:forEach>
+                        </select>
+                        <button
+                                class='ml-2 bg-gray-800 px-4 text-white hover:bg-gray-700'>
+                            Từ chối ra giá
+                        </button>
+                    </form>
+                </c:if>
+
                 <!-- mô tả sản phẩm -->
                 <div class='mt-5'>
                     <h4 class='text-2xl font-semibold mb-3'>MÔ TẢ SẢN PHẨM</h4>
