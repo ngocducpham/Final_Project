@@ -68,7 +68,7 @@
                             </g>
                         </svg>
                         <div class='ml-5'>
-                            ptchc@hcmute.edu.vn
+                            workflow@hcmute.edu.vn
                         </div>
                     </div>
                 </div>

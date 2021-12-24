@@ -19,6 +19,7 @@ public class ProductDetail {
     private String username;
     private LocalDateTime Price_Time;
     private int Price_of_User;
+    private int Min_Price;
 
 
     public ProductDetail(String username, LocalDateTime price_Time, int price_of_User, int pro_Auc_ID , int cat_ID, int distance_Price, int pro_ID, String pname, String description, int status, int total_Bid, LocalDateTime start_Time, int current_Price, LocalDateTime end_Time, String owner, String holder) {
@@ -38,6 +39,14 @@ public class ProductDetail {
         End_Time = end_Time;
         Owner = owner;
         Holder = holder;
+    }
+
+    public void setMin_Price(int min_Price) {
+        Min_Price = min_Price;
+    }
+
+    public int getMin_Price() {
+        return Min_Price;
     }
 
     public void setUsername(String username) {

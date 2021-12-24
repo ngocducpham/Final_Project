@@ -38,6 +38,27 @@
                     mainImg.src = e.target.src;
                 });
             });
+
+            let minPrice = ${proDetail.min_Price};
+            let priceStep = ${proDetail.distance_Price};
+            let frmBid = document.getElementById('frm__bid');
+            let btnBid = document.getElementById('btn__bid');
+
+
+            btnBid.addEventListener('click', ()=>{
+                let inputPrice = document.getElementById('input__price').value;
+                let priceUp = inputPrice - minPrice;
+                if(inputPrice < minPrice){
+                    alert('Giá phải từ giá thấp nhất trở lên');
+                    return;
+                }
+                else if(priceUp % priceStep != 0) {
+                    alert('Giá phải là bội của bước giá');
+                    return;
+                }
+                frmBid.submit();
+            })
+
         </script>
     </jsp:attribute>
     <jsp:body>
@@ -122,7 +143,7 @@
                                 <div class='flex justify-between border-b-2 border-dashed font-medium  mb-3'>
                                     <div>Giá thấp nhất:</div>
                                     <div id="detail_min_price">
-                                        <fmt:formatNumber value="${proDetail.current_Price}" type="currency"/>
+                                        <fmt:formatNumber value="${proDetail.min_Price}" type="currency"/>
                                     </div>
                                 </div>
                                 <div class='flex justify-between border-b-2 border-dashed font-medium  mb-3'>
@@ -133,15 +154,15 @@
                                 </div>
                             </div>
                             <div class='mt-4 relative'>
-                                <form method="post">
+                                <form id="frm__bid" method="post">
                                     <span class='flex items-center justify-center bg-gray-800 text-white px-3 h-9 rounded-l-md absolute left-0'>VNĐ</span>
                                     <input type="hidden" value="${authUser.user_ID}" name="uid">
                                     <input type="hidden" value="${proDetail.pro_Auc_ID}" name="proauid">
                                     <input type="hidden" value="${proDetail.pro_ID}" name="proid">
-                                    <input class='tracking-wide font-medium border-2 w-96 h-9 focus:outline-none py-1 pl-20 pr-20 rounded-md border-gray-500'
-                                           name="bidprice" type="text" value='99999999'>
+                                    <input id="input__price" class='tracking-wide font-medium border-2 w-96 h-9 focus:outline-none py-1 pl-20 pr-20 rounded-md border-gray-500'
+                                           name="bidprice" type="text" value='${proDetail.min_Price}'>
                                     <c:if test="${Verified}">
-                                        <button
+                                        <button type="button" id="btn__bid"
                                                 class='bg-gray-800 h-9 px-4 absolute right-0 rounded-r-md text-white text-lg hover:bg-gray-700'>Ra
                                             giá</button>
                                     </c:if>

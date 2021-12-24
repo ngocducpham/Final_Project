@@ -8,6 +8,7 @@
 
 <t:admin>
     <jsp:attribute name="js" >
+
              <script>
                  let danhMucCap1 = [];
                  <c:forEach items="${categoriesss}" var="c">
@@ -43,9 +44,29 @@
                  })
              </script>
 
+        <script>
+            $('#FormCategory').on('submit', function (e) {
+                e.preventDefault();
+                const Cat_ID = $('#Cat_ID').val();
+                if (Cat_ID===null) {
+                    alert('Không có danh mục !');
+                    return;
+                }
+
+                $.getJSON('/Final_Project/Admin/Category/IsAvailable', function (data) {
+                    if (data === true) {
+                        alert("Xóa danh mục thành công !")
+                        $('#FormCategory').off('submit').submit();
+                    } else {
+                        alert('Danh mục đang tồn tại sản phẩm !');
+                    }
+                });
+            });
+        </script>
+
         </jsp:attribute>
         <jsp:body>
-            <form action="" method="post">
+            <form action="" method="post" id="FormCategory">
                 <div class="card">
                     <div class="card-header">
                         Sửa danh mục
@@ -79,10 +100,6 @@
                             <i class="fa fa-backward" aria-hidden="true"></i>
                             List
                         </a>
-                        <button type="submit" class="btn btn-danger text-red-600" formaction="${pageContext.request.contextPath}/Admin/Category/Delete">
-                            <i class="fa fa-trash" aria-hidden="true"></i>
-                            Delete
-                        </button>
                         <button type="submit" class="btn btn-primary text-blue-600" formaction="${pageContext.request.contextPath}/Admin/Category/Update">
                             <i class="fa fa-check" aria-hidden="true"></i>
                             Save
