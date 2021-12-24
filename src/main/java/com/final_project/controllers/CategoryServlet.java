@@ -4,6 +4,7 @@ import com.final_project.beans.Category;
 import com.final_project.beans.Product;
 import com.final_project.beans.User;
 import com.final_project.models.CategoryModel;
+import com.final_project.models.Check_Category_Model;
 import com.final_project.models.UserModel;
 import com.final_project.utils.ServletUtils;
 
@@ -57,12 +58,23 @@ public class CategoryServlet extends HttpServlet {
         }
         break;
       case "/IsAvailable":
-        PrintWriter out = response.getWriter();
-        response.setContentType("application/json");
-        response.setCharacterEncoding("utf-8");
-        out.print(false);
-        out.flush();
-        //IsAvailable(request, response);
+        IsAvailable(request, response);
+        break;
+      case "/Delete":
+        int id1 = 0;
+        try {
+          id1 = Integer.parseInt(request.getParameter("id"));
+        } catch (NumberFormatException e) {
+        }
+
+        Category c1 = CategoryModel.findById(id1);
+        if (c1 != null) {
+          request.setAttribute("category", c1);
+          ServletUtils.forward("/views/Category/Delete.jsp", request, response);
+        } else {
+          ServletUtils.redirect("/Admin/Category", request, response);
+
+        }
         break;
 
       default:
@@ -120,8 +132,14 @@ public class CategoryServlet extends HttpServlet {
   }
 
   private void IsAvailable(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-
+    int Cat_ID = Integer.parseInt(request.getParameter("Cat_ID"));
+    Category category = Check_Category_Model.Find_By_Cat_ID(Cat_ID);
+    boolean isAvailable = (category == null);
+    PrintWriter out = response.getWriter();
+    response.setContentType("application/json");
+    response.setCharacterEncoding("utf-8");
+    out.print(isAvailable);
+    out.flush();
   }
 
 }

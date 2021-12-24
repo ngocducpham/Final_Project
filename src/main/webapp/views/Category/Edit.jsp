@@ -44,25 +44,6 @@
                  })
              </script>
 
-        <script>
-            $('#FormCategory').on('submit', function (e) {
-                e.preventDefault();
-                const Cat_ID = $('#Cat_ID').val();
-                if (Cat_ID===null) {
-                    alert('Không có danh mục !');
-                    return;
-                }
-
-                $.getJSON('/Final_Project/Admin/Category/IsAvailable', function (data) {
-                    if (data === true) {
-                        alert("Xóa danh mục thành công !")
-                        $('#FormCategory').off('submit').submit();
-                    } else {
-                        alert('Danh mục đang tồn tại sản phẩm !');
-                    }
-                });
-            });
-        </script>
 
         </jsp:attribute>
         <jsp:body>

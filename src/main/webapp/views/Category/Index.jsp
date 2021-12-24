@@ -45,7 +45,7 @@
                                         <a class="btn btn-sm btn-outline-primary" href="${pageContext.request.contextPath}/Admin/Category/Edit?id=${c.cat_ID}"  role="button">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </a>
-                                        <a  class="btn btn-sm  btn-danger" href="${pageContext.request.contextPath}/Admin/Category/Delete"  role="button" >
+                                        <a class="btn btn-sm btn-outline-danger" href="${pageContext.request.contextPath}/Admin/Category/Delete?id=${c.cat_ID}"  role="button">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                         </a>
                                     </td>
