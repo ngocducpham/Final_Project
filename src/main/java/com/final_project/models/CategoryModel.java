@@ -20,8 +20,8 @@ public class CategoryModel {
     final String query = "select * from categories where Cat_ID = :Cat_ID";
     try (Connection con = DBUtils.getConnection()) {
       List<Category> list = con.createQuery(query)
-        .addParameter("Cat_ID", id)
-        .executeAndFetch(Category.class);
+              .addParameter("Cat_ID", id)
+              .executeAndFetch(Category.class);
 
       if (list.size() == 0) {
         return null;
@@ -30,6 +30,7 @@ public class CategoryModel {
       return list.get(0);
     }
   }
+
 
   public static void add(Category c) {
     String insertSql = "insert into categories(Cname, Cparent_ID, Level) values (:Cname, :Cparent_ID, :Level)";
@@ -62,5 +63,6 @@ public class CategoryModel {
               .executeUpdate();
     }
   }
+
 
 }

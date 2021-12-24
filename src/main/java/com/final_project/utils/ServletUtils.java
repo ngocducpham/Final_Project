@@ -54,4 +54,20 @@ public class ServletUtils {
         String content = "Use this code to Reset Your Password: " + user.getCode();
         return MailSender.send(mail_to, header, content);
     }
+
+    public static void send_mail_to_owner_when_no_one_bid(){
+
+    }
+
+    public static void send_mail_to_winner(){
+
+    }
+
+    public static void send_mail_to_owner_when_somebody_win(){
+
+    }
+
+    public static void send_mail_when_bid_successfully(){
+
+    }
 }

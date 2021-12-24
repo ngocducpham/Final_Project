@@ -68,7 +68,7 @@
                         <i class="fa fa-backward" aria-hidden="true"></i>
                         List
                     </a>
-                    <button type="submit" class="btn btn-success">
+                    <button type="submit" class="btn btn-success text-green-600">
                         <i class="fa fa-check" aria-hidden="true"></i>
                         Save
                     </button>

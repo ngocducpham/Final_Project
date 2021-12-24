@@ -1,7 +1,11 @@
 package com.final_project.controllers;
 
 import com.final_project.beans.Category;
+import com.final_project.beans.Product;
+import com.final_project.beans.User;
 import com.final_project.models.CategoryModel;
+import com.final_project.models.Check_Category_Model;
+import com.final_project.models.UserModel;
 import com.final_project.utils.ServletUtils;
 
 import javax.servlet.ServletException;
@@ -10,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 @WebServlet(name = "CategoryServlet", value = "/Admin/Category/*")
@@ -52,12 +57,33 @@ public class CategoryServlet extends HttpServlet {
 
         }
         break;
+      case "/IsAvailable":
+        IsAvailable(request, response);
+        break;
+      case "/Delete":
+        int id1 = 0;
+        try {
+          id1 = Integer.parseInt(request.getParameter("id"));
+        } catch (NumberFormatException e) {
+        }
+
+        Category c1 = CategoryModel.findById(id1);
+        if (c1 != null) {
+          request.setAttribute("category", c1);
+          ServletUtils.forward("/views/Category/Delete.jsp", request, response);
+        } else {
+          ServletUtils.redirect("/Admin/Category", request, response);
+
+        }
+        break;
 
       default:
         ServletUtils.forward("/views/404/index.jsp  ", request, response);
         break;
     }
   }
+
+
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -103,6 +129,17 @@ public class CategoryServlet extends HttpServlet {
     int id = Integer.parseInt(request.getParameter("Cat_ID"));
     CategoryModel.delete(id);
     ServletUtils.redirect("/Admin/Category", request, response);
+  }
+
+  private void IsAvailable(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    int Cat_ID = Integer.parseInt(request.getParameter("Cat_ID"));
+    Category category = Check_Category_Model.Find_By_Cat_ID(Cat_ID);
+    boolean isAvailable = (category == null);
+    PrintWriter out = response.getWriter();
+    response.setContentType("application/json");
+    response.setCharacterEncoding("utf-8");
+    out.print(isAvailable);
+    out.flush();
   }
 
 }
