@@ -12,6 +12,8 @@
 <jsp:useBean id="blacklist" scope="request" type="com.final_project.beans.MyIntType"/>
 <jsp:useBean id="bidderList" scope="request" type="java.util.List<com.final_project.beans.ProductDetail>"/>
 <jsp:useBean id="owner" scope="request" type="com.final_project.beans.ProductDetail"/>
+<jsp:useBean id="currentPrice" scope="request" type="java.lang.String"/>
+<jsp:useBean id="minPrice" scope="request" type="java.lang.String"/>
 
 <t:main>
     <jsp:attribute name="css">
@@ -42,7 +44,7 @@
                 });
             });
 
-            let minPrice = ${proDetail.min_Price};
+            let minPrice = ${minPrice};
             let priceStep = ${proDetail.distance_Price};
             let frmBid = document.getElementById('frm__bid');
             let btnBid = document.getElementById('btn__bid');
@@ -177,7 +179,7 @@
                                 <div class='flex justify-between border-b-2 border-dashed font-medium mb-xl-3'>
                                     <div>Giá hiện tại:</div>
                                     <div>
-                                        <fmt:formatNumber value="${proDetail.current_Price}" type="currency"/>
+                                        <fmt:formatNumber value="${currentPrice}" type="currency"/>
                                     </div>
                                 </div>
                             </div>
@@ -188,7 +190,7 @@
                                 <div class='flex justify-between border-b-2 border-dashed font-medium  mb-3'>
                                     <div>Giá thấp nhất:</div>
                                     <div id="detail_min_price">
-                                        <fmt:formatNumber value="${proDetail.min_Price}" type="currency"/>
+                                        <fmt:formatNumber value="${minPrice}" type="currency"/>
                                     </div>
                                 </div>
                                 <div class='flex justify-between border-b-2 border-dashed font-medium  mb-3'>
@@ -209,7 +211,7 @@
                                                 <input type="hidden" value="${proDetail.pro_ID}" name="proid">
                                                 <input id="input__price"
                                                        class='tracking-wide font-medium border-2 w-96 h-9 focus:outline-none py-1 pl-20 pr-20 rounded-md border-gray-500'
-                                                       name="bidprice" type="text" value='${proDetail.min_Price}'>
+                                                       name="bidprice" type="text" value='${minPrice}'>
 
                                                 <c:if test="${Verified}">
                                                     <button type="button" id="btn__bid"

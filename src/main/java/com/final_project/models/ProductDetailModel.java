@@ -160,4 +160,14 @@ public class ProductDetailModel {
         }
     }
 
+    public static String getCurrentPrice(String proAuID){
+        String query = "select Current_Price\n" +
+                "from product_auction\n" +
+                "where Pro_Auc_ID = :proauid";
+        try (Connection con = DBUtils.getConnection()) {
+            return con.createQuery(query)
+                    .addParameter("proauid", proAuID)
+                    .executeAndFetch(String.class).get(0);
+        }
+    }
 }

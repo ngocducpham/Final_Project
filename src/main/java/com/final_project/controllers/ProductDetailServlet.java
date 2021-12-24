@@ -46,6 +46,11 @@ public class ProductDetailServlet extends HttpServlet {
         List<ProductDetail> bidderList = ProductDetailModel.getBidUser(Integer.toString(proAuID));
         ProductDetail owner = ProductDetailModel.getOwner(Integer.toString(proAuID));
 
+        String currentPrice = ProductDetailModel.getCurrentPrice(Integer.toString(proAuID));
+        String minPrice = Integer.toString(Integer.parseInt(currentPrice) + productDetail.getDistance_Price());
+
+        request.setAttribute("minPrice", minPrice);
+        request.setAttribute("currentPrice", currentPrice);
         request.setAttribute("owner", owner);
         request.setAttribute("bidderList", bidderList);
         request.setAttribute("currentBid", currentBid);
