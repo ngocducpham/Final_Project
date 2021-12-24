@@ -11,14 +11,14 @@
     <jsp:attribute name="js">
         <script>
             document.getElementById('open_edit').addEventListener("click", function () {
-                alert("open edit");
+                // alert("open edit");
                 document.getElementById('old_pass').disabled = false;
                 document.getElementById('new-pass').disabled = false;
                 document.getElementById('re-new-pass').disabled = false;
             });
 
             document.getElementById('close_edit').addEventListener("click", function () {
-                alert("close edit");
+                // alert("close edit");
                 window.location.reload();
             });
 
