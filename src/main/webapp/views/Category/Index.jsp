@@ -29,7 +29,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Mặt hàng</th>
-                                <th>ID cấp 1</th>
+                                <th>ID Danh mục cấp 1</th>
                                 <th>&nbsp;</th>
                             </tr>
                             </thead>
