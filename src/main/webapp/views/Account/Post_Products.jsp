@@ -86,6 +86,8 @@
                         <textarea id="fullDes" name="description"></textarea>
                     </div>
                 </div>
+
+<%--                Button--%>
                 <button type="submit" class="btn btn-outline-success">
                     <a  role="button"
                     href="${pageContext.request.contextPath}/Admin/Product/">
