@@ -27,23 +27,34 @@ public class Product {
         End_Time = end_Time;
     }
 
-    public Product(String pname, int price, int cat_id, LocalDateTime start_time, LocalDateTime end_time, String img, String description)
-    {
-        Pname=pname;
-        Price=price;
-        Cat_ID=cat_id;
-        Start_Time=start_time;
-        End_Time=end_time;
-        this.img=img;
-        this.description=description;
+    public Product(String pname, int price, int cat_id, LocalDateTime start_time, LocalDateTime end_time, String img, String description) {
+        Pname = pname;
+        Price = price;
+        Cat_ID = cat_id;
+        Start_Time = start_time;
+        End_Time = end_time;
+        this.img = img;
+        this.description = description;
     }
 
-    public Product(String pname, int cat_id, String img, String description)
-    {
-        Pname=pname;
-        Cat_ID=cat_id;
-        this.img=img;
-        this.description=description;
+    public Product(int pro_ID) {
+        Pro_ID = pro_ID;
+    }
+
+    public Product(String pname, int cat_id, String img, String description) {
+        Pname = pname;
+        Cat_ID = cat_id;
+        this.img = img;
+        this.description = description;
+    }
+
+    public Product(String pname, String img, String description, int price, int status, int cat_ID) {
+        Pname = pname;
+        this.img = img;
+        this.description = description;
+        Price = price;
+        Status = status;
+        Cat_ID = cat_ID;
     }
 
     public int getPro_ID() {

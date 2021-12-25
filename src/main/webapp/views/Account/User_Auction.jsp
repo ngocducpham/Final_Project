@@ -48,10 +48,12 @@
                 <p style="font-size: 90">Khong tham gia dau gia bat ki san pham nao</p>
             </c:when>
             <c:otherwise>
-                <div style="font-weight: bold;font-size: 36px">Sản Phẩm Bạn <span style="color:red;">Đang Tham Gia</span> Đấu Giá</div>
+                <div style="font-weight: bold;font-size: 36px">Sản Phẩm Bạn <span
+                        style="color:red;">Đang Tham Gia</span> Đấu Giá
+                </div>
                 <div class='flex space-x-3 space-y-3 mt-10 flex-wrap'>
                     <c:forEach items="${User_Auction_Product_List}" var="p">
-                        <a href="#">
+                        <a href="${pageContext.request.contextPath}/ProductDetail?id=${p.pro_ID}">
                             <div class='relative w-56 pb-4 border rounded-lg bg-white overflow-hidden shadow-md'>
                                 <span class='rounded-br-full absolute top-0 left-0 pl-2 py-2 pr-5 bg-gray-300 text-xs font-bold'>
                                 Số lần bid: ${p.total_Bid}

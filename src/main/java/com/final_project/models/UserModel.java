@@ -1,6 +1,7 @@
 package com.final_project.models;
 
 import com.final_project.beans.Favorite;
+import com.final_project.beans.Max_ID;
 import com.final_project.beans.ProductAuction;
 import com.final_project.beans.User;
 import com.final_project.utils.DBUtils;
@@ -191,14 +192,14 @@ public class UserModel {
     }
 
     public static int Get_max_user_max_id() {
-        final String query = "select max(user_id)from users";
+        final String query = "select max(user_id) as max_id from users";
         try (Connection con = DBUtils.getConnection()) {
             return con.createQuery(query)
-                    .executeAndFetch(User.class).get(0).getUser_ID();
+                    .executeAndFetch(Max_ID.class).get(0).getMax_id();
         }
     }
 
-    public static List<ProductAuction>Get_User_Won_Auction_Product_List(int user_id){
+    public static List<ProductAuction> Get_User_Won_Auction_Product_List(int user_id) {
         final String query = "";
         try (Connection conn = DBUtils.getConnection()) {
             return conn.createQuery(query)

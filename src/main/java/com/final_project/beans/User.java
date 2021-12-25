@@ -29,6 +29,9 @@ public class User {
         this.username=getUsername();
     }
 
+    public User(int user_ID) {
+        User_ID = user_ID;
+    }
 
     public User(int id, int role) {
         User_ID = id;

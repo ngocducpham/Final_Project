@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class ProductAutionModel {
-    public static List<ProductAuction> getTop5Time(){
+    public static List<ProductAuction> getTop5Time() {
         final String query = "select p.Pro_ID, Pname, Current_Price, End_Time, Total_Bid\n" +
                 "from product_auction\n" +
                 "         join products p on p.Pro_ID = product_auction.Pro_ID\n" +
@@ -22,7 +22,7 @@ public class ProductAutionModel {
         }
     }
 
-    public static List<ProductAuction> getTop5Price(){
+    public static List<ProductAuction> getTop5Price() {
         final String query = "select p.Pro_ID, Pname, Current_Price, End_Time, Total_Bid\n" +
                 "from product_auction\n" +
                 "         join products p on p.Pro_ID = product_auction.Pro_ID\n" +
@@ -35,7 +35,7 @@ public class ProductAutionModel {
         }
     }
 
-    public static List<ProductAuction> getTop5Bid(){
+    public static List<ProductAuction> getTop5Bid() {
         final String query = "select products.Pro_ID, Pname, Current_Price, End_Time, Total_Bid\n" +
                 "from products\n" +
                 "         join product_auction pa on products.Pro_ID = pa.Pro_ID\n" +
@@ -48,21 +48,20 @@ public class ProductAutionModel {
         }
     }
 
-    public static List<ProductAuction> searchGetProduct(String product, String sortType, String cate){
+    public static List<ProductAuction> searchGetProduct(String product, String sortType, String cate) {
         String query = "select pa.Pro_ID, Pname, Pro_Auc_ID, End_Time, Start_Time, Current_Price, Total_Bid\n" +
                 "from products\n" +
                 "         join product_auction pa on products.Pro_ID = pa.Pro_ID\n" +
                 "         join categories c on c.Cat_ID = products.Cat_ID\n" +
                 "where End_Time > NOW() and Status = 1 ";
 
-        if(!Objects.equals(product, "")){
+        if (!Objects.equals(product, "")) {
             query += " and match(Pname) against(:p) ";
         }
-        if(cate != null){
+        if (cate != null) {
             query += " and (c.Cat_ID = " + cate + " or c.Cparent_ID = " + cate + " )";
         }
-        switch (sortType)
-        {
+        switch (sortType) {
             default:
             case "1":
                 query += " order by End_Time DESC";
@@ -78,19 +77,18 @@ public class ProductAutionModel {
                 break;
         }
         try (Connection con = DBUtils.getConnection()) {
-            if(product != "") {
+            if (product != "") {
                 return con.createQuery(query)
                         .addParameter("p", product)
                         .executeAndFetch(ProductAuction.class);
-            }
-            else {
+            } else {
                 return con.createQuery(query)
                         .executeAndFetch(ProductAuction.class);
             }
         }
     }
 
-    public static List<ProductAuction> searchProductGetBidder(String product, String cate){
+    public static List<ProductAuction> searchProductGetBidder(String product, String cate) {
         String query = "select u.username, u.User_ID, pa.Pro_Auc_ID, p.Pro_ID, MAX(Price_of_User) as Price_of_User\n" +
                 "from auction\n" +
                 "         join product_auction pa on pa.Pro_Auc_ID = auction.Pro_Auc_ID\n" +
@@ -99,50 +97,49 @@ public class ProductAutionModel {
                 "         join categories c on c.Cat_ID = p.Cat_ID\n" +
                 "where End_Time > NOW() and Status = 1 ";
 
-        if(product != ""){
+        if (product != "") {
             query += " and match(Pname) against(:p) ";
         }
 
-        if(cate != null){
-            query += " and (c.Cat_ID = " + cate + " or c.Cparent_ID = " + cate + " ) " + " group by pa.Pro_Auc_ID";;
-        }
-        else{
-            query += " group by pa.Pro_Auc_ID";;
+        if (cate != null) {
+            query += " and (c.Cat_ID = " + cate + " or c.Cparent_ID = " + cate + " ) " + " group by pa.Pro_Auc_ID";
+            ;
+        } else {
+            query += " group by pa.Pro_Auc_ID";
+            ;
         }
         try (Connection con = DBUtils.getConnection()) {
-            if(product != "") {
+            if (product != "") {
                 return con.createQuery(query)
                         .addParameter("p", product)
                         .executeAndFetch(ProductAuction.class);
-            }
-            else {
+            } else {
                 return con.createQuery(query)
                         .executeAndFetch(ProductAuction.class);
             }
         }
     }
 
-    public static String searchProductGetTotalProducts(String product, String cate){
+    public static String searchProductGetTotalProducts(String product, String cate) {
         String query = "select count(Pro_Auc_ID) as Total_Products\n" +
                 "from product_auction\n" +
                 "         join products p on p.Pro_ID = product_auction.Pro_ID\n" +
                 "         join categories c on c.Cat_ID = p.Cat_ID\n" +
                 "where End_Time > NOW() and Status = 1  ";
 
-        if(product != ""){
+        if (product != "") {
             query += " and match(Pname) against(:p) ";
         }
-        if(cate != null){
+        if (cate != null) {
             query += " and (c.Cat_ID = " + cate + " or c.Cparent_ID = " + cate + " ) ";
         }
         try (Connection con = DBUtils.getConnection()) {
             List<ProductAuction> pa;
-            if(product != ""){
+            if (product != "") {
                 pa = con.createQuery(query)
                         .addParameter("p", product)
                         .executeAndFetch(ProductAuction.class);
-            }
-            else{
+            } else {
                 pa = con.createQuery(query)
                         .executeAndFetch(ProductAuction.class);
             }
@@ -151,7 +148,7 @@ public class ProductAutionModel {
         }
     }
 
-    public static List<Category> getAllCategories(){
+    public static List<Category> getAllCategories() {
         String query = "select *\n" +
                 "from categories";
 
@@ -174,19 +171,20 @@ public class ProductAutionModel {
                     .executeUpdate();
         }
     }
+
     public static void add1(ProductAuction pa) {
-        String insertSql = "insert into product_auction(Start_Price, Start_Time, End_Time) " +
-                "values (:Start_Price, :Start_Time, :End_Time)";
+        String insertSql = "insert into product_auction(Start_Price, Distance_Price, Start_Time, End_Time, Pro_ID, Current_Price,Total_Bid) " +
+                "values (:Start_Price, :Distance_Price, :Start_Time, :End_Time, :Pro_ID, :Current_Price, :Total_Bid)";
         try (Connection con = DBUtils.getConnection()) {
             con.createQuery(insertSql)
                     .addParameter("Start_Price", pa.getStart_Price())
+                    .addParameter("Distance_Price", pa.getDistance_Price())
                     .addParameter("Start_Time", pa.getStart_Time())
                     .addParameter("End_Time", pa.getEnd_Time())
+                    .addParameter("Pro_ID", pa.getPro_ID())
+                    .addParameter("Current_Price", pa.getCurrent_Price())
+                    .addParameter("Total_Bid", pa.getTotal_Bid())
                     .executeUpdate();
         }
     }
-
-
-
-
 }
