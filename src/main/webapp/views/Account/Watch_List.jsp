@@ -44,7 +44,7 @@
     <jsp:body>
         <c:choose>
             <c:when test="${Watch_List.size()==0}">
-                <p style="font-size: 90px">Khong co san pham yeu thich</p>
+                <p style="font-size: 90px">Không Có Sản Phẩm Yêu Thích</p>
             </c:when>
             <c:otherwise>
                 <div style="font-weight: bold;font-size: 36px">Sản Phẩm Bạn Đã Thêm Vào Mục <span style="color:red;">Yêu Thích</span>

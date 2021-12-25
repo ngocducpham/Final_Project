@@ -45,7 +45,7 @@
     <jsp:body>
         <c:choose>
             <c:when test="${User_Won_Auction_Product_List.size()==0}">
-                <p style="font-size: 90px">Khong tham gia dau gia bat ki san pham nao</p>
+                <p style="font-size: 90px">Bạn Chưa Thắng Cuộc Đấu Giá Nào</p>
             </c:when>
             <c:otherwise>
                 <div style="font-weight: bold;font-size: 36px">Sản Phẩm Bạn <span
@@ -59,7 +59,7 @@
                                 Số lần bid: ${p.total_Bid}
                             </span>
                                 <img class='h-60 w-full rounded-t-lg'
-                                     src="${pageContext.request.contextPath}/public/imgProduct/${p.pro_ID}/1.jpg"
+                                     src="${pageContext.request.contextPath}/public/imgProduct/${p.pro_ID}/main.jpg"
                                      alt="">
                                 <div class='px-2 w-full text-center mt-2'>
                                     <a class='font-semibold w-full hover:underline'>${p.pname}</a>

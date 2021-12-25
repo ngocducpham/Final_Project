@@ -4,10 +4,7 @@ import com.final_project.beans.Category;
 import com.final_project.beans.Product;
 import com.final_project.beans.ProductAuction;
 import com.final_project.beans.User;
-import com.final_project.models.CategoryModel;
-import com.final_project.models.InsertProductModel;
-import com.final_project.models.ProductAutionModel;
-import com.final_project.models.ProductModel;
+import com.final_project.models.*;
 import com.final_project.utils.ServletUtils;
 
 import javax.servlet.ServletException;
@@ -83,6 +80,9 @@ public class MiscServlet extends HttpServlet {
         Product p = new Product(pname, "img", description, Price, 1, cat_ID);
         ProductModel.add(p);
         int new_pro_id = ProductModel.get_max_product_id();
+        HttpSession session = request.getSession();
+        User u = (User) session.getAttribute("authUser");
+        MagageModel.Add(new_pro_id, u.getUser_ID());
         ProductAuction pa = new ProductAuction(0, Price, Distance_Price, Price, start_time, end_Time, new_pro_id);
         ProductAutionModel.add1(pa);
 
