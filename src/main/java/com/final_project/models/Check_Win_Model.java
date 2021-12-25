@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Check_Win_Model {
     public static List<Winner_Bean> Get_Result_of_Product_Auction() {
-        final String query = "select U1.Username as owner_name, U1.email as owner_email, p.Pname, pa.End_Time, pa.total_bid, max(a.price_of_User) as winner_price, U2.Username as winner_name, U2.email as winner_email\n" +
+        final String query = "select U1.Username as owner_name, U1.email as owner_email, p.Pname, pa.End_Time, pa.total_bid,pa.Pro_ID, max(a.price_of_User) as winner_price, U2.Username as winner_name, U2.email as winner_email\n" +
                 "from products p join magage m on p.Pro_ID = m.Pro_ID\n" +
                 "\t\t\t    left join users U1 on U1.User_ID = m.User_ID\n" +
                 "\t\t\t    left join product_auction pa on pa.Pro_ID = p.Pro_ID\n" +
@@ -21,6 +21,4 @@ public class Check_Win_Model {
             return conn.createQuery(query).executeAndFetch(Winner_Bean.class);
         }
     }
-
-
 }

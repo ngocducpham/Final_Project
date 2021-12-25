@@ -18,7 +18,7 @@ ProductAuction {
     private String username;
     private int Price_of_User;
     private String Total_Products;
-    private int max_price;
+    private int max_price,winner_id;
 
     public ProductAuction(String total_Products, int price_of_User, int user_ID, String username, int total_Bid, String pname, int current_Price, int pro_Auc_ID, int start_Price, int immediate_Pice, int distance_Price, LocalDateTime start_Time, LocalDateTime end_Time, int pro_ID) {
         Total_Products = total_Products;
@@ -70,6 +70,14 @@ ProductAuction {
         Pname=pname;
         Start_Time=start_time;
         End_Time=end_time;
+    }
+
+    public int getWinner_id() {
+        return winner_id;
+    }
+
+    public void setWinner_id(int winner_id) {
+        this.winner_id = winner_id;
     }
 
     public void setTotal_Products(String total_Products) {
