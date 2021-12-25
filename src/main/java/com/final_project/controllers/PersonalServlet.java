@@ -56,8 +56,6 @@ public class PersonalServlet extends HttpServlet {
                     request.setAttribute("User_Won_Auction_Product_List", list2);
                     ServletUtils.forward("/views/Account/User_Won_Auction.jsp", request, response);
                     break;
-//                    Post SP
-
                 default:
                     ServletUtils.forward("/views/404/index.jsp", request, response);
                     break;
@@ -84,9 +82,6 @@ public class PersonalServlet extends HttpServlet {
                 case "/Request":
                     Get_Request(request, response);
                     break;
-
-
-
                 default:
                     ServletUtils.forward("/views/404/index.jsp", request, response);
                     break;
