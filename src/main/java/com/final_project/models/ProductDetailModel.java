@@ -34,8 +34,7 @@ public class ProductDetailModel {
                 "         left join product_auction on product_auction.Pro_ID = products.Pro_ID\n" +
                 "         left join auction on auction.Pro_Auc_ID = product_auction.Pro_Auc_ID\n" +
                 "         left join users U2 on U2.User_ID = auction.User_ID\n" +
-                "where End_Time > now()\n" +
-                "  and products.Pro_ID = :id " +
+                "where products.Pro_ID = :id\n" +
                 " group by product_auction.Pro_ID;";
 
         try (Connection con = DBUtils.getConnection()) {

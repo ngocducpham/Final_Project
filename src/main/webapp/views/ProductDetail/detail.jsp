@@ -74,7 +74,9 @@
 
             let diff = endTime - Date.now();
             if (diff <= 0) {
-                timeContainer.innerText = "Đã hết thời gian";
+                timeContainer.innerText = "Phiên đấu giá đã kết thúc";
+                timeContainer.classList.add("text-red-600");
+                frmBid.remove();
             } else {
                 let timeDiff = new Date(diff);
                 let days, hours, mins, secs;
@@ -83,9 +85,11 @@
                     hours = timeDiff.getUTCHours();
                     mins = timeDiff.getUTCMinutes();
                     secs = timeDiff.getUTCSeconds();
-                    if (days == 0 && hours == 0 && mins == 0 && secs == 0) {
+                    if (days < 0 || hours < 0 || mins < 0 || secs < 0) {
                         clearInterval(coutDown);
-                        timeContainer.innerText = "Đã hết thời gian";
+                        timeContainer.innerText = "Phiên đấu giá đã kết thúc";
+                        timeContainer.classList.add("text-red-600");
+                        frmBid.remove();
                     } else {
                         timeDiff.setUTCSeconds(secs - 1);
                         timeContainer.innerText = days + " ngày " + hours + " giờ " + mins + " phút " + secs + " giây";
@@ -94,6 +98,16 @@
             }
 
 
+            let bidderListName = [];
+            <c:forEach items="${history}" var="h">
+                bidderListName.push("${h.username}");
+            </c:forEach>
+
+            let nameContainer = document.querySelectorAll('.bidderListName');
+            for (let i = 0; i < bidderListName.length; i++) {
+                let name = bidderListName[i].slice(Math.ceil(bidderListName[i].length * 0.5));
+                nameContainer[i].innerText = "****" + name;
+            }
         </script>
     </jsp:attribute>
     <jsp:body>
@@ -110,7 +124,7 @@
                                 </div>
                             </c:if>
                             <c:if test="${proDetail.status == 1}">
-                                <div class='text-lg font-medium'>
+                                <div class='coutdown__lable text-lg font-medium'>
                                     Còn lại:
                                 </div>
                                 <div id="detail_count_down" class='font-semibold text-lg'>
@@ -259,7 +273,7 @@
                     <tbody>
                     <c:forEach items="${history}" var="h">
                         <tr>
-                            <td>${h.username}</td>
+                            <td class="bidderListName"></td>
                             <td><fmt:formatNumber value="${h.price_of_User}" type="currency"/></td>
                             <td>${h.price_Time.toLocalDate()} ${h.price_Time.toLocalTime()}</td>
                         </tr>
@@ -275,7 +289,9 @@
                         <label for="uid" class="mr-2">Bidder</label>
                         <select name="uid" id="uid" class="bg-gray-800 text-white w-56">
                             <c:forEach items="${bidderList}" var="b">
-                                <option value="${b.user_ID}">${b.username} - UID: ${b.user_ID}</option>
+                                <c:if test="${b.user_ID != authUser.user_ID}">
+                                    <option value="${b.user_ID}">${b.username} - UID: ${b.user_ID}</option>
+                                </c:if>
                             </c:forEach>
                         </select>
                         <button

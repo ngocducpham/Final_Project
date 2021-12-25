@@ -66,6 +66,19 @@
                     mins = timeDiff[i].getUTCMinutes();
                     secs = timeDiff[i].getUTCSeconds();
 
+                    if (days < 0 || hours < 0 || mins < 0 || secs < 0) {
+                        let timecout = timeContainer[i].querySelectorAll('div');
+                        if(timecout != null){
+                            timecout.forEach(item=>{
+                                item.remove();
+                            })
+                            timeContainer[i].innerText = "Phiên đấu giá đã kết thúc";
+                            timeContainer[i].classList.add("text-red-600");
+                            timeContainer[i].classList.add("text-base");
+                        }
+                        continue;
+                    }
+
                     timeContainer[i].querySelector('.days').textContent = days;
                     timeContainer[i].querySelector('.hours').textContent = hours;
                     timeContainer[i].querySelector('.minutes').textContent = mins;
