@@ -93,31 +93,43 @@ public class MiscServlet extends HttpServlet {
 
     private void Save__new_product_img(HttpServletRequest request, HttpServletResponse response, int Pro_id) throws ServletException, IOException {
         System.out.println(request.getParameter("Pname"));
-        String tagDir = request.getContextPath() + "/public/imgProduct/" + Pro_id;
-        File newDir = new File(tagDir);
-        if (!newDir.exists()) {
-            newDir.mkdir();
+        String targetDir = this.getServletContext().getRealPath("public/imgProduct/" + Pro_id);
+        String Server_targetDir = targetDir.replace("target\\Final_Project-1.0-SNAPSHOT", "src\\main\\webapp");
+
+        File newDir1 = new File(targetDir);
+        File newDir2 = new File(Server_targetDir);
+
+        if (!newDir1.exists()) {
+            newDir1.mkdir();
         }
+
+        if (!newDir2.exists()) {
+            newDir2.mkdir();
+        }
+
+        String destination1 = newDir1 + "/";
+        String destination2 = newDir2 + "/";
+
         for (Part part : request.getParts()) {
             if (part.getName().equals("img_main")) {
-                String destination = newDir + "/" + "main.jpg";
-                part.write(destination);
+                part.write(destination1 + "main.jpg");
+                part.write(destination2 + "main.jpg");
             }
             if (part.getName().equals("img1")) {
-                String destination = newDir + "/" + "1.jpg";
-                part.write(destination);
+                part.write(destination1 + "1.jpg");
+                part.write(destination2 + "1.jpg");
             }
             if (part.getName().equals("img2")) {
-                String destination = newDir + "/" + "2.jpg";
-                part.write(destination);
+                part.write(destination1 + "2.jpg");
+                part.write(destination2 + "2.jpg");
             }
             if (part.getName().equals("img3")) {
-                String destination = newDir + "/" + "3.jpg";
-                part.write(destination);
+                part.write(destination1 + "3.jpg");
+                part.write(destination2 + "3.jpg");
             }
             if (part.getName().equals("img4")) {
-                String destination = newDir + "/" + "4.jpg";
-                part.write(destination);
+                part.write(destination1 + "4.jpg");
+                part.write(destination2 + "4.jpg");
                 break;
             }
         }
