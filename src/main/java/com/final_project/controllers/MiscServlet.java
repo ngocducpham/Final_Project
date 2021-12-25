@@ -93,7 +93,7 @@ public class MiscServlet extends HttpServlet {
 
     private void Save__new_product_img(HttpServletRequest request, HttpServletResponse response, int Pro_id) throws ServletException, IOException {
         System.out.println(request.getParameter("Pname"));
-        String tagDir = this.getServletContext().getRealPath("/public/imgProduct/" + Pro_id);
+        String tagDir = request.getContextPath() + "/public/imgProduct/" + Pro_id;
         File newDir = new File(tagDir);
         if (!newDir.exists()) {
             newDir.mkdir();
