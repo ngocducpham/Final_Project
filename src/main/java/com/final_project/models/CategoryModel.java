@@ -64,5 +64,14 @@ public class CategoryModel {
     }
   }
 
+  public static void add1(Category c) {
+    String query = "insert into categories(Cat_ID) values (:CatID) ";
+    try (Connection con = DBUtils.getConnection()) {
+      con.createQuery(query)
+              .addParameter("Cat_ID", c.getCat_ID())
+              .executeUpdate();
+    }
+  }
+
 
 }
