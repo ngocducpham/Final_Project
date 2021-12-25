@@ -18,4 +18,14 @@ public class ManagerModel {
                    .executeUpdate();
         }
     }
+
+    public static void blockProduct(String proID){
+        final String query="update products set Status = 0 where Pro_ID = :proid";
+        try (Connection con =DBUtils.getConnection())
+        {
+            con.createQuery(query)
+                    .addParameter("proid",proID)
+                    .executeUpdate();
+        }
+    }
 }
