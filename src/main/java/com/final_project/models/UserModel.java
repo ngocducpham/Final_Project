@@ -197,4 +197,13 @@ public class UserModel {
                     .executeAndFetch(User.class).get(0).getUser_ID();
         }
     }
+
+    public static List<ProductAuction>Get_User_Won_Auction_Product_List(int user_id){
+        final String query = "";
+        try (Connection conn = DBUtils.getConnection()) {
+            return conn.createQuery(query)
+                    .addParameter("user_id", user_id)
+                    .executeAndFetch(ProductAuction.class);
+        }
+    }
 }

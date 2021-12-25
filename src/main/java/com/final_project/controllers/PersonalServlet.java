@@ -54,6 +54,11 @@ public class PersonalServlet extends HttpServlet {
                 case "/Add_To_Watch_List":
                     Add_to_Watch_list(request, response);
                     break;
+                case "/User_Won_Auction":
+                    List<ProductAuction> list2 = UserModel.Get_User_Won_Auction_Product_List(user.getUser_ID());
+                    request.setAttribute("User_Won_Auction_Product_List", list2);
+                    ServletUtils.forward("/views/Account/User_Won_Auction.jsp", request, response);
+                    break;
 //                    Post SP
                 case "/Post_Products":
                     List<Category> Catlist = InsertProductModel.getCate();
@@ -97,7 +102,6 @@ public class PersonalServlet extends HttpServlet {
             }
         }
     }
-
 
     private void Update_User_Information(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
         request.setCharacterEncoding("UTF-8");
