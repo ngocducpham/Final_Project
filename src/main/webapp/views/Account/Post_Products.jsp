@@ -29,8 +29,15 @@
     <jsp:body>
     <div class="profile ">
 
-        <div class="top_header">
-            <p class="h__profile">SẢN PHẦM ĐĂNG BÁN</p>
+        <div class="top_header d-flex justify-content-between">
+            <h4 class="h__profile ">
+                SẢN PHẨM ĐĂNG BÁN
+
+            </h4><a class="btn btn-outline-success" role="button"
+                    href="${pageContext.request.contextPath}/Admin/Product/">
+            <i class="fa fa-check" aria-hidden="true"></i>
+            List
+        </a>
         </div>
 
         <div class="boxProfile ">
@@ -57,6 +64,10 @@
                         <option>10--Laptop</option>
                         <option>11--Điện thoại</option>
                         <option>12--Đồng hồ</option>
+
+<%--                        <c:forEach var="i" step="1">--%>
+<%--                            <option>${Cate.Cat_ID}</option>--%>
+<%--                        </c:forEach>--%>
                     </select>
                 </div>
 
@@ -89,18 +100,17 @@
 
 <%--                Button--%>
                 <button type="submit" class="btn btn-outline-success">
-                    <a  role="button"
-                    href="${pageContext.request.contextPath}/Admin/Product/">
+
                         <i class="fa fa-check" aria-hidden="true"></i>
                         Lưu
-                    </a>
+
                 </button>
+
                 <button type="button" class="btn btn-outline-danger" id="close_edit">
-                    <a href="${pageContext.request.contextPath}/Personal/Post_Products" role="button">
+<%--                    <a href="${pageContext.request.contextPath}/Personal/Post_Products" role="button">--%>
                         <i class="fa fa-times" aria-hidden="true"></i>
                         Huỷ
-                    </a>
-
+<%--                    </a>--%>
                 </button>
             </form>
         </div>
