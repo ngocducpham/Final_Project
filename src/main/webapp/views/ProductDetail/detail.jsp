@@ -14,7 +14,7 @@
 <jsp:useBean id="owner" scope="request" type="com.final_project.beans.ProductDetail"/>
 <jsp:useBean id="currentPrice" scope="request" type="java.lang.String"/>
 <jsp:useBean id="minPrice" scope="request" type="java.lang.String"/>
-<jsp:useBean id="lowrate" scope="request" type="java.lang.Boolean"/>
+<jsp:useBean id="lowrate" scope="request" type="java.lang.String"/>
 
 <t:main>
     <jsp:attribute name="css">
@@ -204,7 +204,7 @@
                             </div>
                             <div class='mt-4 relative'>
                                 <c:if test="${proDetail.status == 1}">
-                                    <c:if test="${blacklist.value != 1 && Verified && !lowrate}">
+                                    <c:if test="${blacklist.value != 1 && Verified && lowrate == 0}">
                                         <form id="frm__bid" method="post">
                                             <span class='flex items-center justify-center bg-gray-800 text-white px-3 h-9 rounded-l-md absolute left-0'>VNĐ</span>
                                             <input type="hidden" value="${authUser.user_ID}" name="uid">
@@ -228,7 +228,7 @@
                                             phẩm này.
                                         </div>
                                     </c:if>
-                                    <c:if test="${lowrate}">
+                                    <c:if test="${lowrate == 1}">
                                         <div class="text-lg text-red-500 font-medium">Điểm đánh giá của bạn thấp < 80%, không thể đấu giá.
                                         </div>
                                     </c:if>

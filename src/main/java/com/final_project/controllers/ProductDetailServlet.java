@@ -39,15 +39,15 @@ public class ProductDetailServlet extends HttpServlet {
             MyIntType checkBlackList = ProductDetailModel.checkBlackList(Integer.toString(user.getUser_ID()), Integer.toString(proAuID));
             request.setAttribute("blacklist", checkBlackList);
             if (ProductDetailModel.userPoint(user.getUser_ID()) >= 80.0){
-                request.setAttribute("lowrate", false);
+                request.setAttribute("lowrate", "0");
             }
             else{
-                request.setAttribute("lowrate", true);
+                request.setAttribute("lowrate", "1");
             }
         }
         else {
             request.setAttribute("blacklist",new MyIntType(3));
-            request.setAttribute("lowrate", true);
+            request.setAttribute("lowrate", "2");
         }
 
         List<ProductDetail> bidderList = ProductDetailModel.getBidUser(Integer.toString(proAuID));

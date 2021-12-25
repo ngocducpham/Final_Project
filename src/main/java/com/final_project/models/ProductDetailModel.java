@@ -180,10 +180,13 @@ public class ProductDetailModel {
             Point result =  con.createQuery(query)
                     .addParameter("id", Integer.toString(uid))
                     .executeAndFetch(Point.class).get(0);
-            if (result.getUp() == 0){
-                return 100.0;
+            if (result == null){
+                return 0.0;
             }
             return result.getUp() * 100.0 / (result.getUp() + result.getDown());
+        }
+        catch (Exception e){
+            return 0.0;
         }
     }
 }
