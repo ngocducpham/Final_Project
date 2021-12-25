@@ -49,7 +49,7 @@
             </c:when>
             <c:otherwise>
                 <div style="font-weight: bold;font-size: 36px">Sản Phẩm Bạn <span style="color:red;">Đang Tham Gia</span> Đấu Giá</div>
-                <div class='flex justify-between mt-10'>
+                <div class='flex space-x-3 space-y-3 mt-10 flex-wrap'>
                     <c:forEach items="${User_Auction_Product_List}" var="p">
                         <a href="#">
                             <div class='relative w-56 pb-4 border rounded-lg bg-white overflow-hidden shadow-md'>
