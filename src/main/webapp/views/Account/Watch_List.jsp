@@ -51,13 +51,13 @@
                 </div>
                 <div class='flex justify-between mt-10'>
                     <c:forEach items="${Watch_List}" var="p">
-                        <a href="#">
+                        <a href="${pageContext.request.contextPath}/ProductDetail?id=${p.pro_ID}">
                             <div class='relative w-56 pb-4 border rounded-lg bg-white overflow-hidden shadow-md'>
                                 <span class='rounded-br-full absolute top-0 left-0 pl-2 py-2 pr-5 bg-gray-300 text-xs font-bold'>
                                 Số lần bid: ${p.total_Bid}
                             </span>
                                 <img class='h-60 w-full rounded-t-lg'
-                                     src="${pageContext.request.contextPath}/public/imgProduct/${p.pro_ID}/1.jpg"
+                                     src="${pageContext.request.contextPath}/public/imgProduct/${p.pro_ID}/main.jpg"
                                      alt="">
                                 <div class='px-2 w-full text-center mt-2'>
                                     <a class='font-semibold w-full hover:underline'>${p.pname}</a>

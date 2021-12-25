@@ -21,4 +21,6 @@ public class Check_Win_Model {
             return conn.createQuery(query).executeAndFetch(Winner_Bean.class);
         }
     }
+
+
 }

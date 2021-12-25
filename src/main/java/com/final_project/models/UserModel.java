@@ -127,10 +127,10 @@ public class UserModel {
                 "         left join product_auction pa on p.Pro_ID = pa.Pro_ID\n" +
                 "         left join auction a on pa.Pro_Auc_ID = a.Pro_Auc_ID\n" +
                 "         left join users u on u.User_ID = a.User_ID\n" +
-                "where pa.Pro_ID in (\n" +
+                "where p.Pro_ID in (\n" +
                 "    select Pro_ID\n" +
                 "    from favorite where User_ID=:user_id)\n" +
-                "group by a.Pro_Auc_ID;";
+                "group by p.Pro_ID;";
         try (Connection conn = DBUtils.getConnection()) {
             return conn.createQuery(query)
                     .addParameter("user_id", user_id)
