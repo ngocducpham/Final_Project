@@ -222,4 +222,30 @@ public class UserModel {
                     .executeAndFetch(ProductAuction.class);
         }
     }
+
+    public static List<ProductAuction> Get_Owner_Products(int user_id) {
+        final String query = "select *\n" +
+                "from (\n" +
+                "         select U1.User_ID           as owner_id,\n" +
+                "                U1.Username          as owner_name,\n" +
+                "                p.Pname,\n" +
+                "                pa.End_Time,\n" +
+                "                pa.total_bid,\n" +
+                "                p.Pro_ID,\n" +
+                "                max(a.price_of_User) as max_price,\n" +
+                "                U2.Username " +
+                "         from products p \n" +
+                "                  left join magage m on p.Pro_ID = m.Pro_ID\n" +
+                "                  left join users U1 on U1.User_ID = m.User_ID\n" +
+                "                  left join product_auction pa on pa.Pro_ID = p.Pro_ID\n" +
+                "                  left join auction a on a.Pro_Auc_ID = pa.Pro_Auc_ID\n" +
+                "                  left join users U2 on U2.User_ID = a.User_ID\n" +
+                "         group by p.Pro_ID) tab\n" +
+                "where tab.owner_id=:user_id;";
+        try (Connection conn = DBUtils.getConnection()) {
+            return conn.createQuery(query)
+                    .addParameter("user_id", user_id)
+                    .executeAndFetch(ProductAuction.class);
+        }
+    }
 }

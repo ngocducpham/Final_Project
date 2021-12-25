@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class
 ProductAuction {
-    private String Pname;
+    private String Pname,owner_name;
     private int Total_Bid;
     private int Pro_Auc_ID;
     private int Start_Price;
@@ -18,7 +18,7 @@ ProductAuction {
     private String username;
     private int Price_of_User;
     private String Total_Products;
-    private int max_price,winner_id;
+    private int max_price,winner_id,owner_id,winner_price;
 
     public ProductAuction(String total_Products, int price_of_User, int user_ID, String username, int total_Bid, String pname, int current_Price, int pro_Auc_ID, int start_Price, int immediate_Pice, int distance_Price, LocalDateTime start_Time, LocalDateTime end_Time, int pro_ID) {
         Total_Products = total_Products;
@@ -72,12 +72,36 @@ ProductAuction {
         End_Time=end_time;
     }
 
+    public int getWinner_price() {
+        return winner_price;
+    }
+
+    public void setWinner_price(int winner_price) {
+        this.winner_price = winner_price;
+    }
+
     public int getWinner_id() {
         return winner_id;
     }
 
     public void setWinner_id(int winner_id) {
         this.winner_id = winner_id;
+    }
+
+    public String getOwner_name() {
+        return owner_name;
+    }
+
+    public void setOwner_name(String owner_name) {
+        this.owner_name = owner_name;
+    }
+
+    public int getOwner_id() {
+        return owner_id;
+    }
+
+    public void setOwner_id(int owner_id) {
+        this.owner_id = owner_id;
     }
 
     public void setTotal_Products(String total_Products) {

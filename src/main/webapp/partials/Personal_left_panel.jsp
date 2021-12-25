@@ -15,6 +15,7 @@
         <div class="myProfile"><a href="${pageContext.request.contextPath}/Personal/User_Won_Auction" class="a__myProfile"><i class="blue fas fa-stream pr-2"></i>Sản Phẩm Đã Thắng</a></div>
         <c:if test="${authUser.userrole==2}">
             <div class="myProfile"><a href="${pageContext.request.contextPath}/Seller/Post_Products" class="a__myProfile"><i class="blue fas fa-truck pr-2"></i>Đăng bán Sản Phẩm</a></div>
+            <div class="myProfile"><a href="${pageContext.request.contextPath}/Personal/My_Post_Products" class="a__myProfile"><i class="blue fas fa-truck pr-2"></i>Sản Phẩm Của Tôi</a></div>
         </c:if>
         <div class="myProfile"><a href="${pageContext.request.contextPath}/Personal/Logout" class="a__myProfile"><i class="blue fa fa-sign-out" aria-hidden="true"></i> Đăng xuất </a></div>
     </div>

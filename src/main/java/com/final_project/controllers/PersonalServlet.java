@@ -32,7 +32,7 @@ public class PersonalServlet extends HttpServlet {
                     break;
                 case "/User_Change_Password":
                     ServletUtils.forward("/views/Account/Change_Password.jsp", request, response);
-                    session.setAttribute("success_change_pass",false);
+                    session.setAttribute("success_change_pass", false);
                     session.setAttribute("false_old_pass", false);
                     break;
                 case "/User_Watch_List":
@@ -55,6 +55,11 @@ public class PersonalServlet extends HttpServlet {
                     List<ProductAuction> list2 = UserModel.Get_User_Won_Auction_Product_List(user.getUser_ID());
                     request.setAttribute("User_Won_Auction_Product_List", list2);
                     ServletUtils.forward("/views/Account/User_Won_Auction.jsp", request, response);
+                    break;
+                case "/My_Post_Products":
+                    List<ProductAuction> list3 = UserModel.Get_Owner_Products(user.getUser_ID());
+                    request.setAttribute("My_Post_Products", list3);
+                    ServletUtils.forward("/views/Account/My_Post_Products.jsp", request, response);
                     break;
                 default:
                     ServletUtils.forward("/views/404/index.jsp", request, response);
