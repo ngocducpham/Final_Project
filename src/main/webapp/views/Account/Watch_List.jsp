@@ -44,12 +44,12 @@
     <jsp:body>
         <c:choose>
             <c:when test="${Watch_List.size()==0}">
-                <p style="font-size: 90">Khong co san pham yeu thich</p>
+                <p style="font-size: 90px">Khong co san pham yeu thich</p>
             </c:when>
             <c:otherwise>
                 <div style="font-weight: bold;font-size: 36px">Sản Phẩm Bạn Đã Thêm Vào Mục <span style="color:red;">Yêu Thích</span>
                 </div>
-                <div class='flex justify-between mt-10'>
+                <div class='flex space-x-3 space-y-3 mt-10 flex-wrap'>
                     <c:forEach items="${Watch_List}" var="p">
                         <a href="${pageContext.request.contextPath}/ProductDetail?id=${p.pro_ID}">
                             <div class='relative w-56 pb-4 border rounded-lg bg-white overflow-hidden shadow-md'>
