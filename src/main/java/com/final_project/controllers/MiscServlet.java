@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@WebServlet(name = "MiscServlet", value = "/Misc/*")
+@WebServlet(name = "MiscServlet", value = "/Seller/*")
 @MultipartConfig(
         fileSizeThreshold = 2 * 1024 * 1024,
         maxFileSize = 50 * 1024 * 1024,
@@ -34,17 +34,19 @@ public class MiscServlet extends HttpServlet {
 
         switch (path)
         {
+//            Thêm sp
             case "/Post_Products":
                 List<Category> Catlist = InsertProductModel.getCate();
                 request.setAttribute("Cate", Catlist);
                 ServletUtils.forward("/views/Account/Post_Products.jsp", request, response);
                 break;
-            case "/Editor":
-                ServletUtils.forward("/views/vwMisc/Editor.jsp", request, response);
-                break;
-            case "/Upload":
-                ServletUtils.forward("/views/vwMisc/Upload.jsp", request, response);
-                break;
+
+//            case "/Editor":
+//                ServletUtils.forward("/views/vwMisc/Editor.jsp", request, response);
+//                break;
+//            case "/Upload":
+//                ServletUtils.forward("/views/vwMisc/Upload.jsp", request, response);
+//                break;
             default:
                 ServletUtils.forward("/views/404.jsp",request,response);
                 break;
@@ -62,12 +64,12 @@ public class MiscServlet extends HttpServlet {
             case "/Post_Products":
                 Post_Products(request, response);
                 break;
-            case "/Editor":
-                postEditor(request,response);
-                break;
-            case "/Upload":
-                postUpload(request,response);
-                break;
+//            case "/Editor":
+//                postEditor(request,response);
+//                break;
+//            case "/Upload":
+//                postUpload(request,response);
+//                break;
             default:
                 ServletUtils.forward("views/404.jsp",request,response);
                 break;
@@ -81,11 +83,11 @@ public class MiscServlet extends HttpServlet {
         int cat_ID = Integer.parseInt(request.getParameter("Cat_ID"));
         LocalDateTime start_Time = LocalDateTime.parse(request.getParameter("Start_Time"));
         LocalDateTime end_Time = LocalDateTime.parse(request.getParameter("End_Time"));
-        String img = request.getParameter("img");
+//        String img = request.getParameter("img");
         String description = request.getParameter("description");
         //AddProduct s = new AddProduct(pname,price,cat_ID,start_Time,end_Time,img,description);
         //InsertProductModel.InsertProduct(s);
-        Product p = new Product(pname, cat_ID, img, description);
+        Product p = new Product(pname, cat_ID, "img", description);
         ProductModel.add(p);
         ProductAuction pa = new ProductAuction(pname, Price, start_Time, end_Time);
         ProductAutionModel.add1(pa);
@@ -120,7 +122,7 @@ public class MiscServlet extends HttpServlet {
                         String filename=tmp.substring(i,tmp.length()-1);
                         System.out.println(filename);
 
-                        String tagDir=this.getServletContext().getRealPath("/public/img2");
+                        String tagDir=this.getServletContext().getRealPath("/public/imgProduct");
                         File newDir=new File(tagDir);
                         if(!newDir.exists())
                         {

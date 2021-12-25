@@ -84,7 +84,7 @@
                        class="mt-2 w-full px-2 py-1 outline-none block border-2 rounded-md  border-gray-300 text-gray-700">
 
                 </div>
-
+            <%--Up hình--%>
                 <div class="form-group">
                     <label for="img">Hình ảnh</label>
                     <input type="file" class="form-control background" name="img" id="img"
