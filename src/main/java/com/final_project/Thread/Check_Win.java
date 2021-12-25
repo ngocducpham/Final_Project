@@ -2,6 +2,7 @@ package com.final_project.Thread;
 
 import com.final_project.beans.Winner_Bean;
 import com.final_project.models.Check_Win_Model;
+import com.final_project.models.ManagerModel;
 import com.final_project.utils.ServletUtils;
 
 import javax.servlet.ServletContextEvent;
@@ -70,7 +71,7 @@ class ScheduledTask extends TimerTask {
                     ServletUtils.send_mail_to_winner(mail_to_winner, header, content_to_winner);
 
                     // sua status san pham thanh 0
-
+                    ManagerModel.blockProduct(wb.getPro_id());
                 }
             }
         }

@@ -19,7 +19,7 @@ public class ManagerModel {
         }
     }
 
-    public static void blockProduct(String proID){
+    public static void blockProduct(int proID){
         final String query="update products set Status = 0 where Pro_ID = :proid";
         try (Connection con =DBUtils.getConnection())
         {
