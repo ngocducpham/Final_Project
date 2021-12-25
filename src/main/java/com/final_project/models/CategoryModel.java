@@ -32,16 +32,7 @@ public class CategoryModel {
   }
 
 
-  public static void add(Category c) {
-    String insertSql = "insert into categories(Cname, Cparent_ID, Level) values (:Cname, :Cparent_ID, :Level)";
-    try (Connection con = DBUtils.getConnection()) {
-      con.createQuery(insertSql)
-        .addParameter("Cname", c.getCname())
-        .addParameter("Cparent_ID", c.getCparent_ID())
-        .addParameter("Level", c.getLevel())
-        .executeUpdate();
-    }
-  }
+
 
   public static void update(Category c) {
     String Sql = "update categories set Cname = :Cname, Cparent_ID = :Cparent_ID, Level = :Level where Cat_ID = :Cat_ID";
@@ -60,6 +51,17 @@ public class CategoryModel {
     try (Connection con = DBUtils.getConnection()) {
       con.createQuery(Sql)
               .addParameter("Cat_ID", id)
+              .executeUpdate();
+    }
+  }
+
+  public static void add(Category c) {
+    String insertSql = "insert into categories(Cname, Cparent_ID, Level) values (:Cname, :Cparent_ID, :Level)";
+    try (Connection con = DBUtils.getConnection()) {
+      con.createQuery(insertSql)
+              .addParameter("Cname", c.getCname())
+              .addParameter("Cparent_ID", c.getCparent_ID())
+              .addParameter("Level", c.getLevel())
               .executeUpdate();
     }
   }

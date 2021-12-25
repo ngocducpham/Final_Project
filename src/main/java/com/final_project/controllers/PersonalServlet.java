@@ -186,6 +186,6 @@ public class PersonalServlet extends HttpServlet {
         Category c= new Category(cat_ID);
         CategoryModel.add1(c);
 
-        ServletUtils.redirect("views/Account/Post_Products.jsp",request,response);
+        ServletUtils.redirect("/Admin/Product",request,response);
     }
 }

@@ -88,7 +88,8 @@
                     </div>
                 </div>
                 <button type="submit" class="btn btn-outline-success">
-                    <a  role="button">
+                    <a  role="button"
+                    href="${pageContext.request.contextPath}/Admin/Product/">
                         <i class="fa fa-check" aria-hidden="true"></i>
                         Lưu
                     </a>
