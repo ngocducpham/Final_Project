@@ -56,7 +56,6 @@ public class PersonalServlet extends HttpServlet {
                     break;
 //                    Post SP
                 case "/Post_Products":
-
                     List<Category> Catlist = InsertProductModel.getCate();
                     request.setAttribute("Cate", Catlist);
                     ServletUtils.forward("/views/Account/Post_Products.jsp", request, response);
@@ -98,7 +97,6 @@ public class PersonalServlet extends HttpServlet {
             }
         }
     }
-
 
     private void Update_User_Information(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
         request.setCharacterEncoding("UTF-8");
@@ -164,10 +162,6 @@ public class PersonalServlet extends HttpServlet {
         ServletUtils.redirect(url, request, response);
     }
 
-    //    private void Post_Products(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        HttpSession session = request.getSession();
-//        User user = (User) session.getAttribute("authUser");
-//    }
     private void Post_Products(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         String pname = request.getParameter("Pname");
