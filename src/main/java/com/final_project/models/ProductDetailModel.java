@@ -1,6 +1,7 @@
 package com.final_project.models;
 
 import com.final_project.beans.MyIntType;
+import com.final_project.beans.Point;
 import com.final_project.beans.ProductAuction;
 import com.final_project.beans.ProductDetail;
 import com.final_project.utils.DBUtils;
@@ -168,6 +169,21 @@ public class ProductDetailModel {
             return con.createQuery(query)
                     .addParameter("proauid", proAuID)
                     .executeAndFetch(String.class).get(0);
+        }
+    }
+
+    public static Double userPoint(int uid){
+        String query = "select up, down\n" +
+                "from points\n" +
+                "where User_ID = :id";
+        try (Connection con = DBUtils.getConnection()) {
+            Point result =  con.createQuery(query)
+                    .addParameter("id", Integer.toString(uid))
+                    .executeAndFetch(Point.class).get(0);
+            if (result.getUp() == 0){
+                return 100.0;
+            }
+            return result.getUp() * 100.0 / (result.getUp() + result.getDown());
         }
     }
 }
