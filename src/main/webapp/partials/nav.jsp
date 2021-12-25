@@ -54,7 +54,7 @@
                         <div class='nav__user-box flex space-x-5 items-center'>
                             <button type='button'
                                     class='bid__menu relative nav__user-icon rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white p-1'>
-                                <img class="h-8 w-8 " src="${pageContext.request.contextPath}/public/imgs/icon.svg"
+                                <img class="h-9 w-9 " src="${pageContext.request.contextPath}/public/imgs/user.svg"
                                      alt="">
                                 <span class='text-left invisible'>
                                 <ul class='right-0 text-sm font-semibold'>
