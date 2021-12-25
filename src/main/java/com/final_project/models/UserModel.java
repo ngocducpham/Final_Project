@@ -25,7 +25,7 @@ public class UserModel {
             con.createQuery(updateSql)
                     .addParameter("userrole", u.getUserrole())
                     .addParameter("User_ID", u.getUser_ID())
-                     .executeUpdate();
+                    .executeUpdate();
         }
     }
 
@@ -179,16 +179,22 @@ public class UserModel {
         }
     }
 
-    public  static void add(User u)
-    {
-        final String query="insert into users (User_ID, username)\n" +
+    public static void add(User u) {
+        final String query = "insert into users (User_ID, username)\n" +
                 "values (:User_ID,:username);";
-        try (Connection con =DBUtils.getConnection())
-        {
-           con.createQuery(query)
-                   .addParameter("User_ID",u.getUser_ID())
-                   .addParameter("username",u.getUsername())
-                   .executeUpdate();
+        try (Connection con = DBUtils.getConnection()) {
+            con.createQuery(query)
+                    .addParameter("User_ID", u.getUser_ID())
+                    .addParameter("username", u.getUsername())
+                    .executeUpdate();
+        }
+    }
+
+    public static int Get_max_user_max_id() {
+        final String query = "select max(user_id)from users";
+        try (Connection con = DBUtils.getConnection()) {
+            return con.createQuery(query)
+                    .executeAndFetch(User.class).get(0).getUser_ID();
         }
     }
 }

@@ -2,6 +2,7 @@ package com.final_project.controllers;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.final_project.beans.User;
+import com.final_project.models.PointModel;
 import com.final_project.models.UserModel;
 import com.final_project.utils.ServletUtils;
 
@@ -127,6 +128,7 @@ public class AccountServlet extends HttpServlet {
         if (code.equals(user.getCode())) {
             System.out.println("true");
             UserModel.AddNewUser(user);
+            PointModel.New_User_Point();
             ServletUtils.redirect("/Account/Login", request, response);
         } else {
             System.out.println("false");

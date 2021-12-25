@@ -22,17 +22,16 @@ home_address.addEventListener("keyup", function () {
 })
 
 $('#FormRegister').on('submit', function (e) {
-
+    e.preventDefault();
     const email = $('#email-address').val();
     if ($('#password').val() !== $('#re-password').val()) {
         alert('Mật Khẩu Không Khớp !');
-        e.preventDefault();
         return;
     }
 
     $.getJSON('/Final_Project/Account/CheckAvailable?email=' + email, function (data) {
         if (data === true) {
-            alert("Đăng kí thành công !")
+            // alert("Đăng kí thành công !")
             $('#FormRegister').off('submit').submit();
         } else {
             alert('Email đã có người sử dụng !');
