@@ -57,6 +57,7 @@
                         <option>10--Laptop</option>
                         <option>11--Điện thoại</option>
                         <option>12--Đồng hồ</option>
+<%--                        <option>${Cate.}</option>--%>
                     </select>
                 </div>
 
@@ -87,14 +88,14 @@
                     </div>
                 </div>
                 <button type="submit" class="btn btn-outline-success">
-                    <a href="${pageContext.request.contextPath}/Admin/Product/" role="button">
-                        <i class="fa fa-check"></i>
+                    <a  role="button">
+                        <i class="fa fa-check" aria-hidden="true"></i>
                         Lưu
                     </a>
                 </button>
                 <button type="button" class="btn btn-outline-danger" id="close_edit">
                     <a href="${pageContext.request.contextPath}/Personal/Post_Products" role="button">
-                        <i class="fa fa-times"></i>
+                        <i class="fa fa-times" aria-hidden="true"></i>
                         Huỷ
                     </a>
 

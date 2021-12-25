@@ -23,6 +23,12 @@ public class User {
 
     }
 
+    public User(int User_ID,String username)
+    {
+        this.User_ID=getUser_ID();
+        this.username=getUsername();
+    }
+
 
     public User(int id, int role) {
         User_ID = id;

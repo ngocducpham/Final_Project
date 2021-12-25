@@ -178,4 +178,17 @@ public class UserModel {
                     executeUpdate();
         }
     }
+
+    public  static void add(User u)
+    {
+        final String query="insert into users (User_ID, username)\n" +
+                "values (:User_ID,:username);";
+        try (Connection con =DBUtils.getConnection())
+        {
+           con.createQuery(query)
+                   .addParameter("User_ID",u.getUser_ID())
+                   .addParameter("username",u.getUsername())
+                   .executeUpdate();
+        }
+    }
 }

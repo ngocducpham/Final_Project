@@ -1,7 +1,6 @@
 package com.final_project.models;
 
 import com.final_project.beans.Category;
-import com.final_project.beans.Product;
 import com.final_project.beans.ProductAuction;
 import com.final_project.utils.DBUtils;
 import org.sql2o.Connection;
@@ -175,6 +174,19 @@ public class ProductAutionModel {
                     .executeUpdate();
         }
     }
+    public static void add1(ProductAuction pa) {
+        String insertSql = "insert into product_auction(Start_Price, Start_Time, End_Time) " +
+                "values (:Start_Price, :Start_Time, :End_Time)";
+        try (Connection con = DBUtils.getConnection()) {
+            con.createQuery(insertSql)
+                    .addParameter("Start_Price", pa.getStart_Price())
+                    .addParameter("Start_Time", pa.getStart_Time())
+                    .addParameter("End_Time", pa.getEnd_Time())
+                    .executeUpdate();
+        }
+    }
+
+
 
 
 }

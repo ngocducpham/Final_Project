@@ -1,11 +1,10 @@
 package com.final_project.controllers;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
-import com.final_project.beans.AddProduct;
-import com.final_project.beans.Category;
-import com.final_project.beans.ProductAuction;
-import com.final_project.beans.User;
+import com.final_project.beans.*;
 import com.final_project.models.InsertProductModel;
+import com.final_project.models.ProductAutionModel;
+import com.final_project.models.ProductModel;
 import com.final_project.models.UserModel;
 import com.final_project.utils.ServletUtils;
 
@@ -90,19 +89,23 @@ public class PersonalServlet extends HttpServlet {
                     break;
 
                 case "/Post_Products":
+                    request.setCharacterEncoding("UTF-8");
                     String pname= request.getParameter("Pname");
-                    int price=Integer.parseInt("Price");
-                    int cat_ID= Integer.parseInt("Cat_ID");
-                    LocalDateTime start_Time = LocalDateTime.parse("Start_Time") ;
-                    LocalDateTime end_Time = LocalDateTime.parse("End_Time") ;
+                    int Price=Integer.parseInt(request.getParameter("Price"));
+                    int cat_ID= Integer.parseInt(request.getParameter("Cat_ID"));
+                    LocalDateTime start_Time = LocalDateTime.parse(request.getParameter("Start_Time")) ;
+                    LocalDateTime end_Time = LocalDateTime.parse(request.getParameter("End_Time"));
                     String img = request.getParameter("img");
                     String description =request.getParameter("description");
+                    //AddProduct s = new AddProduct(pname,price,cat_ID,start_Time,end_Time,img,description);
+                    //InsertProductModel.InsertProduct(s);
+                    Product p=new Product(pname, cat_ID, img,description);
+                    ProductModel.add(p);
+                    ProductAuction pa=new ProductAuction(Price,start_Time,end_Time);
+                    ProductAutionModel.add1(pa);
 
-
-                    AddProduct s = new AddProduct(pname,price,cat_ID,start_Time,end_Time,img,description);
-                    InsertProductModel.InsertProduct(s);
-
-                    ServletUtils.forward("views/Account/Post_Products.jsp",request,response);
+                    ServletUtils.redirect("views/Account/Post_Products.jsp",request,response);
+                    break;
 
                 default:
                     break;

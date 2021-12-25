@@ -55,6 +55,12 @@ ProductAuction {
         this.max_price = max_price;
     }
 
+    public ProductAuction(int price, LocalDateTime start_time, LocalDateTime end_time) {
+        Start_Price=price;
+        Start_Time=start_time;
+        End_Time=end_time;
+    }
+
     public void setTotal_Products(String total_Products) {
         Total_Products = total_Products;
     }
