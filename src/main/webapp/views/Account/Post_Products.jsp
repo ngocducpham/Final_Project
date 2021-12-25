@@ -87,12 +87,17 @@
                     </div>
                 </div>
                 <button type="submit" class="btn btn-outline-success">
-                    <i class="fa fa-check"></i>
-                    Lưu
+                    <a href="${pageContext.request.contextPath}/Admin/Product/" role="button">
+                        <i class="fa fa-check"></i>
+                        Lưu
+                    </a>
                 </button>
                 <button type="button" class="btn btn-outline-danger" id="close_edit">
-                    <i class="fa fa-times"></i>
-                    Huỷ
+                    <a href="${pageContext.request.contextPath}/Personal/Post_Products" role="button">
+                        <i class="fa fa-times"></i>
+                        Huỷ
+                    </a>
+
                 </button>
             </form>
         </div>

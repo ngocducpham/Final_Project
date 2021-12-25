@@ -99,7 +99,7 @@ public class PersonalServlet extends HttpServlet {
                     String description =request.getParameter("description");
 
 
-                    AddProduct s=new AddProduct(pname,price,cat_ID,start_Time,end_Time,img,description);
+                    AddProduct s = new AddProduct(pname,price,cat_ID,start_Time,end_Time,img,description);
                     InsertProductModel.InsertProduct(s);
 
                     ServletUtils.forward("views/Account/Post_Products.jsp",request,response);
@@ -175,8 +175,8 @@ public class PersonalServlet extends HttpServlet {
         ServletUtils.redirect(url, request, response);
     }
 
-    private void Post_Products(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("authUser");
-    }
+//    private void Post_Products(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        HttpSession session = request.getSession();
+//        User user = (User) session.getAttribute("authUser");
+//    }
 }
