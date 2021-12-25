@@ -2,12 +2,11 @@ package com.final_project.Thread;
 
 import com.final_project.beans.Winner_Bean;
 import com.final_project.models.Check_Win_Model;
+import com.final_project.models.ManagerModel;
 import com.final_project.utils.ServletUtils;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.TimerTask;
@@ -21,7 +20,7 @@ public class Check_Win implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         if ((scheduler == null) || (!scheduler.isTerminated())) {
             scheduler = Executors.newSingleThreadScheduledExecutor();
-            scheduler.scheduleAtFixedRate(new ScheduledTask(), 0, 60, TimeUnit.SECONDS);
+            scheduler.scheduleAtFixedRate(new ScheduledTask(), 0, 300, TimeUnit.SECONDS);
         }
     }
 
@@ -70,7 +69,7 @@ class ScheduledTask extends TimerTask {
                     ServletUtils.send_mail_to_winner(mail_to_winner, header, content_to_winner);
 
                     // sua status san pham thanh 0
-
+                    ManagerModel.blockProduct(wb.getPro_id());
                 }
             }
         }

@@ -33,6 +33,10 @@ public class Category {
         Level = level;
     }
 
+    public Category(int cat_ID) {
+        Cat_ID=cat_ID;
+    }
+
     public String getCname() {
         return Cname;
     }

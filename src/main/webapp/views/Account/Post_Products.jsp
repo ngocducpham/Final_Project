@@ -57,7 +57,6 @@
                         <option>10--Laptop</option>
                         <option>11--Điện thoại</option>
                         <option>12--Đồng hồ</option>
-<%--                        <option>${Cate.}</option>--%>
                     </select>
                 </div>
 
