@@ -1,5 +1,31 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+<div style='background-image: url("${pageContext.request.contextPath}/public/imgs/how-bg.png");height: 550px;' class='relative mt-56 bg-center mb-20'>
+    <img src="${pageContext.request.contextPath}/public/imgs/how-top.png" alt="">
+    <div class='absolute bg-white left-2/4 top-80 py-7 px-14 rounded-2xl shadow-2xl'
+         style='transform: translateX(-50%);height: 480px;width: 1000px;'>
+        <div class='font-bold text-4xl'>How It Works</div>
+        <div class='text-gray-400 mt-3'>Easy 3 steps to win</div>
+        <div class='flex mt-10 justify-between'>
+            <div class='text-center'>
+                <img src="${pageContext.request.contextPath}/public/imgs/how1.png" alt="">
+                <div class='mt-4 text-2xl font-bold'>Sign Up</div>
+                <div class='mt-3 text-gray-500'>No Credit Card Required</div>
+            </div>
+            <div class='text-center'>
+                <img src="${pageContext.request.contextPath}/public/imgs/how2.png" alt="">
+                <div class='mt-4 text-2xl font-bold'>Bid</div>
+                <div class='mt-3 text-gray-500'>Bidding is free Only pay if you win</div>
+            </div>
+            <div class='text-center'>
+                <img src="${pageContext.request.contextPath}/public/imgs/how3.png" alt="">
+                <div class='mt-4 text-2xl font-bold'>Win</div>
+                <div class='mt-3 text-gray-500'>Fun - Excitement - Great deals</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class='mt-96'></div>
 <div style='background-image: url("${pageContext.request.contextPath}/public/imgs/footer-bg.jpg");' class='w-full bg-center bg-cover mt-40 relative pb-8'>
     <div class="footer__top">
         <svg id="wave" style="transform:rotate(180deg);" viewBox="0 0 1440 140" xmlns="http://www.w3.org/2000/svg">

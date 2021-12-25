@@ -7,8 +7,6 @@ import com.final_project.utils.ServletUtils;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.TimerTask;
@@ -22,7 +20,7 @@ public class Check_Win implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         if ((scheduler == null) || (!scheduler.isTerminated())) {
             scheduler = Executors.newSingleThreadScheduledExecutor();
-            scheduler.scheduleAtFixedRate(new ScheduledTask(), 0, 60, TimeUnit.SECONDS);
+            scheduler.scheduleAtFixedRate(new ScheduledTask(), 0, 300, TimeUnit.SECONDS);
         }
     }
 

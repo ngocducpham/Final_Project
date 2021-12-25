@@ -56,9 +56,8 @@ public class PersonalServlet extends HttpServlet {
                     break;
 //                    Post SP
                 case "/Post_Products":
-
                     List<Category> Catlist = InsertProductModel.getCate();
-                    request.setAttribute("Cate",Catlist);
+                    request.setAttribute("Cate", Catlist);
                     ServletUtils.forward("/views/Account/Post_Products.jsp", request, response);
                     break;
                 default:
@@ -126,14 +125,14 @@ public class PersonalServlet extends HttpServlet {
 
         if (result.verified) {
             session.setAttribute("false_old_pass", false);
-            session.setAttribute("success_change_pass",true);
+            session.setAttribute("success_change_pass", true);
             new_pass = BCrypt.withDefaults().hashToString(12, new_pass.toCharArray());
             User new_user = new User(user.getUser_ID(), user.getUsername(), user.getEmail(), new_pass, user.getUserrole(), user.getAddress(), user.getDate_o_Birth(), user.getSeller_Expired_date());
             session.setAttribute("authUser", new_user);
             UserModel.Update_User_Password(new_pass, user.getUser_ID());
         } else {
             session.setAttribute("false_old_pass", true);
-            session.setAttribute("success_change_pass",false);
+            session.setAttribute("success_change_pass", false);
         }
         ServletUtils.redirect("/Personal/User_Change_Password", request, response);
     }
@@ -170,20 +169,20 @@ public class PersonalServlet extends HttpServlet {
 //    }
     private void Post_Products(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        String pname= request.getParameter("Pname");
+        String pname = request.getParameter("Pname");
         int Price = Integer.parseInt(request.getParameter("Price"));
         int cat_ID = Integer.parseInt(request.getParameter("Cat_ID"));
-        LocalDateTime start_Time = LocalDateTime.parse(request.getParameter("Start_Time")) ;
+        LocalDateTime start_Time = LocalDateTime.parse(request.getParameter("Start_Time"));
         LocalDateTime end_Time = LocalDateTime.parse(request.getParameter("End_Time"));
         String img = request.getParameter("img");
-        String description =request.getParameter("description");
+        String description = request.getParameter("description");
         //AddProduct s = new AddProduct(pname,price,cat_ID,start_Time,end_Time,img,description);
         //InsertProductModel.InsertProduct(s);
-        Product p=new Product(pname, cat_ID, img,description);
+        Product p = new Product(pname, cat_ID, img, description);
         ProductModel.add(p);
-        ProductAuction pa=new ProductAuction(pname,Price,start_Time,end_Time);
+        ProductAuction pa = new ProductAuction(pname, Price, start_Time, end_Time);
         ProductAutionModel.add1(pa);
-        Category c= new Category(cat_ID);
+        Category c = new Category(cat_ID);
         CategoryModel.add1(c);
 
         ServletUtils.redirect("/Admin/Product",request,response);
