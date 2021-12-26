@@ -60,9 +60,18 @@
                 <p style="font-size: 90px">Bạn Chưa Đăng Sản Phẩm Nào</p>
             </c:when>
             <c:otherwise>
-                <div style="font-weight: bold;font-size: 36px">Sản Phẩm Bạn
-                    <span
-                        style="color:red;">Đã Đăng Bán</span>
+                <div class="d-flex justify-content-between">
+                    <div style="font-weight: bold;font-size: 36px">Sản Phẩm Bạn
+                        <span
+                                style="color:red;">Đã Đăng Bán</span>
+                    </div>
+                    <div >
+                        <a class="btn btn-outline-success" role="button"
+                           href="${pageContext.request.contextPath}/Personal/Edit_Post_Products">
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                            Sửa thông tin
+                        </a>
+                    </div>
                 </div>
                 <div class='flex space-x-3 space-y-3 mt-10 flex-wrap'>
                     <c:forEach items="${My_Post_Products}" var="p">

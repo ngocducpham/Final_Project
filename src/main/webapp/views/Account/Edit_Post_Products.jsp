@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<jsp:useBean id="Cate" scope="request" type="java.util.List<com.final_project.beans.Category>"/>
 
 <t:personal_page>
     <jsp:attribute name="js">
@@ -32,16 +31,8 @@
 
             <div class="top_header d-flex justify-content-between">
                 <h4 class="h__profile ">
-                    SẢN PHẨM ĐĂNG BÁN
+                    CẬP NHẬT SẢN PHẨM ĐĂNG BÁN
                 </h4>
-                <div >
-                    <a class="btn btn-outline-success" role="button"
-                       href="${pageContext.request.contextPath}/Personal/My_Post_Products">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                        List
-                    </a>
-                </div>
-
             </div>
 
             <div class="boxProfile ">
