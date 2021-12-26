@@ -15,7 +15,7 @@
             $('#FormCategory').on('submit', function (e) {
                 e.preventDefault();
                 const val = $('#txtCatID').val();
-                const val1 =  $('#txtCparentID').val();
+                const val1 = $('#txtLevel').val();
                 if (val == null) {
                     alert('Không có danh mục !');
                     e.preventDefault();
@@ -24,12 +24,14 @@
 
                 $.getJSON('/Final_Project/Admin/Category/IsAvailable?Cat_ID=' + val, function (data) {
                     if (data === true) {
-                        if(val1 == null && val1 != 0){
+                        if(val1 !== 1){
                             alert("Xóa danh mục thành công !")
                             $('#FormCategory').off('submit').submit();
                         }
                     } else {
-                        alert('Danh mục đang tồn tại sản phẩm !');
+                        if(val1 === 1){
+                            alert('Danh mục đang tồn tại sản phẩm !');
+                        }
                     }
                 });
             });
@@ -48,8 +50,8 @@
                             <input type="text" class="form-control" id="txtCatID" name="Cat_ID" readonly value="${category.cat_ID}">
                         </div>
                         <div class="form-group">
-                            <label for="txtCparentID">Con ID cấp cha</label>
-                            <input type="text" class="form-control" id="txtCparentID" name="Cparent_ID" readonly value="${category.cparent_ID}">
+                            <label for="txtLevel">Con ID cấp cha</label>
+                            <input type="text" class="form-control" id="txtLevel" name="Level" readonly value="${category.level}">
                         </div>
                         <div class="form-group">
                             <label for="txtCatName">Tên</label>
