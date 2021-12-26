@@ -60,7 +60,8 @@
                 <p style="font-size: 90px">Bạn Chưa Đăng Sản Phẩm Nào</p>
             </c:when>
             <c:otherwise>
-                <div style="font-weight: bold;font-size: 36px">Sản Phẩm Bạn <span
+                <div style="font-weight: bold;font-size: 36px">Sản Phẩm Bạn
+                    <span
                         style="color:red;">Đã Đăng Bán</span>
                 </div>
                 <div class='flex space-x-3 space-y-3 mt-10 flex-wrap'>
@@ -74,7 +75,8 @@
                                      src="${pageContext.request.contextPath}/public/imgProduct/${p.pro_ID}/main.jpg"
                                      alt="">
                                 <div class='px-2 w-full text-center mt-2'>
-                                    <a class='font-semibold w-full hover:underline'>${p.pname}</a>
+                                    <a class='font-semibold w-full hover:underline'
+                                        href="/Final_Project/ProductDetail?id=${p.pro_ID}">${p.pname}</a>
                                     <div class='text-sm text-gray-500 font-semibold mt-3'>
                                         Giá hiện tại:
                                         <span>${p.max_price} đ</span>

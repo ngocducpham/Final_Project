@@ -201,7 +201,7 @@
                                 </a>
                                 </c:if>
                                 <img class='h-60 w-full rounded-t-lg'
-                                     src="${pageContext.request.contextPath}/public/imgProduct/${p.pro_ID}/main.jpg" alt="">
+                                     src="${pageContext.request.contextPath}/public/imgProduct/${p.pro_ID}/main.jpg" alt="${p.pname}">
                                 <div class='p-3 w-full text-center'>
                                     <a href='${pageContext.request.contextPath}/ProductDetail?id=${p.pro_ID}' class='font-semibold w-full hover:underline'>${p.pname}</a>
                                     <div class='text-sm text-gray-500 font-semibold'>
@@ -212,8 +212,7 @@
                                         </div>
                                         <div class='mt-1'>Ngày đăng:
                                             <span class="start_Time">
-
-                                    </span>
+                                            </span>
                                         </div>
                                     </div>
                                     <div class='timeContainer flex justify-around text-xs mt-3 font-semibold'>

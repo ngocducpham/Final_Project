@@ -19,7 +19,8 @@
                 language: 'vi',
                 menubar: false,
                 toolbar: [
-                    'undo redo | bold italic underline strikethrough | alignleft aligncenter alignright | numlist bullist | table | link autolink media | forecolor backcolor wordcount restoredraft|',
+                    'undo redo | bold italic underline strikethrough | alignleft aligncenter alignright | numlist bullist | table | link autolink media |' +
+                    ' forecolor backcolor wordcount restoredraft|',
                 ],
                 entity_encoding: "raw",
             });
