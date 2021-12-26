@@ -63,16 +63,27 @@ public class ProductServlet extends HttpServlet {
             case "/Delete":
                 deleteProduct(request, response);
                 break;
+            case "/Update":
+                updateProduct(request, response);
+                break;
             default:
                 ServletUtils.forward("/views/404/index.jsp", request, response);
                 break;
         }
     }
 
+    private void updateProduct(HttpServletRequest request, HttpServletResponse response) throws IOException{
+        int id = Integer.parseInt(request.getParameter("Pro_ID"));
+        int Status = Integer.parseInt(request.getParameter("Status"));
+        Product p = new Product(id, Status);
+        ProductModel.update(p);
+        ServletUtils.redirect("/Admin/Product", request, response);
+    }
+
     private void deleteProduct(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int id = Integer.parseInt(request.getParameter("Request_ID"));
         ProductModel.delete(id);
-        ServletUtils.redirect("/Admin/Category", request, response);
+        ServletUtils.redirect("/Admin/Product", request, response);
     }
 }
 

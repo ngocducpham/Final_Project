@@ -35,6 +35,14 @@
                         <label for="txtTotal">Tổng bidder</label>
                         <input type="text" class="form-control" id="txtTotal" name="Total_Bid" readonly value="${products.total_Bid}">
                     </div>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" value="1" id="customRadio1" name="Status" class="custom-control-input" checked>
+                        <label class="custom-control-label" for="customRadio1">Duyệt</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" value="0" id="customRadio2" name="Status" class="custom-control-input">
+                        <label class="custom-control-label" for="customRadio2">Không duyệt</label>
+                    </div>
                 </div>
 
                 <div class="card-footer">
@@ -42,9 +50,14 @@
                         <i class="fa fa-backward" aria-hidden="true"></i>
                         List
                     </a>
-                    <button type="submit" class="btn btn-danger text-red-600" formaction="${pageContext.request.contextPath}/Admin/Category/Delete">
+
+                    <button type="submit" class="btn btn-danger text-red-600" formaction="${pageContext.request.contextPath}/Admin/Product/Delete">
                         <i class="fa fa-trash" aria-hidden="true"></i>
                         Delete
+                    </button>
+                    <button type="submit" class="btn btn-primary text-blue-600" formaction="${pageContext.request.contextPath}/Admin/Product/Update">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                        Save
                     </button>
                 </div>
             </div>
