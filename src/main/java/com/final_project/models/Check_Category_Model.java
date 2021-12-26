@@ -21,4 +21,19 @@ public class Check_Category_Model {
             return list.get(0);
         }
     }
+
+    public static Category Find_By_Cparent_ID(int id) {
+        final String query = "select Cparent_ID from categories where Cat_ID = :Cat_ID";
+        try (Connection con1 = DBUtils.getConnection()) {
+            List<Category> list = con1.createQuery(query)
+                    .addParameter("Cat_ID", id)
+                    .executeAndFetch(Category.class);
+
+            if (list.size() == 0) {
+                return null;
+            }
+
+            return list.get(0);
+        }
+    }
 }
