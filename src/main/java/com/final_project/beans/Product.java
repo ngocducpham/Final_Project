@@ -27,7 +27,7 @@ public class Product {
         End_Time = end_Time;
     }
 
-    public Product(String pname, int price, int cat_id, LocalDateTime start_time, LocalDateTime end_time, String img, String description) {
+    public Product(String pname, int price, int cat_id, LocalDateTime start_time, LocalDateTime end_time, String img, String description, int status) {
         Pname = pname;
         Price = price;
         Cat_ID = cat_id;
@@ -35,6 +35,7 @@ public class Product {
         End_Time = end_time;
         this.img = img;
         this.description = description;
+        Status = status;
     }
 
     public Product(int pro_ID) {

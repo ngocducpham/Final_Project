@@ -24,7 +24,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Tên sản phẩm</th>
-                                <th>Giá bắt đầu</th>
+                                <th>Duyệt</th>
                                 <th>Giá hiện tại</th>
                                 <th>Ngày bắt đầu</th>
                                 <th>Ngày kết thúc</th>
@@ -37,7 +37,15 @@
                                     <td>${c.pro_ID}</td>
                                     <td>${c.pname}</td>
                                     <td>
-                                        <fmt:formatNumber value="${c.start_Price}" type="number" />
+                                        <c:choose>
+                                            <c:when test="${c.status == 1}">
+                                                Đã duyệt
+                                            </c:when>
+                                            <c:otherwise>
+                                                Không duyệt
+                                            </c:otherwise>
+                                        </c:choose>
+
                                     </td>
                                     <td>
                                         <fmt:formatNumber value="${c.current_Price}" type="number" />
