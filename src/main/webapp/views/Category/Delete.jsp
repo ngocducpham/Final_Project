@@ -15,6 +15,7 @@
             $('#FormCategory').on('submit', function (e) {
                 e.preventDefault();
                 const val = $('#txtCatID').val();
+                const val1 =  $('#txtCparentID').val();
                 if (val == null) {
                     alert('Không có danh mục !');
                     e.preventDefault();
@@ -23,8 +24,10 @@
 
                 $.getJSON('/Final_Project/Admin/Category/IsAvailable?Cat_ID=' + val, function (data) {
                     if (data === true) {
-                        alert("Xóa danh mục thành công !")
-                        $('#FormCategory').off('submit').submit();
+                        if(val1 == null && val1 != 0){
+                            alert("Xóa danh mục thành công !")
+                            $('#FormCategory').off('submit').submit();
+                        }
                     } else {
                         alert('Danh mục đang tồn tại sản phẩm !');
                     }
