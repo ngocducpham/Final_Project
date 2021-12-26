@@ -134,7 +134,8 @@ public class CategoryServlet extends HttpServlet {
   private void IsAvailable(HttpServletRequest request, HttpServletResponse response) throws IOException {
     int Cat_ID = Integer.parseInt(request.getParameter("Cat_ID"));
     Category category = Check_Category_Model.Find_By_Cat_ID(Cat_ID);
-    boolean isAvailable = (category == null);
+    Category category1 = Check_Category_Model.Find_By_Cparent_ID(Cat_ID);
+    boolean isAvailable = (category == null || category1 == null);
     PrintWriter out = response.getWriter();
     response.setContentType("application/json");
     response.setCharacterEncoding("utf-8");
