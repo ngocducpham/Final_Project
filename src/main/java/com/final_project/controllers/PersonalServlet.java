@@ -61,9 +61,6 @@ public class PersonalServlet extends HttpServlet {
                     request.setAttribute("My_Post_Products", list3);
                     ServletUtils.forward("/views/Account/My_Post_Products.jsp", request, response);
                     break;
-                case "/Edit_Post_Products":
-                    ServletUtils.forward("/views/Account/Edit_Post_Products.jsp", request, response);
-                    break;
                 default:
                     ServletUtils.forward("/views/404/index.jsp", request, response);
                     break;

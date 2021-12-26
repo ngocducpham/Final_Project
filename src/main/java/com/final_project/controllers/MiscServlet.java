@@ -67,6 +67,7 @@ public class MiscServlet extends HttpServlet {
         }
     }
 
+
     private void Post_Products(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         String pname = request.getParameter("Pname");

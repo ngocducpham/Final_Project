@@ -58,7 +58,7 @@
     <jsp:body>
         <c:choose>
             <c:when test="${User_Won_Auction_Product_List.size()==0}">
-                <p style="font-size: 90px">Bạn Chưa Thắng Cuộc Đấu Giá Nào</p>
+                <p style="font-size: 36px">Bạn Chưa Thắng Cuộc Đấu Giá Nào</p>
             </c:when>
             <c:otherwise>
                 <div style="font-weight: bold;font-size: 36px">Sản Phẩm Bạn <span
