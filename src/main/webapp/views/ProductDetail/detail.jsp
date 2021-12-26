@@ -115,8 +115,9 @@
         <div class='max-w-7xl py-5 px-10 mx-auto bg-white'>
             <div class='max-w-5xl mx-auto'>
                 <div class='flex'>
-                    <!-- hình ảnh -->
+
                     <div class='mr-16' style='width: 450px;'>
+<%--                        DEADLINE--%>
                         <div class='flex justify-between items-center px-4 py-2 mb-3 rounded-md bg-gray-800 text-white '
                              style='width: 450px;'>
                             <c:if test="${proDetail.status == 0}">
@@ -131,8 +132,9 @@
                                 </div>
                             </c:if>
                         </div>
+
                         <div class='flex'>
-                            <!-- hình bên -->
+                            <!-- Hình ảnh -->
                             <div class='img__mini-preview flex-col space-y-4 mr-3 overflow-auto pr-2'
                                  style='height: 450px;'>
                                 <div class='sub__img border rounded-md cursor-pointer'>
@@ -157,7 +159,7 @@
                                 </div>
 
                             </div>
-                            <!-- hình chính -->
+                            <!-- Icon Yeu thich sp -->
                             <div class='relative rounded-lg border border-indigo-400 overflow-hidden'
                                  style="height: 440px">
                                 <c:if test="${Verified}">
@@ -177,7 +179,8 @@
                     <div style='width: 430px;'>
                         <div class='text-3xl text-gray-700 font-bold'>${proDetail.pname}</div>
                         <div class='mt-10'>
-                            <div class='mt-10 w-28 text-xl font-semibold border-b-4 border-gray-800 mb-3'>Thông tin
+                            <div class='mt-10 w-28 text-xl font-semibold border-b-4 border-gray-800 mb-3'>
+                                Thông tin
                             </div>
                             <div class='text-gray-600'>
                                 <div class='flex justify-between border-b-2 border-dashed font-medium  mb-3'>
@@ -231,23 +234,24 @@
                                             <c:if test="${Verified}">
                                                 <button type="button" id="btn__bid"
                                                         class='bg-gray-800 h-9 px-4 absolute right-0 rounded-r-md text-white text-lg hover:bg-gray-700'>
-                                                    Ra
-                                                    giá
+                                                  Ra giá
                                                 </button>
                                             </c:if>
                                         </form>
                                     </c:if>
                                     <c:if test="${blacklist.value == 1}">
-                                        <div class="text-lg text-red-500 font-medium">Bạn không có quyền đấu giá sản
-                                            phẩm này.
+                                        <div class="text-lg text-red-500 font-medium">
+                                            Bạn không có quyền đấu giá sản phẩm này.
                                         </div>
                                     </c:if>
                                     <c:if test="${lowrate == 1}">
-                                        <div class="text-lg text-red-500 font-medium">Điểm đánh giá của bạn thấp < 80%, không thể đấu giá.
+                                        <div class="text-lg text-red-500 font-medium">
+                                            Điểm đánh giá của bạn thấp < 80%, không thể đấu giá.
                                         </div>
                                     </c:if>
                                     <c:if test="${!Verified}">
-                                        <div class="text-lg text-red-500 font-medium">Đăng nhập để đấu giá sản phẩm.
+                                        <div class="text-lg text-red-500 font-medium">
+                                            Đăng nhập để đấu giá sản phẩm.
                                         </div>
                                     </c:if>
                                 </c:if>

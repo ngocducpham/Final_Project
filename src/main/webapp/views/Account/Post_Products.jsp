@@ -15,11 +15,11 @@
             tinymce.init({
                 selector: '#fullDes',
                 height: 300,
-                plugins: 'lists link media autolink table image paste autosave',
+                plugins: 'lists link media autolink table image paste autosave wordcount code',
                 language: 'vi',
                 menubar: false,
                 toolbar: [
-                    'undo redo | bold italic underline strikethrough | numlist bullist | link autolink | table media | restoredraft| forecolor backcolor',
+                    'undo redo | bold italic underline strikethrough | alignleft aligncenter alignright | numlist bullist | table | link autolink media | forecolor backcolor wordcount restoredraft|',
                 ],
                 entity_encoding: "raw",
             });
@@ -32,12 +32,15 @@
             <div class="top_header d-flex justify-content-between">
                 <h4 class="h__profile ">
                     SẢN PHẨM ĐĂNG BÁN
+                </h4>
+                <div >
+                    <a class="btn btn-outline-success" role="button"
+                       href="${pageContext.request.contextPath}/Admin/Product/">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                        List
+                    </a>
+                </div>
 
-                </h4><a class="btn btn-outline-success" role="button"
-                        href="${pageContext.request.contextPath}/Admin/Product/">
-                <i class="fa fa-check" aria-hidden="true"></i>
-                List
-            </a>
             </div>
 
             <div class="boxProfile ">
@@ -57,7 +60,7 @@
                         <div class="form-group col-md-6">
                             <label for="step_price">Bước Giá</label>
                             <input type="text" class="form-control background" name="Step-Price" id="step_price"
-                                   placeholder="iPhone 13"
+                                   placeholder="500.000 VND"
                                    value="">
                         </div>
                     </div>
@@ -71,19 +74,10 @@
                             <option value="10">10--Laptop</option>
                             <option value="11">11--Điện thoại</option>
                             <option value="12">12--Đồng hồ</option>
-
-                                <%--                        <c:forEach var="i" step="1">--%>
-                                <%--                            <option>${Cate.Cat_ID}</option>--%>
-                                <%--                        </c:forEach>--%>
                         </select>
                     </div>
 
                     <div class="form-group ">
-
-                            <%--                    <label for="start_time" >--%>
-                            <%--                        Ngày đấu giá: </label><br />--%>
-                            <%--                    <input id="start_time" name="Start_Time" type="datetime-local" required--%>
-                            <%--                       class="mt-2 w-full px-2 py-1 outline-none block border-2 rounded-md  border-gray-300 text-gray-700">--%>
 
                         <label for="end_time">
                             Ngày kết thúc: </label> <br/>
@@ -128,17 +122,13 @@
 
                         <%--                Button--%>
                     <button type="submit" class="btn btn-outline-success">
-
                         <i class="fa fa-check" aria-hidden="true"></i>
                         Lưu
-
                     </button>
 
                     <button type="button" class="btn btn-outline-danger" id="close_edit">
-                            <%--                    <a href="${pageContext.request.contextPath}/Personal/Post_Products" role="button">--%>
                         <i class="fa fa-times" aria-hidden="true"></i>
                         Huỷ
-                            <%--                    </a>--%>
                     </button>
                 </form>
             </div>
