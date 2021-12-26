@@ -27,8 +27,8 @@ public class AdminFilter implements Filter {
         }
         if (session.getAttribute("authUser") != null) {
             User u = (User) session.getAttribute("authUser");
-            if (u.getUserrole() < 3) {
-                ServletUtils.forward("/views/404/index.jsp", request,(HttpServletResponse) response);
+            if (u.getUsername() != null && u.getUserrole() < 3) {
+                ServletUtils.forward("/views/404/index.jsp", request, (HttpServletResponse) response);
             }
         }
         chain.doFilter(request, response);
