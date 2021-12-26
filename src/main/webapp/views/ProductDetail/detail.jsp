@@ -137,6 +137,11 @@
                                  style='height: 450px;'>
                                 <div class='sub__img border rounded-md cursor-pointer'>
                                     <img class='w-20 h-24 rounded-md'
+                                         src="${pageContext.request.contextPath}/public/imgProduct/${proDetail.pro_ID}/main.jpg"
+                                         alt="">
+                                </div>
+                                <div class=' border rounded-md cursor-pointer'>
+                                    <img class='sub__img w-20 h-24 rounded-md'
                                          src="${pageContext.request.contextPath}/public/imgProduct/${proDetail.pro_ID}/1.jpg"
                                          alt="">
                                 </div>
@@ -148,11 +153,6 @@
                                 <div class=' border rounded-md cursor-pointer'>
                                     <img class='sub__img w-20 h-24 rounded-md'
                                          src="${pageContext.request.contextPath}/public/imgProduct/${proDetail.pro_ID}/3.jpg"
-                                         alt="">
-                                </div>
-                                <div class=' border rounded-md cursor-pointer'>
-                                    <img class='sub__img w-20 h-24 rounded-md'
-                                         src="${pageContext.request.contextPath}/public/imgProduct/${proDetail.pro_ID}/4.jpg"
                                          alt="">
                                 </div>
 
