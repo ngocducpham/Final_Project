@@ -58,6 +58,11 @@ public class Product {
         Cat_ID = cat_ID;
     }
 
+    public Product(int id, int status) {
+        this.Pro_ID = id;
+        this.Status = status;
+    }
+
     public int getPro_ID() {
         return Pro_ID;
     }

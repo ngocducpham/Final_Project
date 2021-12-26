@@ -153,4 +153,14 @@ public class ProductModel {
             return list.get(0).getMax_id();
         }
     }
+
+    public static void update(Product p) {
+        String updateSql = "UPDATE products SET Status = :Status WHERE Pro_ID = :Pro_ID";
+        try (Connection con = DBUtils.getConnection()) {
+            con.createQuery(updateSql)
+                    .addParameter("Status", p.getStatus())
+                    .addParameter("Pro_ID",p.getPro_ID())
+                    .executeUpdate();
+        }
+    }
 }
