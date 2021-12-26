@@ -38,7 +38,8 @@ public class MiscServlet extends HttpServlet {
                         List<Category> Catlist = InsertProductModel.getCate();
                         request.setAttribute("Cate", Catlist);
                         ServletUtils.forward("/views/Account/Post_Products.jsp", request, response);
-                    } else {
+                    }
+                    else {
                         ServletUtils.forward("/views/404/index.jsp", request, response);
                     }
                 }
@@ -130,6 +131,10 @@ public class MiscServlet extends HttpServlet {
             if (part.getName().equals("img4")) {
                 part.write(destination1 + "4.jpg");
                 part.write(destination2 + "4.jpg");
+            }
+            if (part.getName().equals("img5")) {
+                part.write(destination1 + "5.jpg");
+                part.write(destination2 + "5.jpg");
                 break;
             }
         }
