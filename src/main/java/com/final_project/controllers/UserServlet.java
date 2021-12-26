@@ -57,10 +57,19 @@ public class UserServlet extends HttpServlet {
             case "/Update":
                 updateUser(request, response);
                 break;
+            case "/Delete":
+                deleteUser(request, response);
+                break;
             default:
                 ServletUtils.forward("/views/404.jsp", request, response);
                 break;
         }
+    }
+
+    private void deleteUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int id = Integer.parseInt(request.getParameter("User_ID"));
+        UserModel.delete(id);
+        ServletUtils.redirect("/Admin/User", request, response);
     }
 
     private void updateUser(HttpServletRequest request, HttpServletResponse response) throws IOException {

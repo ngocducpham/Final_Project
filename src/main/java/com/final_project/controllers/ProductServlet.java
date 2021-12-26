@@ -63,10 +63,19 @@ public class ProductServlet extends HttpServlet {
             case "/Update":
                 updateProduct(request, response);
                 break;
+            case "/Delete":
+                deleteProduct(request, response);
+                break;
             default:
                 ServletUtils.forward("/views/404/index.jsp", request, response);
                 break;
         }
+    }
+
+    private void deleteProduct(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int id = Integer.parseInt(request.getParameter("Pro_ID"));
+        ProductModel.delete(id);
+        ServletUtils.redirect("/Admin/Product", request, response);
     }
 
     private void updateProduct(HttpServletRequest request, HttpServletResponse response) throws IOException {

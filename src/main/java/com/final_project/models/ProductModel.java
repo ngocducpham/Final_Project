@@ -112,14 +112,7 @@ public class ProductModel {
     }
 
 
-    public static void delete(int id) {
-        String sql = "delete from products where Pro_ID = :Pro_ID";
-        try (Connection con = DBUtils.getConnection()) {
-            con.createQuery(sql)
-                    .addParameter("Pro_ID", id)
-                    .executeUpdate();
-        }
-    }
+
 
     public static List<ProductAuction> getAllProductAuction() {
         String query = "select *from product_auction";
@@ -160,6 +153,15 @@ public class ProductModel {
             con.createQuery(updateSql)
                     .addParameter("Pro_ID",p.getPro_ID())
                     .addParameter("Status", p.getStatus())
+                    .executeUpdate();
+        }
+    }
+
+    public static void delete(int id) {
+        String sql = "delete from products where Pro_ID = :Pro_ID";
+        try (Connection con = DBUtils.getConnection()) {
+            con.createQuery(sql)
+                    .addParameter("Pro_ID", id)
                     .executeUpdate();
         }
     }
