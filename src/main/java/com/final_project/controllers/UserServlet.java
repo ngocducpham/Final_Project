@@ -1,6 +1,5 @@
 package com.final_project.controllers;
 import com.final_project.beans.User;
-import com.final_project.models.ProductModel;
 import com.final_project.models.RequestModel;
 import com.final_project.models.UserModel;
 import com.final_project.utils.ServletUtils;

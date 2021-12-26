@@ -60,9 +60,6 @@ public class ProductServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = request.getPathInfo();
         switch (path) {
-            case "/Delete":
-                deleteProduct(request, response);
-                break;
             case "/Update":
                 updateProduct(request, response);
                 break;
@@ -72,17 +69,11 @@ public class ProductServlet extends HttpServlet {
         }
     }
 
-    private void updateProduct(HttpServletRequest request, HttpServletResponse response) throws IOException{
+    private void updateProduct(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int id = Integer.parseInt(request.getParameter("Pro_ID"));
         int Status = Integer.parseInt(request.getParameter("Status"));
         Product p = new Product(id, Status);
         ProductModel.update(p);
-        ServletUtils.redirect("/Admin/Product", request, response);
-    }
-
-    private void deleteProduct(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int id = Integer.parseInt(request.getParameter("Request_ID"));
-        ProductModel.delete(id);
         ServletUtils.redirect("/Admin/Product", request, response);
     }
 }

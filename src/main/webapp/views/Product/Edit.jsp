@@ -5,12 +5,16 @@
 <jsp:useBean id="products" scope="request" type="com.final_project.beans.Product" />
 <t:admin>
     <jsp:body>
-        <form action="" method="post">
+        <form method="post">
             <div class="card">
                 <h4 class="card-header  d-flex justify-content-between">
                     Xem sản phẩm
                 </h4>
                 <div class="card-body">
+                    <div class="form-group">
+                        <label for="txtProID">#</label>
+                        <input type="text" class="form-control" id="txtProID" name="Pro_ID" readonly value="${products.pro_ID}">
+                    </div>
                     <div class="form-group">
                         <label for="txtPname">Tên</label>
                         <input type="text" class="form-control" id="txtPname" name="Pname" readonly value="${products.pname}">

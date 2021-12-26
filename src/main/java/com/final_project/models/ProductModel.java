@@ -36,7 +36,7 @@ public class ProductModel {
 
 
     public static Product findById(int id) {
-        final String query = "select Current_Price, End_Time, Start_Price, Start_Time, Pname, pa.Pro_ID from products join product_auction pa on pa.Pro_ID = products.Pro_ID where products.Pro_ID = :Pro_ID";
+        final String query = "select Current_Price, End_Time, Start_Time,Pname, Status,Start_Price, products.Pro_ID from products join product_auction pa on pa.Pro_ID = products.Pro_ID where products.Pro_ID = :Pro_ID";
         try (Connection con = DBUtils.getConnection()) {
             List<Product> list = con.createQuery(query)
                     .addParameter("Pro_ID", id)
@@ -158,8 +158,8 @@ public class ProductModel {
         String updateSql = "UPDATE products SET Status = :Status WHERE Pro_ID = :Pro_ID";
         try (Connection con = DBUtils.getConnection()) {
             con.createQuery(updateSql)
-                    .addParameter("Status", p.getStatus())
                     .addParameter("Pro_ID",p.getPro_ID())
+                    .addParameter("Status", p.getStatus())
                     .executeUpdate();
         }
     }

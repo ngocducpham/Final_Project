@@ -59,8 +59,8 @@ public class Product {
     }
 
     public Product(int id, int status) {
-        this.Pro_ID = id;
-        this.Status = status;
+        Pro_ID = id;
+        Status = status;
     }
 
     public int getPro_ID() {
