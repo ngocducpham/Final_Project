@@ -45,6 +45,10 @@
                             <input type="text" class="form-control" id="txtCatID" name="Cat_ID" readonly value="${category.cat_ID}">
                         </div>
                         <div class="form-group">
+                            <label for="txtCparentID">Con ID cấp cha</label>
+                            <input type="text" class="form-control" id="txtCparentID" name="Cparent_ID" readonly value="${category.cparent_ID}">
+                        </div>
+                        <div class="form-group">
                             <label for="txtCatName">Tên</label>
                             <input type="text" class="form-control" id="txtCatName" name="Cname" readonly value="${category.cname}">
                         </div>
