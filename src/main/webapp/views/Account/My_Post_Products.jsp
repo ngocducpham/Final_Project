@@ -34,8 +34,8 @@
 
                     if (days < 0 || hours < 0 || mins < 0 || secs < 0) {
                         let timecout = timeContainer[i].querySelectorAll('div');
-                        if(timecout.length != 0){
-                            timecout.forEach(item=>{
+                        if (timecout.length != 0) {
+                            timecout.forEach(item => {
                                 item.remove();
                             })
                             timeContainer[i].innerText = "Phiên đấu giá đã kết thúc";
@@ -55,17 +55,21 @@
         </script>
     </jsp:attribute>
     <jsp:body>
+        <div>
+            <p>Lọc Theo</p>
+            <a href="${pageContext.request.contextPath}/Personal/My_Post_Products?option=1">Tắt Cả</a>
+            <a href="${pageContext.request.contextPath}/Personal/My_Post_Products?option=2">Còn Đấu Giá Được</a>
+            <a href="${pageContext.request.contextPath}/Personal/My_Post_Products?option=3">Đã Có Người Thắng</a>
+        </div>
         <c:choose>
             <c:when test="${My_Post_Products.size()==0}">
-                <p style="font-size: 36px">Bạn Chưa Đăng Sản Phẩm Nào</p>
+                <p style="font-size: 90px">Không Có Dữ Liệu</p>
             </c:when>
             <c:otherwise>
-                <div class="d-flex justify-content-between">
-                    <div style="font-weight: bold;font-size: 36px">Sản Phẩm Bạn
-                        <span
-                                style="color:red;">Đã Đăng Bán</span>
-                    </div>
+                <div style="font-weight: bold;font-size: 36px">Sản Phẩm Bạn <span
+                        style="color:red;">Đã Đăng Bán</span>
                 </div>
+
                 <div class='flex space-x-3 space-y-3 mt-10 flex-wrap'>
                     <c:forEach items="${My_Post_Products}" var="p">
                         <a href="${pageContext.request.contextPath}/ProductDetail?id=${p.pro_ID}">
@@ -77,8 +81,7 @@
                                      src="${pageContext.request.contextPath}/public/imgProduct/${p.pro_ID}/main.jpg"
                                      alt="">
                                 <div class='px-2 w-full text-center mt-2'>
-                                    <a class='font-semibold w-full hover:underline'
-                                        href="/Final_Project/ProductDetail?id=${p.pro_ID}">${p.pname}</a>
+                                    <a class='font-semibold w-full hover:underline'>${p.pname}</a>
                                     <div class='text-sm text-gray-500 font-semibold mt-3'>
                                         Giá hiện tại:
                                         <span>${p.max_price} đ</span>
