@@ -61,6 +61,7 @@
                 <p style="font-size: 36px">Bạn Chưa Thắng Cuộc Đấu Giá Nào</p>
             </c:when>
             <c:otherwise>
+
                 <div style="font-weight: bold;font-size: 36px">Sản Phẩm Bạn <span
                         style="color:red;">Đang Tham Gia</span> Đấu Giá
                 </div>
@@ -75,7 +76,9 @@
                                      src="${pageContext.request.contextPath}/public/imgProduct/${p.pro_ID}/main.jpg"
                                      alt="">
                                 <div class='px-2 w-full text-center mt-2'>
-                                    <a class='font-semibold w-full hover:underline'>${p.pname}</a>
+                                    <a class='font-semibold w-full hover:underline'
+                                        href="/Final_Project/ProductsDetail?id=${p.pro_ID}">
+                                            ${p.pname}</a>
                                     <div class='text-sm text-gray-500 font-semibold mt-3'>
                                         Giá hiện tại:
                                         <span>${p.max_price} đ</span>
