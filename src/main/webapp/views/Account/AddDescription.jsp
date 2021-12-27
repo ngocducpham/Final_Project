@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<%--<jsp:useBean id="Category" scope="request" type="java.util.List<com.final_project.beans.Category>"/>--%>
+<jsp:useBean id="Product" scope="request" type="java.util.List<com.final_project.beans.Product>"/>
 
 <t:personal_page>
     <jsp:attribute name="js">
@@ -48,9 +48,15 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="pname">Tên sản phẩm</label>
-                            <input type="text" class="form-control background" name="Pname" id="pname"
-                                   placeholder="iPhone 13"
-                                   value="">
+<%--                            <input type="text" class="form-control background" name="Pname" id="pname"--%>
+<%--                                   placeholder="iPhone 13"--%>
+<%--                                   value="">--%>
+                            <select class="custom-select" name="Pname" id="pname">
+                                <c:forEach items="${Product}" var="p">
+                                    <option value="">${p.pname}</option>
+                                </c:forEach>
+
+                            </select>
                         </div>
 
                     </div>

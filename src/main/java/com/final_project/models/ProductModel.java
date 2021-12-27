@@ -123,6 +123,17 @@ public class ProductModel {
         }
     }
 
+    public static List<Product> getProduct() {
+        List<Category> result;
+        String query = "select * from products ";
+
+        try (Connection con = DBUtils.getConnection()) {
+            return con.createQuery(query)
+                    .executeAndFetch(Product.class);
+        }
+
+    }
+
 
     public static void add(Product p) {
         String insertSql = "insert into products(Pname, Price, img, description, Status, Cat_ID) values (:Pname,:Price,:img, :description,:Status, :Cat_ID)";

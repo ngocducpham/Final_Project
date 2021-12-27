@@ -56,8 +56,8 @@ public class MiscServlet extends HttpServlet {
                 {
                     User u = (User) session.getAttribute("authUser");
                     if (u.getUserrole() == 2) {
-//                        List<Category> Catlist = InsertProductModel.getCate();
-//                        request.setAttribute("Cate", Catlist);
+                        List<Product> list = ProductModel.getProduct();
+                        request.setAttribute("Product", list);
                         ServletUtils.forward("/views/Account/AddDescription.jsp", request, response);
                     }
                     else {
