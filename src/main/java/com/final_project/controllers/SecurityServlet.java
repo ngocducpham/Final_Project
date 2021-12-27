@@ -70,7 +70,7 @@ public class SecurityServlet extends HttpServlet {
             if (result.verified) {
                 HttpSession session = request.getSession();
                 session.setAttribute("adminlogin", true);
-                ServletUtils.forward("/views/Admin/Dashboard.jsp", request, response);
+                ServletUtils.redirect("/Admin/Dashboard/Index", request, response);
             } else {
                 // sai password
                 request.setAttribute("hasError", true);
