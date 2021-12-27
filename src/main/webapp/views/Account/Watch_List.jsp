@@ -73,7 +73,8 @@
                                      src="${pageContext.request.contextPath}/public/imgProduct/${p.pro_ID}/main.jpg"
                                      alt="">
                                 <div class='px-2 w-full text-center mt-2'>
-                                    <a class='font-semibold w-full hover:underline'>${p.pname}</a>
+                                    <a class='font-semibold w-full hover:underline'
+                                        href="/Final_Project/ProductDetail?id=${p.pro_ID}">${p.pname}</a>
                                     <div class='text-sm text-gray-500 font-semibold mt-3'>
                                         Giá hiện tại:
                                         <span>${p.max_price} đ</span>
