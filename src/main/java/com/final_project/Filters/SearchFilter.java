@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(filterName = "SearchFilter", value = "/Search")
+@WebFilter(filterName = "SearchFilter", value = {"/Search","/ProductDetail"})
 public class SearchFilter implements Filter {
 
     public void init(FilterConfig config) throws ServletException {
