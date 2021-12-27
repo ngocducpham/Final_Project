@@ -37,8 +37,7 @@
                 <div >
                     <a class="btn btn-outline-success" role="button"
                        href="${pageContext.request.contextPath}/Personal/My_Post_Products">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                        List
+                        <i class="fa fa-check" aria-hidden="true"> List</i>
                     </a>
                 </div>
 
