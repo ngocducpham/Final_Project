@@ -27,7 +27,7 @@
         <div class="col-4">
             <jsp:include page="../../partials/Personal_left_panel.jsp"/>
         </div>
-        <div class="col-7">
+        <div class="col-lg-12">
             <jsp:doBody/>
         </div>
     </div>

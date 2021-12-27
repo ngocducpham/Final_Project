@@ -42,12 +42,11 @@
                 <form method="post">
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="username">Nhập Mật Khẩu Cũ</label>
+                            <label for="old_pass">Nhập Mật Khẩu Cũ</label>
                             <input type="password" class="form-control background" name="old_pass" id="old_pass"
                                    disabled
                             >
                         </div>
-
                     </div>
                     <c:if test="${false_old_pass}">
                         <div class='alert__login text-red-500 mt-3'>Sai Mật Khẩu Cũ</div>

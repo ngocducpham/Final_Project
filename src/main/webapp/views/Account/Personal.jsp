@@ -26,8 +26,9 @@
         <div class="profile">
             <div class="top_header">
                 <p class="h__profile">Hồ sơ của tôi</p>
-                <button class="btn btn-warning small" id="open_edit">Chỉnh Sửa Hồ Sơ <i
-                        class="fa fa-pencil"></i></button>
+                <button class="btn btn-warning small" id="open_edit">Chỉnh Sửa Hồ Sơ
+                    <i class="fa fa-pencil"></i>
+                </button>
             </div>
             <div class="boxProfile">
                 <form method="post">
