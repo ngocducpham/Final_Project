@@ -52,7 +52,6 @@
             }
 
 
-
             .fs-12 {
                 font-size: 12px
             }
@@ -113,51 +112,53 @@
             let priceDropdown = document.getElementById('price__dropdown');
             let vndPrice = minPrice;
 
-            for (let i = 0; i < 200; i++) {
-                if(vndPrice >= 200000000)
-                    break;
+            if(priceDropdown != null) {
+                for (let i = 0; i < 200; i++) {
+                    if (vndPrice >= 200000000)
+                        break;
 
-                let li = document.createElement('li');
-                li.className = 'price__select-item py-1 px-2 border-b-2 hover:bg-gray-200';
-                li.value = vndPrice;
-                li.innerText = vndFormat.format(vndPrice);
-                priceDropdown.appendChild(li);
+                    let li = document.createElement('li');
+                    li.className = 'price__select-item py-1 px-2 border-b-2 hover:bg-gray-200';
+                    li.value = vndPrice;
+                    li.innerText = vndFormat.format(vndPrice);
+                    priceDropdown.appendChild(li);
 
-                vndPrice += priceStep;
-            }
+                    vndPrice += priceStep;
+                }
 
-            let priceSelectItems = document.querySelectorAll('#price__dropdown > li');
-            let priceSelect = document.getElementById('price__select');
-            let selectedItem = priceSelectItems[0];
-            let inputPrice = document.getElementById('input__price');
+                let priceSelectItems = document.querySelectorAll('#price__dropdown > li');
+                let priceSelect = document.getElementById('price__select');
+                let selectedItem = priceSelectItems[0];
+                let inputPrice = document.getElementById('input__price');
 
-            priceSelect.addEventListener('click', ()=>{
-                priceDropdown.classList.remove('hidden');
-            })
+                priceSelect.addEventListener('click', () => {
+                    priceDropdown.classList.remove('hidden');
+                })
 
-            window.onclick = (e) =>{
-                if(!e.target.matches('#price__select'))
-                    priceDropdown.classList.add('hidden');
-            }
+                window.onclick = (e) => {
+                    if (!e.target.matches('#price__select'))
+                        priceDropdown.classList.add('hidden');
+                }
 
-            priceSelect.innerText = vndFormat.format(minPrice);
-            priceSelectItems[0].classList.add('bg-gray-400');
-            priceSelectItems[0].classList.remove('hover:bg-gray-200');
-            priceSelectItems[priceSelectItems.length - 1].classList.remove('border-b-2');
+                priceSelect.innerText = vndFormat.format(minPrice);
+                priceSelectItems[0].classList.add('bg-gray-400');
+                priceSelectItems[0].classList.remove('hover:bg-gray-200');
+                priceSelectItems[priceSelectItems.length - 1].classList.remove('border-b-2');
 
-            priceSelectItems.forEach(item =>{
-                item.addEventListener('click', (e)=>{
-                    selectedItem.classList.remove('bg-gray-400');
-                    selectedItem.classList.add('hover:bg-gray-200')
-                    selectedItem = e.target;
-                    selectedItem.classList.add('bg-gray-400');
-                    selectedItem.classList.remove('hover:bg-gray-200');
+                priceSelectItems.forEach(item => {
+                    item.addEventListener('click', (e) => {
+                        selectedItem.classList.remove('bg-gray-400');
+                        selectedItem.classList.add('hover:bg-gray-200')
+                        selectedItem = e.target;
+                        selectedItem.classList.add('bg-gray-400');
+                        selectedItem.classList.remove('hover:bg-gray-200');
 
-                    inputPrice.value = selectedItem.value;
-                    priceSelect.innerText = selectedItem.innerText;
-                    console.log(inputPrice.value);
+                        inputPrice.value = selectedItem.value;
+                        priceSelect.innerText = selectedItem.innerText;
+                        console.log(inputPrice.value);
+                    });
                 });
-            });
+            }
 
 
             if (btnBid != null) {
@@ -173,29 +174,31 @@
             let datePerMilis = 1000 * 60 * 60 * 24;
             let timeContainer = document.getElementById('detail_count_down');
 
-            let diff = endTime - Date.now();
-            if (diff <= 0) {
-                timeContainer.innerText = "Phiên đấu giá đã kết thúc";
-                timeContainer.classList.add("text-red-600");
-                frmBid.remove();
-            } else {
-                let timeDiff = new Date(diff);
-                let days, hours, mins, secs;
-                let coutDown = setInterval(() => {
-                    days = Math.floor((endTime - Date.now()) / datePerMilis);
-                    hours = timeDiff.getUTCHours();
-                    mins = timeDiff.getUTCMinutes();
-                    secs = timeDiff.getUTCSeconds();
-                    if (days < 0 || hours < 0 || mins < 0 || secs < 0) {
-                        clearInterval(coutDown);
-                        timeContainer.innerText = "Phiên đấu giá đã kết thúc";
-                        timeContainer.classList.add("text-red-600");
-                        frmBid.remove();
-                    } else {
-                        timeDiff.setUTCSeconds(secs - 1);
-                        timeContainer.innerText = days + " ngày " + hours + " giờ " + mins + " phút " + secs + " giây";
-                    }
-                }, 1000);
+            if (timeContainer != null) {
+                let diff = endTime - Date.now();
+                if (diff <= 0) {
+                    timeContainer.innerText = "Phiên đấu giá đã kết thúc";
+                    timeContainer.classList.add("text-red-600");
+                    frmBid.remove();
+                } else {
+                    let timeDiff = new Date(diff);
+                    let days, hours, mins, secs;
+                    let coutDown = setInterval(() => {
+                        days = Math.floor((endTime - Date.now()) / datePerMilis);
+                        hours = timeDiff.getUTCHours();
+                        mins = timeDiff.getUTCMinutes();
+                        secs = timeDiff.getUTCSeconds();
+                        if (days < 0 || hours < 0 || mins < 0 || secs < 0) {
+                            clearInterval(coutDown);
+                            timeContainer.innerText = "Phiên đấu giá đã kết thúc";
+                            timeContainer.classList.add("text-red-600");
+                            frmBid.remove();
+                        } else {
+                            timeDiff.setUTCSeconds(secs - 1);
+                            timeContainer.innerText = days + " ngày " + hours + " giờ " + mins + " phút " + secs + " giây";
+                        }
+                    }, 1000);
+                }
             }
 
 
@@ -382,13 +385,23 @@
                             <div class="d-flex flex-column comment-section">
                                 <div class="bg-white">
                                     <div class="d-flex flex-row fs-12">
-                                        <div class="like p-2 cursor"><i class="fa fa-thumbs-o-up"></i><span class="ml-1">Like</span></div>
-                                        <div class="like p-2 cursor"><i class="fa fa-thumbs-o-down"></i><span class="ml-1">Dislike</span></div>
+                                        <div class="like p-2 cursor"><i class="fa fa-thumbs-o-up"></i><span
+                                                class="ml-1">Like</span></div>
+                                        <div class="like p-2 cursor"><i class="fa fa-thumbs-o-down"></i><span
+                                                class="ml-1">Dislike</span></div>
                                     </div>
                                 </div>
                                 <div class="bg-light p-2">
-                                    <div class="d-flex flex-row align-items-start"><textarea class="form-control ml-1 shadow-none textarea"></textarea></div>
-                                    <div class="mt-2 text-right"><button class="btn btn-outline-primary btn-sm shadow-none text-blue" type="button">Post comment</button><button class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="button">Cancel</button></div>
+                                    <div class="d-flex flex-row align-items-start"><textarea
+                                            class="form-control ml-1 shadow-none textarea"></textarea></div>
+                                    <div class="mt-2 text-right">
+                                        <button class="btn btn-outline-primary btn-sm shadow-none text-blue"
+                                                type="button">Post comment
+                                        </button>
+                                        <button class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="button">
+                                            Cancel
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
