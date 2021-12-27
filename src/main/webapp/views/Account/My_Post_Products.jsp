@@ -82,10 +82,10 @@
                             style="color:red;">Đã Đăng Bán</span>
                     </div>
                     <div class="dropdown mt-2">
-                        <button class="btn btn-secondary dropdown-toggle" style="background-color: #5A6268" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-secondary dropdown-toggle" style="background-color: #5A6268" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
                             Lọc theo
                         </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <a class="dropdown-item" href="${pageContext.request.contextPath}/Personal/My_Post_Products?option=1">Tất Cả</a>
                             <a class="dropdown-item" href="${pageContext.request.contextPath}/Personal/My_Post_Products?option=2">Còn Đấu Giá Được</a>
                             <a class="dropdown-item" href="${pageContext.request.contextPath}/Personal/My_Post_Products?option=3">Đã Có Người Thắng</a>

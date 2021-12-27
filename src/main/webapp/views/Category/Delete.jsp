@@ -29,9 +29,7 @@
                             $('#FormCategory').off('submit').submit();
                         }
                     } else {
-                        if(val1 === 1){
                             alert('Danh mục đang tồn tại sản phẩm !');
-                        }
                     }
                 });
             });

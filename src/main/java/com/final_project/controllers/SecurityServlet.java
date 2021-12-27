@@ -1,7 +1,9 @@
 package com.final_project.controllers;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
+import com.final_project.beans.ProductAuction;
 import com.final_project.beans.User;
+import com.final_project.models.ProductAutionModel;
 import com.final_project.models.UserModel;
 import com.final_project.utils.ServletUtils;
 
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 
 @WebServlet(name = "SecurityServlet", value = "/Admin/*")
@@ -25,9 +28,6 @@ public class SecurityServlet extends HttpServlet {
         switch (path) {
             case "/Login":
                 ServletUtils.forward("/views/Admin/Login.jsp", request, response);
-                break;
-            case "/Dashboard":
-                ServletUtils.forward("/views/Admin/Dashboard.jsp", request, response);
                 break;
             case "/Logout":
                 logoutAdmin(request, response);
@@ -70,7 +70,7 @@ public class SecurityServlet extends HttpServlet {
             if (result.verified) {
                 HttpSession session = request.getSession();
                 session.setAttribute("adminlogin", true);
-                ServletUtils.forward("/views/Admin/Dashboard.jsp", request, response);
+                ServletUtils.redirect("/Admin/Dashboard/Index", request, response);
             } else {
                 // sai password
                 request.setAttribute("hasError", true);
