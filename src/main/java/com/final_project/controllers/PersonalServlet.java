@@ -46,9 +46,6 @@ public class PersonalServlet extends HttpServlet {
                     request.setAttribute("User_Auction_Product_List", list1);
                     ServletUtils.forward("/views/Account/User_Auction.jsp", request, response);
                     break;
-                case "/Logout":
-                    Logout(request, response, session);
-                    break;
                 case "/Add_To_Watch_List":
                     Add_to_Watch_list(request, response, session);
                     break;
@@ -134,13 +131,6 @@ public class PersonalServlet extends HttpServlet {
     private void Get_Request(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         UserModel.Add_Request(id);
-        ServletUtils.redirect("/", request, response);
-    }
-
-    private void Logout(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException, IOException {
-        session.setAttribute("Verified", false);
-        session.setAttribute("authUser", new User());
-        session.setAttribute("false_old_pass", false);
         ServletUtils.redirect("/", request, response);
     }
 

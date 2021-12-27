@@ -232,7 +232,7 @@
                                 <div class='flex justify-between border-b-2 border-dashed font-medium  mb-3'>
                                     <div>Bước giá:</div>
                                     <div>
-                                        <fmt:formatNumber value="${proDetail.distance_Price}" type="currency"/>
+                                        <fmt:formatNumber value="${proDetail.distance_Price}" type="number"/>
                                     </div>
                                 </div>
                             </div>

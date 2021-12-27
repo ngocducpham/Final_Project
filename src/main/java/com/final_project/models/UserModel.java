@@ -149,7 +149,7 @@ public class UserModel {
     }
 
     public static List<ProductAuction> Get_User_Auction_Product_List(int user_id) {
-        final String query = "select pa.*,p.Pname,max(a.Price_of_User) as max_price,username\n" +
+        final String query = "select pa.*,p.Pname,max(a.Price_of_User) as max_price,u.user_id,username\n" +
                 "from products p left join product_auction pa on p.Pro_ID = pa.Pro_ID left join auction a on pa.Pro_Auc_ID = a.Pro_Auc_ID left join users u on u.User_ID = a.User_ID\n" +
                 "where pa.Pro_ID in(\n" +
                 "    select distinct Pro_ID\n" +

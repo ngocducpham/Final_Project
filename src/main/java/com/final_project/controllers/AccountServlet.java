@@ -78,6 +78,9 @@ public class AccountServlet extends HttpServlet {
                 case "/Set_New_Password":
                     Set_New_Password(request, response);
                     break;
+                case "/Logout":
+                    Logout(request, response);
+                    break;
                 default:
                     break;
             }
@@ -204,4 +207,11 @@ public class AccountServlet extends HttpServlet {
         ServletUtils.redirect("/Account/Login", request, response);
     }
 
+    private void Logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        session.setAttribute("Verified", false);
+        session.setAttribute("authUser", new User());
+        session.setAttribute("false_old_pass", false);
+        ServletUtils.redirect("/", request, response);
+    }
 }

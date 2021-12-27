@@ -29,9 +29,6 @@ public class SecurityServlet extends HttpServlet {
             case "/Dashboard":
                 ServletUtils.forward("/views/Admin/Dashboard.jsp", request, response);
                 break;
-            case "/Logout":
-                logoutAdmin(request, response);
-                break;
             default:
                 ServletUtils.forward("/views/404/index.jsp", request, response);
                 break;
@@ -53,6 +50,9 @@ public class SecurityServlet extends HttpServlet {
         switch (path) {
             case "/Login":
                 Login(request, response);
+                break;
+            case "/Logout":
+                logoutAdmin(request, response);
                 break;
             default:
                 break;

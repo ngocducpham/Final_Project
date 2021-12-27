@@ -105,9 +105,23 @@
                                     <a class='font-semibold w-full hover:underline'>${p.pname}</a>
                                     <div class='text-sm text-gray-500 font-semibold mt-3'>
                                         Giá hiện tại:
-                                        <span>${p.max_price} đ</span>
+                                        <c:choose>
+                                            <c:when test="${p.max_price >0}">
+                                                <span><fmt:formatNumber value="${p.max_price}" type="number"/> đ</span>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <span><fmt:formatNumber value="${p.current_Price}" type="number"/> đ</span>
+                                            </c:otherwise>
+                                        </c:choose>
                                     </div>
-                                    <div><i class="red fa fa-trophy fa-sm"> ${p.username}</i></div>
+                                    <c:choose>
+                                        <c:when test="${p.user_id==authUser.user_ID}">
+                                            <div><i class="red fa fa-trophy fa-sm"> Bạn </i></div>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <div><i class="red fa fa-trophy fa-sm"> ${p.username}</i></div>
+                                        </c:otherwise>
+                                    </c:choose>
                                     <div class='timeContainer flex justify-around text-xs mt-3 font-semibold'>
                                         <div>
                                             <div class='days text-sm'>05</div>

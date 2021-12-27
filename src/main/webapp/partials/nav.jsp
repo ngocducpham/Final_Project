@@ -5,6 +5,7 @@
 <jsp:useBean id="categories" scope="session" type="java.util.List<com.final_project.beans.Category>"/>
 
 <nav class='bg-gray-800 sticky top-0 z-50'>
+    <form id="frmLogout" method="post" action="${pageContext.request.contextPath}/Account/Logout"></form>
     <div class='max-w-7xl mx-auto px-2'>
         <div class='relative flex items-center justify-between h-16'>
             <div class='flex'>
@@ -84,7 +85,7 @@
                                     </c:if>
                                     <li class='flex items-center'>
                                         <span class="iconify text-2xl mr-2" data-icon="ion:log-out-sharp"></span>
-                                        <a href="${pageContext.request.contextPath}/Personal/Logout">Đăng xuất</a>
+                                        <a href="javascript: $('#frmLogout').submit()">Đăng xuất</a>
                                     </li>
                                 </ul>
                             </span>
