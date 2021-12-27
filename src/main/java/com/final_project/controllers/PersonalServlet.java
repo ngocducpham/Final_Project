@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.text.ParseException;
 import java.util.List;
+import java.util.Objects;
 
 @WebServlet(name = "PersonalServlet", value = "/Personal/*")
 public class PersonalServlet extends HttpServlet {
@@ -46,10 +47,10 @@ public class PersonalServlet extends HttpServlet {
                     ServletUtils.forward("/views/Account/User_Auction.jsp", request, response);
                     break;
                 case "/Logout":
-                    Logout(request, response);
+                    Logout(request, response, session);
                     break;
                 case "/Add_To_Watch_List":
-                    Add_to_Watch_list(request, response);
+                    Add_to_Watch_list(request, response, session);
                     break;
                 case "/User_Won_Auction":
                     List<ProductAuction> list2 = UserModel.Get_User_Won_Auction_Product_List(user.getUser_ID());
@@ -57,9 +58,7 @@ public class PersonalServlet extends HttpServlet {
                     ServletUtils.forward("/views/Account/User_Won_Auction.jsp", request, response);
                     break;
                 case "/My_Post_Products":
-                    List<ProductAuction> list3 = UserModel.Get_Owner_Products(user.getUser_ID());
-                    request.setAttribute("My_Post_Products", list3);
-                    ServletUtils.forward("/views/Account/My_Post_Products.jsp", request, response);
+                    Get_My_Post_Product(request, response, user);
                     break;
                 default:
                     ServletUtils.forward("/views/404/index.jsp", request, response);
@@ -138,16 +137,14 @@ public class PersonalServlet extends HttpServlet {
         ServletUtils.redirect("/", request, response);
     }
 
-    private void Logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
+    private void Logout(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException, IOException {
         session.setAttribute("Verified", false);
         session.setAttribute("authUser", new User());
         session.setAttribute("false_old_pass", false);
         ServletUtils.redirect("/", request, response);
     }
 
-    private void Add_to_Watch_list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
+    private void Add_to_Watch_list(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException, IOException {
         User user = (User) session.getAttribute("authUser");
         int Pro_Id = Integer.parseInt(request.getParameter("Pro_Id"));
         if (!UserModel.Check_Watch_List(Pro_Id, user.getUser_ID()))
@@ -158,4 +155,20 @@ public class PersonalServlet extends HttpServlet {
         ServletUtils.redirect(url, request, response);
     }
 
+    private void Get_My_Post_Product(HttpServletRequest request, HttpServletResponse response, User user) throws ServletException, IOException {
+        String option = request.getParameter("option");
+        if (option.equals("1")) {
+            List<ProductAuction> list3 = UserModel.Get_Owner_Products(user.getUser_ID());
+            request.setAttribute("My_Post_Products", list3);
+        } else {
+            if (option.equals("2")) {
+                List<ProductAuction> list3 = UserModel.Get_Owner_Products_Still_Can_be_Sold(user.getUser_ID());
+                request.setAttribute("My_Post_Products", list3);
+            } else {
+                List<ProductAuction> list3 = UserModel.Get_Owner_Products_Had_Winner(user.getUser_ID());
+                request.setAttribute("My_Post_Products", list3);
+            }
+        }
+        ServletUtils.forward("/views/Account/My_Post_Products.jsp", request, response);
+    }
 }

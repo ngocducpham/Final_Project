@@ -20,7 +20,7 @@ public class Check_Win implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         if ((scheduler == null) || (!scheduler.isTerminated())) {
             scheduler = Executors.newSingleThreadScheduledExecutor();
-            scheduler.scheduleAtFixedRate(new ScheduledTask(), 0, 300, TimeUnit.SECONDS);
+            scheduler.scheduleAtFixedRate(new ScheduledTask(), 0, 600, TimeUnit.SECONDS);
         }
     }
 
