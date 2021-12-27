@@ -17,7 +17,7 @@
 </head>
 
 <body style='background-image: url("${pageContext.request.contextPath}/public/imgs/top-5-bg.jpg");'>
-<div class='max-w-sm mx-auto'>
+<div class='max-w-2xl mx-auto'>
     <div class='flex flex-col mt-5'>
         <div class='w-14 h-14 mx-auto'>
             <img src="${pageContext.request.contextPath}/public/imgs/icon.svg" alt="">
@@ -27,8 +27,8 @@
         </div>
     </div>
     <div>
-        <form id="FormRegister" method="post">
-            <div class='shadow-lg rounded-lg p-8 bg-white flex flex-col'>
+        <form id="FormRegister" method="post" class="shadow-lg rounded-lg p-8 bg-white">
+            <div class='grid grid-cols-2 auto-rows-auto gap-2'>
                 <div>
                     <label for='user-name' class='font-medium text-gray-600'>Họ và tên</label>
                     <input id="user-name" name="username" type="text" required
@@ -36,25 +36,33 @@
                 </div>
 
 
-                <div class='mt-2'>
+                <div>
                     <label for='DOB' class='font-medium text-gray-600'>Ngày Sinh (dd/MM/yyyy)</label>
                     <input id="DOB" name="DOB" type="text" required
                            class='mt-2 w-full px-2 py-1 outline-none block border-2 rounded-md  border-gray-300 text-gray-700'>
                 </div>
 
-                <div class="mt-2">
+                <div >
                     <label for="ls_province" class='font-medium text-gray-600'>Tỉnh / Thành Phố</label>
                     <select class="mt-2 w-full px-2 py-1 outline-none block border-2 rounded-md  border-gray-300 text-gray-700"
                             name="ls_province" id="ls_province"></select>
+                </div>
+                <div >
                     <label for="ls_district" class='font-medium text-gray-600'>Quận / Huyện</label>
                     <select class="mt-2 w-full px-2 py-1 outline-none block border-2 rounded-md  border-gray-300 text-gray-700"
                             name="ls_district" id="ls_district"></select>
+                </div>
+                <div >
                     <label for="ls_ward" class='font-medium text-gray-600'>Phường/Xã</label>
                     <select class="mt-2 w-full px-2 py-1 outline-none block border-2 rounded-md  border-gray-300 text-gray-700"
                             name="ls_ward" id="ls_ward"></select>
+                </div>
+                <div >
                     <label for="home_address" class='font-medium text-gray-600'>Số Nhà, Tên Đường</label>
                     <input id="home_address" name="username" type="text" required
                            class='mt-2 w-full px-2 py-1 outline-none block border-2 rounded-md  border-gray-300 text-gray-700'>
+                </div>
+                <div class="hidden">
                     <label for="full_address" class='font-medium text-gray-600 hidden' style="visibility: hidden">Địa Chỉ</label>
                     <input id="full_address" name="full_address" type="text" required
                            class='mt-2 w-full px-2 py-1 outline-none block border-2 rounded-md  border-gray-300 text-gray-700 hidden' style="visibility: hidden"
@@ -62,7 +70,7 @@
                 </div>
 
 
-                <div class='mt-2'>
+                <div >
                     <label for='email-address' class='font-medium text-gray-600'>Địa chỉ email</label>
                     <input id="email-address" name="email" type="email" autocomplete="email" required
                            class='mt-2 w-full px-2 py-1 outline-none block border-2 rounded-md  border-gray-300 text-gray-700'>
@@ -79,26 +87,22 @@
                 <!--                    </div>-->
                 <!--                    <div class='alert__vetification hidden text-red-600 mt-2 text-sm'>Mã xác nhận không đúng</div>-->
                 <!--                </div>-->
-                <div class='mt-2'>
+                <div >
                     <label for='password' class='font-medium text-gray-600'>Mật khẩu</label>
                     <input id="password" name="password" type="password" required
                            class='mt-2 w-full px-2 py-1 outline-none block border-2 rounded-md  border-gray-300'>
                 </div>
-                <div class='mt-2'>
+                <div >
                     <label for='re-password' class='font-medium text-gray-600'>Xác nhận mật khẩu</label>
                     <input id="re-password" name="repassword" type="password" required
                            class='mt-2 w-full px-2 py-1 outline-none block border-2 rounded-md  border-gray-300'>
                     <div class='alert__password hidden text-red-600 mt-2 text-sm'>Mật khẩu không trùng khớp</div>
                 </div>
+            </div>
 
-                <div class='mt-2' id="fake-captcha">
-                    <div id="fake-checkbox"></div>
-                    I'm Not A RoBot
-                </div>
-
-                <div class='mt-6'>
-                    <button type="submit"
-                            class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none">
+            <div class='mt-6'>
+                <button type="submit"
+                        class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none">
                             <span class="absolute left-0 inset-y-0 flex items-center pl-3">
                                 <svg class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
                                      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
@@ -108,13 +112,12 @@
                                           clip-rule="evenodd"/>
                                 </svg>
                             </span>
-                        Đăng kí
-                    </button>
-                </div>
-                <div class='mt-2'>
-                    Đã tài khoản? <a href="${pageContext.request.contextPath}/Account/Login"
-                                     class='text-indigo-600 hover:underline'>Đăng nhập</a>
-                </div>
+                    Đăng kí
+                </button>
+            </div>
+            <div class='mt-2'>
+                Đã tài khoản? <a href="${pageContext.request.contextPath}/Account/Login"
+                                 class='text-indigo-600 hover:underline'>Đăng nhập</a>
             </div>
         </form>
     </div>
@@ -142,6 +145,27 @@
     });
 
     $('#user-name').select();
+
+    var captcha = document.getElementById("fake-captcha");
+
+    var passOrFail = function() {
+        var pass = Math.round(Math.random());
+        return pass ? "pass" : "fail";
+    }
+
+    captcha.onclick = function() {
+        if (captcha.className.includes("loading")) return;
+
+        captcha.className = "";
+
+        captcha.className += "loading";
+
+        setTimeout(function() {
+            captcha.className = captcha.className.replace("loading", "");
+            captcha.className += passOrFail();
+        }, Math.floor((Math.random() * 3000) + 1000));
+    }
+
 </script>
 </body>
 
