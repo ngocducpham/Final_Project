@@ -293,7 +293,7 @@ public class UserModel {
                 "                pa.End_Time,\n" +
                 "                pa.total_bid,\n" +
                 "                p.Pro_ID,\n" +
-                "                max(a.price_of_User) as winner_price,\n" +
+                "                max(a.price_of_User) as max_price,\n" +
                 "                U2.Username          as username\n" +
                 "         from products p\n" +
                 "                  join magage m on p.Pro_ID = m.Pro_ID\n" +
