@@ -335,10 +335,9 @@
                                             <span class='relative'>
                                                 <button type='button' id='price__select'
                                                         class='font-medium text-left w-96 h-9 py-1 pl-20 pr-20 rounded-md border-gray-500 border-2'>
-
                                                 </button>
                                                 <ul id='price__dropdown' style='left: 70px;width: 262px;'
-                                                    class='cursor-pointer hidden overflow-auto absolute top-7 border shadow-md bg-white max-h-40'>
+                                                    class='z-10 cursor-pointer hidden overflow-auto absolute top-7 border shadow-md bg-white max-h-40'>
 
                                                 </ul>
                                              </span>
