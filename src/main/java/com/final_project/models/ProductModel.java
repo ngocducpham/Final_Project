@@ -138,6 +138,19 @@ public class ProductModel {
         }
     }
 
+    public static void insertDes(Product p)
+    {
+        String query="insert into products (Pname, description) values (:Pname, :description)";
+        try (Connection con =DBUtils.getConnection())
+        {
+            con.createQuery(query)
+                    .addParameter("Pname",p.getPname())
+                    .addParameter("description", p.getDescription())
+                    .executeUpdate();
+        }
+
+    }
+
     public static int get_max_product_id() {
         String sql = "select max(Pro_ID) as max_id from products";
         try (Connection con = DBUtils.getConnection()) {

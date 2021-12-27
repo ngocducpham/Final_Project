@@ -49,6 +49,13 @@ public class Product {
         this.description = description;
     }
 
+    public Product(String pname,  String description)
+    {
+        Pname=pname;
+        this.description=description;
+        //Pro_ID=pro_ID;
+    }
+
     public Product(String pname, String img, String description, int price, int status, int cat_ID) {
         Pname = pname;
         this.img = img;

@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -44,6 +45,26 @@ public class MiscServlet extends HttpServlet {
                     }
                 }
                 break;
+
+            case "/InsertDes":
+            {
+                if(!(Boolean)session.getAttribute("Verified"))
+                {
+                    ServletUtils.redirect("/Account/Login",request,response);
+                }
+                else
+                {
+                    User u = (User) session.getAttribute("authUser");
+                    if (u.getUserrole() == 2) {
+                        List<Category> Catlist = InsertProductModel.getCate();
+                        request.setAttribute("Cate", Catlist);
+                        ServletUtils.forward("/views/Account/InsertDes.jsp", request, response);
+                    }
+                    else {
+                        ServletUtils.forward("/views/404/index.jsp", request, response);
+                    }
+                }
+            }
             default:
                 ServletUtils.forward("/views/404.jsp", request, response);
                 break;
@@ -61,10 +82,25 @@ public class MiscServlet extends HttpServlet {
             case "/Post_Products":
                 Post_Products(request, response);
                 break;
+
+            case"/InsertDes":
+                InsertDes(request,response);
+                break;
             default:
                 ServletUtils.forward("views/404.jsp", request, response);
                 break;
         }
+    }
+
+    private void InsertDes(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException,ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        String pname= request.getParameter("Pname");
+        String description= request.getParameter("des");
+
+        Product p =new Product(pname,description);
+        ProductModel.insertDes(p);
+
+        ServletUtils.redirect("/Seller/InsertDes",request,response);
     }
 
 
@@ -140,6 +176,8 @@ public class MiscServlet extends HttpServlet {
             }
         }
     }
+
+
 }
 
 
