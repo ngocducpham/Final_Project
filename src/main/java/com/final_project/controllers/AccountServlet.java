@@ -152,7 +152,9 @@ public class AccountServlet extends HttpServlet {
                 session.setAttribute("Verified", true);
                 session.setAttribute("authUser", user);
 
-                String url = (String) session.getAttribute("retUrl");
+                String url = (String) session.getAttribute("retUrl_Personal");
+                if (url == null)
+                    url = (String) session.getAttribute("retUrl_Search");
                 if (url == null)
                     url = "/";
                 ServletUtils.redirect(url, request, response);

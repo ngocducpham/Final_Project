@@ -19,7 +19,7 @@ public class SearchFilter implements Filter {
     public void doFilter(ServletRequest req, ServletResponse response, FilterChain chain) throws ServletException, IOException {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpSession session = request.getSession();
-        session.setAttribute("retUrl", request.getRequestURI()+"?"+request.getQueryString());
-        chain.doFilter(request, response);
+        session.setAttribute("retUrl_Search", request.getRequestURI()+"?"+request.getQueryString());
+        chain.doFilter(req, response);
     }
 }
