@@ -172,6 +172,7 @@
         </script>
     </jsp:attribute>
     <jsp:body>
+        <fmt:setLocale value="vi_VN"/>
         <div class='max-w-7xl mx-auto mt-20'>
             <div class='flex justify-between text-white items-center py-3 px-4 bg-gray-800 font-semibold rounded-lg'>
                 <div>

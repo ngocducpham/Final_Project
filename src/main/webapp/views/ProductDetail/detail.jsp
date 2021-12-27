@@ -34,6 +34,22 @@
             .img__mini-preview::-webkit-scrollbar-thumb:hover {
                 background: #555;
             }
+
+            #price__dropdown::-webkit-scrollbar {
+                width: 8px;
+            }
+
+            #price__dropdown::-webkit-scrollbar-track {
+                background: #f1f1f1;
+            }
+
+            #price__dropdown::-webkit-scrollbar-thumb {
+                background: #888;
+            }
+
+            #price__dropdown::-webkit-scrollbar-thumb:hover {
+                background: #555;
+            }
         </style>
     </jsp:attribute>
     <jsp:attribute name="js">
@@ -62,20 +78,64 @@
             let frmBid = document.getElementById('frm__bid');
             let btnBid = document.getElementById('btn__bid');
 
+            let vndFormat = new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND'
+            });
+
+            let priceDropdown = document.getElementById('price__dropdown');
+            let vndPrice = minPrice;
+
+            for (let i = 0; i < 200; i++) {
+                if(vndPrice >= 200000000)
+                    break;
+
+                let li = document.createElement('li');
+                li.className = 'price__select-item py-1 px-2 border-b-2 hover:bg-gray-200';
+                li.value = vndPrice;
+                li.innerText = vndFormat.format(vndPrice);
+                priceDropdown.appendChild(li);
+
+                vndPrice += priceStep;
+            }
+
+            let priceSelectItems = document.querySelectorAll('#price__dropdown > li');
+            let priceSelect = document.getElementById('price__select');
+            let selectedItem = priceSelectItems[0];
+            let inputPrice = document.getElementById('input__price');
+
+            priceSelect.addEventListener('click', ()=>{
+                priceDropdown.classList.remove('hidden');
+            })
+
+            window.onclick = (e) =>{
+                if(!e.target.matches('#price__select'))
+                    priceDropdown.classList.add('hidden');
+            }
+
+            priceSelect.innerText = vndFormat.format(minPrice);
+            priceSelectItems[0].classList.add('bg-gray-400');
+            priceSelectItems[0].classList.remove('hover:bg-gray-200');
+            priceSelectItems[priceSelectItems.length - 1].classList.remove('border-b-2');
+
+            priceSelectItems.forEach(item =>{
+                item.addEventListener('click', (e)=>{
+                    selectedItem.classList.remove('bg-gray-400');
+                    selectedItem.classList.add('hover:bg-gray-200')
+                    selectedItem = e.target;
+                    selectedItem.classList.add('bg-gray-400');
+                    selectedItem.classList.remove('hover:bg-gray-200');
+
+                    inputPrice.value = selectedItem.value;
+                    priceSelect.innerText = selectedItem.innerText;
+                    console.log(inputPrice.value);
+                });
+            });
+
+
             if (btnBid != null) {
                 btnBid.addEventListener('click', () => {
-                    let inputPrice = document.getElementById('input__price');
-                    let priceUp = inputPrice.value - minPrice;
-                    if (inputPrice.value < minPrice) {
-                        alert('Giá phải từ giá thấp nhất trở lên');
-                        inputPrice.value = minPrice;
-                        return;
-                    } else if (priceUp % priceStep != 0) {
-                        alert('Giá phải là bội của bước giá');
-                        inputPrice.value = minPrice;
-                        return;
-                    }
-                    let confirmBid = confirm('Bạn có chắc chắn đấu giá sản phẩm này với giá: ' + inputPrice.value);
+                    let confirmBid = confirm('Bạn có chắc chắn đấu giá sản phẩm này với giá: ' + priceSelect.innerText);
                     if (confirmBid)
                         frmBid.submit();
                 });
@@ -124,7 +184,8 @@
             }
             let currentBid = document.getElementById('current__bid');
             let topBidName = '${currentBid}';
-            currentBid.innerText = '****' + topBidName.slice(Math.ceil(topBidName.length * 0.3));
+            if (topBidName != '')
+                currentBid.innerText = '****' + topBidName.slice(Math.ceil(topBidName.length * 0.3));
         </script>
     </jsp:attribute>
     <jsp:body>
@@ -132,7 +193,6 @@
         <div class='max-w-7xl py-5 px-10 mx-auto bg-white'>
             <div class='max-w-5xl mx-auto'>
                 <div class='flex'>
-
                     <div class='mr-16' style='width: 450px;'>
                             <%--                        DEADLINE--%>
                         <div class='flex justify-between items-center px-4 py-2 mb-3 rounded-md bg-gray-800 text-white '
@@ -244,10 +304,17 @@
                                             <input type="hidden" value="${authUser.user_ID}" name="uid">
                                             <input type="hidden" value="${proDetail.pro_Auc_ID}" name="proauid">
                                             <input type="hidden" value="${proDetail.pro_ID}" name="proid">
-                                            <input id="input__price"
-                                                   class='tracking-wide font-medium border-2 w-96 h-9 focus:outline-none py-1 pl-20 pr-20 rounded-md border-gray-500'
-                                                   name="bidprice" type="text" value='${minPrice}'>
+                                            <input type="hidden" name="bidprice" id="input__price">
+                                            <span class='relative'>
+                                                <button type='button' id='price__select'
+                                                        class='font-medium text-left w-96 h-9 py-1 pl-20 pr-20 rounded-md border-gray-500 border-2'>
 
+                                                </button>
+                                                <ul id='price__dropdown' style='left: 70px;width: 262px;'
+                                                    class='cursor-pointer hidden overflow-auto absolute top-7 border shadow-md bg-white max-h-40'>
+
+                                                </ul>
+                                             </span>
                                             <c:if test="${Verified}">
                                                 <button type="button" id="btn__bid"
                                                         class='bg-gray-800 h-9 px-4 absolute right-0 rounded-r-md text-white text-lg hover:bg-gray-700'>
