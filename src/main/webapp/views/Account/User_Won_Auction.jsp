@@ -81,7 +81,7 @@
                                             ${p.pname}</a>
                                     <div class='text-sm text-gray-500 font-semibold mt-3'>
                                         Giá hiện tại:
-                                        <span>${p.max_price} đ</span>
+                                        <span><fmt:formatNumber value="${p.max_price}" type="number"/> đ</span>
                                     </div>
                                     <div><i class="red fa fa-trophy fa-sm"> ${p.username}</i></div>
                                     <div class='timeContainer flex justify-around text-xs mt-3 font-semibold'>

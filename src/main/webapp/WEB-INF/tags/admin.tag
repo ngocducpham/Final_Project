@@ -20,6 +20,7 @@
 </head>
 
 <body>
+<form id="frmLogout" method="post" action="${pageContext.request.contextPath}/Admin/Logout"></form>
 <main class="bg-gray-100  h-screen overflow-hidden relative">
     <div class="flex items-start justify-between">
         <div class="h-screen hidden lg:block shadow-lg relative w-80">
@@ -97,7 +98,7 @@
                                     </span>
                             </a>
                             <a class="w-full text-gray-400 flex items-center pl-6 p-2 my-2 transition-colors duration-200 justify-start hover:text-gray-800 border-l-4 border-transparent"
-                               href="${pageContext.request.contextPath}/Admin/Logout">
+                               href="javascript: $('#frmLogout').submit()">
                                     <span class="text-left">
                                        <span class="iconify" data-icon="entypo:log-out"></span>
                                     </span>

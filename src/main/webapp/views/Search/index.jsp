@@ -217,7 +217,7 @@
                                     <a href='${pageContext.request.contextPath}/ProductDetail?id=${p.pro_ID}' class='font-semibold w-full hover:underline'>${p.pname}</a>
                                     <div class='text-sm text-gray-500 font-semibold'>
                                         <div class=' mt-3'>
-                                            Giá hiện tại: ${p.current_Price}
+                                            Giá hiện tại: <fmt:formatNumber value="${p.current_Price}" type="currency"/>
                                         </div>
                                         <div class='w-full truncate mt-1 current_Bidder'>
                                         </div>

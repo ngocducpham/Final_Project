@@ -77,7 +77,14 @@
                                         href="/Final_Project/ProductDetail?id=${p.pro_ID}">${p.pname}</a>
                                     <div class='text-sm text-gray-500 font-semibold mt-3'>
                                         Giá hiện tại:
-                                        <span>${p.max_price} đ</span>
+                                        <c:choose>
+                                            <c:when test="${p.max_price >0}">
+                                                <span><fmt:formatNumber value="${p.max_price}" type="number"/> đ</span>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <span><fmt:formatNumber value="${p.current_Price}" type="number"/> đ</span>
+                                            </c:otherwise>
+                                        </c:choose>
                                     </div>
                                     <div><i class="red fa fa-trophy fa-sm"> ${p.username}</i></div>
                                     <div class='timeContainer flex justify-around text-xs mt-3 font-semibold'>

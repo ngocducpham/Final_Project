@@ -3,6 +3,7 @@
 <jsp:useBean id="authUser" scope="session" type="com.final_project.beans.User"/>
 
 <div class="navUser">
+    <form id="frmLogout" method="post" action="${pageContext.request.contextPath}/Account/Logout"></form>
     <figure class="avatar"><img src="${pageContext.request.contextPath}/public/imgs/user.svg" alt="User picture">
     </figure>
     <p class="info">${authUser.username}</p>
@@ -30,7 +31,7 @@
                                      > <i class="blue fas fa-shopping-cart pr-2"></i>Sản Phẩm Của Tôi</a>
             </div>
         </c:if>
-        <div class="btn btn-outline-info w-75 mb-2 text-left"><a href="${pageContext.request.contextPath}/Personal/Logout"><i
+        <div class="btn btn-outline-info w-75 mb-2 text-left"><a href="javascript: $('#frmLogout').submit()"><i
                 class="blue fa fa-sign-out" aria-hidden="true"></i> Đăng xuất </a></div>
     </div>
 </div>
