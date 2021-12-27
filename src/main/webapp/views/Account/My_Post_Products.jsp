@@ -63,7 +63,7 @@
         </div>
         <c:choose>
             <c:when test="${My_Post_Products.size()==0}">
-                <p style="font-size: 90px">Bạn Chưa Đăng Sản Phẩm Nào Hoặc Sản Phẩm Đã Bán Hết</p>
+                <p style="font-size: 90px">Không Có Dữ Liệu</p>
             </c:when>
             <c:otherwise>
                 <div style="font-weight: bold;font-size: 36px">Sản Phẩm Bạn <span
