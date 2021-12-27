@@ -1,3 +1,4 @@
+let capcha_check = false;
 let full_address = document.getElementById("full_address"),
     province = document.getElementById("ls_province"),
     district = document.getElementById("ls_district"),
@@ -29,6 +30,11 @@ $('#FormRegister').on('submit', function (e) {
         return;
     }
 
+    if (capcha_check === false) {
+        alert("capcha không đúng");
+        return;
+    }
+
     $.getJSON('/Final_Project/Account/CheckAvailable?email=' + email, function (data) {
         if (data === true) {
             // alert("Đăng kí thành công !")
@@ -40,21 +46,45 @@ $('#FormRegister').on('submit', function (e) {
     });
 });
 
-var captcha = document.getElementById("fake-captcha");
+//==================================================//
+const captcha = document.querySelector(".captcha"),
+    reloadBtn = document.querySelector(".reload-btn"),
+    inputField = document.getElementById("text-box"),
+    checkBtn = document.querySelector(".check-btn"),
+    statusTxt = document.querySelector(".status-text");
 
-var passOrFail = function() {
-    return "pass"
+//storing all captcha characters in array
+let allCharacters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
+    'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd',
+    'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
+    't', 'u', 'v', 'w', 'x', 'y', 'z', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+function getCaptcha() {
+    for (let i = 0; i < 6; i++) { //getting 6 random characters from the array
+        let randomCharacter = allCharacters[Math.floor(Math.random() * allCharacters.length)];
+        captcha.innerText += ` ${randomCharacter}`; //passing 6 random characters inside captcha innerText
+    }
 }
 
-captcha.onclick = function() {
-    if (captcha.className.includes("loading")) return;
+getCaptcha(); //calling getCaptcha when the page open
+//calling getCaptcha & removeContent on the reload btn click
+reloadBtn.addEventListener("click", () => {
+    removeContent();
+    getCaptcha();
+});
 
-    captcha.className = "";
+checkBtn.addEventListener("click", e => {
+    e.preventDefault(); //preventing button from it's default behaviour
+    statusTxt.style.display = "block";
+    //adding space after each character of user entered values because I've added spaces while generating captcha
+    let inputVal = inputField.value.split('').join(' ');
+    if (inputVal === captcha.innerText) { //if captcha matched
+        statusTxt.style.color = "#4db2ec";
+        capcha_check = true;
+        statusTxt.innerText = "Nice! You don't appear to be a robot.";
+    } else {
+        statusTxt.style.color = "#ff0000";
+        statusTxt.innerText = "Captcha not matched. Please try again!";
+    }
+});
 
-    captcha.className += "loading";
-
-    setTimeout(function() {
-        captcha.className = captcha.className.replace("loading", "");
-        captcha.className += passOrFail();
-    }, Math.floor((Math.random() * 3000) + 1000));
-}

@@ -42,35 +42,37 @@
                            class='mt-2 w-full px-2 py-1 outline-none block border-2 rounded-md  border-gray-300 text-gray-700'>
                 </div>
 
-                <div >
+                <div>
                     <label for="ls_province" class='font-medium text-gray-600'>Tỉnh / Thành Phố</label>
                     <select class="mt-2 w-full px-2 py-1 outline-none block border-2 rounded-md  border-gray-300 text-gray-700"
                             name="ls_province" id="ls_province"></select>
                 </div>
-                <div >
+                <div>
                     <label for="ls_district" class='font-medium text-gray-600'>Quận / Huyện</label>
                     <select class="mt-2 w-full px-2 py-1 outline-none block border-2 rounded-md  border-gray-300 text-gray-700"
                             name="ls_district" id="ls_district"></select>
                 </div>
-                <div >
+                <div>
                     <label for="ls_ward" class='font-medium text-gray-600'>Phường/Xã</label>
                     <select class="mt-2 w-full px-2 py-1 outline-none block border-2 rounded-md  border-gray-300 text-gray-700"
                             name="ls_ward" id="ls_ward"></select>
                 </div>
-                <div >
+                <div>
                     <label for="home_address" class='font-medium text-gray-600'>Số Nhà, Tên Đường</label>
                     <input id="home_address" name="username" type="text" required
                            class='mt-2 w-full px-2 py-1 outline-none block border-2 rounded-md  border-gray-300 text-gray-700'>
                 </div>
                 <div class="hidden">
-                    <label for="full_address" class='font-medium text-gray-600 hidden' style="visibility: hidden">Địa Chỉ</label>
+                    <label for="full_address" class='font-medium text-gray-600 hidden' style="visibility: hidden">Địa
+                        Chỉ</label>
                     <input id="full_address" name="full_address" type="text" required
-                           class='mt-2 w-full px-2 py-1 outline-none block border-2 rounded-md  border-gray-300 text-gray-700 hidden' style="visibility: hidden"
+                           class='mt-2 w-full px-2 py-1 outline-none block border-2 rounded-md  border-gray-300 text-gray-700 hidden'
+                           style="visibility: hidden"
                            readonly>
                 </div>
 
 
-                <div >
+                <div>
                     <label for='email-address' class='font-medium text-gray-600'>Địa chỉ email</label>
                     <input id="email-address" name="email" type="email" autocomplete="email" required
                            class='mt-2 w-full px-2 py-1 outline-none block border-2 rounded-md  border-gray-300 text-gray-700'>
@@ -87,17 +89,31 @@
                 <!--                    </div>-->
                 <!--                    <div class='alert__vetification hidden text-red-600 mt-2 text-sm'>Mã xác nhận không đúng</div>-->
                 <!--                </div>-->
-                <div >
+                <div>
                     <label for='password' class='font-medium text-gray-600'>Mật khẩu</label>
                     <input id="password" name="password" type="password" required
                            class='mt-2 w-full px-2 py-1 outline-none block border-2 rounded-md  border-gray-300'>
                 </div>
-                <div >
+                <div>
                     <label for='re-password' class='font-medium text-gray-600'>Xác nhận mật khẩu</label>
                     <input id="re-password" name="repassword" type="password" required
                            class='mt-2 w-full px-2 py-1 outline-none block border-2 rounded-md  border-gray-300'>
                     <div class='alert__password hidden text-red-600 mt-2 text-sm'>Mật khẩu không trùng khớp</div>
                 </div>
+            </div>
+
+            <div class="wrapper">
+                <header>Captcha in JavaScript</header>
+                <div class="captcha-area">
+                    <div class="captcha-img">
+                        <%--                        <img src="captcha-bg.png" alt="Captch Background">--%>
+                        <span class="captcha"></span>
+                    </div>
+                    <button class="reload-btn"><i class="fas fa-redo-alt"></i></button>
+                </div>
+                <input type="text" placeholder="Enter captcha" maxlength="6" spellcheck="false" id="text-box" required>
+                <button class="check-btn">Check</button>
+                <div class="status-text"></div>
             </div>
 
             <div class='mt-6'>
@@ -128,9 +144,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"
         integrity="sha512-AIOTidJAcHBH2G/oZv9viEGXRqDNmfdPVPYOYKGy3fti0xIplnlgMHUGfuNRzC6FkzIo0iIxgFnr9RikFxK+sw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+<script src="https://kit.fontawesome.com/618a331a9e.js" crossorigin="anonymous"></script>
 <script src="${pageContext.request.contextPath}/public/scripts/vietnamlocalselector.js"></script>
-<script src="${pageContext.request.contextPath}/public/scripts/Register.js"></script>
 <script>
     let localpicker = new LocalPicker({
         province: "ls_province",
@@ -145,28 +160,9 @@
     });
 
     $('#user-name').select();
-
-    var captcha = document.getElementById("fake-captcha");
-
-    var passOrFail = function() {
-        var pass = Math.round(Math.random());
-        return pass ? "pass" : "fail";
-    }
-
-    captcha.onclick = function() {
-        if (captcha.className.includes("loading")) return;
-
-        captcha.className = "";
-
-        captcha.className += "loading";
-
-        setTimeout(function() {
-            captcha.className = captcha.className.replace("loading", "");
-            captcha.className += passOrFail();
-        }, Math.floor((Math.random() * 3000) + 1000));
-    }
-
 </script>
+<script src="${pageContext.request.contextPath}/public/scripts/Register.js"></script>
+
 </body>
 
 </html>
