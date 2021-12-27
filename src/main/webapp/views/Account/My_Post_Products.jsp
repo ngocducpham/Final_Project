@@ -55,21 +55,43 @@
         </script>
     </jsp:attribute>
     <jsp:body>
-        <div>
-            <p>Lọc Theo</p>
-            <a href="${pageContext.request.contextPath}/Personal/My_Post_Products?option=1">Tắt Cả</a>
-            <a href="${pageContext.request.contextPath}/Personal/My_Post_Products?option=2">Còn Đấu Giá Được</a>
-            <a href="${pageContext.request.contextPath}/Personal/My_Post_Products?option=3">Đã Có Người Thắng</a>
-        </div>
+
+
         <c:choose>
             <c:when test="${My_Post_Products.size()==0}">
-                <p style="font-size: 90px">Không Có Dữ Liệu</p>
-            </c:when>
-            <c:otherwise>
-                <div style="font-weight: bold;font-size: 36px">Sản Phẩm Bạn <span
-                        style="color:red;">Đã Đăng Bán</span>
+                <div class="flex justify-between">
+                    <div>
+                        <p style="font-size: 36px">Không Có Dữ Liệu</p>
+                    </div>
+                    <div class="dropdown mt-2">
+                        <button class="btn btn-secondary dropdown-toggle" style="background-color: #5A6268" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                            Lọc theo
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="${pageContext.request.contextPath}/Personal/My_Post_Products?option=1">Tất Cả</a>
+                            <a class="dropdown-item" href="${pageContext.request.contextPath}/Personal/My_Post_Products?option=2">Còn Đấu Giá Được</a>
+                            <a class="dropdown-item" href="${pageContext.request.contextPath}/Personal/My_Post_Products?option=3">Đã Có Người Thắng</a>
+                        </div>
+                    </div>
                 </div>
 
+            </c:when>
+            <c:otherwise>
+                <div class="flex justify-between">
+                    <div style="font-weight: bold;font-size: 36px">Sản Phẩm Bạn <span
+                            style="color:red;">Đã Đăng Bán</span>
+                    </div>
+                    <div class="dropdown mt-2">
+                        <button class="btn btn-secondary dropdown-toggle" style="background-color: #5A6268" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                            Lọc theo
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="${pageContext.request.contextPath}/Personal/My_Post_Products?option=1">Tất Cả</a>
+                            <a class="dropdown-item" href="${pageContext.request.contextPath}/Personal/My_Post_Products?option=2">Còn Đấu Giá Được</a>
+                            <a class="dropdown-item" href="${pageContext.request.contextPath}/Personal/My_Post_Products?option=3">Đã Có Người Thắng</a>
+                        </div>
+                    </div>
+                </div>
                 <div class='flex space-x-3 space-y-3 mt-10 flex-wrap'>
                     <c:forEach items="${My_Post_Products}" var="p">
                         <a href="${pageContext.request.contextPath}/ProductDetail?id=${p.pro_ID}">

@@ -70,6 +70,13 @@ public class ServletUtils {
         return MailSender.send(mail_to, header, content);
     }
 
+    public static boolean sengMail_to_ResetPassword_Admin(User user) {
+        String mail_to = user.getEmail();
+        String header = "Reset Your Password By Admin";
+        String content = "New pass word: 123456";
+        return MailSender.send(mail_to, header, content);
+    }
+
     public static void send_mail_to_owner_when_no_one_bid(String mail_to, String header, String content) {
         boolean sent = MailSender.send(mail_to, header, content);
     }

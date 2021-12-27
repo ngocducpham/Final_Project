@@ -293,7 +293,7 @@ public class UserModel {
                 "                pa.End_Time,\n" +
                 "                pa.total_bid,\n" +
                 "                p.Pro_ID,\n" +
-                "                max(a.price_of_User) as winner_price,\n" +
+                "                max(a.price_of_User) as max_price,\n" +
                 "                U2.Username          as username\n" +
                 "         from products p\n" +
                 "                  join magage m on p.Pro_ID = m.Pro_ID\n" +
@@ -310,4 +310,13 @@ public class UserModel {
         }
     }
 
+    public static void Reset(User user, String new_pass) {
+        final String query = "update users set Pass = :new_pass where User_ID = :User_ID;";
+        try (Connection con = DBUtils.getConnection()) {
+            con.createQuery(query)
+                    .addParameter("new_pass", new_pass)
+                    .addParameter("User_ID", user.getUser_ID())
+                    .executeUpdate();
+        }
+    }
 }

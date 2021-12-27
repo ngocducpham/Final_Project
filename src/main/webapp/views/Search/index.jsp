@@ -56,6 +56,17 @@
                     productTime[i][0].getUTCDate() + "/" + productTime[i][0].getUTCMonth() + "/" + productTime[i][0].getUTCFullYear();
             }
 
+            let newProduct = document.querySelectorAll('.new__product');
+            let after1Hours = new Date();
+            after1Hours.setUTCHours(after1Hours.getUTCHours() + 1);
+            for (let i = 0; i < newProduct.length; i++) {
+                console.log(after1Hours.getTime() - productTime[i][0].getTime());
+                if((after1Hours.getTime() - productTime[i][0].getTime()) / 1000 / 60 / 60 <= 1.1)
+                {
+                    newProduct[i].classList.toggle('hidden');
+                }
+            }
+
             setInterval(() => {
                 for (let i = 0; i < productTime.length; i++) {
                     days = Math.floor((productTime[i][1].getTime() - Date.now()) / datePerMilis);
@@ -191,6 +202,9 @@
                                 <input hidden class="productID" value="${p.pro_ID}">
                                 <div class='text-center total_Bid rounded-br-full absolute top-0 left-0 pl-2 py-2 pr-5 bg-gray-300 text-xs font-bold'>
                                     Số lần bid: ${p.total_Bid}
+                                </div>
+                                <div class="new__product hidden">
+                                    <span class="iconify text-4xl absolute top-10 right-1 "  data-icon="emojione:new-button" data-rotate="90deg"></span>
                                 </div>
                                 <c:if test="${Verified}">
                                 <a href="${pageContext.request.contextPath}/Personal/Add_To_Watch_List?Pro_Id=${p.pro_ID}" class="btn_watch_list absolute top-2 right-3">

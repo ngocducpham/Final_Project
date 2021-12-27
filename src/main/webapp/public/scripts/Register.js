@@ -39,3 +39,22 @@ $('#FormRegister').on('submit', function (e) {
         }
     });
 });
+
+var captcha = document.getElementById("fake-captcha");
+
+var passOrFail = function() {
+    return "pass"
+}
+
+captcha.onclick = function() {
+    if (captcha.className.includes("loading")) return;
+
+    captcha.className = "";
+
+    captcha.className += "loading";
+
+    setTimeout(function() {
+        captcha.className = captcha.className.replace("loading", "");
+        captcha.className += passOrFail();
+    }, Math.floor((Math.random() * 3000) + 1000));
+}

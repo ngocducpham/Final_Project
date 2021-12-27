@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Đăng kí</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/styles/Register.css">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css"
           integrity="sha512-f0tzWhCwVFS3WeYaofoLWkTP62ObhewQ1EZn65oSYDZUg1+CyywGKkWzm8BxaJj5HGKI72PnMH9jYyIFz+GH7g=="
@@ -89,6 +90,12 @@
                            class='mt-2 w-full px-2 py-1 outline-none block border-2 rounded-md  border-gray-300'>
                     <div class='alert__password hidden text-red-600 mt-2 text-sm'>Mật khẩu không trùng khớp</div>
                 </div>
+
+                <div class='mt-2' id="fake-captcha">
+                    <div id="fake-checkbox"></div>
+                    I'm Not A RoBot
+                </div>
+
                 <div class='mt-6'>
                     <button type="submit"
                             class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none">
