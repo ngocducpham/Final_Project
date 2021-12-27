@@ -310,4 +310,13 @@ public class UserModel {
         }
     }
 
+    public static void Reset(User user, String new_pass) {
+        final String query = "update users set Pass = :new_pass where User_ID = :User_ID;";
+        try (Connection con = DBUtils.getConnection()) {
+            con.createQuery(query)
+                    .addParameter("new_pass", new_pass)
+                    .addParameter("User_ID", user.getUser_ID())
+                    .executeUpdate();
+        }
+    }
 }

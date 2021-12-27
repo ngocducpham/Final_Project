@@ -52,6 +52,9 @@
                                         <a class="btn btn-sm btn-outline-primary" href="${pageContext.request.contextPath}/Admin/User/Edit?id=${c.user_ID}" role="button">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </a>
+                                        <a class="btn btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/Admin/User/Reset?id1=${c.user_ID}" role="button">
+                                            <i class="fa fa-key" aria-hidden="true"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             </c:forEach>

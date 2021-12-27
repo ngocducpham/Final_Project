@@ -1,4 +1,5 @@
 package com.final_project.controllers;
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.final_project.beans.User;
 import com.final_project.models.RequestModel;
 import com.final_project.models.UserModel;
@@ -42,6 +43,21 @@ public class UserServlet extends HttpServlet {
                     ServletUtils.redirect("/Admin/User", request, response);
                 }
                 break;
+            case "/Reset":
+                int id1 = 0;
+                try {
+                    id1 = Integer.parseInt(request.getParameter("id1"));
+                } catch (NumberFormatException ignored) {
+                }
+
+                User u1 = UserModel.findById(id1);
+                if (u1 != null) {
+                    request.setAttribute("users", u1);
+                    ServletUtils.forward("/views/User/Reset.jsp", request, response);
+                } else {
+                    ServletUtils.redirect("/Admin/User", request, response);
+                }
+                break;
 
             default:
                 ServletUtils.forward("/views/404/index.jsp", request, response);
@@ -60,9 +76,26 @@ public class UserServlet extends HttpServlet {
             case "/Delete":
                 deleteUser(request, response);
                 break;
+            case "/Reset":
+                resetUser(request, response);
+                break;
             default:
                 ServletUtils.forward("/views/404.jsp", request, response);
                 break;
+        }
+    }
+
+    private void resetUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int id = Integer.parseInt(request.getParameter("User_ID"));
+        String new_pass = "123456";
+        String EnCrypted_pass = BCrypt.withDefaults().hashToString(12, new_pass.toCharArray());
+        User u = UserModel.findById(id);
+        if(u!=null){
+            UserModel.Reset(u, EnCrypted_pass);
+            boolean isSend = ServletUtils.sengMail_to_ResetPassword_Admin(u);
+            if(isSend){
+                ServletUtils.redirect("/Admin/User", request, response);
+            }
         }
     }
 
