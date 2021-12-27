@@ -48,6 +48,21 @@ public class ServletUtils {
         return MailSender.send(mail_to, header, content);
     }
 
+    public static boolean sendMail_to_bid(String email, String proName, String price){
+        String header = "Product Auction Notice";
+        String content = "You have successfully auctioned the product\n" +
+                "Name: " + proName +
+                "\nPrice: " + price;
+        return MailSender.send(email, header, content);
+    }
+
+    public static boolean sendMail_blockUser(String email, String proName){
+        String header = "Product Auction Notice";
+        String content = "You have been blocked from bidding on the product\n" +
+                "Name: " + proName;
+        return MailSender.send(email, header, content);
+    }
+
     public static boolean sengMail_to_Reset_Password(User user) {
         String mail_to = user.getEmail();
         String header = "Reset Your Password";

@@ -75,8 +75,10 @@ public class ProductDetailServlet extends HttpServlet {
         String proID = request.getParameter("proid");
 
         ProductDetailModel.bid(uid, proAuID, bidPrice);
+
+        String userEmail = ProductDetailModel.getUserEmail(Integer.parseInt(uid));
+        String proName = ProductDetailModel.getProductName(proID);
+        ServletUtils.sendMail_to_bid(userEmail,proName, bidPrice);
         ServletUtils.redirect("/ProductDetail?id=" + proID, request, response);
-
-
     }
 }

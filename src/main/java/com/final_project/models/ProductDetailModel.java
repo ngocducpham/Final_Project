@@ -2,15 +2,11 @@ package com.final_project.models;
 
 import com.final_project.beans.MyIntType;
 import com.final_project.beans.Point;
-import com.final_project.beans.ProductAuction;
 import com.final_project.beans.ProductDetail;
 import com.final_project.utils.DBUtils;
 import org.sql2o.Connection;
 
-import org.sql2o.Connection;
-
 import java.util.List;
-import java.util.Objects;
 
 public class ProductDetailModel {
     public static ProductDetail getByID(String id) {
@@ -186,6 +182,28 @@ public class ProductDetailModel {
         }
         catch (Exception e){
             return 100.0;
+        }
+    }
+
+    public static String getUserEmail(int uid){
+        String query = "select email\n" +
+                "from users\n" +
+                "where User_ID = :uid";
+        try (Connection con = DBUtils.getConnection()) {
+            return con.createQuery(query)
+                    .addParameter("uid", uid)
+                    .executeAndFetch(String.class).get(0);
+        }
+    }
+
+    public static String getProductName(String proID){
+        String query = "select Pname\n" +
+                "from products\n" +
+                "where Pro_ID = :id";
+        try (Connection con = DBUtils.getConnection()) {
+            return con.createQuery(query)
+                    .addParameter("id", proID)
+                    .executeAndFetch(String.class).get(0);
         }
     }
 }

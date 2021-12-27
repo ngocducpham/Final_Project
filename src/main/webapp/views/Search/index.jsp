@@ -36,11 +36,8 @@
                 let currentBidder = card.querySelector('.current_Bidder');
                 for (const bidder of bidderList) {
                     if (bidder[0] == proID) {
-                        currentBidder.innerText = "Bidder hiện tại: " + bidder[1];
+                        currentBidder.innerText = "Bidder hiện tại: " + '****' + bidder[1].slice(Math.ceil(bidder[1].length * 0.3));
                         break;
-                    } else
-                    {
-                        currentBidder.innerText = "Bidder hiện tại: chưa có";
                     }
                 }
 

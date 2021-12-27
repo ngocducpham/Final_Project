@@ -45,6 +45,18 @@
                 });
             });
 
+            let index = 1;
+            let contextImgPath = "${pageContext.request.contextPath}/public/imgProduct/${proDetail.pro_ID}/";
+            setInterval(() => {
+                let imgname = index % 4;
+                if (imgname == 0) {
+                    imgname = 'main';
+                }
+                imgname += '.jpg';
+                mainImg.src = contextImgPath + imgname;
+                index++;
+            }, 5000)
+
             let minPrice = ${minPrice};
             let priceStep = ${proDetail.distance_Price};
             let frmBid = document.getElementById('frm__bid');
@@ -63,7 +75,9 @@
                         inputPrice.value = minPrice;
                         return;
                     }
-                    frmBid.submit();
+                    let confirmBid = confirm('Bạn có chắc chắn đấu giá sản phẩm này với giá: ' + inputPrice.value);
+                    if (confirmBid)
+                        frmBid.submit();
                 });
             }
 
@@ -100,14 +114,17 @@
 
             let bidderListName = [];
             <c:forEach items="${history}" var="h">
-                bidderListName.push("${h.username}");
+            bidderListName.push("${h.username}");
             </c:forEach>
 
             let nameContainer = document.querySelectorAll('.bidderListName');
             for (let i = 0; i < bidderListName.length; i++) {
-                let name = bidderListName[i].slice(Math.ceil(bidderListName[i].length * 0.5));
+                let name = bidderListName[i].slice(Math.ceil(bidderListName[i].length * 0.3));
                 nameContainer[i].innerText = "****" + name;
             }
+            let currentBid = document.getElementById('current__bid');
+            let topBidName = '${currentBid}';
+            currentBid.innerText = '****' + topBidName.slice(Math.ceil(topBidName.length * 0.3));
         </script>
     </jsp:attribute>
     <jsp:body>
@@ -117,7 +134,7 @@
                 <div class='flex'>
 
                     <div class='mr-16' style='width: 450px;'>
-<%--                        DEADLINE--%>
+                            <%--                        DEADLINE--%>
                         <div class='flex justify-between items-center px-4 py-2 mb-3 rounded-md bg-gray-800 text-white '
                              style='width: 450px;'>
                             <c:if test="${proDetail.status == 0}">
@@ -138,22 +155,22 @@
                             <div class='img__mini-preview flex-col space-y-4 mr-3 overflow-auto pr-2'
                                  style='height: 450px;'>
                                 <div class='sub__img border rounded-md cursor-pointer'>
-                                    <img class='w-20 h-24 rounded-md'
+                                    <img id="sub__img1" class='w-20 h-24 rounded-md'
                                          src="${pageContext.request.contextPath}/public/imgProduct/${proDetail.pro_ID}/main.jpg"
                                          alt="">
                                 </div>
                                 <div class=' border rounded-md cursor-pointer'>
-                                    <img class='sub__img w-20 h-24 rounded-md'
+                                    <img id="sub__img2" class='sub__img w-20 h-24 rounded-md'
                                          src="${pageContext.request.contextPath}/public/imgProduct/${proDetail.pro_ID}/1.jpg"
                                          alt="">
                                 </div>
                                 <div class=' border rounded-md cursor-pointer'>
-                                    <img class='sub__img w-20 h-24 rounded-md'
+                                    <img id="sub__img3" class='sub__img3 sub__img w-20 h-24 rounded-md'
                                          src="${pageContext.request.contextPath}/public/imgProduct/${proDetail.pro_ID}/2.jpg"
                                          alt="">
                                 </div>
                                 <div class=' border rounded-md cursor-pointer'>
-                                    <img class='sub__img w-20 h-24 rounded-md'
+                                    <img id="sub__img4" class='sub__img w-20 h-24 rounded-md'
                                          src="${pageContext.request.contextPath}/public/imgProduct/${proDetail.pro_ID}/3.jpg"
                                          alt="">
                                 </div>
@@ -193,7 +210,7 @@
                                 </div>
                                 <div class='flex justify-between border-b-2 border-dashed font-medium mb-3'>
                                     <div>Người đặt giá cao nhất:</div>
-                                    <div>${currentBid}</div>
+                                    <div id="current__bid"></div>
                                 </div>
                                 <div class='flex justify-between border-b-2 border-dashed font-medium mb-xl-3'>
                                     <div>Giá hiện tại:</div>
@@ -234,7 +251,7 @@
                                             <c:if test="${Verified}">
                                                 <button type="button" id="btn__bid"
                                                         class='bg-gray-800 h-9 px-4 absolute right-0 rounded-r-md text-white text-lg hover:bg-gray-700'>
-                                                  Ra giá
+                                                    Ra giá
                                                 </button>
                                             </c:if>
                                         </form>

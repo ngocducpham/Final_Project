@@ -10,7 +10,7 @@ import java.util.Objects;
 
 public class ProductAutionModel {
     public static List<ProductAuction> getTop5Time() {
-        final String query = "select p.Pro_ID, Pname, Current_Price, End_Time, Total_Bid\n" +
+        final String query = "select p.Pro_ID, Pname, Current_Price, End_Time, Start_Time, Total_Bid\n" +
                 "from product_auction\n" +
                 "         join products p on p.Pro_ID = product_auction.Pro_ID\n" +
                 "where End_Time > NOW() and Status = 1\n" +
@@ -23,7 +23,7 @@ public class ProductAutionModel {
     }
 
     public static List<ProductAuction> getTop5Price() {
-        final String query = "select p.Pro_ID, Pname, Current_Price, End_Time, Total_Bid\n" +
+        final String query = "select p.Pro_ID, Pname, Current_Price, End_Time, Start_Time, Total_Bid\n" +
                 "from product_auction\n" +
                 "         join products p on p.Pro_ID = product_auction.Pro_ID\n" +
                 "where End_Time > NOW() and Status = 1\n" +
@@ -36,7 +36,7 @@ public class ProductAutionModel {
     }
 
     public static List<ProductAuction> getTop5Bid() {
-        final String query = "select products.Pro_ID, Pname, Current_Price, End_Time, Total_Bid\n" +
+        final String query = "select products.Pro_ID, Pname, Current_Price, End_Time, Start_Time, Total_Bid\n" +
                 "from products\n" +
                 "         join product_auction pa on products.Pro_ID = pa.Pro_ID\n" +
                 "where End_Time > NOW() and Status = 1\n" +
@@ -106,7 +106,7 @@ public class ProductAutionModel {
             ;
         } else {
             query += " group by pa.Pro_Auc_ID";
-            ;
+
         }
         try (Connection con = DBUtils.getConnection()) {
             if (product != "") {
