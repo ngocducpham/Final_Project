@@ -151,7 +151,7 @@ public class ProductModel {
         String updateSql = "UPDATE products SET Status = :Status WHERE Pro_ID = :Pro_ID";
         try (Connection con = DBUtils.getConnection()) {
             con.createQuery(updateSql)
-                    .addParameter("Pro_ID",p.getPro_ID())
+                    .addParameter("Pro_ID", p.getPro_ID())
                     .addParameter("Status", p.getStatus())
                     .executeUpdate();
         }
