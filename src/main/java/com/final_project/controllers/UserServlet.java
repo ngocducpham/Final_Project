@@ -20,6 +20,7 @@ public class UserServlet extends HttpServlet {
         String path = request.getPathInfo();
         if (path == null || path.equals("/")) {
             path = "/Index";
+
         }
 
         switch (path) {
