@@ -103,7 +103,6 @@
             </div>
 
             <div class="wrapper">
-                <header>Captcha in JavaScript</header>
                 <div class="captcha-area">
                     <div class="captcha-img">
                         <%--                        <img src="captcha-bg.png" alt="Captch Background">--%>
