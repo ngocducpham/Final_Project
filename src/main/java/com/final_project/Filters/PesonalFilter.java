@@ -27,7 +27,7 @@ public class PesonalFilter implements Filter {
             session.setAttribute("false_old_pass", false);
             session.setAttribute("success_change_pass", false);
         }
-        session.setAttribute("retUrl", request.getRequestURI() + "?" + request.getQueryString());
-        chain.doFilter(request, response);
+        session.setAttribute("retUrl_Personal", request.getRequestURI() + "?" + request.getQueryString());
+        chain.doFilter(req, response);
     }
 }

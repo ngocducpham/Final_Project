@@ -140,7 +140,8 @@ public class PersonalServlet extends HttpServlet {
         if (!UserModel.Check_Watch_List(Pro_Id, user.getUser_ID()))
             UserModel.Add_To_Watch_List(Pro_Id, user.getUser_ID());
 
-        String url = (String) session.getAttribute("retUrl");
+        String url = (String) session.getAttribute("retUrl_Search");
+        System.out.println(url);
         if (url == null) url = "/";
         ServletUtils.redirect(url, request, response);
     }

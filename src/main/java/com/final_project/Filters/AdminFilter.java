@@ -31,6 +31,6 @@ public class AdminFilter implements Filter {
                 ServletUtils.forward("/views/404/index.jsp", request, (HttpServletResponse) response);
             }
         }
-        chain.doFilter(request, response);
+        chain.doFilter(req, response);
     }
 }

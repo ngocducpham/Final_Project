@@ -59,7 +59,7 @@
         <c:choose>
             <c:when test="${User_Auction_Product_List.size()==0}">
                 <div style="font-size: 50px;  color:darkred"></div>
-                <div class='max-w-4xl h-screen mx-auto flex flex-col justify-content-center items-center'>
+                <div class='max-w-4xl h-screen mx-auto flex flex-col'>
                     <div>
                         <svg class='h-16 w-30' viewBox="0 0 143 32" xmlns="http://www.w3.org/2000/svg">
                             <path fill="#6366f1"
@@ -70,16 +70,16 @@
                                   d="M58.664 11.136l-2.04 7.392-2.184-7.392h-2.928l-2.184 7.368-2.04-7.368H44l3.816 12h2.952l2.208-7.272 2.208 7.272h2.952l3.816-12h-3.288zM68.864 23.472c3.528 0 6.36-2.76 6.36-6.336 0-3.576-2.832-6.336-6.36-6.336-3.528 0-6.336 2.76-6.336 6.336 0 3.576 2.808 6.336 6.336 6.336zm0-3.024c-1.824 0-3.24-1.368-3.24-3.312 0-1.944 1.416-3.312 3.24-3.312 1.848 0 3.264 1.368 3.264 3.312 0 1.944-1.416 3.312-3.264 3.312zM80.498 13.2v-2.064h-3.096v12h3.096V17.4c0-2.52 2.04-3.24 3.648-3.048v-3.456c-1.512 0-3.024.672-3.648 2.304zM97.02 23.136l-4.967-6.072 4.824-5.928H93.18l-4.128 5.28V6.336h-3.096v16.8h3.096v-5.448l4.368 5.448h3.6zM105.022 6c-3.816 0-5.64 1.704-5.64 5.016v.12h-1.728v2.976h1.728v9.024h3.096v-9.024h1.992v-2.976h-1.992v-.12c0-1.632.936-2.304 2.544-2.304.312 0 .648 0 .984.024v14.4h3.096V6.504c-1.32-.264-2.568-.504-4.08-.504zM117.637 23.472c3.528 0 6.36-2.76 6.36-6.336 0-3.576-2.832-6.336-6.36-6.336-3.528 0-6.336 2.76-6.336 6.336 0 3.576 2.808 6.336 6.336 6.336zm0-3.024c-1.824 0-3.24-1.368-3.24-3.312 0-1.944 1.416-3.312 3.24-3.312 1.848 0 3.264 1.368 3.264 3.312 0 1.944-1.416 3.312-3.264 3.312zM139.219 11.136l-2.04 7.392-2.184-7.392h-2.928l-2.184 7.368-2.04-7.368h-3.288l3.816 12h2.952l2.208-7.272 2.208 7.272h2.952l3.816-12h-3.288z" />
                         </svg>
                     </div>
-                    <h6 style="font-size: 40px" class='text-danger  font-weight-bold mt-12 text-center'>Bạn Chưa Tham Gia Đấu Giá!</h6>
+                    <h6 style="font-size: 40px" class='text-danger font-weight-bold mt-12'>Bạn Chưa Tham Gia Đấu Giá!</h6>
 <%--                    <a href='${pageContext.request.contextPath}' class='flex items-center justify-center mt-7 hover:decoration-indigo-600 hover:underline'>--%>
 <%--                        <div class='text-indigo-600 font-medium text-lg'>--%>
 <%--                            Trở về trang chủ--%>
 <%--                        </div>--%>
-                    <button type="button" class="btn btn-outline-success" >
-                        <a href="/Final_Project/Search?searchproduct">
-                            <i class="fa fa-rocket"/> Đi tới Danh mục sản phẩm
-                        </a>
-                    </button>
+<%--                    <button type="button" class="btn btn-outline-success" >--%>
+<%--                        <a href="/Final_Project/Search?searchproduct">--%>
+<%--                            <i class="fa fa-rocket"/> Đi tới Danh mục sản phẩm--%>
+<%--                        </a>--%>
+<%--                    </button>--%>
 <%--                        <svg class='h-6 w-6 fill-indigo-600' xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"--%>
 <%--                             role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">--%>
 <%--                            <path d="M11.293 17.293l1.414 1.414L19.414 12l-6.707-6.707l-1.414 1.414L15.586 11H6v2h9.586z" />--%>
