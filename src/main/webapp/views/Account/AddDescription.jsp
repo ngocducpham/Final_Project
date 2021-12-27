@@ -40,7 +40,6 @@
                         <i class="fa fa-check" aria-hidden="true"> List</i>
                     </a>
                 </div>
-
             </div>
 
             <div class="boxProfile ">
