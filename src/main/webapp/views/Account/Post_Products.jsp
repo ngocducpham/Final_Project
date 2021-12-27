@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<jsp:useBean id="Cate" scope="request" type="java.util.List<com.final_project.beans.Category>"/>
+<jsp:useBean id="Category" scope="request" type="java.util.List<com.final_project.beans.Category>"/>
 
 <t:personal_page>
     <jsp:attribute name="js">

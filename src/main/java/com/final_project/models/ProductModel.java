@@ -140,10 +140,11 @@ public class ProductModel {
 
     public static void insertDes(Product p)
     {
-        String query="insert into products (Pname, description) values (:Pname, :description)";
+        String query="insert into products (Pro_ID,Pname, description) values (:Pro_ID, :Pname, :description)";
         try (Connection con =DBUtils.getConnection())
         {
             con.createQuery(query)
+                    .addParameter("Pro_ID",p.getPro_ID())
                     .addParameter("Pname",p.getPname())
                     .addParameter("description", p.getDescription())
                     .executeUpdate();

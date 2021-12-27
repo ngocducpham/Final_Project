@@ -36,8 +36,8 @@ public class MiscServlet extends HttpServlet {
                 } else {
                     User u = (User) session.getAttribute("authUser");
                     if (u.getUserrole() == 2) {
-                        List<Category> Catlist = InsertProductModel.getCate();
-                        request.setAttribute("Cate", Catlist);
+                        List<Category> list = InsertProductModel.getCate();
+                        request.setAttribute("Category", list);
                         ServletUtils.forward("/views/Account/Post_Products.jsp", request, response);
                     }
                     else {
@@ -46,7 +46,7 @@ public class MiscServlet extends HttpServlet {
                 }
                 break;
 
-            case "/InsertDes":
+            case "/addDescription":
             {
                 if(!(Boolean)session.getAttribute("Verified"))
                 {
@@ -56,15 +56,15 @@ public class MiscServlet extends HttpServlet {
                 {
                     User u = (User) session.getAttribute("authUser");
                     if (u.getUserrole() == 2) {
-                        List<Category> Catlist = InsertProductModel.getCate();
-                        request.setAttribute("Cate", Catlist);
-                        ServletUtils.forward("/views/Account/InsertDes.jsp", request, response);
+//                        List<Category> Catlist = InsertProductModel.getCate();
+//                        request.setAttribute("Cate", Catlist);
+                        ServletUtils.forward("/views/Account/AddDescription.jsp", request, response);
                     }
                     else {
                         ServletUtils.forward("/views/404/index.jsp", request, response);
                     }
                 }
-            }
+            } break;
             default:
                 ServletUtils.forward("/views/404.jsp", request, response);
                 break;
@@ -83,7 +83,7 @@ public class MiscServlet extends HttpServlet {
                 Post_Products(request, response);
                 break;
 
-            case"/InsertDes":
+            case"/addDescription":
                 InsertDes(request,response);
                 break;
             default:
@@ -100,7 +100,7 @@ public class MiscServlet extends HttpServlet {
         Product p =new Product(pname,description);
         ProductModel.insertDes(p);
 
-        ServletUtils.redirect("/Seller/InsertDes",request,response);
+        ServletUtils.redirect("/Seller/addDescription",request,response);
     }
 
 

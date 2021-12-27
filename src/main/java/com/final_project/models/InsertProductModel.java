@@ -9,66 +9,66 @@ import java.util.List;
 
 public class InsertProductModel {
 
-  public static void SellerProduct(AddProduct s)
-  {
-      final String query="select * \n" +
-              "from (\n" +
-              "select p1.Pro_ID, p1.Pname, p1.Status,p1.Cat_ID, p1.Price, p1.description, p1.img,\t\n" +
-              "\t u1.User_ID as SellerID, u1.username as Seller, \n" +
-              "    pa1.End_Time, pa1.Start_Time,\n" +
-              "    c1.Cparent_ID \n" +
-              "from products p1 inner join magage  on p1.Pro_ID=magage.Pro_ID\n" +
-              "\t inner join users u1 on u1.User_ID=magage.User_ID\n" +
-              "    inner join categories c1 on p1.Cat_ID=c1.Cat_ID \n" +
-              "    inner join product_auction pa1 on pa1.Pro_ID=p1.Pro_ID\n" +
-              "    ) as Seller ";
-      try(Connection con =DBUtils.getConnection())
-      {
-        con.createQuery(query)
-                .executeAndFetch(AddProduct.class);
-      }
-  }
+    public static void SellerProduct(AddProduct s)
+    {
+        final String query="select * \n" +
+                "from (\n" +
+                "select p1.Pro_ID, p1.Pname, p1.Status,p1.Cat_ID, p1.Price, p1.description, p1.img,\t\n" +
+                "\t u1.User_ID as SellerID, u1.username as Seller, \n" +
+                "    pa1.End_Time, pa1.Start_Time,\n" +
+                "    c1.Cparent_ID \n" +
+                "from products p1 inner join magage  on p1.Pro_ID=magage.Pro_ID\n" +
+                "\t inner join users u1 on u1.User_ID=magage.User_ID\n" +
+                "    inner join categories c1 on p1.Cat_ID=c1.Cat_ID \n" +
+                "    inner join product_auction pa1 on pa1.Pro_ID=p1.Pro_ID\n" +
+                "    ) as Seller ";
+        try(Connection con =DBUtils.getConnection())
+        {
+            con.createQuery(query)
+                    .executeAndFetch(AddProduct.class);
+        }
+    }
 
-  public static void InsertProduct(AddProduct s)
-  {
+    public static void InsertProduct(AddProduct s)
+    {
 //    String query= "insert into Seller(Pro_ID, Pname, Status, Cat_ID, Price, img, SellerID, Seller, \n" +
 //            "End_Time, Start_Time, Cparent_ID, description ) \n" +
 //            "value(:Pro_ID, :Pname, :Status, :Cat_ID, :Price, :img , :SellerID , :Seller , \n" +
 //            ":End_Time , :Start_Time , :Cparent_ID, :description );\n";
-      String query= "insert into Seller(Pname, Cat_ID, Price, img, \n" +
-            "End_Time, Start_Time, description ) \n" +
-            "value( :Pname, :Cat_ID, :Price, :img , \n" +
-            ":End_Time , :Start_Time , :description );\n";
+        String query= "insert into Seller(Pname, Cat_ID, Price, img, \n" +
+                "End_Time, Start_Time, description ) \n" +
+                "value( :Pname, :Cat_ID, :Price, :img , \n" +
+                ":End_Time , :Start_Time , :description );\n";
 
-    try (Connection con =DBUtils.getConnection())
-    {
-      con.createQuery(query)
+        try (Connection con =DBUtils.getConnection())
+        {
+            con.createQuery(query)
 //              .addParameter("Pro_ID",s.getPro_ID())
-              .addParameter("Pname",s.getPname())
-   //           .addParameter("Status",s.getStatus())
-              .addParameter("Cat_ID",s.getCat_ID())
-              .addParameter("img",s.getImg())
-              .addParameter("Price",s.getPrice())
-    //          .addParameter("SellerID",s.getSellerID())
-    //          .addParameter("Seller",s.getSeller())
-              .addParameter("End_Time",s.getEnd_Time())
-              .addParameter("Start_Time",s.getStart_Time())
-    //          .addParameter("Cparent_ID",s.getCparent_ID())
-              .addParameter("description",s.getDescription())
-              .executeUpdate();
+                    .addParameter("Pname",s.getPname())
+                    //           .addParameter("Status",s.getStatus())
+                    .addParameter("Cat_ID",s.getCat_ID())
+                    .addParameter("img",s.getImg())
+                    .addParameter("Price",s.getPrice())
+                    //          .addParameter("SellerID",s.getSellerID())
+                    //          .addParameter("Seller",s.getSeller())
+                    .addParameter("End_Time",s.getEnd_Time())
+                    .addParameter("Start_Time",s.getStart_Time())
+                    //          .addParameter("Cparent_ID",s.getCparent_ID())
+                    .addParameter("description",s.getDescription())
+                    .executeUpdate();
+        }
     }
-  }
 
-  public static List<Category> getCate() {
-      List<Category> result;
-      String query = "select Cat_ID, Cname from categories ";
+    public static List<Category> getCate() {
+        List<Category> result;
+        String query = "select Cat_ID, Cname from categories ";
 
-      try (Connection con = DBUtils.getConnection()) {
-          return con.createQuery(query)
-                  .executeAndFetch(Category.class);//.addParameter("Cnam")
-      }
+        try (Connection con = DBUtils.getConnection()) {
+            return con.createQuery(query)
+                    .executeAndFetch(Category.class);//.addParameter("Cnam")
+        }
 
-  }
+    }
 
 //  public static List<ProductDetail> get5ProductRelative(String catID) {
 //      String query = "select Pname, pa.Pro_ID, Current_Price, End_Time, Total_Bid \n" +
