@@ -76,7 +76,7 @@
             <c:otherwise>
 
                 <div style="font-weight: bold;font-size: 36px">Sản Phẩm Bạn <span
-                        style="color:red;">Đang Tham Gia</span> Đấu Giá
+                        style="color:red;">Đã Thắng</span> Đấu Giá
                 </div>
                 <div class='flex space-x-3 space-y-3 mt-10 flex-wrap'>
                     <c:forEach items="${User_Won_Auction_Product_List}" var="p">
@@ -96,7 +96,7 @@
                                         Giá hiện tại:
                                         <span><fmt:formatNumber value="${p.max_price}" type="number"/> đ</span>
                                     </div>
-                                    <div><i class="red fa fa-trophy fa-sm"> ${p.username}</i></div>
+                                    <div><i class="red fa fa-trophy fa-sm"> ${p.winner_name}</i></div>
                                     <div class='timeContainer flex justify-around text-xs mt-3 font-semibold'>
                                         <div>
                                             <div class='days text-sm'>05</div>

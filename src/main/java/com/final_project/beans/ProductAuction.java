@@ -14,7 +14,7 @@ ProductAuction {
     private LocalDateTime Start_Time;
     private LocalDateTime End_Time;
     private int Pro_ID;
-    private int User_ID,user_id;
+    private int User_ID;
     private String username,winner_name;
     private int Price_of_User;
     private String Total_Products;
@@ -74,14 +74,6 @@ ProductAuction {
 
     public int getWinner_price() {
         return winner_price;
-    }
-
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
     }
 
     public String getWinner_name() {
