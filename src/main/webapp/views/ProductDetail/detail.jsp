@@ -18,6 +18,7 @@
 
 <t:main>
     <jsp:attribute name="css">
+
         <style>
             .img__mini-preview::-webkit-scrollbar {
                 width: 5px;
@@ -33,6 +34,33 @@
 
             .img__mini-preview::-webkit-scrollbar-thumb:hover {
                 background: #555;
+            }
+
+
+
+            .fs-12 {
+                font-size: 12px
+            }
+
+            .shadow-none {
+                box-shadow: none
+            }
+
+
+            .cursor:hover {
+                color: blue
+            }
+
+            .cursor {
+                cursor: pointer
+            }
+
+            .textarea {
+                resize: none
+            }
+
+            .btn-primary {
+                color: blue;
             }
         </style>
     </jsp:attribute>
@@ -277,6 +305,26 @@
                                     </div>
                                 </c:if>
 
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- cmt -->
+                <div class="container-fluid mt-3">
+                    <div class="d-flex justify-content-center row">
+                        <div class="col-12">
+                            <div class="d-flex flex-column comment-section">
+                                <div class="bg-white">
+                                    <div class="d-flex flex-row fs-12">
+                                        <div class="like p-2 cursor"><i class="fa fa-thumbs-o-up"></i><span class="ml-1">Like</span></div>
+                                        <div class="like p-2 cursor"><i class="fa fa-thumbs-o-down"></i><span class="ml-1">Dislike</span></div>
+                                    </div>
+                                </div>
+                                <div class="bg-light p-2">
+                                    <div class="d-flex flex-row align-items-start"><textarea class="form-control ml-1 shadow-none textarea"></textarea></div>
+                                    <div class="mt-2 text-right"><button class="btn btn-outline-primary btn-sm shadow-none text-blue" type="button">Post comment</button><button class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="button">Cancel</button></div>
+                                </div>
                             </div>
                         </div>
                     </div>
