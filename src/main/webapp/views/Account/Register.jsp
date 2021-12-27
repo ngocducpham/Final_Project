@@ -103,6 +103,7 @@
             </div>
 
             <div class="wrapper">
+                <header>ReCaptcha</header>
                 <div class="captcha-area">
                     <div class="captcha-img">
                         <%--                        <img src="captcha-bg.png" alt="Captch Background">--%>
