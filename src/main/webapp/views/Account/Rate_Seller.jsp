@@ -33,6 +33,20 @@
 
         </style>
     </jsp:attribute>
+    <jsp:attribute name="js">
+        <script>
+            let voted = document.getElementById('voted').innerText;
+            let btnSubmit = document.getElementById('btnSubmit');
+            let formVote = document.getElementById('formVote');
+
+            btnSubmit.addEventListener('click', ()=>{
+                if(voted == 'true')
+                    alert("Bạn đã đánh giá người này rồi");
+                else formVote.submit();
+            })
+
+        </script>
+    </jsp:attribute>
     <jsp:body>
         <div>
 
@@ -50,7 +64,7 @@
         <!-- cmt -->
 
         <div class="container-fluid mt-3">
-            <form method="post">
+            <form id="formVote" method="post">
                 <div class="">
                         Đánh giá người bán:
                         <input class="ml-3" title="Vote +1" id="Vote1" type="radio" name="Vote" value="1" > Like(+1)
@@ -58,8 +72,8 @@
                 </div>
                 <input name="Seller_ID" type="text" style="visibility: hidden" value="${Select.seller_ID}">
                 <input name="Pro_ID" type="text" style="visibility: hidden" value="${Select.pro_ID}">
-                <div>
-                    <input type="hidden" name="voted" value="${voted}">
+                <div id="voted" class="hidden">
+                    ${voted}
                 </div>
                 <div class="d-flex justify-content-center row">
                     <div class="col-12">
@@ -71,8 +85,8 @@
                                         <textarea class="form-control ml-1 shadow-none textarea" id="exampleFormControlTextarea1" rows="6" name="Comment"></textarea>
                                     </div>
                                 <div class="mt-2 text-right">
-                                    <button class="btn btn-outline-primary btn-sm shadow-none text-blue"
-                                            type="submit" >Gửi đi
+                                    <button id="btnSubmit" class="btn btn-outline-primary btn-sm shadow-none text-blue"
+                                             >Gửi đi
                                     </button>
                                     <button class="btn btn-outline-danger btn-sm ml-1 shadow-none" type="button">
                                         <a href="${pageContext.request.contextPath}/Personal/MyBidder_Rates" class="hover:underline">Hủy</a>
