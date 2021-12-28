@@ -1,5 +1,6 @@
 package com.final_project.models;
 
+import com.final_project.beans.Aution;
 import com.final_project.beans.MyIntType;
 import com.final_project.beans.Point;
 import com.final_project.beans.ProductDetail;
@@ -78,17 +79,18 @@ public class ProductDetailModel {
         String query = "select Price_of_User\n" +
                 "from auction\n" +
                 "where Pro_Auc_ID = :proauid\n" +
-                "order by Price_of_User desc\n" +
-                "limit 1";
+                "order by Price_of_User desc";
         try (Connection con = DBUtils.getConnection()) {
-            ProductDetail topUserAu = con.createQuery(query)
+            List<Aution> history = con.createQuery(query)
                     .addParameter("proauid", proAuID)
-                    .executeAndFetch(ProductDetail.class).get(0);
-            if (Integer.parseInt(price) > topUserAu.getPrice_of_User()) {
-                setCurrentPrice(topUserAu.getPrice_of_User() + priceStep, proAuID);
-            }
-            else if(Integer.parseInt(price) == topUserAu.getPrice_of_User()){
-                setCurrentPrice(topUserAu.getPrice_of_User(), proAuID);
+                    .executeAndFetch(Aution.class);
+            System.out.println(history.size());
+            if (Integer.parseInt(price) > history.get(0).getPrice_of_User()) {
+                setCurrentPrice(history.get(0).getPrice_of_User() + priceStep, proAuID);
+            } else if (Integer.parseInt(price) == history.get(0).getPrice_of_User()) {
+                setCurrentPrice(history.get(0).getPrice_of_User(), proAuID);
+            } else if ((history.size() > 1 && Integer.parseInt(price) > history.get(1).getPrice_of_User())|| history.size() == 1) {
+                setCurrentPrice(Integer.parseInt(price) + priceStep, proAuID);
             }
         } catch (Exception e) {
             int curentPrice = Integer.parseInt(getCurrentPrice(proAuID));

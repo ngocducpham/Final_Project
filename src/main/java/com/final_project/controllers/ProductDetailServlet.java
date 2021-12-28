@@ -19,7 +19,7 @@ public class ProductDetailServlet extends HttpServlet {
         String proID = request.getParameter("id");
 
         ProductDetail productDetail = ProductDetailModel.getByID(proID);
-        if(productDetail == null){
+        if (productDetail == null) {
             ServletUtils.forward("views/404/index.jsp", request, response);
             return;
         }
@@ -35,18 +35,16 @@ public class ProductDetailServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("authUser");
-        if(user.getUsername() != null) {
+        if (user.getUsername() != null) {
             MyIntType checkBlackList = ProductDetailModel.checkBlackList(Integer.toString(user.getUser_ID()), Integer.toString(proAuID));
             request.setAttribute("blacklist", checkBlackList);
-            if (ProductDetailModel.userPoint(user.getUser_ID()) >= 80.0){
+            if (ProductDetailModel.userPoint(user.getUser_ID()) >= 80.0) {
                 request.setAttribute("lowrate", "0");
-            }
-            else{
+            } else {
                 request.setAttribute("lowrate", "1");
             }
-        }
-        else {
-            request.setAttribute("blacklist",new MyIntType(3));
+        } else {
+            request.setAttribute("blacklist", new MyIntType(3));
             request.setAttribute("lowrate", "2");
         }
 
@@ -79,12 +77,12 @@ public class ProductDetailServlet extends HttpServlet {
         String userEmail = ProductDetailModel.getUserEmail(Integer.parseInt(uid));
         String proName = ProductDetailModel.getProductName(proID);
 
-        Thread sendMail = new Thread(){
-            public void run(){
-                ServletUtils.sendMail_to_bid(userEmail,proName, bidPrice);
+        Thread sendMail = new Thread() {
+            public void run() {
+                ServletUtils.sendMail_to_bid(userEmail, proName, bidPrice);
             }
         };
-        sendMail.start();
+        //sendMail.start();
 
         ServletUtils.redirect("/ProductDetail?id=" + proID, request, response);
     }

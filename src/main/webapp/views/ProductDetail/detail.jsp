@@ -313,11 +313,6 @@
                                             </c:if>
                                         </form>
                                     </c:if>
-                                    <c:if test="${owner.user_ID == authUser.user_ID}">
-                                        <div class="text-lg text-red-500 font-medium">
-                                            Bạn không thể đấu giá sản phẩm mình đăng bán
-                                        </div>
-                                    </c:if>
                                     <c:if test="${blacklist.value == 1}">
                                         <div class="text-lg text-red-500 font-medium">
                                             Bạn không có quyền đấu giá sản phẩm này.

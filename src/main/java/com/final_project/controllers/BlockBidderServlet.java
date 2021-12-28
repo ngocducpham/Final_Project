@@ -32,7 +32,7 @@ public class BlockBidderServlet extends HttpServlet {
                 ServletUtils.sendMail_blockUser(userEmail,proName);
             }
         };
-        sendMail.start();
+        //sendMail.start();
 
         ServletUtils.redirect("/ProductDetail?id=" + proID, request, response);
     }
