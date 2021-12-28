@@ -27,7 +27,7 @@ public class RatesModel {
         }
     }
 
-    public static Boolean Check_SellerID_Vote (Rates r){
+    public static Boolean Check_SellerID_Vote(Rates r) {
         final String Sql = "select * from rates as r where r.Seller_ID = :Users_ID1 and r.Bidder = :User_ID2 and r.Type = :Type;";
         try (Connection con = DBUtils.getConnection()) {
             List<Rates> list1 = con.createQuery(Sql)
@@ -52,14 +52,14 @@ public class RatesModel {
                     .addParameter("Comment", r.getComment())
                     .addParameter("Type", r.getType())
                     .addParameter("Bidder", r.getBidder())
-                    .addParameter("Pro_ID",r.getPro_ID())
-                    .addParameter("Vote",r.getVote())
+                    .addParameter("Pro_ID", r.getPro_ID())
+                    .addParameter("Vote", r.getVote())
                     .executeUpdate();
         }
     }
 
     public static void Update(Rates r) {
-        String Sql = "UPDATE points SET  up = :up, down = :down, points = :points, User_ID = :userId WHERE id = :id ";
+        String Sql = "UPDATE points SET  up = :up, down = :down, User_ID = :userId WHERE id = :id ";
         try (Connection con = DBUtils.getConnection()) {
             con.createQuery(Sql)
                     .addParameter("id", r.getId())
@@ -71,13 +71,15 @@ public class RatesModel {
         }
     }
 
-    public static Rates Select(int user_id){
-        String Sql = "select username, Seller_Expired_Date from users as u join magage as m on u.User_ID = m.User_ID\n" +
-                "join rates as r on m.Pro_ID = r.Pro_ID\n" +
-                "join points p on u.User_ID = p.User_ID where u.User_ID = :User_ID";
+    public static Rates Select(int user_id) {
+        String Sql = "select username, Seller_Expired_Date, count(m.Pro_ID) as tong_sp\n" +
+                "from users as u " +
+                "left join magage as m on u.User_ID = m.User_ID\n" +
+                "left join rates as r on m.Pro_ID = r.Pro_ID\n" +
+                "left join points p on u.User_ID = p.User_ID where u.User_ID = :User_ID group by u.User_ID;";
         try (Connection con = DBUtils.getConnection()) {
             return con.createQuery(Sql)
-                    .addParameter("User_ID", user_id )
+                    .addParameter("User_ID", user_id)
                     .executeAndFetch(Rates.class).get(0);
         }
     }

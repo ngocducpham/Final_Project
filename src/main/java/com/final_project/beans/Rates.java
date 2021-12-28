@@ -17,6 +17,7 @@ public class Rates {
     private int User_ID;
     private String username;
     private Date Seller_Expired_date;
+    private int tong_sp;
 
     public Date getSeller_Expired_date() {
         return Seller_Expired_date;
@@ -104,6 +105,14 @@ public class Rates {
         Pro_ID = pro_ID;
         Vote = vote;
         Comment = comment;
+    }
+
+    public int getTong_sp() {
+        return tong_sp;
+    }
+
+    public void setTong_sp(int tong_sp) {
+        this.tong_sp = tong_sp;
     }
 
     public Rates() {
