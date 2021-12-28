@@ -42,8 +42,8 @@
         <div class="text-center">
             <div>Người bán: ${Select.username}</div>
         </div>
+
         <div class="d-flex justify-content-around text-sm text-gray-500 font-semibold mt-3">
-            <div>Số sản phẩm: ${Select.tong_sp}</div>
             <div>Ngày hết hạn bán: ${Select.seller_Expired_date}</div>
         </div>
         <!-- cmt -->
@@ -51,24 +51,32 @@
             Đánh giá người bán
         </div>
         <div class="container-fluid mt-3">
-            <form>
+            <form method="post">
+                <input name="Seller_ID" type="text" style="visibility: hidden" value="${Select.seller_ID}">
+                <input name="Pro_ID" type="text" style="visibility: hidden" value="${Select.pro_ID}">
             <div class="d-flex justify-content-center row">
                 <div class="col-12">
                     <div class="d-flex flex-column comment-section">
                         <div class="bg-white">
                             <div class="d-flex flex-row fs-12">
-                                <div class="like p-2 cursor"><i class="fa fa-thumbs-o-up"></i><span
-                                        class="ml-1">Like</span></div>
-                                <div class="like p-2 cursor"><i class="fa fa-thumbs-o-down"></i><span
-                                        class="ml-1">Dislike</span></div>
+                                <label for="Vote1" class="like p-2 cursor"><i class="fa fa-thumbs-o-up"></i><span
+                                        class="ml-1">Like</span></label >
+                                <input id="Vote1" type="radio" name="Vote" value="1" >
+
+                                <label for="Vote2" class="like p-2 cursor"><i class="fa fa-thumbs-o-down"></i><span
+                                        class="ml-1">Dislike</span></label >
+                                <input id="Vote2" type="radio" name="Vote" value="-1" >
                             </div>
                         </div>
                         <div class="bg-light p-2">
-                            <div class="d-flex flex-row align-items-start"><textarea
-                                    class="form-control ml-1 shadow-none textarea"></textarea></div>
+                            <div class="d-flex flex-row align-items-start">
+                                <textarea
+                                    class="form-control ml-1 shadow-none textarea" name="Comment">
+                                </textarea>
+                            </div>
                             <div class="mt-2 text-right">
                                 <button class="btn btn-outline-primary btn-sm shadow-none text-blue"
-                                        type="submit" formaction="${pageContext.request.contextPath}/Account/Post">Post comment
+                                        type="submit" >Post comment
                                 </button>
                                 <button class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="button">
                                     Cancel

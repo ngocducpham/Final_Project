@@ -10,11 +10,6 @@ public class Rates {
     private int Pro_ID;
     private int Vote;
     private String Comment;
-    private int id;
-    private int up;
-    private int down;
-    private int points;
-    private int User_ID;
     private String username;
     private Date Seller_Expired_date;
     private int tong_sp;
@@ -59,25 +54,7 @@ public class Rates {
         Comment = comment;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
-    public void setUp(int up) {
-        this.up = up;
-    }
-
-    public void setDown(int down) {
-        this.down = down;
-    }
-
-    public void setPoints(int points) {
-        this.points = points;
-    }
-
-    public void setUser_ID(int user_ID) {
-        User_ID = user_ID;
-    }
 
     public String getUsername() {
         return username;
@@ -87,20 +64,6 @@ public class Rates {
         this.username = username;
     }
 
-    public Rates(int rateB_ID, int seller_ID, int type, int bidder, int pro_ID, int vote, String comment, int id, int up, int down, int points, int user_ID) {
-        RateB_ID = rateB_ID;
-        Seller_ID = seller_ID;
-        Type = type;
-        Bidder = bidder;
-        Pro_ID = pro_ID;
-        Vote = vote;
-        Comment = comment;
-        this.id = id;
-        this.up = up;
-        this.down = down;
-        this.points = points;
-        User_ID = user_ID;
-    }
 
     public Rates(int seller_ID, int type, int bidder, int pro_ID, int vote, String comment) {
         Seller_ID = seller_ID;
@@ -150,25 +113,6 @@ public class Rates {
         return Comment;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public int getUp() {
-        return up;
-    }
-
-    public int getDown() {
-        return down;
-    }
-
-    public int getPoints() {
-        return points;
-    }
-
-    public int getUser_ID() {
-        return User_ID;
-    }
 }
 
 
