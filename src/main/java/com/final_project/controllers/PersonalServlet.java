@@ -218,8 +218,7 @@ public class PersonalServlet extends HttpServlet {
                 RatesModel.Point_Down(Seller_ID);
             }
         }
-
-        ServletUtils.redirect("/Personal/Rate_Seller", request, response);
+        ServletUtils.redirect("/Personal/MyBidder_Rates", request, response);
     }
 
     private void Seller_Add_to_Rate_List(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -243,6 +242,6 @@ public class PersonalServlet extends HttpServlet {
             }
         }
 
-        ServletUtils.redirect("/Personal/Rate_Bidder", request, response);
+        ServletUtils.redirect("/Personal/My_Rates", request, response);
     }
 }
