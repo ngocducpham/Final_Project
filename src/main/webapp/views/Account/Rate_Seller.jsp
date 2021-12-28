@@ -4,9 +4,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="C" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%--<jsp:useBean id="authUser" scope="session" type="com.final_project.beans.User"/>--%>
-<%--<jsp:useBean id="User_Won_Auction_Product_List" scope="request"--%>
-<%--             type="java.util.List<com.final_project.beans.ProductAuction>"/>--%>
+<jsp:useBean id="Select" scope="request"
+             type="java.util.List<com.final_project.beans.ProductAuction>"/>
 
 <t:personal_page>
     <jsp:attribute name="css">
@@ -34,69 +33,19 @@
 
         </style>
     </jsp:attribute>
-    <jsp:attribute name="js">
-        <script>
-            let timeEndList = [];
-            <c:forEach items="${User_Won_Auction_Product_List}" var="p">
-            timeEndList.push(new Date("${p.end_Time}"));
-            </c:forEach>
-
-            let timeContainer = document.querySelectorAll('.timeContainer');
-            let timeNow = new Date();
-            let datePerMilis = 1000 * 60 * 60 * 24;
-            let timeDiff = [], days, hours, mins, secs;
-
-            for (let i = 0; i < timeEndList.length; i++) {
-                timeDiff.push(new Date(timeEndList[i].getTime() - timeNow));
-            }
-
-            setInterval(() => {
-                for (let i = 0; i < timeEndList.length; i++) {
-                    days = Math.floor((timeEndList[i].getTime() - Date.now()) / datePerMilis);
-                    hours = timeDiff[i].getUTCHours();
-                    mins = timeDiff[i].getUTCMinutes();
-                    secs = timeDiff[i].getUTCSeconds();
-
-                    if (days < 0 || hours < 0 || mins < 0 || secs < 0) {
-                        let timecout = timeContainer[i].querySelectorAll('div');
-                        if(timecout != null){
-                            timecout.forEach(item=>{
-                                item.remove();
-                            })
-                            timeContainer[i].innerText = "Phiên đấu giá đã kết thúc";
-                            timeContainer[i].classList.add("text-red-600");
-                            timeContainer[i].classList.add("text-base");
-                        }
-                        continue;
-                    }
-
-                    timeContainer[i].querySelector('.days').textContent = days;
-                    timeContainer[i].querySelector('.hours').textContent = hours;
-                    timeContainer[i].querySelector('.minutes').textContent = mins;
-                    timeContainer[i].querySelector('.seconds').textContent = secs;
-
-                    timeDiff[i].setUTCSeconds(secs - 1);
-                }
-            }, 1000);
-        </script>
-    </jsp:attribute>
     <jsp:body>
         <figure class="avatar"><img src="${pageContext.request.contextPath}/public/imgs/user.svg" alt="User picture">
         </figure>
+        <c:forEach items="${Select}" var="c">
         <div class="text-center">
-            Người bán: Giau
+            ${c.username}
         </div>
         <div class="d-flex justify-content-between text-sm text-gray-500 font-semibold mt-3">
             <div>
-                Sản phẩm : 11
-            </div>
-            <div>
-                Đánh giá: 1 Đánh Giá
-            </div>
-            <div>
-                Tham gia: 27/12/2021
+
             </div>
         </div>
+        </c:forEach>
         <!-- cmt -->
         <div class="mt-5">
             Đánh giá người bán

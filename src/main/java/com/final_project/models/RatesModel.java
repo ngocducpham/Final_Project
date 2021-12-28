@@ -1,6 +1,8 @@
 package com.final_project.models;
 
+import com.final_project.beans.Category;
 import com.final_project.beans.Favorite;
+import com.final_project.beans.ProductAuction;
 import com.final_project.beans.Rates;
 import com.final_project.utils.DBUtils;
 import org.sql2o.Connection;
@@ -66,6 +68,17 @@ public class RatesModel {
                     .addParameter("points", r.getPro_ID())
                     .addParameter("User_ID", r.getUser_ID())
                     .executeUpdate();
+        }
+    }
+
+    public static List<Rates> Select(int user_id){
+        String Sql = "select username, Seller_Expired_Date from users as u join magage as m on u.User_ID = m.User_ID\n" +
+                "join rates as r on m.Pro_ID = r.Pro_ID\n" +
+                "join points p on u.User_ID = p.User_ID where u.User_ID = :User_ID";
+        try (Connection con = DBUtils.getConnection()) {
+            return con.createQuery(Sql)
+                    .addParameter("User_ID", user_id )
+                    .executeAndFetch(Rates.class);
         }
     }
 

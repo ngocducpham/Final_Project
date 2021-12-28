@@ -2,6 +2,7 @@ package com.final_project.controllers;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.final_project.beans.ProductAuction;
+import com.final_project.beans.Rates;
 import com.final_project.beans.User;
 import com.final_project.models.RatesModel;
 import com.final_project.models.UserModel;
@@ -59,7 +60,8 @@ public class PersonalServlet extends HttpServlet {
                     Get_My_Post_Product(request, response, user);
                     break;
                 case "/Rate_Seller":
-                    Add_to_Rate_List(request, response, session);
+                    List<Rates> list3 = RatesModel.Select(user.getUser_ID());
+                    request.setAttribute("Select", list3);
                     ServletUtils.forward("/views/Account/Rate_Seller.jsp", request, response);
                     break;
                 default:
