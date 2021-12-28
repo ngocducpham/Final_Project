@@ -35,7 +35,7 @@
     </jsp:attribute>
     <jsp:attribute name="js">
         <script>
-            let voted = document.getElementById('voted').innerText;
+            let voted = document.getElementById('voted').getAttribute('voted');
             let btnSubmit = document.getElementById('btnSubmit');
             let formVote = document.getElementById('formVote');
 
@@ -72,8 +72,7 @@
                 </div>
                 <input name="Seller_ID" type="text" style="visibility: hidden" value="${Select.seller_ID}">
                 <input name="Pro_ID" type="text" style="visibility: hidden" value="${Select.pro_ID}">
-                <div id="voted" class="hidden">
-                    ${voted}
+                <div id="voted" class="hidden" voted="${voted}">
                 </div>
                 <div class="d-flex justify-content-center row">
                     <div class="col-12">
