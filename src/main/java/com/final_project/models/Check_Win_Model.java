@@ -14,7 +14,7 @@ public class Check_Win_Model {
                 "       pa.End_Time,\n" +
                 "       pa.total_bid,\n" +
                 "       pa.Pro_ID,\n" +
-                "       max(a.price_of_User) as winner_price,\n" +
+                "       pa.Current_Price as winner_price,\n" +
                 "       U2.Username          as winner_name,\n" +
                 "       U2.email             as winner_email,\n" +
                 "       min(a.Price_Time)\n" +
