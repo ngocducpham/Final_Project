@@ -113,7 +113,7 @@
             let vndPrice = minPrice;
 
             if(priceDropdown != null) {
-                for (let i = 0; i < 200; i++) {
+                for (let i = 0; i < 300; i++) {
                     if (vndPrice >= 200000000)
                         break;
 
@@ -158,15 +158,14 @@
                         console.log(inputPrice.value);
                     });
                 });
-            }
 
-
-            if (btnBid != null) {
-                btnBid.addEventListener('click', () => {
-                    let confirmBid = confirm('Bạn có chắc chắn đấu giá sản phẩm này với giá: ' + priceSelect.innerText);
-                    if (confirmBid)
-                        frmBid.submit();
-                });
+                if (btnBid != null) {
+                    btnBid.addEventListener('click', () => {
+                        let confirmBid = confirm('Bạn có chắc chắn đấu giá sản phẩm này với giá: ' + priceSelect.innerText);
+                        if (confirmBid)
+                            frmBid.submit();
+                    });
+                }
             }
 
             let endTime = new Date("${proDetail.end_Time}");
