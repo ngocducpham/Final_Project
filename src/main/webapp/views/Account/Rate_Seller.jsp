@@ -34,54 +34,52 @@
     </jsp:attribute>
     <jsp:body>
         <div>
-            <div>${Select.username}</div>
-            <div>${Select.tong_sp}</div>
-            <div>${Select.seller_Expired_date}</div>
-        </div>
-<%--        <figure class="avatar"><img src="${pageContext.request.contextPath}/public/imgs/user.svg" alt="User picture">--%>
-<%--        </figure>--%>
-<%--        <c:forEach items="${Select}" var="c">--%>
-<%--        <div class="text-center">--%>
-<%--            ${c.username}--%>
-<%--        </div>--%>
-<%--        <div class="d-flex justify-content-between text-sm text-gray-500 font-semibold mt-3">--%>
-<%--            <div>--%>
 
-<%--            </div>--%>
-<%--        </div>--%>
-<%--        </c:forEach>--%>
-<%--        <!-- cmt -->--%>
-<%--        <div class="mt-5">--%>
-<%--            Đánh giá người bán--%>
-<%--        </div>--%>
-<%--        <div class="container-fluid mt-3">--%>
-<%--            <div class="d-flex justify-content-center row">--%>
-<%--                <div class="col-12">--%>
-<%--                    <div class="d-flex flex-column comment-section">--%>
-<%--                        <div class="bg-white">--%>
-<%--                            <div class="d-flex flex-row fs-12">--%>
-<%--                                <div class="like p-2 cursor"><i class="fa fa-thumbs-o-up"></i><span--%>
-<%--                                        class="ml-1">Like</span></div>--%>
-<%--                                <div class="like p-2 cursor"><i class="fa fa-thumbs-o-down"></i><span--%>
-<%--                                        class="ml-1">Dislike</span></div>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                        <div class="bg-light p-2">--%>
-<%--                            <div class="d-flex flex-row align-items-start"><textarea--%>
-<%--                                    class="form-control ml-1 shadow-none textarea"></textarea></div>--%>
-<%--                            <div class="mt-2 text-right">--%>
-<%--                                <button class="btn btn-outline-primary btn-sm shadow-none text-blue"--%>
-<%--                                        type="button">Post comment--%>
-<%--                                </button>--%>
-<%--                                <button class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="button">--%>
-<%--                                    Cancel--%>
-<%--                                </button>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
+
+        </div>
+        <figure class="avatar"><img src="${pageContext.request.contextPath}/public/imgs/user.svg" alt="User picture">
+        </figure>
+        <div class="text-center">
+            <div>Người bán: ${Select.username}</div>
+        </div>
+        <div class="d-flex justify-content-around text-sm text-gray-500 font-semibold mt-3">
+            <div>Số sản phẩm: ${Select.tong_sp}</div>
+            <div>Ngày hết hạn bán: ${Select.seller_Expired_date}</div>
+        </div>
+        <!-- cmt -->
+        <div class="mt-5">
+            Đánh giá người bán
+        </div>
+        <div class="container-fluid mt-3">
+            <form>
+            <div class="d-flex justify-content-center row">
+                <div class="col-12">
+                    <div class="d-flex flex-column comment-section">
+                        <div class="bg-white">
+                            <div class="d-flex flex-row fs-12">
+                                <div class="like p-2 cursor"><i class="fa fa-thumbs-o-up"></i><span
+                                        class="ml-1">Like</span></div>
+                                <div class="like p-2 cursor"><i class="fa fa-thumbs-o-down"></i><span
+                                        class="ml-1">Dislike</span></div>
+                            </div>
+                        </div>
+                        <div class="bg-light p-2">
+                            <div class="d-flex flex-row align-items-start"><textarea
+                                    class="form-control ml-1 shadow-none textarea"></textarea></div>
+                            <div class="mt-2 text-right">
+                                <button class="btn btn-outline-primary btn-sm shadow-none text-blue"
+                                        type="submit" formaction="${pageContext.request.contextPath}/Account/Post">Post comment
+                                </button>
+                                <button class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="button">
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
 
 <%--        <c:choose>--%>
 <%--            <c:when test="${User_Won_Auction_Product_List.size()==0}">--%>

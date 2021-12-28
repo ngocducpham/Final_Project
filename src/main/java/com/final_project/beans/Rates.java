@@ -19,6 +19,10 @@ public class Rates {
     private Date Seller_Expired_date;
     private int tong_sp;
 
+    public Rates(String comment) {
+        Comment = comment;
+    }
+
     public Date getSeller_Expired_date() {
         return Seller_Expired_date;
     }

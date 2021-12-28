@@ -4,8 +4,7 @@ import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.final_project.beans.ProductAuction;
 import com.final_project.beans.Rates;
 import com.final_project.beans.User;
-import com.final_project.models.RatesModel;
-import com.final_project.models.UserModel;
+import com.final_project.models.*;
 import com.final_project.utils.ServletUtils;
 
 import javax.servlet.ServletException;
@@ -18,7 +17,6 @@ import java.io.IOException;
 import java.sql.Date;
 import java.text.ParseException;
 import java.util.List;
-import java.util.Objects;
 
 @WebServlet(name = "PersonalServlet", value = "/Personal/*")
 public class PersonalServlet extends HttpServlet {
@@ -92,6 +90,9 @@ public class PersonalServlet extends HttpServlet {
                     break;
                 case "/Request":
                     Get_Request(request, response);
+                    break;
+                case "/Post":
+                    Add_to_Rate_List(request, response);
                     break;
                 default:
                     ServletUtils.forward("/views/404/index.jsp", request, response);
@@ -173,9 +174,14 @@ public class PersonalServlet extends HttpServlet {
         ServletUtils.forward("/views/Account/My_Post_Products.jsp", request, response);
     }
 
-    private void Add_to_Rate_List(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-        User user = (User) session.getAttribute("authUser");
-        int SellerID = Integer.parseInt("");
-        //if(!RatesModel.Check_Bidder_Vote("")
+    private void Add_to_Rate_List(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.setCharacterEncoding("UTF-8");
+        String Comment= request.getParameter("Comment");
+
+        Rates p = new Rates(Comment);
+        RatesModel.Insert(p);
+        HttpSession session = request.getSession();
+        User u = (User) session.getAttribute("authUser");
+        ServletUtils.redirect("/Account/Rate_Seller", request, response);
     }
 }
