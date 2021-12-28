@@ -1,8 +1,5 @@
 package com.final_project.models;
 
-import com.final_project.beans.Category;
-import com.final_project.beans.Favorite;
-import com.final_project.beans.ProductAuction;
 import com.final_project.beans.Rates;
 import com.final_project.utils.DBUtils;
 import org.sql2o.Connection;
@@ -72,6 +69,21 @@ public class RatesModel {
         }
     }
 
+    public static Rates Select1(int user_id, int pro_id) {
+        String Sql = "select Bidder, username, pa.Pro_ID from rates\n" +
+                "left join products p on p.Pro_ID = rates.Pro_ID\n" +
+                "left join product_auction pa on p.Pro_ID = pa.Pro_ID\n" +
+                "left join win_list wl on pa.Pro_Auc_ID = wl.Pro_Auc_ID\n" +
+                "left join users u on u.User_ID = wl.User_ID\n" +
+                "where wl.User_ID = :User_ID and pa.Pro_ID= :Pro_ID";
+        try (Connection con = DBUtils.getConnection()) {
+            return con.createQuery(Sql)
+                    .addParameter("User_ID", user_id)
+                    .addParameter("Pro_ID", pro_id)
+                    .executeAndFetch(Rates.class).get(0);
+        }
+    }
+
     public static void Point_Up(int user_id){
         String insertSql = "update points\n" +
                 "set up = up + 1\n" +
@@ -93,5 +105,32 @@ public class RatesModel {
                     .executeUpdate();
         }
     }
+
+    public static List<Rates> Get_rates1() {
+        final String query = "select r.*, username from rates r\n" +
+                "left join products p on p.Pro_ID = r.Pro_ID\n" +
+                "left join product_auction pa on p.Pro_ID = pa.Pro_ID\n" +
+                "left join win_list wl on pa.Pro_Auc_ID = wl.Pro_Auc_ID\n" +
+                "left join users u on u.User_ID = wl.User_ID\n" +
+                "WHERE Type = 1";
+        try (Connection conn = DBUtils.getConnection()) {
+            return conn.createQuery(query)
+                    .executeAndFetch(Rates.class);
+        }
+    }
+
+    public static List<Rates> Get_rates2() {
+        final String query = "select r.*, username from rates r\n" +
+                "left join products p on p.Pro_ID = r.Pro_ID\n" +
+                "left join product_auction pa on p.Pro_ID = pa.Pro_ID\n" +
+                "left join magage m on p.Pro_ID = m.Pro_ID\n" +
+                "left join users u on m.User_ID = u.User_ID\n" +
+                "WHERE Type = 2";
+        try (Connection conn = DBUtils.getConnection()) {
+            return conn.createQuery(query)
+                    .executeAndFetch(Rates.class);
+        }
+    }
+
 
 }

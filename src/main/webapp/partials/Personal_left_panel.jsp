@@ -18,20 +18,29 @@
                                   ><i class="blue fas fa-wallet pr-2"></i> Đấu Giá Của Tôi
         </a>
         <a class="btn btn-outline-info w-75 mb-2 text-left" role="button" href="${pageContext.request.contextPath}/Personal/User_Watch_List">
-                                  <i class="blue fas fa-heart pr-2"></i>Sản Phẩm Yêu Thích</a>
+                                  <i class="blue fas fa-heart pr-2"></i> Sản Phẩm Yêu Thích</a>
         <a class="btn btn-outline-info w-75 mb-2 text-left" role="button" href="${pageContext.request.contextPath}/Personal/User_Won_Auction"
-                                  ><i class="blue fas fa-trophy pr-2"></i>Sản Phẩm Đã Thắng
+                                  ><i class="blue fas fa-trophy pr-2"></i> Sản Phẩm Đã Thắng
         </a>
         <c:if test="${authUser.userrole==2}">
             <a class="btn btn-outline-info w-75 mb-2 text-left" role="button" href="${pageContext.request.contextPath}/Seller/Post_Products"
-                                     ><i class="blue fas fa-truck pr-2"></i>Đăng bán Sản Phẩm
+                                     ><i class="blue fas fa-truck pr-2"></i> Đăng bán Sản Phẩm
             </a>
             <a class="btn btn-outline-info w-75 mb-2 text-left" role="button" href="${pageContext.request.contextPath}/Personal/My_Post_Products?option=1"
-                                     > <i class="blue fas fa-shopping-cart pr-2"></i>Sản Phẩm Của Tôi
+                                     > <i class="blue fas fa-shopping-cart pr-2"></i> Sản Phẩm Của Tôi
+            </a>
+            <a class="btn btn-outline-info w-75 mb-2 text-left" role="button" href="${pageContext.request.contextPath}/Personal/My_Rates"
+            ><i class="blue fas fa-envelope-open-text pr-2"></i> Danh Sách Đánh Giá
             </a>
         </c:if>
+        <c:if test="${authUser.userrole==1}">
+            <a class="btn btn-outline-info w-75 mb-2 text-left" role="button" href="${pageContext.request.contextPath}/Personal/MyBidder_Rates"
+            ><i class="blue fas fa-envelope-open-text pr-2"></i> Danh Sách Đánh Giá
+            </a>
+        </c:if>
+
         <a class="btn btn-outline-info w-75 mb-2 text-left" role="button" href="javascript: $('#frmLogout').submit()"><i
-                class="blue fa fa-sign-out" aria-hidden="true"></i> Đăng xuất </a>
+                class="blue fa fa-sign-out pr-2" aria-hidden="true"></i> Đăng xuất </a>
     </div>
 </div>
 

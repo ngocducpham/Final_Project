@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="C" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<jsp:useBean id="Select" scope="request"  type="com.final_project.beans.Rates"/>
+<jsp:useBean id="Select1" scope="request"  type="com.final_project.beans.Rates"/>
 
 <t:personal_page>
     <jsp:attribute name="css">
@@ -40,23 +40,20 @@
         <figure class="avatar"><img src="${pageContext.request.contextPath}/public/imgs/user.svg" alt="User picture">
         </figure>
         <div class="text-center">
-            <div>Người bán: <span style="color: red">${Select.username}</span></div>
+            <div>Người mua: <span style="color: red">${Select1.username}</span></div>
         </div>
 
-        <div class="d-flex justify-content-around text-sm text-gray-500 font-semibold mt-3">
-            <div>Ngày hết hạn bán: ${Select.seller_Expired_date}</div>
-        </div>
         <!-- cmt -->
 
         <div class="container-fluid mt-3">
             <form method="post">
                 <div class="">
-                        Đánh giá người bán:
+                        Đánh giá người mua này:
                         <input class="ml-3" title="Vote +1" id="Vote1" type="radio" name="Vote" value="1" > Like(+1)
                         <input class="ml-3" title="Vote -1" id="Vote2" type="radio" name="Vote" value="-1" > Không thích(-1)
                 </div>
-                <input name="Seller_ID" type="text" style="visibility: hidden" value="${Select.seller_ID}">
-                <input name="Pro_ID" type="text" style="visibility: hidden" value="${Select.pro_ID}">
+                <input name="Bidder" type="text" style="visibility: hidden" value="${Select1.bidder}">
+                <input name="Pro_ID" type="text" style="visibility: hidden" value="${Select1.pro_ID}">
                 <div>
 
                 </div>
@@ -66,7 +63,7 @@
 
                             <div class="bg-light">
                                     <div class="form-group">
-                                        <label for="exampleFormControlTextarea1">Nhận xét của bạn về người bán:</label>
+                                        <label for="exampleFormControlTextarea1">Nhận xét của bạn về người mua này:</label>
                                         <textarea class="form-control ml-1 shadow-none textarea" id="exampleFormControlTextarea1" rows="6" name="Comment"></textarea>
                                     </div>
                                 <div class="mt-2 text-right">
@@ -74,7 +71,7 @@
                                             type="submit" >Gửi đi
                                     </button>
                                     <button class="btn btn-outline-danger btn-sm ml-1 shadow-none" type="button">
-                                        <a href="${pageContext.request.contextPath}/Personal/MyBidder_Rates" class="hover:underline">Hủy</a>
+                                        <a href="${pageContext.request.contextPath}/Personal/My_Rates" class="hover:underline">Hủy</a>
                                     </button>
                                 </div>
                             </div>

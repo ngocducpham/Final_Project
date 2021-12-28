@@ -67,7 +67,7 @@ public class PersonalServlet extends HttpServlet {
                     break;
                 case "/Rate_Seller":
                     int id = Integer.parseInt(request.getParameter("seller_id"));
-                    int pro_id = Integer.parseInt(request.getParameter("pro_id"));
+                    int pro_id=Integer.parseInt(request.getParameter("pro_id"));
                     Rates r = RatesModel.Select(id, pro_id);
                     request.setAttribute("Select", r);
                     ServletUtils.forward("/views/Account/Rate_Seller.jsp", request, response);
@@ -79,12 +79,30 @@ public class PersonalServlet extends HttpServlet {
                     request.setAttribute("proid", productID);
                     ServletUtils.forward("/views/Account/UpdateProductDescription.jsp", request, response);
                     break;
+                case "/Rate_Bidder":
+                    int id1 = Integer.parseInt(request.getParameter("bidder"));
+                    int pro_id1=Integer.parseInt(request.getParameter("pro_id"));
+                    Rates r1 = RatesModel.Select1(id1, pro_id1);
+                    request.setAttribute("Select1", r1);
+                    ServletUtils.forward("/views/Account/Rate_Bidder.jsp", request, response);
+                    break;
+                case "/My_Rates":
+                    List<Rates> list3 = RatesModel.Get_rates1();
+                    request.setAttribute("Get_Rates", list3);
+                    ServletUtils.forward("/views/Account/My_Rates.jsp", request, response);
+                    break;
+                case "/MyBidder_Rates":
+                    List<Rates> list4 = RatesModel.Get_rates2();
+                    request.setAttribute("Get_Rates", list4);
+                    ServletUtils.forward("/views/Account/MyBidder_Rates.jsp", request, response);
+                    break;
                 default:
                     ServletUtils.forward("/views/404/index.jsp", request, response);
                     break;
             }
         }
     }
+
 
 
     @Override
@@ -119,6 +137,9 @@ public class PersonalServlet extends HttpServlet {
                     updateDescription(proID, desc);
 
                     ServletUtils.redirect("/Personal/My_Post_Products?option=1", request, response);
+                    break;
+                case "/Rate_Bidder":
+                    Seller_Add_to_Rate_List(request, response);
                     break;
                 default:
                     ServletUtils.forward("/views/404/index.jsp", request, response);
@@ -230,17 +251,41 @@ public class PersonalServlet extends HttpServlet {
         int Seller_ID = Integer.parseInt(request.getParameter("Seller_ID"));
         int Pro_ID = Integer.parseInt(request.getParameter("Pro_ID"));
         int Vote = Integer.parseInt(request.getParameter("Vote"));
-        String Comment = request.getParameter("Comment");
+        String Comment= request.getParameter("Comment");
         Rates p = new Rates(Seller_ID, Type, u.getUser_ID(), Pro_ID, Vote, Comment);
-        if (!RatesModel.Check_Bidder_Vote(p)) {
+        if(!RatesModel.Check_Bidder_Vote(p)){
             RatesModel.Insert(p);
-            if (Vote == 1) {
+            if(Vote == 1){
                 RatesModel.Point_Up(Seller_ID);
-            } else {
+            }
+            else {
                 RatesModel.Point_Down(Seller_ID);
             }
         }
+        ServletUtils.redirect("/Personal/MyBidder_Rates", request, response);
+    }
 
-        ServletUtils.redirect("/Personal/Rate_Seller", request, response);
+    private void Seller_Add_to_Rate_List(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.setCharacterEncoding("UTF-8");
+
+        int Type = 2;
+        HttpSession session = request.getSession();
+        User u = (User) session.getAttribute("authUser");
+        int Bidder = Integer.parseInt(request.getParameter("Bidder"));
+        int Pro_ID = Integer.parseInt(request.getParameter("Pro_ID"));
+        int Vote = Integer.parseInt(request.getParameter("Vote"));
+        String Comment= request.getParameter("Comment");
+        Rates p = new Rates(u.getUser_ID(), Type, Bidder, Pro_ID, Vote, Comment);
+        if(!RatesModel.Check_SellerID_Vote(p)){
+            RatesModel.Insert(p);
+            if(Vote == 1){
+                RatesModel.Point_Up(Bidder);
+            }
+            else {
+                RatesModel.Point_Down(Bidder);
+            }
+        }
+
+        ServletUtils.redirect("/Personal/My_Rates", request, response);
     }
 }
