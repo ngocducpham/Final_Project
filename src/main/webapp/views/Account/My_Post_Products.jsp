@@ -58,7 +58,7 @@
 
 
         <c:choose>
-            <c:when test="${My_Post_Products.size()!=0}">
+            <c:when test="${My_Post_Products.size()==0}">
                 <div class="flex justify-between">
 <%--                    <div>--%>
 <%--                        <p style="font-size: 36px">Không Có Dữ Liệu</p>--%>
