@@ -71,6 +71,13 @@
                         </svg>
                     </div>
                     <h6 style="font-size: 40px" class='text-danger font-weight-bold mt-12'>Bạn Chưa Thắng Cuộc Đấu Giá Nào!</h6>
+                    <div class="btn-sm">
+                        <button type="button" class="btn btn-outline-success btn-sm">
+                            <a href="${pageContext.request.contextPath}/Search?searchproduct">
+                                <i class="fas fa-arrow-alt-circle-right"></i>Tới trang Đấu Giá!
+                            </a>
+                        </button>
+                    </div>
                 </div>
             </c:when>
             <c:otherwise>

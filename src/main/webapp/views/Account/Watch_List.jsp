@@ -58,7 +58,9 @@
         <c:choose>
             <c:when test="${Watch_List.size()==0}">
                 <div style="font-size: 50px;  color:darkred"></div>
-                <div class='max-w-4xl h-screen mx-auto flex flex-col'>
+<%--                <div class=' h-screen mx-auto flex flex-col'>--%>
+                <div class='max-w-4xl h-25 mx-auto flex flex-col'>
+
                     <div>
                         <svg class='h-16 w-30' viewBox="0 0 143 32" xmlns="http://www.w3.org/2000/svg">
                             <path fill="#6366f1"
@@ -70,7 +72,16 @@
                         </svg>
                     </div>
                     <h6 style="font-size: 40px" class='text-danger font-weight-bold mt-12'>Không có sản phẩm yêu thích!</h6>
+                    <div class="btn-sm">
+                        <button type="button" class="btn btn-outline-success btn-sm">
+                            <a href="${pageContext.request.contextPath}/Search?searchproduct">
+                                <i class="fas fa-arrow-alt-circle-right"></i>Tới trang Đấu Giá!
+                            </a>
+                        </button>
+                    </div>
                 </div>
+
+            </div>
             </c:when>
             <c:otherwise>
                 <div style="font-weight: bold;font-size: 36px">Sản Phẩm Bạn Đã Thêm Vào Mục <span style="color:red;">Yêu Thích</span>
