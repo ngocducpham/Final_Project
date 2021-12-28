@@ -94,4 +94,14 @@ public class RatesModel {
         }
     }
 
+    public static List<Rates> Get_rates() {
+        final String query = "select *\n" +
+                "from rates r\n";
+        try (Connection conn = DBUtils.getConnection()) {
+            return conn.createQuery(query)
+                    .executeAndFetch(Rates.class);
+        }
+    }
+
+
 }

@@ -65,6 +65,11 @@ public class PersonalServlet extends HttpServlet {
                     request.setAttribute("Select", r);
                     ServletUtils.forward("/views/Account/Rate_Seller.jsp", request, response);
                     break;
+                case "/My_Rates":
+                    List<Rates> list3 = RatesModel.Get_rates();
+                    request.setAttribute("Get_Rates", list3);
+                    ServletUtils.forward("/views/Account/My_Rates.jsp", request, response);
+                    break;
                 default:
                     ServletUtils.forward("/views/404/index.jsp", request, response);
                     break;
