@@ -69,6 +69,9 @@ public class PersonalServlet extends HttpServlet {
                     int id = Integer.parseInt(request.getParameter("seller_id"));
                     int pro_id=Integer.parseInt(request.getParameter("pro_id"));
                     Rates r = RatesModel.Select(id, pro_id);
+                    Boolean voted = RatesModel.Check_Bidder_Vote(r);
+
+                    request.setAttribute("voted", voted);
                     request.setAttribute("Select", r);
                     ServletUtils.forward("/views/Account/Rate_Seller.jsp", request, response);
                     break;
@@ -83,6 +86,9 @@ public class PersonalServlet extends HttpServlet {
                     int id1 = Integer.parseInt(request.getParameter("bidder"));
                     int pro_id1=Integer.parseInt(request.getParameter("pro_id"));
                     Rates r1 = RatesModel.Select1(id1, pro_id1);
+                    Boolean votedSeller = RatesModel.Check_SellerID_Vote(r1);
+
+                    request.setAttribute("voted", votedSeller);
                     request.setAttribute("Select1", r1);
                     ServletUtils.forward("/views/Account/Rate_Bidder.jsp", request, response);
                     break;

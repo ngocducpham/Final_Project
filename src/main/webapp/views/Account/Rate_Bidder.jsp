@@ -5,6 +5,8 @@
 <%@ taglib prefix="C" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <jsp:useBean id="Select1" scope="request"  type="com.final_project.beans.Rates"/>
+<jsp:useBean id="voted" scope="request" type="java.lang.Boolean"/>
+
 
 <t:personal_page>
     <jsp:attribute name="css">
@@ -55,7 +57,7 @@
                 <input name="Bidder" type="text" style="visibility: hidden" value="${Select1.bidder}">
                 <input name="Pro_ID" type="text" style="visibility: hidden" value="${Select1.pro_ID}">
                 <div>
-
+                    <input type="hidden" name="voted" value="${voted}">
                 </div>
                 <div class="d-flex justify-content-center row">
                     <div class="col-12">
