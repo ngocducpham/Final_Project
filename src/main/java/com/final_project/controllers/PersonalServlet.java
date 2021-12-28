@@ -3,6 +3,7 @@ package com.final_project.controllers;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.final_project.beans.ProductAuction;
 import com.final_project.beans.User;
+import com.final_project.models.RatesModel;
 import com.final_project.models.UserModel;
 import com.final_project.utils.ServletUtils;
 
@@ -58,6 +59,7 @@ public class PersonalServlet extends HttpServlet {
                     Get_My_Post_Product(request, response, user);
                     break;
                 case "/Rate_Seller":
+                    Add_to_Rate_List(request, response, session);
                     ServletUtils.forward("/views/Account/Rate_Seller.jsp", request, response);
                     break;
                 default:
@@ -66,6 +68,8 @@ public class PersonalServlet extends HttpServlet {
             }
         }
     }
+
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -164,5 +168,11 @@ public class PersonalServlet extends HttpServlet {
             }
         }
         ServletUtils.forward("/views/Account/My_Post_Products.jsp", request, response);
+    }
+
+    private void Add_to_Rate_List(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+        User user = (User) session.getAttribute("authUser");
+        int SellerID = Integer.parseInt("");
+        //if(!RatesModel.Check_Bidder_Vote("")
     }
 }
