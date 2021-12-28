@@ -73,7 +73,31 @@ public class ProductDetailModel {
     }
 
     public static void bid(String uid, String proAuID, String price) {
-        String query = "insert into auction (price_of_user, price_time, pro_auc_id, user_id)\n" +
+        int priceStep = getPriceStep(proAuID);
+
+        String query = "select Price_of_User\n" +
+                "from auction\n" +
+                "where Pro_Auc_ID = :proauid\n" +
+                "order by Price_of_User desc\n" +
+                "limit 1";
+        try (Connection con = DBUtils.getConnection()) {
+            ProductDetail topUserAu = con.createQuery(query)
+                    .addParameter("proauid", proAuID)
+                    .executeAndFetch(ProductDetail.class).get(0);
+            if (Integer.parseInt(price) > topUserAu.getPrice_of_User()) {
+                setCurrentPrice(topUserAu.getPrice_of_User() + priceStep, proAuID);
+            }
+            else if(Integer.parseInt(price) == topUserAu.getPrice_of_User()){
+                setCurrentPrice(topUserAu.getPrice_of_User(), proAuID);
+            }
+        } catch (Exception e) {
+            int curentPrice = Integer.parseInt(getCurrentPrice(proAuID));
+            setCurrentPrice(curentPrice + priceStep, proAuID);
+        }
+
+        increaseTotalBid(proAuID);
+
+        query = "insert into auction (price_of_user, price_time, pro_auc_id, user_id)\n" +
                 "values (:price, NOW(), :proauid, :uid);\n";
         try (Connection con = DBUtils.getConnection()) {
             con.createQuery(query)
@@ -82,14 +106,40 @@ public class ProductDetailModel {
                     .addParameter("price", price)
                     .executeUpdate();
         }
+    }
 
-        query = "update product_auction\n" +
-                "set Current_Price = :price,\n" +
-                "    Total_Bid     = Total_Bid + 1\n" +
+
+    private static int getPriceStep(String proAuID) {
+        String query = "select Distance_Price\n" +
+                "from product_auction\n" +
+                "where Pro_Auc_ID = :proauid";
+        try (Connection con = DBUtils.getConnection()) {
+            String price = con.createQuery(query)
+                    .addParameter("proauid", proAuID)
+                    .executeAndFetch(String.class).get(0);
+
+            return Integer.parseInt(price);
+        }
+    }
+
+    private static void setCurrentPrice(int price, String proAuID) {
+        String query = "update product_auction\n" +
+                "set Current_Price = :price\n" +
                 "where Pro_Auc_ID = :proauid";
         try (Connection con = DBUtils.getConnection()) {
             con.createQuery(query)
                     .addParameter("price", price)
+                    .addParameter("proauid", proAuID)
+                    .executeUpdate();
+        }
+    }
+
+    private static void increaseTotalBid(String proAuID) {
+        String query = "update product_auction\n" +
+                "  set  Total_Bid    = Total_Bid + 1\n" +
+                "where Pro_Auc_ID = :proauid";
+        try (Connection con = DBUtils.getConnection()) {
+            con.createQuery(query)
                     .addParameter("proauid", proAuID)
                     .executeUpdate();
         }
@@ -156,7 +206,7 @@ public class ProductDetailModel {
         }
     }
 
-    public static String getCurrentPrice(String proAuID){
+    public static String getCurrentPrice(String proAuID) {
         String query = "select Current_Price\n" +
                 "from product_auction\n" +
                 "where Pro_Auc_ID = :proauid";
@@ -167,25 +217,24 @@ public class ProductDetailModel {
         }
     }
 
-    public static Double userPoint(int uid){
+    public static Double userPoint(int uid) {
         String query = "select up, down\n" +
                 "from points\n" +
                 "where User_ID = :id";
         try (Connection con = DBUtils.getConnection()) {
-            Point result =  con.createQuery(query)
+            Point result = con.createQuery(query)
                     .addParameter("id", Integer.toString(uid))
                     .executeAndFetch(Point.class).get(0);
-            if (result == null){
+            if (result == null) {
                 return 100.0;
             }
             return result.getUp() * 100.0 / (result.getUp() + result.getDown());
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             return 100.0;
         }
     }
 
-    public static String getUserEmail(int uid){
+    public static String getUserEmail(int uid) {
         String query = "select email\n" +
                 "from users\n" +
                 "where User_ID = :uid";
@@ -196,7 +245,7 @@ public class ProductDetailModel {
         }
     }
 
-    public static String getProductName(String proID){
+    public static String getProductName(String proID) {
         String query = "select Pname\n" +
                 "from products\n" +
                 "where Pro_ID = :id";

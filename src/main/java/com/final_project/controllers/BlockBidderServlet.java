@@ -26,7 +26,14 @@ public class BlockBidderServlet extends HttpServlet {
         String userEmail = ProductDetailModel.getUserEmail(Integer.parseInt(uid));
         String proName = ProductDetailModel.getProductName(proID);
         BlockUserModel.block(uid,proAuID);
-       // ServletUtils.sendMail_blockUser(userEmail,proName);
+
+        Thread sendMail = new Thread(){
+            public void run(){
+                ServletUtils.sendMail_blockUser(userEmail,proName);
+            }
+        };
+        sendMail.start();
+
         ServletUtils.redirect("/ProductDetail?id=" + proID, request, response);
     }
 }

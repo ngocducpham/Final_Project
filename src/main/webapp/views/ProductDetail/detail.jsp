@@ -73,7 +73,7 @@
             let vndPrice = minPrice;
 
             if(priceDropdown != null) {
-                for (let i = 0; i < 200; i++) {
+                for (let i = 0; i < 300; i++) {
                     if (vndPrice >= 200000000)
                         break;
 
@@ -101,6 +101,7 @@
                 }
 
                 priceSelect.innerText = vndFormat.format(minPrice);
+                inputPrice.value = minPrice;
                 priceSelectItems[0].classList.add('bg-gray-400');
                 priceSelectItems[0].classList.remove('hover:bg-gray-200');
                 priceSelectItems[priceSelectItems.length - 1].classList.remove('border-b-2');
@@ -118,15 +119,14 @@
                         console.log(inputPrice.value);
                     });
                 });
-            }
 
-
-            if (btnBid != null) {
-                btnBid.addEventListener('click', () => {
-                    let confirmBid = confirm('Bạn có chắc chắn đấu giá sản phẩm này với giá: ' + priceSelect.innerText);
-                    if (confirmBid)
-                        frmBid.submit();
-                });
+                if (btnBid != null) {
+                    btnBid.addEventListener('click', () => {
+                        let confirmBid = confirm('Bạn có chắc chắn đấu giá sản phẩm này với giá: ' + priceSelect.innerText);
+                        if (confirmBid)
+                            frmBid.submit();
+                    });
+                }
             }
 
             let endTime = new Date("${proDetail.end_Time}");
@@ -174,6 +174,7 @@
             }
             let currentBid = document.getElementById('current__bid');
             let topBidName = '${currentBid}';
+            if(topBidName != '')
             currentBid.innerText = '****' + topBidName.slice(Math.ceil(topBidName.length * 0.3));
         </script>
     </jsp:attribute>
@@ -288,7 +289,7 @@
                             </div>
                             <div class='mt-4 relative'>
                                 <c:if test="${proDetail.status == 1}">
-                                    <c:if test="${blacklist.value != 1 && Verified && lowrate == 0}">
+                                    <c:if test="${blacklist.value != 1 && Verified && lowrate == 0 && owner.user_ID != authUser.user_ID}">
                                         <form id="frm__bid" method="post">
                                             <span class='flex items-center justify-center bg-gray-800 text-white px-3 h-9 rounded-l-md absolute left-0'>VNĐ</span>
                                             <input type="hidden" value="${authUser.user_ID}" name="uid">
@@ -311,6 +312,11 @@
                                                 </button>
                                             </c:if>
                                         </form>
+                                    </c:if>
+                                    <c:if test="${owner.user_ID == authUser.user_ID}">
+                                        <div class="text-lg text-red-500 font-medium">
+                                            Bạn không thể đấu giá sản phẩm mình đăng bán
+                                        </div>
                                     </c:if>
                                     <c:if test="${blacklist.value == 1}">
                                         <div class="text-lg text-red-500 font-medium">
@@ -345,7 +351,6 @@
                     <thead>
                     <tr>
                         <th scope="col">Người đấu giá</th>
-                        <th scope="col">Giá thầu</th>
                         <th scope="col">Thời điểm</th>
                     </tr>
                     </thead>
@@ -353,7 +358,6 @@
                     <c:forEach items="${history}" var="h">
                         <tr>
                             <td class="bidderListName"></td>
-                            <td><fmt:formatNumber value="${h.price_of_User}" type="currency"/></td>
                             <td>${h.price_Time.toLocalDate()} ${h.price_Time.toLocalTime()}</td>
                         </tr>
                     </c:forEach>

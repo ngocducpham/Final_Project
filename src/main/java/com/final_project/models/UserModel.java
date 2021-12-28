@@ -209,7 +209,7 @@ public class UserModel {
     }
 
     public static List<ProductAuction> Get_User_Won_Auction_Product_List(int user_id) {
-        final String query = "select * from (select p.Pname, pa.End_Time, pa.total_bid, p.Pro_ID, max(a.price_of_User) as max_price, U2.User_ID as winner_id, U2.username as winner_name, U1.User_ID as seller_id, U1.username as seller_name\n" +
+        final String query = "select * from (select p.Pname, pa.End_Time, pa.total_bid, p.Pro_ID, pa.Current_Price as max_price, U2.User_ID as winner_id, U2.username as winner_name, U1.User_ID as seller_id, U1.username as seller_name\n" +
                 "from products p left join magage m on p.Pro_ID = m.Pro_ID\n" +
                 "                left join users U1 on U1.User_ID = m.User_ID\n" +
                 "                left join product_auction pa on pa.Pro_ID = p.Pro_ID\n" +
@@ -234,7 +234,7 @@ public class UserModel {
                 "                pa.End_Time,\n" +
                 "                pa.total_bid,\n" +
                 "                p.Pro_ID,\n" +
-                "                max(a.price_of_User) as max_price,\n" +
+                "                pa.Current_Price as max_price,\n" +
                 "                U2.Username " +
                 "         from products p \n" +
                 "                  left join magage m on p.Pro_ID = m.Pro_ID\n" +
@@ -260,7 +260,7 @@ public class UserModel {
                 "                pa.End_Time,\n" +
                 "                pa.total_bid,\n" +
                 "                p.Pro_ID,\n" +
-                "                max(a.price_of_User) as winner_price,\n" +
+                "                pa.Current_Price as winner_price,\n" +
                 "                U2.Username          as username\n" +
                 "         from products p\n" +
                 "                  left join magage m on p.Pro_ID = m.Pro_ID\n" +
@@ -286,7 +286,7 @@ public class UserModel {
                 "                pa.End_Time,\n" +
                 "                pa.total_bid,\n" +
                 "                p.Pro_ID,\n" +
-                "                max(a.price_of_User) as max_price,\n" +
+                "                pa.Current_Price as max_price,\n" +
                 "                U2.Username          as username\n" +
                 "         from products p\n" +
                 "                  left join magage m on p.Pro_ID = m.Pro_ID\n" +
