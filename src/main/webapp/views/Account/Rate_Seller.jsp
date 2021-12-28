@@ -10,7 +10,7 @@
     <jsp:attribute name="css">
         <style>
             .fs-12 {
-                font-size: 12px
+                font-size: 24px
             }
 
             .shadow-none {
@@ -40,52 +40,47 @@
         <figure class="avatar"><img src="${pageContext.request.contextPath}/public/imgs/user.svg" alt="User picture">
         </figure>
         <div class="text-center">
-            <div>Người bán: ${Select.username}</div>
+            <div>Người bán: <span style="color: red">${Select.username}</span></div>
         </div>
 
         <div class="d-flex justify-content-around text-sm text-gray-500 font-semibold mt-3">
             <div>Ngày hết hạn bán: ${Select.seller_Expired_date}</div>
         </div>
         <!-- cmt -->
-        <div class="mt-5">
-            Đánh giá người bán
-        </div>
+
         <div class="container-fluid mt-3">
             <form method="post">
+                <div class="">
+                        Đánh giá người bán:
+                        <input class="ml-3" title="Vote +1" id="Vote1" type="radio" name="Vote" value="1" > Like(+1)
+                        <input class="ml-3" title="Vote -1" id="Vote2" type="radio" name="Vote" value="-1" > Không thích(-1)
+                </div>
                 <input name="Seller_ID" type="text" style="visibility: hidden" value="${Select.seller_ID}">
                 <input name="Pro_ID" type="text" style="visibility: hidden" value="${Select.pro_ID}">
-            <div class="d-flex justify-content-center row">
-                <div class="col-12">
-                    <div class="d-flex flex-column comment-section">
-                        <div class="bg-white">
-                            <div class="d-flex flex-row fs-12">
-                                <label for="Vote1" class="like p-2 cursor"><i class="fa fa-thumbs-o-up"></i><span
-                                        class="ml-1">Like</span></label >
-                                <input id="Vote1" type="radio" name="Vote" value="1" >
+                <div>
 
-                                <label for="Vote2" class="like p-2 cursor"><i class="fa fa-thumbs-o-down"></i><span
-                                        class="ml-1">Dislike</span></label >
-                                <input id="Vote2" type="radio" name="Vote" value="-1" >
-                            </div>
-                        </div>
-                        <div class="bg-light p-2">
-                            <div class="d-flex flex-row align-items-start">
-                                <textarea
-                                    class="form-control ml-1 shadow-none textarea" name="Comment">
-                                </textarea>
-                            </div>
-                            <div class="mt-2 text-right">
-                                <button class="btn btn-outline-primary btn-sm shadow-none text-blue"
-                                        type="submit" >Post comment
-                                </button>
-                                <button class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="button">
-                                    Cancel
-                                </button>
+                </div>
+                <div class="d-flex justify-content-center row">
+                    <div class="col-12">
+                        <div class="d-flex flex-column comment-section">
+
+                            <div class="bg-light">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlTextarea1">Nhận xét của bạn về người bán:</label>
+                                        <textarea class="form-control ml-1 shadow-none textarea" id="exampleFormControlTextarea1" rows="6" name="Comment"></textarea>
+                                    </div>
+                                <div class="mt-2 text-right">
+                                    <button class="btn btn-outline-primary btn-sm shadow-none text-blue"
+                                            type="submit" >Gửi đi
+                                    </button>
+                                    <button class="btn btn-outline-danger btn-sm ml-1 shadow-none" type="button">
+                                        Hủy
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
             </form>
         </div>
 
