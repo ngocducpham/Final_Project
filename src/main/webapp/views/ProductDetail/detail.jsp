@@ -101,6 +101,7 @@
                 }
 
                 priceSelect.innerText = vndFormat.format(minPrice);
+                inputPrice.value = minPrice;
                 priceSelectItems[0].classList.add('bg-gray-400');
                 priceSelectItems[0].classList.remove('hover:bg-gray-200');
                 priceSelectItems[priceSelectItems.length - 1].classList.remove('border-b-2');
