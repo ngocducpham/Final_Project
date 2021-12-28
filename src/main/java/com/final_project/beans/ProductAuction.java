@@ -76,6 +76,14 @@ ProductAuction {
         return winner_price;
     }
 
+    public int getSeller_id() {
+        return seller_id;
+    }
+
+    public void setSeller_id(int seller_id) {
+        this.seller_id = seller_id;
+    }
+
     public String getWinner_name() {
         return winner_name;
     }

@@ -94,7 +94,7 @@
                                             ${p.pname}
                                     </a>
                                     <div class="text-sm text-blue-500 font-semibold mt-2">
-                                        <a href="${pageContext.request.contextPath}/Personal/Rate_Seller" class="hover:underline">
+                                        <a href="${pageContext.request.contextPath}/Personal/Rate_Seller?seller_id=${p.seller_id}" class="hover:underline">
                                         Người bán: ${p.seller_name}
                                         </a>
                                     </div>
