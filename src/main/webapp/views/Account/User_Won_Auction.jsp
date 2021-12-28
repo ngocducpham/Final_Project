@@ -76,7 +76,7 @@
             <c:otherwise>
 
                 <div style="font-weight: bold;font-size: 36px">Sản Phẩm Bạn <span
-                        style="color:red;">Đang Tham Gia</span> Đấu Giá
+                        style="color:red;">Đã Thắng</span> Đấu Giá
                 </div>
                 <div class='flex space-x-3 space-y-3 mt-10 flex-wrap'>
                     <c:forEach items="${User_Won_Auction_Product_List}" var="p">
@@ -91,12 +91,18 @@
                                 <div class='px-2 w-full text-center mt-2'>
                                     <a class='font-semibold w-full hover:underline'
                                         href="/Final_Project/ProductsDetail?id=${p.pro_ID}">
-                                            ${p.pname}</a>
+                                            ${p.pname}
+                                    </a>
+                                    <div class="text-sm text-blue-500 font-semibold mt-2">
+                                        <a href="${pageContext.request.contextPath}/Personal/Rate_Seller" class="hover:underline">
+                                        Người bán: ${p.seller_name}
+                                        </a>
+                                    </div>
                                     <div class='text-sm text-gray-500 font-semibold mt-3'>
                                         Giá hiện tại:
                                         <span><fmt:formatNumber value="${p.max_price}" type="number"/> đ</span>
                                     </div>
-                                    <div><i class="red fa fa-trophy fa-sm"> ${p.username}</i></div>
+                                    <div><i class="red fa fa-trophy fa-sm"> ${p.winner_name}</i></div>
                                     <div class='timeContainer flex justify-around text-xs mt-3 font-semibold'>
                                         <div>
                                             <div class='days text-sm'>05</div>
@@ -115,6 +121,9 @@
                                             <div class='text-gray-500'>Giây</div>
                                         </div>
                                     </div>
+<%--                                    <div>--%>
+<%--                                        <a href="${pageContext.request.contextPath}/Rate?id=${p.pro_ID}">--%>
+<%--                                    </div>--%>
                                 </div>
                             </div>
                         </a>

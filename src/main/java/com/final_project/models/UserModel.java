@@ -153,8 +153,8 @@ public class UserModel {
                 "from products p left join product_auction pa on p.Pro_ID = pa.Pro_ID left join auction a on pa.Pro_Auc_ID = a.Pro_Auc_ID left join users u on u.User_ID = a.User_ID\n" +
                 "where pa.Pro_ID in(\n" +
                 "    select distinct Pro_ID\n" +
-                "    from auction a join product_auction pa on a.Pro_Auc_ID = pa.Pro_Auc_ID\n" +
-                "    where User_ID=:user_id)\n" +
+                "    from auction a left join  product_auction pa on a.Pro_Auc_ID = pa.Pro_Auc_ID\n" +
+                "    where User_ID=:user_id and pa.End_Time > NOW())\n" +
                 "group by a.Pro_Auc_ID;";
         try (Connection conn = DBUtils.getConnection()) {
             return conn.createQuery(query)
@@ -209,22 +209,15 @@ public class UserModel {
     }
 
     public static List<ProductAuction> Get_User_Won_Auction_Product_List(int user_id) {
-        final String query = "select *\n" +
-                "from (select p.Pname,\n" +
-                "             pa.End_Time,\n" +
-                "             pa.total_bid,\n" +
-                "             p.Pro_ID,\n" +
-                "             max(a.price_of_User) as max_price,\n" +
-                "             U2.User_ID           as winner_id\n" +
-                "      from products p\n" +
-                "               join magage m on p.Pro_ID = m.Pro_ID\n" +
-                "               left join users U1 on U1.User_ID = m.User_ID\n" +
-                "               left join product_auction pa on pa.Pro_ID = p.Pro_ID\n" +
-                "               left join auction a on a.Pro_Auc_ID = pa.Pro_Auc_ID\n" +
-                "               left join users U2 on U2.User_ID = a.User_ID\n" +
-                "      where p.status = 0\n" +
-                "      group by a.pro_auc_id) tab\n" +
-                "where tab.winner_id = :user_id;";
+        final String query = "select * from (select p.Pname, pa.End_Time, pa.total_bid, p.Pro_ID, max(a.price_of_User) as max_price, U2.User_ID as winner_id, U2.username as winner_name, U1.User_ID as seller_id, U1.username as seller_name\n" +
+                "from products p left join magage m on p.Pro_ID = m.Pro_ID\n" +
+                "                left join users U1 on U1.User_ID = m.User_ID\n" +
+                "                left join product_auction pa on pa.Pro_ID = p.Pro_ID\n" +
+                "                left join auction a on a.Pro_Auc_ID = pa.Pro_Auc_ID\n" +
+                "                left join users U2 on U2.User_ID = a.User_ID\n" +
+                "               where pa.End_Time <= NOW()\n" +
+                "               group by a.pro_auc_id) tab\n" +
+                "where tab.winner_id = :user_id";
         try (Connection conn = DBUtils.getConnection()) {
             return conn.createQuery(query)
                     .addParameter("user_id", user_id)
@@ -270,7 +263,7 @@ public class UserModel {
                 "                max(a.price_of_User) as winner_price,\n" +
                 "                U2.Username          as username\n" +
                 "         from products p\n" +
-                "                  join magage m on p.Pro_ID = m.Pro_ID\n" +
+                "                  left join magage m on p.Pro_ID = m.Pro_ID\n" +
                 "                  left join users U1 on U1.User_ID = m.User_ID\n" +
                 "                  left join product_auction pa on pa.Pro_ID = p.Pro_ID\n" +
                 "                  left join auction a on a.Pro_Auc_ID = pa.Pro_Auc_ID\n" +
@@ -296,7 +289,7 @@ public class UserModel {
                 "                max(a.price_of_User) as max_price,\n" +
                 "                U2.Username          as username\n" +
                 "         from products p\n" +
-                "                  join magage m on p.Pro_ID = m.Pro_ID\n" +
+                "                  left join magage m on p.Pro_ID = m.Pro_ID\n" +
                 "                  left join users U1 on U1.User_ID = m.User_ID\n" +
                 "                  left join product_auction pa on pa.Pro_ID = p.Pro_ID\n" +
                 "                  left join auction a on a.Pro_Auc_ID = pa.Pro_Auc_ID\n" +

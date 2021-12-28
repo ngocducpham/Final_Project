@@ -115,7 +115,7 @@
                                         </c:choose>
                                     </div>
                                     <c:choose>
-                                        <c:when test="${p.user_id==authUser.user_ID}">
+                                        <c:when test="${p.user_ID==authUser.user_ID}">
                                             <div><i class="red fa fa-trophy fa-sm"> Bạn </i></div>
                                         </c:when>
                                         <c:otherwise>
