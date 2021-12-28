@@ -25,7 +25,11 @@ public class BlockUserModel {
                 setCurrentPrice(proAuID, price);
             }
         } else if (maxPriceUser == priceHistory.get(1).getPrice_of_User()) {
-            String price = Integer.toString(priceHistory.get(2).getPrice_of_User() + priceStep);
+            String price;
+            if(priceHistory.size() > 2)
+                price = Integer.toString(priceHistory.get(2).getPrice_of_User() + priceStep);
+            else
+                price = Integer.toString(getStartPrice(proAuID) + priceStep);
             setCurrentPrice(proAuID, price);
         }
 
