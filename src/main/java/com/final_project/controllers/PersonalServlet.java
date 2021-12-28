@@ -57,6 +57,9 @@ public class PersonalServlet extends HttpServlet {
                 case "/My_Post_Products":
                     Get_My_Post_Product(request, response, user);
                     break;
+                case "/Rate_Seller":
+                    ServletUtils.forward("/views/Account/Rate_Seller.jsp", request, response);
+                    break;
                 default:
                     ServletUtils.forward("/views/404/index.jsp", request, response);
                     break;
