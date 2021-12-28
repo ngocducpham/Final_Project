@@ -85,7 +85,7 @@
                                         <textarea class="form-control ml-1 shadow-none textarea" id="exampleFormControlTextarea1" rows="6" name="Comment"></textarea>
                                     </div>
                                 <div class="mt-2 text-right">
-                                    <button id="btnSubmit" class="btn btn-outline-primary btn-sm shadow-none text-blue"
+                                    <button type="button" id="btnSubmit" class="btn btn-outline-primary btn-sm shadow-none text-blue"
                                              >Gửi đi
                                     </button>
                                     <button class="btn btn-outline-danger btn-sm ml-1 shadow-none" type="button">
