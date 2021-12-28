@@ -39,14 +39,29 @@
                         <label for="txtTotal">Tổng bidder</label>
                         <input type="text" class="form-control" id="txtTotal" name="Total_Bid" readonly value="${products.total_Bid}">
                     </div>
-                    <div class="custom-control custom-radio">
-                        <input type="radio" value="1" id="customRadio1" name="Status" class="custom-control-input" checked>
-                        <label class="custom-control-label" for="customRadio1">Duyệt</label>
-                    </div>
-                    <div class="custom-control custom-radio">
-                        <input type="radio" value="0" id="customRadio2" name="Status" class="custom-control-input">
-                        <label class="custom-control-label" for="customRadio2">Không duyệt</label>
-                    </div>
+                    <c:choose>
+                        <c:when test="${products.status == 1}">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" value="1" id="customRadio1" name="Status" class="custom-control-input" checked>
+                                <label class="custom-control-label" for="customRadio1">Duyệt</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" value="0" id="customRadio2" name="Status" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadio2">Không duyệt</label>
+                            </div>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" value="1" id="customRadio3" name="Status" class="custom-control-input" >
+                                <label class="custom-control-label" for="customRadio3">Duyệt</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" value="0" id="customRadio4" name="Status" class="custom-control-input" checked>
+                                <label class="custom-control-label" for="customRadio4">Không duyệt</label>
+                            </div>
+                        </c:otherwise>
+                    </c:choose>
+
                 </div>
 
                 <div class="card-footer">

@@ -42,14 +42,36 @@
                         <input type="date" class="form-control" id="txtSed" name="Seller_Expired_Date" readonly value="${users.seller_Expired_date}">
                     </div>
 
-                        <div class="custom-control custom-radio">
-                            <input type="radio" value="1" id="customRadio1" name="userrole" class="custom-control-input" checked>
-                            <label class="custom-control-label" for="customRadio1">Người mua</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" value="2" id="customRadio2" name="userrole" class="custom-control-input">
-                            <label class="custom-control-label" for="customRadio2">Người bán</label>
-                        </div>
+                    <c:choose>
+                        <c:when test="${users.userrole == 1}">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" value="1" id="customRadio1" name="userrole" class="custom-control-input" checked>
+                                <label class="custom-control-label" for="customRadio1">Người mua</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" value="2" id="customRadio2" name="userrole" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadio2">Người bán</label>
+                            </div>
+                        </c:when>
+                        <c:when test="${users.userrole == 2}">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" value="1" id="customRadio3" name="userrole" class="custom-control-input" >
+                                <label class="custom-control-label" for="customRadio3">Người mua</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" value="2" id="customRadio4" name="userrole" class="custom-control-input" checked>
+                                <label class="custom-control-label" for="customRadio4">Người bán</label>
+                            </div>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" value="1" id="customRadio5" name="userrole" class="custom-control-input" checked>
+                                <label class="custom-control-label" for="customRadio5">Admin</label>
+                            </div>
+                        </c:otherwise>
+                    </c:choose>
+
+
 
                 </div>
                 <div class="card-footer">
