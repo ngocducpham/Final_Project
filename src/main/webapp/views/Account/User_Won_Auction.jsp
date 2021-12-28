@@ -91,7 +91,13 @@
                                 <div class='px-2 w-full text-center mt-2'>
                                     <a class='font-semibold w-full hover:underline'
                                         href="/Final_Project/ProductsDetail?id=${p.pro_ID}">
-                                            ${p.pname}</a>
+                                            ${p.pname}
+                                    </a>
+                                    <div class="text-sm text-blue-500 font-semibold mt-2">
+                                        <a href="${pageContext.request.contextPath}/Personal/Rate_Seller" class="hover:underline">
+                                        Người bán: ${p.seller_name}
+                                        </a>
+                                    </div>
                                     <div class='text-sm text-gray-500 font-semibold mt-3'>
                                         Giá hiện tại:
                                         <span><fmt:formatNumber value="${p.max_price}" type="number"/> đ</span>
@@ -115,6 +121,9 @@
                                             <div class='text-gray-500'>Giây</div>
                                         </div>
                                     </div>
+<%--                                    <div>--%>
+<%--                                        <a href="${pageContext.request.contextPath}/Rate?id=${p.pro_ID}">--%>
+<%--                                    </div>--%>
                                 </div>
                             </div>
                         </a>
