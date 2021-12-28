@@ -65,10 +65,22 @@ public class PersonalServlet extends HttpServlet {
                     request.setAttribute("Select", r);
                     ServletUtils.forward("/views/Account/Rate_Seller.jsp", request, response);
                     break;
+                case "/Rate_Bidder":
+                    int id1 = Integer.parseInt(request.getParameter("bidder"));
+                    int pro_id1=Integer.parseInt(request.getParameter("pro_id"));
+                    Rates r1 = RatesModel.Select1(id1, pro_id1);
+                    request.setAttribute("Select1", r1);
+                    ServletUtils.forward("/views/Account/Rate_Bidder.jsp", request, response);
+                    break;
                 case "/My_Rates":
                     List<Rates> list3 = RatesModel.Get_rates();
                     request.setAttribute("Get_Rates", list3);
                     ServletUtils.forward("/views/Account/My_Rates.jsp", request, response);
+                    break;
+                case "/MyBidder_Rates":
+                    List<Rates> list4 = RatesModel.Get_rates();
+                    request.setAttribute("Get_Rates", list4);
+                    ServletUtils.forward("/views/Account/MyBidder_Rates.jsp", request, response);
                     break;
                 default:
                     ServletUtils.forward("/views/404/index.jsp", request, response);
@@ -101,12 +113,17 @@ public class PersonalServlet extends HttpServlet {
                 case "/Rate_Seller":
                     Bidder_Add_to_Rate_List(request, response);
                     break;
+                case "/Rate_Bidder":
+                    Seller_Add_to_Rate_List(request, response);
+                    break;
                 default:
                     ServletUtils.forward("/views/404/index.jsp", request, response);
                     break;
             }
         }
     }
+
+
 
     private void Update_User_Information(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
         request.setCharacterEncoding("UTF-8");
@@ -203,5 +220,29 @@ public class PersonalServlet extends HttpServlet {
         }
 
         ServletUtils.redirect("/Personal/Rate_Seller", request, response);
+    }
+
+    private void Seller_Add_to_Rate_List(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.setCharacterEncoding("UTF-8");
+
+        int Type = 2;
+        HttpSession session = request.getSession();
+        User u = (User) session.getAttribute("authUser");
+        int Bidder = Integer.parseInt(request.getParameter("Bidder"));
+        int Pro_ID = Integer.parseInt(request.getParameter("Pro_ID"));
+        int Vote = Integer.parseInt(request.getParameter("Vote"));
+        String Comment= request.getParameter("Comment");
+        Rates p = new Rates(u.getUser_ID(), Type, Bidder, Pro_ID, Vote, Comment);
+        if(!RatesModel.Check_SellerID_Vote(p)){
+            RatesModel.Insert(p);
+            if(Vote == 1){
+                RatesModel.Point_Up(Bidder);
+            }
+            else {
+                RatesModel.Point_Down(Bidder);
+            }
+        }
+
+        ServletUtils.redirect("/Personal/Rate_Bidder", request, response);
     }
 }

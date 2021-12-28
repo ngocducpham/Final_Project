@@ -24,16 +24,16 @@
                         <table class="table table-hover text-md">
                             <thead>
                             <tr>
-                                <th>ID bidder rates</th>
+                                <th>ID seller rates</th>
                                 <th>Vote</th>
                                 <th>Comment</th>
                             </tr>
                             </thead>
                             <tbody>
                             <c:forEach items="${Get_Rates}" var="c">
-                                <c:if test="${c.type == 1}">
+                                <c:if test="${c.type == 2}">
                                 <tr>
-                                    <td><a href="${pageContext.request.contextPath}/Personal/Rate_Bidder?bidder=${c.bidder}&pro_id=${c.pro_ID}" class="hover:underline">${c.bidder}</a>
+                                    <td><a href="${pageContext.request.contextPath}/Personal/Rate_Seller?seller_id=${c.seller_ID}&pro_id=${c.pro_ID}" class="hover:underline">${c.seller_ID}</a>
                                     </td>
                                     <td>
                                         <c:choose>
