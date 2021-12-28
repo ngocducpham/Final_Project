@@ -73,12 +73,12 @@ public class PersonalServlet extends HttpServlet {
                     ServletUtils.forward("/views/Account/Rate_Bidder.jsp", request, response);
                     break;
                 case "/My_Rates":
-                    List<Rates> list3 = RatesModel.Get_rates();
+                    List<Rates> list3 = RatesModel.Get_rates1();
                     request.setAttribute("Get_Rates", list3);
                     ServletUtils.forward("/views/Account/My_Rates.jsp", request, response);
                     break;
                 case "/MyBidder_Rates":
-                    List<Rates> list4 = RatesModel.Get_rates();
+                    List<Rates> list4 = RatesModel.Get_rates2();
                     request.setAttribute("Get_Rates", list4);
                     ServletUtils.forward("/views/Account/MyBidder_Rates.jsp", request, response);
                     break;

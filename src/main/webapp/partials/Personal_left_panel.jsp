@@ -29,7 +29,7 @@
             <a class="btn btn-outline-info w-75 mb-2 text-left" role="button" href="${pageContext.request.contextPath}/Personal/My_Post_Products?option=1"
                                      > <i class="blue fas fa-shopping-cart pr-2"></i> Sản Phẩm Của Tôi
             </a>
-            <a class="btn btn-outline-info w-75 mb-2 text-left" role="button" href="${pageContext.request.contextPath}/Personal/MyRates"
+            <a class="btn btn-outline-info w-75 mb-2 text-left" role="button" href="${pageContext.request.contextPath}/Personal/My_Rates"
             ><i class="blue fas fa-envelope-open-text pr-2"></i> Danh Sách Đánh Giá
             </a>
         </c:if>

@@ -109,9 +109,26 @@ public class RatesModel {
         }
     }
 
-    public static List<Rates> Get_rates() {
-        final String query = "select *\n" +
-                "from rates r\n";
+    public static List<Rates> Get_rates1() {
+        final String query = "select r.*, username from rates r\n" +
+                "left join products p on p.Pro_ID = r.Pro_ID\n" +
+                "left join product_auction pa on p.Pro_ID = pa.Pro_ID\n" +
+                "left join win_list wl on pa.Pro_Auc_ID = wl.Pro_Auc_ID\n" +
+                "left join users u on u.User_ID = wl.User_ID\n" +
+                "WHERE Type = 1";
+        try (Connection conn = DBUtils.getConnection()) {
+            return conn.createQuery(query)
+                    .executeAndFetch(Rates.class);
+        }
+    }
+
+    public static List<Rates> Get_rates2() {
+        final String query = "select r.*, username from rates r\n" +
+                "left join products p on p.Pro_ID = r.Pro_ID\n" +
+                "left join product_auction pa on p.Pro_ID = pa.Pro_ID\n" +
+                "left join magage m on p.Pro_ID = m.Pro_ID\n" +
+                "left join users u on m.User_ID = u.User_ID\n" +
+                "WHERE Type = 2";
         try (Connection conn = DBUtils.getConnection()) {
             return conn.createQuery(query)
                     .executeAndFetch(Rates.class);

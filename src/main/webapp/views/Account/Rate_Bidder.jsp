@@ -71,7 +71,7 @@
                                             type="submit" >Gửi đi
                                     </button>
                                     <button class="btn btn-outline-danger btn-sm ml-1 shadow-none" type="button">
-                                        Hủy
+                                        <a href="${pageContext.request.contextPath}/Personal/My_Rates" class="hover:underline">Hủy</a>
                                     </button>
                                 </div>
                             </div>

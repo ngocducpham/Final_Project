@@ -25,6 +25,7 @@
                             <thead>
                             <tr>
                                 <th>ID seller rates</th>
+                                <th>Tên Seller</th>
                                 <th>Vote</th>
                                 <th>Comment</th>
                             </tr>
@@ -33,7 +34,12 @@
                             <c:forEach items="${Get_Rates}" var="c">
                                 <c:if test="${c.type == 2}">
                                 <tr>
-                                    <td><a href="${pageContext.request.contextPath}/Personal/Rate_Seller?seller_id=${c.seller_ID}&pro_id=${c.pro_ID}" class="hover:underline">${c.seller_ID}</a>
+                                    <td>${c.seller_ID}
+                                    </td>
+                                    <td>
+                                        <a href="${pageContext.request.contextPath}/Personal/Rate_Seller?seller_id=${c.seller_ID}&pro_id=${c.pro_ID}" class="hover:underline">
+                                        ${c.username}
+                                        </a>
                                     </td>
                                     <td>
                                         <c:choose>
