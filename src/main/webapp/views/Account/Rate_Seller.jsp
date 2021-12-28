@@ -4,8 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="C" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<jsp:useBean id="Select" scope="request"
-             type="java.util.List<com.final_project.beans.ProductAuction>"/>
+<jsp:useBean id="Select" scope="request"  type="com.final_project.beans.Rates"/>
 
 <t:personal_page>
     <jsp:attribute name="css">

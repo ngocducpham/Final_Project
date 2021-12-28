@@ -71,14 +71,14 @@ public class RatesModel {
         }
     }
 
-    public static List<Rates> Select(int user_id){
+    public static Rates Select(int user_id){
         String Sql = "select username, Seller_Expired_Date from users as u join magage as m on u.User_ID = m.User_ID\n" +
                 "join rates as r on m.Pro_ID = r.Pro_ID\n" +
                 "join points p on u.User_ID = p.User_ID where u.User_ID = :User_ID";
         try (Connection con = DBUtils.getConnection()) {
             return con.createQuery(Sql)
                     .addParameter("User_ID", user_id )
-                    .executeAndFetch(Rates.class);
+                    .executeAndFetch(Rates.class).get(0);
         }
     }
 

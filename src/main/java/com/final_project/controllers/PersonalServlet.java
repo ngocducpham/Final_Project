@@ -60,8 +60,9 @@ public class PersonalServlet extends HttpServlet {
                     Get_My_Post_Product(request, response, user);
                     break;
                 case "/Rate_Seller":
-                    List<Rates> list3 = RatesModel.Select(user.getUser_ID());
-                    request.setAttribute("Select", list3);
+                    int id = Integer.parseInt(request.getParameter("seller_id"));
+                    Rates r = RatesModel.Select(id);
+                    request.setAttribute("Select", r);
                     ServletUtils.forward("/views/Account/Rate_Seller.jsp", request, response);
                     break;
                 default:
