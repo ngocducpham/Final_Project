@@ -64,13 +64,19 @@
                         <p style="font-size: 36px">Không Có Dữ Liệu</p>
                     </div>
                     <div class="dropdown mt-2">
-                        <button class="btn btn-secondary dropdown-toggle" style="background-color: #5A6268" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-secondary dropdown-toggle" style="background-color: #5A6268"
+                                type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
                             Lọc theo
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="${pageContext.request.contextPath}/Personal/My_Post_Products?option=1">Tất Cả</a>
-                            <a class="dropdown-item" href="${pageContext.request.contextPath}/Personal/My_Post_Products?option=2">Còn Đấu Giá Được</a>
-                            <a class="dropdown-item" href="${pageContext.request.contextPath}/Personal/My_Post_Products?option=3">Đã Có Người Thắng</a>
+                            <a class="dropdown-item"
+                               href="${pageContext.request.contextPath}/Personal/My_Post_Products?option=1">Tất Cả</a>
+                            <a class="dropdown-item"
+                               href="${pageContext.request.contextPath}/Personal/My_Post_Products?option=2">Còn Đấu Giá
+                                Được</a>
+                            <a class="dropdown-item"
+                               href="${pageContext.request.contextPath}/Personal/My_Post_Products?option=3">Đã Có Người
+                                Thắng</a>
                         </div>
                     </div>
                 </div>
@@ -82,28 +88,37 @@
                             style="color:red;">Đã Đăng Bán</span>
                     </div>
                     <div class="dropdown mt-2">
-                        <button class="btn btn-secondary dropdown-toggle" style="background-color: #5A6268" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-secondary dropdown-toggle" style="background-color: #5A6268"
+                                type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
                             Lọc theo
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <a class="dropdown-item" href="${pageContext.request.contextPath}/Personal/My_Post_Products?option=1">Tất Cả</a>
-                            <a class="dropdown-item" href="${pageContext.request.contextPath}/Personal/My_Post_Products?option=2">Còn Đấu Giá Được</a>
-                            <a class="dropdown-item" href="${pageContext.request.contextPath}/Personal/My_Post_Products?option=3">Đã Có Người Thắng</a>
+                            <a class="dropdown-item"
+                               href="${pageContext.request.contextPath}/Personal/My_Post_Products?option=1">Tất Cả</a>
+                            <a class="dropdown-item"
+                               href="${pageContext.request.contextPath}/Personal/My_Post_Products?option=2">Còn Đấu Giá
+                                Được</a>
+                            <a class="dropdown-item"
+                               href="${pageContext.request.contextPath}/Personal/My_Post_Products?option=3">Đã Có Người
+                                Thắng</a>
                         </div>
                     </div>
                 </div>
                 <div class='flex space-x-3 space-y-3 mt-10 flex-wrap'>
                     <c:forEach items="${My_Post_Products}" var="p">
-                        <a href="${pageContext.request.contextPath}/ProductDetail?id=${p.pro_ID}">
+                        <a>
                             <div class='relative w-56 pb-4 border rounded-lg bg-white overflow-hidden shadow-md'>
                                 <span class='rounded-br-full absolute top-0 left-0 pl-2 py-2 pr-5 bg-gray-300 text-xs font-bold'>
                                 Số lần bid: ${p.total_Bid}
-                            </span>
+                                </span>
+                                <a href="${pageContext.request.contextPath}/Personal/UpdateDescription?id=${p.pro_ID}">
+                                    <span class="iconify absolute top-1 right-2 text-2xl text-red-600 hover:text-red-500" data-icon="ant-design:edit-filled"></span>
+                                </a>
                                 <img class='h-60 w-full rounded-t-lg'
                                      src="${pageContext.request.contextPath}/public/imgProduct/${p.pro_ID}/main.jpg"
                                      alt="">
                                 <div class='px-2 w-full text-center mt-2'>
-                                    <a class='font-semibold w-full hover:underline'>${p.pname}</a>
+                                    <a href="${pageContext.request.contextPath}/ProductDetail?id=${p.pro_ID}" class='font-semibold w-full hover:underline'>${p.pname}</a>
                                     <div class='text-sm text-gray-500 font-semibold mt-3'>
                                         Giá hiện tại:
                                         <c:choose>
@@ -111,7 +126,8 @@
                                                 <span><fmt:formatNumber value="${p.max_price}" type="number"/> đ</span>
                                             </c:when>
                                             <c:otherwise>
-                                                <span><fmt:formatNumber value="${p.current_Price}" type="number"/> đ</span>
+                                                <span><fmt:formatNumber value="${p.current_Price}"
+                                                                        type="number"/> đ</span>
                                             </c:otherwise>
                                         </c:choose>
                                     </div>

@@ -5,7 +5,9 @@ import com.final_project.beans.ProductAuction;
 import com.final_project.beans.Rates;
 import com.final_project.beans.User;
 import com.final_project.models.*;
+import com.final_project.utils.DBUtils;
 import com.final_project.utils.ServletUtils;
+import org.sql2o.Connection;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,6 +19,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.text.Bidi;
 import java.text.ParseException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @WebServlet(name = "PersonalServlet", value = "/Personal/*")
@@ -28,6 +31,10 @@ public class PersonalServlet extends HttpServlet {
         } else {
             HttpSession session = request.getSession();
             User user = (User) session.getAttribute("authUser");
+            boolean auth = (boolean) session.getAttribute("Verified");
+            if(!auth){
+                ServletUtils.forward("views/404/index.jsp", request, response);
+            }
             switch (path) {
                 case "/User_Information":
                     ServletUtils.forward("/views/Account/Personal.jsp", request, response);
@@ -60,10 +67,17 @@ public class PersonalServlet extends HttpServlet {
                     break;
                 case "/Rate_Seller":
                     int id = Integer.parseInt(request.getParameter("seller_id"));
-                    int pro_id=Integer.parseInt(request.getParameter("pro_id"));
+                    int pro_id = Integer.parseInt(request.getParameter("pro_id"));
                     Rates r = RatesModel.Select(id, pro_id);
                     request.setAttribute("Select", r);
                     ServletUtils.forward("/views/Account/Rate_Seller.jsp", request, response);
+                    break;
+                case "/UpdateDescription":
+                    String productID = request.getParameter("id");
+                    String productName = ProductDetailModel.getProductName(productID);
+                    request.setAttribute("proname", productName);
+                    request.setAttribute("proid", productID);
+                    ServletUtils.forward("/views/Account/UpdateProductDescription.jsp", request, response);
                     break;
                 default:
                     ServletUtils.forward("/views/404/index.jsp", request, response);
@@ -71,7 +85,6 @@ public class PersonalServlet extends HttpServlet {
             }
         }
     }
-
 
 
     @Override
@@ -96,10 +109,42 @@ public class PersonalServlet extends HttpServlet {
                 case "/Rate_Seller":
                     Bidder_Add_to_Rate_List(request, response);
                     break;
+                case "/UpdateDescription":
+                    request.setCharacterEncoding("UTF-8");
+                    String now = Integer.toString(LocalDateTime.now().getDayOfMonth()) + "/" + Integer.toString(LocalDateTime.now().getMonthValue()) + "/" + Integer.toString(LocalDateTime.now().getYear());
+                    now = "</br></br><div class='text-xl font-bold'>" + now + "</div>";
+                    String desc = request.getParameter("description");
+                    desc = now + desc;
+                    String proID = request.getParameter("proid");
+                    updateDescription(proID, desc);
+
+                    ServletUtils.redirect("/Personal/My_Post_Products?option=1", request, response);
+                    break;
                 default:
                     ServletUtils.forward("/views/404/index.jsp", request, response);
                     break;
             }
+        }
+    }
+
+    private void updateDescription(String proID, String desc) {
+        String query = "select description from products where Pro_ID = :proid";
+        String oldDesc = "";
+        try (Connection con = DBUtils.getConnection()) {
+             oldDesc = con.createQuery(query)
+                    .addParameter("proid", proID)
+                    .executeAndFetchFirst(String.class);
+        }
+        desc = oldDesc + desc;
+
+        query = "update products\n" +
+                "set description = :descript" +
+                " where Pro_ID = :proid";
+        try (Connection con = DBUtils.getConnection()) {
+            con.createQuery(query)
+                    .addParameter("proid", proID)
+                    .addParameter("descript", desc)
+                    .executeUpdate();
         }
     }
 
@@ -185,14 +230,13 @@ public class PersonalServlet extends HttpServlet {
         int Seller_ID = Integer.parseInt(request.getParameter("Seller_ID"));
         int Pro_ID = Integer.parseInt(request.getParameter("Pro_ID"));
         int Vote = Integer.parseInt(request.getParameter("Vote"));
-        String Comment= request.getParameter("Comment");
+        String Comment = request.getParameter("Comment");
         Rates p = new Rates(Seller_ID, Type, u.getUser_ID(), Pro_ID, Vote, Comment);
-        if(!RatesModel.Check_Bidder_Vote(p)){
+        if (!RatesModel.Check_Bidder_Vote(p)) {
             RatesModel.Insert(p);
-            if(Vote == 1){
+            if (Vote == 1) {
                 RatesModel.Point_Up(Seller_ID);
-            }
-            else {
+            } else {
                 RatesModel.Point_Down(Seller_ID);
             }
         }

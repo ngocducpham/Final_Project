@@ -10,6 +10,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 
@@ -23,6 +24,9 @@ public class HomeServlet extends HttpServlet {
         request.setAttribute("top5Time", top5Time);
         request.setAttribute("top5Price", top5Price);
         request.setAttribute("top5Bid", top5Bid);
+
+
+
         ServletUtils.forward("views/Home/index.jsp", request, response);
     }
 
