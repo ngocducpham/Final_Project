@@ -81,7 +81,8 @@
                             <i class="fa fa-backward" aria-hidden="true"></i>
                             List
                         </a>
-                        <button type="submit" class="btn btn-primary text-blue-600" formaction="${pageContext.request.contextPath}/Admin/Category/Update">
+                        <button type="submit" class="btn btn-primary text-blue-600"
+                                formaction="${pageContext.request.contextPath}/Admin/Category/Update">
                             <i class="fa fa-check" aria-hidden="true"></i>
                             Save
                         </button>

@@ -24,6 +24,18 @@ public class ProductModel {
                     .executeAndFetch(Product.class);
         }
     }
+    public static Product getByID(int id) {
+        final String query = "select * from products where Pro_ID = :Pro_ID;";
+        try (Connection con = DBUtils.getConnection())
+        {
+            List<Product> list = con.createQuery(query)
+                    .addParameter("Pro_ID", id)
+                    .executeAndFetch(Product.class);
+            if (list.size() > 0)
+                return list.get(0);
+            return null;
+        }
+    }
 
 
     public static List<Product> Join() {
@@ -49,36 +61,8 @@ public class ProductModel {
             return list.get(0);
         }
     }
-//    public static Product findById1(int id) {
-//        final String query = "select * from products";
-//
-//        try (Connection con = DBUtils.getConnection()) {
-//            List<Product> list = con.createQuery(query)
-//                    .addParameter("id", id)
-//                    .executeAndFetch(Product.class);
-//            if (list.size() == 0) {
-//                return null;
-//            }
-//            return list.get(0);
-//        }
-//    }
 
-    //    //Tim theo Pro_ID
-//    public static Product findProID(int id)
-//    {
-//        final  String query="select * from products where Pro_ID = :Pro_ID";
-//        try(Connection con =DBUtils.getConnection())
-//        {
-//            List<Product> list= con.createQuery(query)
-//                    .addParameter("Pro_ID",id)
-//                    .executeAndFetch(Product.class);
-//            if (list.size() == 0) {
-//                return null;
-//            }
-//
-//            return list.get(0);
-//        }
-//    }
+
     //Truy van Chi tiet SP
     public static FEDetail productDetail(int id) {
         final String query = "select products.Pro_ID, products.Pname, products.Cat_ID, products.Status, product_auction.Total_Bid, product_auction.Current_Price\n" +
@@ -136,7 +120,8 @@ public class ProductModel {
 
 
     public static void add(Product p) {
-        String insertSql = "insert into products(Pname, Price, img, description, Status, Cat_ID) values (:Pname,:Price,:img, :description,:Status, :Cat_ID)";
+        String insertSql = "insert into products(Pname, Price, img, description, Status, Cat_ID) " +
+                "values (:Pname,:Price,:img, :description,:Status, :Cat_ID)";
         try (Connection con = DBUtils.getConnection()) {
             con.createQuery(insertSql)
                     .addParameter("Pname", p.getPname())
@@ -151,12 +136,16 @@ public class ProductModel {
 
     public static void insertDes(Product p)
     {
-        String query="insert into products (Pro_ID,Pname, description) values (:Pro_ID, :Pname, :description)";
+        String query="update products set description = :description where Pro_ID= :Pro_ID;";
         try (Connection con =DBUtils.getConnection())
         {
             con.createQuery(query)
                     .addParameter("Pro_ID",p.getPro_ID())
-                    .addParameter("Pname",p.getPname())
+//                    .addParameter("Pname",p.getPname())
+//                    .addParameter("Price",p.getPrice())
+//                    .addParameter("img","img")
+//                    .addParameter("Status", p.getStatus())
+//                    .addParameter("Cat_ID", p.getCat_ID())
                     .addParameter("description", p.getDescription())
                     .executeUpdate();
         }

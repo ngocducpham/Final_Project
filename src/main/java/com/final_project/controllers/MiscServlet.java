@@ -56,21 +56,39 @@ public class MiscServlet extends HttpServlet {
                 {
                     User u = (User) session.getAttribute("authUser");
                     if (u.getUserrole() == 2) {
-                        List<Product> list = ProductModel.getProduct();
-                        request.setAttribute("Product", list);
+                        //int id= Integer.parseInt(request.getParameter("id"));
+                        int id=31;
+                        Product p = ProductModel.getByID(id);
+                        request.setAttribute("Product", p);
+//                        List<Product> list = ProductModel.findAll();
+//                        request.setAttribute("Products",list);
                         ServletUtils.forward("/views/Account/AddDescription.jsp", request, response);
                     }
                     else {
                         ServletUtils.forward("/views/404/index.jsp", request, response);
                     }
                 }
-            } break;
+            }break;
             default:
                 ServletUtils.forward("/views/404.jsp", request, response);
                 break;
         }
 
     }
+
+//    private void Get_addDes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        String pname= request.getParameter("pname");
+//        int Pro_ID= Integer.parseInt(request.getParameter("pro_ID"));
+//
+//        int id= Integer.parseInt(request.getParameter("id"));
+//
+//        Product p = ProductModel.getByID(id);
+//        request.setAttribute("Product", p);
+//        List<Product> list = ProductModel.findAll();
+//        request.setAttribute("Products",list);
+//        ServletUtils.forward("/views/Account/AddDescription.jsp", request, response);
+//    }
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -94,15 +112,18 @@ public class MiscServlet extends HttpServlet {
 
     private void InsertDes(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException,ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
+
         String pname= request.getParameter("Pname");
-        String description= request.getParameter("des");
+        //int Pro_ID = Integer.parseInt(request.getParameter("Pro_ID"));
+        String description= request.getParameter("description");
 
         Product p =new Product(pname,description);
         ProductModel.insertDes(p);
+        Category c = new Category();
+        CategoryModel.update(c);
 
         ServletUtils.redirect("/Seller/addDescription",request,response);
     }
-
 
     private void Post_Products(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");

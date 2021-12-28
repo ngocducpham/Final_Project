@@ -9,8 +9,6 @@ public class Product {
     private int Start_Price, Current_Price, Total_Bid;
     private LocalDateTime Start_Time, End_Time;
 
-    public Product() {
-    }
 
     public Product(int pro_ID, String pname, String img, String description, int price, int status, int cat_ID, int start_Price, int current_Price, int total_Bid, LocalDateTime start_Time, LocalDateTime end_Time) {
         Pro_ID = pro_ID;
@@ -49,11 +47,18 @@ public class Product {
         this.description = description;
     }
 
+    public Product(int pro_ID,String pname,  String description)
+    {
+        Pname=pname;
+        this.description=description;
+        Pro_ID=pro_ID;
+    }
+
     public Product(String pname,  String description)
     {
         Pname=pname;
         this.description=description;
-        //Pro_ID=pro_ID;
+
     }
 
     public Product(String pname, String img, String description, int price, int status, int cat_ID) {
