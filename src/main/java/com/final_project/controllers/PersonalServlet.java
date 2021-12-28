@@ -68,9 +68,11 @@ public class PersonalServlet extends HttpServlet {
                 case "/Rate_Seller":
                     int id = Integer.parseInt(request.getParameter("seller_id"));
                     int pro_id=Integer.parseInt(request.getParameter("pro_id"));
+                    int Bidder_id = user.getUser_ID();
                     Rates r = RatesModel.Select(id, pro_id);
+                    r.setBidder(Bidder_id);
+                    r.setType(1);
                     Boolean voted = RatesModel.Check_Bidder_Vote(r);
-
                     request.setAttribute("voted", voted);
                     request.setAttribute("Select", r);
                     ServletUtils.forward("/views/Account/Rate_Seller.jsp", request, response);
@@ -85,9 +87,11 @@ public class PersonalServlet extends HttpServlet {
                 case "/Rate_Bidder":
                     int id1 = Integer.parseInt(request.getParameter("bidder"));
                     int pro_id1=Integer.parseInt(request.getParameter("pro_id"));
+                    int Seller_id = user.getUser_ID();
                     Rates r1 = RatesModel.Select1(id1, pro_id1);
+                    r1.setSeller_ID(Seller_id);
+                    r1.setType(2);
                     Boolean votedSeller = RatesModel.Check_SellerID_Vote(r1);
-
                     request.setAttribute("voted", votedSeller);
                     request.setAttribute("Select1", r1);
                     ServletUtils.forward("/views/Account/Rate_Bidder.jsp", request, response);
