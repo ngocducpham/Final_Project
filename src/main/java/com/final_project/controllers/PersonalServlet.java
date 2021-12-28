@@ -2,8 +2,9 @@ package com.final_project.controllers;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.final_project.beans.ProductAuction;
+import com.final_project.beans.Rates;
 import com.final_project.beans.User;
-import com.final_project.models.UserModel;
+import com.final_project.models.*;
 import com.final_project.utils.ServletUtils;
 
 import javax.servlet.ServletException;
@@ -14,9 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Date;
+import java.text.Bidi;
 import java.text.ParseException;
 import java.util.List;
-import java.util.Objects;
 
 @WebServlet(name = "PersonalServlet", value = "/Personal/*")
 public class PersonalServlet extends HttpServlet {
@@ -58,6 +59,10 @@ public class PersonalServlet extends HttpServlet {
                     Get_My_Post_Product(request, response, user);
                     break;
                 case "/Rate_Seller":
+                    int id = Integer.parseInt(request.getParameter("seller_id"));
+                    int pro_id=Integer.parseInt(request.getParameter("pro_id"));
+                    Rates r = RatesModel.Select(id, pro_id);
+                    request.setAttribute("Select", r);
                     ServletUtils.forward("/views/Account/Rate_Seller.jsp", request, response);
                     break;
                 default:
@@ -66,6 +71,8 @@ public class PersonalServlet extends HttpServlet {
             }
         }
     }
+
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -85,6 +92,9 @@ public class PersonalServlet extends HttpServlet {
                     break;
                 case "/Request":
                     Get_Request(request, response);
+                    break;
+                case "/Rate_Seller":
+                    Bidder_Add_to_Rate_List(request, response);
                     break;
                 default:
                     ServletUtils.forward("/views/404/index.jsp", request, response);
@@ -164,5 +174,29 @@ public class PersonalServlet extends HttpServlet {
             }
         }
         ServletUtils.forward("/views/Account/My_Post_Products.jsp", request, response);
+    }
+
+    private void Bidder_Add_to_Rate_List(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.setCharacterEncoding("UTF-8");
+
+        int Type = 1;
+        HttpSession session = request.getSession();
+        User u = (User) session.getAttribute("authUser");
+        int Seller_ID = Integer.parseInt(request.getParameter("Seller_ID"));
+        int Pro_ID = Integer.parseInt(request.getParameter("Pro_ID"));
+        int Vote = Integer.parseInt(request.getParameter("Vote"));
+        String Comment= request.getParameter("Comment");
+        Rates p = new Rates(Seller_ID, Type, u.getUser_ID(), Pro_ID, Vote, Comment);
+        if(!RatesModel.Check_Bidder_Vote(p)){
+            RatesModel.Insert(p);
+            if(Vote == 1){
+                RatesModel.Point_Up(Seller_ID);
+            }
+            else {
+                RatesModel.Point_Down(Seller_ID);
+            }
+        }
+
+        ServletUtils.redirect("/Personal/Rate_Seller", request, response);
     }
 }

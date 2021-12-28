@@ -4,9 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="C" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%--<jsp:useBean id="authUser" scope="session" type="com.final_project.beans.User"/>--%>
-<%--<jsp:useBean id="User_Won_Auction_Product_List" scope="request"--%>
-<%--             type="java.util.List<com.final_project.beans.ProductAuction>"/>--%>
+<jsp:useBean id="Select" scope="request"  type="com.final_project.beans.Rates"/>
 
 <t:personal_page>
     <jsp:attribute name="css">
@@ -34,91 +32,51 @@
 
         </style>
     </jsp:attribute>
-    <jsp:attribute name="js">
-        <script>
-            let timeEndList = [];
-            <c:forEach items="${User_Won_Auction_Product_List}" var="p">
-            timeEndList.push(new Date("${p.end_Time}"));
-            </c:forEach>
-
-            let timeContainer = document.querySelectorAll('.timeContainer');
-            let timeNow = new Date();
-            let datePerMilis = 1000 * 60 * 60 * 24;
-            let timeDiff = [], days, hours, mins, secs;
-
-            for (let i = 0; i < timeEndList.length; i++) {
-                timeDiff.push(new Date(timeEndList[i].getTime() - timeNow));
-            }
-
-            setInterval(() => {
-                for (let i = 0; i < timeEndList.length; i++) {
-                    days = Math.floor((timeEndList[i].getTime() - Date.now()) / datePerMilis);
-                    hours = timeDiff[i].getUTCHours();
-                    mins = timeDiff[i].getUTCMinutes();
-                    secs = timeDiff[i].getUTCSeconds();
-
-                    if (days < 0 || hours < 0 || mins < 0 || secs < 0) {
-                        let timecout = timeContainer[i].querySelectorAll('div');
-                        if(timecout != null){
-                            timecout.forEach(item=>{
-                                item.remove();
-                            })
-                            timeContainer[i].innerText = "Phiên đấu giá đã kết thúc";
-                            timeContainer[i].classList.add("text-red-600");
-                            timeContainer[i].classList.add("text-base");
-                        }
-                        continue;
-                    }
-
-                    timeContainer[i].querySelector('.days').textContent = days;
-                    timeContainer[i].querySelector('.hours').textContent = hours;
-                    timeContainer[i].querySelector('.minutes').textContent = mins;
-                    timeContainer[i].querySelector('.seconds').textContent = secs;
-
-                    timeDiff[i].setUTCSeconds(secs - 1);
-                }
-            }, 1000);
-        </script>
-    </jsp:attribute>
     <jsp:body>
+        <div>
+
+
+        </div>
         <figure class="avatar"><img src="${pageContext.request.contextPath}/public/imgs/user.svg" alt="User picture">
         </figure>
         <div class="text-center">
-            Người bán: Giau
+            <div>Người bán: ${Select.username}</div>
         </div>
-        <div class="d-flex justify-content-between text-sm text-gray-500 font-semibold mt-3">
-            <div>
-                Sản phẩm : 11
-            </div>
-            <div>
-                Đánh giá: 1 Đánh Giá
-            </div>
-            <div>
-                Tham gia: 27/12/2021
-            </div>
+
+        <div class="d-flex justify-content-around text-sm text-gray-500 font-semibold mt-3">
+            <div>Ngày hết hạn bán: ${Select.seller_Expired_date}</div>
         </div>
         <!-- cmt -->
         <div class="mt-5">
             Đánh giá người bán
         </div>
         <div class="container-fluid mt-3">
+            <form method="post">
+                <input name="Seller_ID" type="text" style="visibility: hidden" value="${Select.seller_ID}">
+                <input name="Pro_ID" type="text" style="visibility: hidden" value="${Select.pro_ID}">
             <div class="d-flex justify-content-center row">
                 <div class="col-12">
                     <div class="d-flex flex-column comment-section">
                         <div class="bg-white">
                             <div class="d-flex flex-row fs-12">
-                                <div class="like p-2 cursor"><i class="fa fa-thumbs-o-up"></i><span
-                                        class="ml-1">Like</span></div>
-                                <div class="like p-2 cursor"><i class="fa fa-thumbs-o-down"></i><span
-                                        class="ml-1">Dislike</span></div>
+                                <label for="Vote1" class="like p-2 cursor"><i class="fa fa-thumbs-o-up"></i><span
+                                        class="ml-1">Like</span></label >
+                                <input id="Vote1" type="radio" name="Vote" value="1" >
+
+                                <label for="Vote2" class="like p-2 cursor"><i class="fa fa-thumbs-o-down"></i><span
+                                        class="ml-1">Dislike</span></label >
+                                <input id="Vote2" type="radio" name="Vote" value="-1" >
                             </div>
                         </div>
                         <div class="bg-light p-2">
-                            <div class="d-flex flex-row align-items-start"><textarea
-                                    class="form-control ml-1 shadow-none textarea"></textarea></div>
+                            <div class="d-flex flex-row align-items-start">
+                                <textarea
+                                    class="form-control ml-1 shadow-none textarea" name="Comment">
+                                </textarea>
+                            </div>
                             <div class="mt-2 text-right">
                                 <button class="btn btn-outline-primary btn-sm shadow-none text-blue"
-                                        type="button">Post comment
+                                        type="submit" >Post comment
                                 </button>
                                 <button class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="button">
                                     Cancel
@@ -128,6 +86,7 @@
                     </div>
                 </div>
             </div>
+            </form>
         </div>
 
 <%--        <c:choose>--%>
