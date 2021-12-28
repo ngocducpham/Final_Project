@@ -1,8 +1,5 @@
 package com.final_project.models;
 
-import com.final_project.beans.Category;
-import com.final_project.beans.Favorite;
-import com.final_project.beans.ProductAuction;
 import com.final_project.beans.Rates;
 import com.final_project.utils.DBUtils;
 import org.sql2o.Connection;

@@ -11,7 +11,7 @@
         <div class="card ">
             <h4 class="card-header d-flex justify-content-between">
                 Danh sách danh mục
-                <a class="btn btn-outline-success"
+                <a title="Thêm danh mục" class="btn btn-outline-success"
                    href="${pageContext.request.contextPath}/Admin/Category/Add"    role="button">
                     <i class="fa fa-plus" aria-hidden="true"></i>
                     Thêm
@@ -43,10 +43,10 @@
                                        ${c.cparent_ID}
                                     </td>
                                     <td class="text-right">
-                                        <a class="btn btn-sm btn-outline-primary" href="${pageContext.request.contextPath}/Admin/Category/Edit?id=${c.cat_ID}"  role="button">
+                                        <a title="Sửa danh mục" class="btn btn-sm btn-outline-primary" href="${pageContext.request.contextPath}/Admin/Category/Edit?id=${c.cat_ID}"  role="button">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </a>
-                                        <a class="btn btn-sm btn-outline-danger" href="${pageContext.request.contextPath}/Admin/Category/Delete?id=${c.cat_ID}"  role="button">
+                                        <a title="Xóa danh mục" class="btn btn-sm btn-outline-danger" href="${pageContext.request.contextPath}/Admin/Category/Delete?id=${c.cat_ID}"  role="button">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                         </a>
                                     </td>

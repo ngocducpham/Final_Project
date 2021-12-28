@@ -65,6 +65,14 @@
                             <label for="txtLevel">Cấp danh mục</label>
                         </div>
                         <div class="input-group mb-3">
+                            <c:choose>
+                                <c:when test="">
+
+                                </c:when>
+                                <c:otherwise>
+
+                                </c:otherwise>
+                            </c:choose>
                             <select class="custom-select" name="Level" id="txtLevel">
                                 <option value="1">Cấp 1</option>
                                 <option value="2">Cấp 2</option>
