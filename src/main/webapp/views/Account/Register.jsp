@@ -106,7 +106,7 @@
                 <header>ReCaptcha</header>
                 <div class="captcha-area">
                     <div class="captcha-img">
-                        <%--                        <img src="captcha-bg.png" alt="Captch Background">--%>
+                        <img src="${pageContext.request.contextPath}/public/imgs/capcha.jpg" alt="Captch Background">
                         <span class="captcha"></span>
                     </div>
                     <button class="reload-btn"><i class="fas fa-redo-alt"></i></button>
