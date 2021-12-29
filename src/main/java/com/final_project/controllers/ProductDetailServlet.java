@@ -31,7 +31,7 @@ public class ProductDetailServlet extends HttpServlet {
         int proAuID = productDetail.getPro_Auc_ID();
         List<ProductDetail> history = ProductDetailModel.bidHistory(Integer.toString(proAuID));
 
-        String currentBid = ProductDetailModel.currentBidder(Integer.toString(proAuID));
+        ProductDetail currentBid = ProductDetailModel.currentBidder(Integer.toString(proAuID));
 
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("authUser");
