@@ -7,10 +7,10 @@
 <t:admin>
     <jsp:body>
 
-        <div class="card ">
-            <h4 class="card-header d-flex justify-content-between">
+        <div class="card">
+            <div class="card-header">
                 Danh sách người dùng
-            </h4>
+            </div>
             <c:choose>
                 <c:when test="${users.size() == 0}">
                     <div class="card-body">
@@ -19,7 +19,7 @@
                 </c:when>
                 <c:otherwise>
                     <div class="card-body">
-                        <table class="table table-hover table-primary">
+                        <table class="table table-hover">
                             <thead>
                             <tr>
                                 <th>#</th>

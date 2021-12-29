@@ -25,7 +25,7 @@
                 </c:when>
                 <c:otherwise>
                     <div class="card-body">
-                        <table class="table table-hover table-primary">
+                        <table class="table table-hover">
                             <thead>
                             <tr>
                                 <th>#</th>
