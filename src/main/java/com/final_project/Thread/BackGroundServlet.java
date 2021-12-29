@@ -72,7 +72,7 @@ public class BackGroundServlet extends HttpServlet implements Runnable {
                         }
                     }
                 }
-                Thread.sleep(30000);
+                Thread.sleep(600000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
