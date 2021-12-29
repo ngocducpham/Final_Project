@@ -31,7 +31,7 @@ public class ServletUtils {
     public static Date Parse_date_format(String date) throws ParseException {
 //        java.util.Date utilDate = new SimpleDateFormat("dd/MMM/yyyy").parse("02-09-2021");
         java.util.Date date2 = new java.sql.Date(
-                new SimpleDateFormat("dd/MM/yyyy").parse("02/09/2012").getTime());
+                new SimpleDateFormat("dd/MM/yyyy").parse(date).getTime());
         return new java.sql.Date(date2.getTime());
     }
 

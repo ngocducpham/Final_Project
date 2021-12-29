@@ -6,6 +6,12 @@
 <jsp:useBean id="authUser" scope="session" type="com.final_project.beans.User"/>
 
 <t:personal_page>
+    <jsp:attribute name="css">
+         <link rel="stylesheet"
+               href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css"
+               integrity="sha512-f0tzWhCwVFS3WeYaofoLWkTP62ObhewQ1EZn65oSYDZUg1+CyywGKkWzm8BxaJj5HGKI72PnMH9jYyIFz+GH7g=="
+               crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    </jsp:attribute>
     <jsp:attribute name="js">
         <script>
             document.getElementById('open_edit').addEventListener("click", function () {
@@ -14,6 +20,11 @@
                 document.getElementById('email').disabled = false;
                 document.getElementById('dob').disabled = false;
                 document.getElementById('address').disabled = false;
+                $('#dob').datetimepicker({
+                    format: 'd/m/Y',
+                    timepicker: false,
+                    mask: true
+                });
             });
 
             document.getElementById('close_edit').addEventListener("click", function () {
@@ -21,6 +32,9 @@
                 window.location.reload();
             });
         </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"
+                integrity="sha512-AIOTidJAcHBH2G/oZv9viEGXRqDNmfdPVPYOYKGy3fti0xIplnlgMHUGfuNRzC6FkzIo0iIxgFnr9RikFxK+sw=="
+                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </jsp:attribute>
     <jsp:body>
         <div class="profile">

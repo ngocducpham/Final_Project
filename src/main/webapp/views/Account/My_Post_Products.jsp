@@ -156,21 +156,16 @@
                                        class='font-semibold w-full hover:underline'>${p.pname}</a>
                                     <div class='text-sm text-gray-500 font-semibold mt-3'>
                                         Giá hiện tại:
-                                        <c:choose>
-                                            <c:when test="${p.max_price >0}">
-                                                <span><fmt:formatNumber value="${p.max_price}" type="number"/> đ</span>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <span><fmt:formatNumber value="${p.current_Price}"
-                                                                        type="number"/> đ</span>
-                                            </c:otherwise>
-                                        </c:choose>
+                                        <span><fmt:formatNumber value="${p.winner_price}"
+                                                                type="number"/> đ</span>
                                     </div>
-                                    <a href="${pageContext.request.contextPath}/Personal/Rate_Bidder?bidder=${p.bidder}&pro_id=${c.pro_ID}"
-                                       class="hover:underline">
-                                        <div><i class="red fa fa-trophy fa-sm"> ${p.username}</i>
-                                        </div>
-                                    </a>
+                                    <c:if test="${p.winner_id>0}">
+                                        <a href="${pageContext.request.contextPath}/Personal/Rate_Bidder?bidder=${p.winner_id}&pro_id=${p.pro_ID}"
+                                           class="hover:underline">
+                                            <div><i class="red fa fa-trophy fa-sm"> ${p.username}</i>
+                                            </div>
+                                        </a>
+                                    </c:if>
                                     <div class='timeContainer flex justify-around text-xs mt-3 font-semibold'>
                                         <div>
                                             <div class='days text-sm'>05</div>
