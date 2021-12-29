@@ -48,9 +48,8 @@ $('#FormRegister').on('submit', function (e) {
 
 //==================================================//
 const captcha = document.querySelector(".captcha"),
-    reloadBtn = document.querySelector(".reload-btn"),
     inputField = document.getElementById("text-box"),
-    checkBtn = document.querySelector(".check-btn"),
+    checkBtn = document.getElementById("check-btn"),
     statusTxt = document.querySelector(".status-text");
 
 //storing all captcha characters in array
@@ -66,12 +65,7 @@ function getCaptcha() {
     }
 }
 
-getCaptcha(); //calling getCaptcha when the page open
-//calling getCaptcha & removeContent on the reload btn click
-reloadBtn.addEventListener("click", () => {
-    removeContent();
-    getCaptcha();
-});
+getCaptcha();
 
 checkBtn.addEventListener("click", e => {
     e.preventDefault(); //preventing button from it's default behaviour
@@ -86,5 +80,11 @@ checkBtn.addEventListener("click", e => {
         statusTxt.style.color = "#ff0000";
         statusTxt.innerText = "Captcha not matched. Please try again!";
     }
+});
+
+document.getElementById("reload-btn").addEventListener("click",e => {
+    e.preventDefault();
+    captcha.innerText="";
+    getCaptcha();
 });
 
