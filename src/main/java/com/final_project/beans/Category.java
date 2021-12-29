@@ -14,6 +14,10 @@ public class Category {
     public Category() {
     }
 
+    public Category(String cname, int level) {
+        Cname = cname;
+        Level = level;
+    }
 
     public Category(String cname) {
         this.Cname = cname;

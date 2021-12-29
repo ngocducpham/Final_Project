@@ -75,6 +75,16 @@ public class CategoryModel {
         }
     }
 
+    public static void addLv1(Category c) {
+        String insertSql = "insert into categories(Cname, Level) values (:Cname, :Level)";
+        try (Connection con = DBUtils.getConnection()) {
+            con.createQuery(insertSql)
+                    .addParameter("Cname", c.getCname())
+                    .addParameter("Level", c.getLevel())
+                    .executeUpdate();
+        }
+    }
+
     public static void add1(Category c) {
         String query = "insert into categories(Cat_ID) values (:CatID) ";
         try (Connection con = DBUtils.getConnection()) {
