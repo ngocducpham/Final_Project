@@ -70,6 +70,23 @@
                                   d="M58.664 11.136l-2.04 7.392-2.184-7.392h-2.928l-2.184 7.368-2.04-7.368H44l3.816 12h2.952l2.208-7.272 2.208 7.272h2.952l3.816-12h-3.288zM68.864 23.472c3.528 0 6.36-2.76 6.36-6.336 0-3.576-2.832-6.336-6.36-6.336-3.528 0-6.336 2.76-6.336 6.336 0 3.576 2.808 6.336 6.336 6.336zm0-3.024c-1.824 0-3.24-1.368-3.24-3.312 0-1.944 1.416-3.312 3.24-3.312 1.848 0 3.264 1.368 3.264 3.312 0 1.944-1.416 3.312-3.264 3.312zM80.498 13.2v-2.064h-3.096v12h3.096V17.4c0-2.52 2.04-3.24 3.648-3.048v-3.456c-1.512 0-3.024.672-3.648 2.304zM97.02 23.136l-4.967-6.072 4.824-5.928H93.18l-4.128 5.28V6.336h-3.096v16.8h3.096v-5.448l4.368 5.448h3.6zM105.022 6c-3.816 0-5.64 1.704-5.64 5.016v.12h-1.728v2.976h1.728v9.024h3.096v-9.024h1.992v-2.976h-1.992v-.12c0-1.632.936-2.304 2.544-2.304.312 0 .648 0 .984.024v14.4h3.096V6.504c-1.32-.264-2.568-.504-4.08-.504zM117.637 23.472c3.528 0 6.36-2.76 6.36-6.336 0-3.576-2.832-6.336-6.36-6.336-3.528 0-6.336 2.76-6.336 6.336 0 3.576 2.808 6.336 6.336 6.336zm0-3.024c-1.824 0-3.24-1.368-3.24-3.312 0-1.944 1.416-3.312 3.24-3.312 1.848 0 3.264 1.368 3.264 3.312 0 1.944-1.416 3.312-3.264 3.312zM139.219 11.136l-2.04 7.392-2.184-7.392h-2.928l-2.184 7.368-2.04-7.368h-3.288l3.816 12h2.952l2.208-7.272 2.208 7.272h2.952l3.816-12h-3.288z" />
                         </svg>
                     </div>
+                    <div class="dropdown mt-2">
+                        <button class="btn btn-secondary dropdown-toggle" style="background-color: #5A6268"
+                                type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                            Lọc theo
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item"
+                               href="${pageContext.request.contextPath}/Personal/My_Post_Products?option=1">Tất Cả</a>
+                            <a class="dropdown-item"
+                               href="${pageContext.request.contextPath}/Personal/My_Post_Products?option=2">Còn Đấu Giá
+                                Được</a>
+                            <a class="dropdown-item"
+                               href="${pageContext.request.contextPath}/Personal/My_Post_Products?option=3">Đã Có Người
+                                Thắng</a>
+                        </div>
+                    </div>
+
                     <h6 style="font-size: 40px" class='text-danger font-weight-bold mt-12'>Bạn Chưa Thắng Cuộc Đấu Giá Nào!</h6>
                     <div class="btn-sm">
                         <button type="button" class="btn btn-outline-success btn-sm">
