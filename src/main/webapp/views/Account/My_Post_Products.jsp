@@ -121,7 +121,7 @@
                             style="color:red;">Đã Đăng Bán</span>
                     </div>
                     <div class="dropdown mt-2">
-                        <button class="btn btn-secondary dropdown-toggle" style="background-color: #5A6268"
+                        <button class="btn btn-secondary dropdown-toggle" style="background-color: #2fa5e9"
                                 type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
                             Lọc theo
                         </button>

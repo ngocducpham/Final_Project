@@ -377,7 +377,7 @@
                         <input type="hidden" name="proid" value="${proDetail.pro_ID}">
                         <input type="hidden" name="proauid" value="${proDetail.pro_Auc_ID}">
                         <label for="uid" class="mr-2">Bidder</label>
-                        <select name="uid" id="uid" class="bg-gray-800 text-white w-56">
+                        <select name="uid" id="uid" class="bg-gray-800 text-white w-56 h-8">
                             <c:forEach items="${bidderList}" var="b">
                                 <c:if test="${b.user_ID != authUser.user_ID}">
                                     <option value="${b.user_ID}">${b.username} - UID: ${b.user_ID}</option>
@@ -385,7 +385,7 @@
                             </c:forEach>
                         </select>
                         <button
-                                class='ml-2 bg-gray-800 px-4 text-white hover:bg-gray-700'>
+                                class='ml-2 bg-gray-800 px-4 text-white hover:bg-gray-700 h-8'>
                             Từ chối ra giá
                         </button>
                     </form>

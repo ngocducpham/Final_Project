@@ -65,12 +65,10 @@
                         <div>
                             <h6 style="font-size: 40px" class='text-danger font-weight-bold mt-12'>Bạn Chưa Tham Gia Đấu Giá !</h6>
                         </div>
-                        <div class="btn-sm ">
-                            <button type="button" class="btn btn-outline-success btn-sm">
-                                <a href="${pageContext.request.contextPath}/Search?searchproduct">
-                                    <i class="fas fa-arrow-alt-circle-right"></i>Tới trang Đấu Giá!
+                        <div >
+                                <a class="btn btn-primary btn-lg active"  role="button" href="${pageContext.request.contextPath}/Search?searchproduct">
+                                    <i class="fas fa-arrow-alt-circle-right"></i> Tới trang Đấu Giá!
                                 </a>
-                            </button>
                         </div>
                     </div>
                 </div>

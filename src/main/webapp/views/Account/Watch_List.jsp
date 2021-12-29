@@ -65,12 +65,10 @@
                         <div>
                             <h6 style="font-size: 40px" class='text-danger font-weight-bold mt-12'>Không có sản phẩm yêu thích!</h6>
                         </div>
-                        <div class="btn-sm ">
-                            <button type="button" class="btn btn-outline-success btn-sm">
-                                <a href="${pageContext.request.contextPath}/Search?searchproduct">
-                                    <i class="fas fa-arrow-alt-circle-right"></i>Tới trang Đấu Giá!
-                                </a>
-                            </button>
+                        <div >
+                            <a class="btn btn-primary btn-lg active"  role="button" href="${pageContext.request.contextPath}/Search?searchproduct">
+                                <i class="fas fa-arrow-alt-circle-right"></i> Tới trang Đấu Giá!
+                            </a>
                         </div>
                     </div>
                 </div>

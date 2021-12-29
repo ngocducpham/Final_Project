@@ -35,7 +35,7 @@
         <div class="profile">
             <div class="top_header">
                 <p class="h__profile">Đổi Mật Khẩu</p>
-                <button class="btn btn-warning small" id="open_edit">Đổi Mật Khẩu<i
+                <button class="btn btn-warning small" id="open_edit">Đổi Mật Khẩu <i
                         class="fa fa-pencil"></i></button>
             </div>
             <div class="boxProfile">
