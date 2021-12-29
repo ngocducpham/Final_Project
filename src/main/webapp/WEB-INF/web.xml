@@ -13,9 +13,9 @@
         <location>/views/404/index.jsp</location>
     </error-page>
 
-    <servlet>
-        <servlet-name>BackGroundServlet</servlet-name>
-        <servlet-class>com.final_project.Thread.BackGroundServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
+<!--    <servlet>-->
+<!--        <servlet-name>BackGroundServlet</servlet-name>-->
+<!--        <servlet-class>com.final_project.Thread.BackGroundServlet</servlet-class>-->
+<!--        <load-on-startup>0</load-on-startup>-->
+<!--    </servlet>-->
 </web-app>

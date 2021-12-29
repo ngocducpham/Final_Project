@@ -73,13 +73,15 @@
                                    disabled>
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="">Được Quyền Bán Đến Ngày</label>
-                            <input type="text" class="form-control background" id=""
-                                   value="${authUser.seller_Expired_date}" readonly>
+                    <c:if test="${authUser.userrole==2}">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="">Được Quyền Bán Đến Ngày</label>
+                                <input type="text" class="form-control background" id=""
+                                       value="${authUser.seller_Expired_date}" readonly>
+                            </div>
                         </div>
-                    </div>
+                    </c:if>
                     <button type="submit" class="btn btn-outline-success"><i class="fa fa-check"></i>
                         Lưu
                     </button>
