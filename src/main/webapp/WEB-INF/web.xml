@@ -13,7 +13,9 @@
         <location>/views/404/index.jsp</location>
     </error-page>
 
-    <listener>
-        <listener-class>com.final_project.Thread.Check_Win</listener-class>
-    </listener>
+    <servlet>
+        <servlet-name>BackGroundServlet</servlet-name>
+        <servlet-class>com.final_project.Thread.BackGroundServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
 </web-app>
