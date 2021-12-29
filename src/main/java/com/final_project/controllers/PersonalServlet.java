@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Date;
-import java.text.Bidi;
 import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -99,11 +98,15 @@ public class PersonalServlet extends HttpServlet {
                 case "/My_Rates":
                     List<Rates> list3 = RatesModel.Get_rates1();
                     request.setAttribute("Get_Rates", list3);
+                    List<Rates> list4 = RatesModel.Get_Point1();
+                    request.setAttribute("Get_Point", list4);
                     ServletUtils.forward("/views/Account/My_Rates.jsp", request, response);
                     break;
                 case "/MyBidder_Rates":
-                    List<Rates> list4 = RatesModel.Get_rates2();
-                    request.setAttribute("Get_Rates", list4);
+                    List<Rates> list5 = RatesModel.Get_rates2();
+                    request.setAttribute("Get_Rates", list5);
+                    List<Rates> list6 = RatesModel.Get_Point2();
+                    request.setAttribute("Get_Point", list6);
                     ServletUtils.forward("/views/Account/MyBidder_Rates.jsp", request, response);
                     break;
                 default:

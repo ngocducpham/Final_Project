@@ -55,7 +55,7 @@
         <figure class="avatar"><img src="${pageContext.request.contextPath}/public/imgs/user.svg" alt="User picture">
         </figure>
         <div class="text-center">
-            <div>Người bán: <span style="color: red">${Select.username}</span></div>
+            <div>Người bán: <span style="color: red">${Select.username}</span><span style="color: #2fa5e9; font-size: 20px;"> (Điểm: ${Select.total}%)</span></div>
         </div>
 
         <div class="d-flex justify-content-around text-sm text-gray-500 font-semibold mt-3">
@@ -66,7 +66,7 @@
         <div class="container-fluid mt-3">
             <form id="formVote" method="post">
                 <div class="">
-                        Đánh giá người bán:
+                        Đánh giá người bán này:
                         <input class="ml-3" title="Vote +1" id="Vote1" type="radio" name="Vote" value="1" > Like(+1)
                         <input class="ml-3" title="Vote -1" id="Vote2" type="radio" name="Vote" value="-1" > Không thích(-1)
                 </div>
@@ -80,7 +80,7 @@
 
                             <div class="bg-light">
                                     <div class="form-group">
-                                        <label for="exampleFormControlTextarea1">Nhận xét của bạn về người bán:</label>
+                                        <label for="exampleFormControlTextarea1">Nhận xét của bạn về người bán này:</label>
                                         <textarea class="form-control ml-1 shadow-none textarea" id="exampleFormControlTextarea1" rows="6" name="Comment"></textarea>
                                     </div>
                                 <div class="mt-2 text-right">

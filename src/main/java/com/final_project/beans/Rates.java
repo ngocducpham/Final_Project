@@ -12,7 +12,15 @@ public class Rates {
     private String Comment;
     private String username;
     private Date Seller_Expired_date;
-    private int tong_sp;
+    private int total;
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
 
     public Rates(String comment) {
         Comment = comment;
@@ -74,13 +82,6 @@ public class Rates {
         Comment = comment;
     }
 
-    public int getTong_sp() {
-        return tong_sp;
-    }
-
-    public void setTong_sp(int tong_sp) {
-        this.tong_sp = tong_sp;
-    }
 
     public Rates() {
     }

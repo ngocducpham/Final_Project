@@ -5,12 +5,16 @@
 
 <jsp:useBean id="authUser" scope="session" type="com.final_project.beans.User"/>
 <jsp:useBean id="Get_Rates" scope="request" type="java.util.List<com.final_project.beans.Rates>"/>
+<jsp:useBean id="Get_Point" scope="request" type="java.util.List<com.final_project.beans.Rates>"/>
 
 <t:personal_page>
     <jsp:body>
         <div style="font-weight: bold;font-size: 36px">Danh sách <span
                 style="color:red;">những người đánh giá bạn</span>
         </div>
+        <c:forEach items="${Get_Point}" var="g">
+            <div style="font-size: 30px; font-weight: bold;">Điểm của bạn:<span style="color: blue"> ${g.total}%</span></div>
+        </c:forEach>
         <div class="card mt-10">
 
             <c:choose>
@@ -26,6 +30,7 @@
                             <tr>
                                 <th>ID seller rates</th>
                                 <th>Tên Seller</th>
+                                <th>Điểm</th>
                                 <th>Vote</th>
                                 <th>Comment</th>
                             </tr>
@@ -40,6 +45,9 @@
                                         <a href="${pageContext.request.contextPath}/Personal/Rate_Seller?seller_id=${c.seller_ID}&pro_id=${c.pro_ID}" class="hover:underline">
                                         ${c.username}
                                         </a>
+                                    </td>
+                                    <td>
+                                        ${c.total}%
                                     </td>
                                     <td>
                                         <c:choose>

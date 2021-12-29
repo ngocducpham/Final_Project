@@ -57,7 +57,7 @@
         <figure class="avatar"><img src="${pageContext.request.contextPath}/public/imgs/user.svg" alt="User picture">
         </figure>
         <div class="text-center">
-            <div>Người mua: <span style="color: red">${Select1.username}</span></div>
+            <div>Người mua: <span style="color: red">${Select1.username}</span><span style="color: #2fa5e9; font-size: 20px;"> (Điểm: ${Select1.total}%)</span></div>
         </div>
 
         <!-- cmt -->
