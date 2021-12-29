@@ -20,21 +20,7 @@
                  let selectCap1;
 
                  selectChonCap.addEventListener('change', () => {
-                     if (selectChonCap.value == 1) {
-                         document.getElementById('txtCatParentID').remove();
-                         let backDrop = document.createElement('input');
-                         backDrop.setAttribute('id','backdrop');
-                         backDrop.className = 'hidden';
-                         backDrop.setAttribute('id','backdrop');
-                         backDrop.setAttribute('name','Cparent_ID');
-                         backDrop.setAttribute('value','-1');
-                         document.getElementById('FormCategory').appendChild(backDrop);
-
-                     } else if (selectChonCap.value == 2) {
-                         let backdrop = document.getElementById('backdrop');
-                         if (backdrop != null) {
-                             backdrop.remove();
-                         }
+                     if (selectChonCap.value == 2) {
                          // tạo select, bỏ option vô select, bỏ select vô category1
                          selectCap1 = document.createElement('select');
                          selectCap1.setAttribute('name', 'Cparent_ID');
@@ -61,7 +47,6 @@
         </jsp:attribute>
     <jsp:body>
         <form action="" method="post" id="FormCategory">
-            <input name="Cparent_ID" id="backdrop" type="hidden" value="-1">
             <div class="card">
                 <div class="card-header">
                     Sửa danh mục

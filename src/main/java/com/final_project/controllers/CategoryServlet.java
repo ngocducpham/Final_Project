@@ -124,12 +124,16 @@ public class CategoryServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         int id = Integer.parseInt(request.getParameter("Cat_ID"));
         String Cname = request.getParameter("Cname");
-        int Cparent_ID = Integer.parseInt(request.getParameter("Cparent_ID"));
         int Level = Integer.parseInt(request.getParameter("Level"));
-        Category c = new Category(id, Cname, Cparent_ID, Level);
-        if (Cparent_ID != -1)
+        int Cparent_ID = 0;
+        if (Level != 1) {
+            Cparent_ID = Integer.parseInt(request.getParameter("Cparent_ID"));
+            Category c = new Category(id, Cname, Cparent_ID, Level);
             CategoryModel.update(c);
-        else CategoryModel.updateCateLv1(c);
+        } else {
+            Category c = new Category(id, Cname, Cparent_ID, Level);
+            CategoryModel.updateCateLv1(c);
+        }
         ServletUtils.redirect("/Admin/Category", request, response);
     }
 
