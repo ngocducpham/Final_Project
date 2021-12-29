@@ -28,6 +28,11 @@ public class ProductDetail {
 
     }
 
+    public ProductDetail(int user_ID, String username){
+        User_ID = user_ID;
+        this.username = username;
+    }
+
     public ProductDetail(int user_ID, int ownerID, String username, LocalDateTime price_Time, int price_of_User, int pro_Auc_ID , int cat_ID, int distance_Price, int pro_ID, String pname, String description, int status, int total_Bid, LocalDateTime start_Time, int current_Price, LocalDateTime end_Time, String owner, String holder) {
         User_ID = user_ID;
         OwnerID = ownerID;

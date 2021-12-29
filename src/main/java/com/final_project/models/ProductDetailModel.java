@@ -157,7 +157,7 @@ public class ProductDetailModel {
                     .executeAndFetch(ProductDetail.class);
             if (result.size() > 0)
                 return result.get(0);
-            return null;
+            return new ProductDetail(-1,"");
         }
     }
 
