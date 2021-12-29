@@ -41,7 +41,7 @@
                 <nav class="mt-10">
                     <c:if test="${adminlogin}">
                         <div>
-                            <a class="w-full text-gray-800  flex items-center pl-6 p-2 my-2 transition-colors duration-200 justify-start border-l-4 border-purple-500"
+                            <a class="w-full text-gray-800  flex items-center pl-6 p-2 my-2 transition-colors duration-200 justify-start"
                                href="${pageContext.request.contextPath}/Admin/Dashboard/">
                                     <span class="text-left">
                                         <span class="iconify h-5 w-5" data-icon="ant-design:home-filled"></span>
@@ -50,7 +50,7 @@
                                         Trang chính
                                     </span>
                             </a>
-                            <a class="w-full text-gray-400 flex items-center pl-6 p-2 my-2 transition-colors duration-200 justify-start hover:text-gray-800 border-l-4 border-transparent"
+                            <a class="w-full text-gray-800 flex items-center pl-6 p-2 my-2 transition-colors duration-200 justify-start hover:text-gray-800 border-l-4 border-transparent"
                                href="${pageContext.request.contextPath}/Admin/User/">
                                     <span class="text-left">
                                        <span class="iconify" data-icon="bx:bxs-user"></span>
@@ -59,7 +59,7 @@
                                        Người dùng
                                     </span>
                             </a>
-                            <a class="w-full text-gray-400 flex items-center pl-6 p-2 my-2 transition-colors duration-200 justify-start hover:text-gray-800 border-l-4 border-transparent"
+                            <a class="w-full text-gray-800 flex items-center pl-6 p-2 my-2 transition-colors duration-200 justify-start hover:text-gray-800 border-l-4 border-transparent"
                                href="${pageContext.request.contextPath}/Admin/Category/">
                                 <span class="text-left">
                                     <span class="w-5 h-5 iconify" data-icon="bx:bx-category"></span>
@@ -69,7 +69,7 @@
                                         Danh mục
                                     </span>
                             </a>
-                            <a class="w-full text-gray-400 flex items-center pl-6 p-2 my-2 transition-colors duration-200 justify-start hover:text-gray-800 border-l-4 border-transparent"
+                            <a class="w-full text-gray-800 flex items-center pl-6 p-2 my-2 transition-colors duration-200 justify-start hover:text-gray-800 border-l-4 border-transparent"
                                href="${pageContext.request.contextPath}/Admin/Product/">
                                     <span class="text-left">
                                         <svg width="20" height="20" fill="currentColor" viewBox="0 0 1792 1792"
@@ -83,7 +83,7 @@
                                         Sản phẩm
                                     </span>
                             </a>
-                            <a class="w-full text-gray-400 flex items-center pl-6 p-2 my-2 transition-colors duration-200 justify-start hover:text-gray-800 border-l-4 border-transparent"
+                            <a class="w-full text-gray-800 flex items-center pl-6 p-2 my-2 transition-colors duration-200 justify-start hover:text-gray-800 border-l-4 border-transparent"
                                href="${pageContext.request.contextPath}/Admin/Request/">
                                     <span class="text-left">
                                         <svg width="20" height="20" fill="currentColor" viewBox="0 0 2048 1792"
@@ -97,7 +97,7 @@
                                         Yêu cầu
                                     </span>
                             </a>
-                            <a class="w-full text-gray-400 flex items-center pl-6 p-2 my-2 transition-colors duration-200 justify-start hover:text-gray-800 border-l-4 border-transparent"
+                            <a class="w-full text-gray-800 flex items-center pl-6 p-2 my-2 transition-colors duration-200 justify-start hover:text-gray-800 border-l-4 border-transparent"
                                href="javascript: $('#frmLogout').submit()">
                                     <span class="text-left">
                                        <span class="iconify" data-icon="entypo:log-out"></span>
