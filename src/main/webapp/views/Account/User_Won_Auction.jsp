@@ -114,7 +114,7 @@
                                      alt="">
                                 <div class='px-2 w-full text-center mt-2'>
                                     <a class='font-semibold w-full hover:underline'
-                                        href="/Final_Project/ProductsDetail?id=${p.pro_ID}">
+                                        href="${pageContext.request.contextPath}/ProductDetail?id=${p.pro_ID}">
                                             ${p.pname}
                                     </a>
                                     <div class="text-sm text-blue-500 font-semibold mt-2">
