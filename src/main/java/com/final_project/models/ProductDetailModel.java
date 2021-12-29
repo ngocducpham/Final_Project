@@ -1,9 +1,6 @@
 package com.final_project.models;
 
-import com.final_project.beans.Aution;
-import com.final_project.beans.MyIntType;
-import com.final_project.beans.Point;
-import com.final_project.beans.ProductDetail;
+import com.final_project.beans.*;
 import com.final_project.utils.DBUtils;
 import org.sql2o.Connection;
 
@@ -257,4 +254,5 @@ public class ProductDetailModel {
                     .executeAndFetch(String.class).get(0);
         }
     }
+
 }

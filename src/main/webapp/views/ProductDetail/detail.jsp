@@ -244,6 +244,7 @@
                         </div>
                     </div>
                     <!-- thông tin -->
+
                     <div style='width: 430px;'>
                         <div class='text-3xl text-gray-700 font-bold'>${proDetail.pname}</div>
                         <div class='mt-10'>
@@ -253,7 +254,9 @@
                             <div class='text-gray-600'>
                                 <div class='flex justify-between border-b-2 border-dashed font-medium  mb-3'>
                                     <div>Thông tin người bán:</div>
+                                    <a href="${pageContext.request.contextPath}/Personal/Rate_Seller?seller_id=${owner.user_ID}&pro_id=${proDetail.pro_ID}" class="hover:underline">
                                     <div>${owner.username}</div>
+                                    </a>
                                 </div>
                                 <div class='flex justify-between border-b-2 border-dashed font-medium  mb-3'>
                                     <div>Thời điểm đăng bán:</div>
@@ -261,7 +264,11 @@
                                 </div>
                                 <div class='flex justify-between border-b-2 border-dashed font-medium mb-3'>
                                     <div>Người đặt giá cao nhất:</div>
+<%--                                    <c:forEach items="${bidderList}" var="b">--%>
+<%--                                        <a href="${pageContext.request.contextPath}/Personal/Rate_Bidder?bidder=${b.user_ID}&pro_id=${proDetail.pro_ID}" class="hover:underline"><div id="current__bid"></div></a>--%>
+<%--                                    </c:forEach>--%>
                                     <div id="current__bid"></div>
+
                                 </div>
                                 <div class='flex justify-between border-b-2 border-dashed font-medium mb-xl-3'>
                                     <div>Giá hiện tại:</div>

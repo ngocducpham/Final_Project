@@ -23,6 +23,7 @@ public class ProductDetail {
     private int OwnerID;
     private int User_ID;
 
+
     public ProductDetail(){
 
     }

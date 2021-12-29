@@ -2,8 +2,10 @@ package com.final_project.controllers;
 
 import com.final_project.beans.MyIntType;
 import com.final_project.beans.ProductDetail;
+import com.final_project.beans.Rates;
 import com.final_project.beans.User;
 import com.final_project.models.ProductDetailModel;
+import com.final_project.models.RatesModel;
 import com.final_project.utils.ServletUtils;
 
 import javax.servlet.*;
@@ -62,6 +64,8 @@ public class ProductDetailServlet extends HttpServlet {
         request.setAttribute("history", history);
         request.setAttribute("relative", fiveRelative);
         request.setAttribute("proDetail", productDetail);
+
+
         ServletUtils.forward("views/ProductDetail/detail.jsp", request, response);
     }
 

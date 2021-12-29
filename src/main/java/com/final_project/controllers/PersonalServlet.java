@@ -64,6 +64,13 @@ public class PersonalServlet extends HttpServlet {
                 case "/My_Post_Products":
                     Get_My_Post_Product(request, response, user);
                     break;
+                case "/UpdateDescription":
+                    String productID = request.getParameter("id");
+                    String productName = ProductDetailModel.getProductName(productID);
+                    request.setAttribute("proname", productName);
+                    request.setAttribute("proid", productID);
+                    ServletUtils.forward("/views/Account/UpdateProductDescription.jsp", request, response);
+                    break;
                 case "/Rate_Seller":
                     int id = Integer.parseInt(request.getParameter("seller_id"));
                     int pro_id=Integer.parseInt(request.getParameter("pro_id"));
@@ -76,13 +83,7 @@ public class PersonalServlet extends HttpServlet {
                     request.setAttribute("Select", r);
                     ServletUtils.forward("/views/Account/Rate_Seller.jsp", request, response);
                     break;
-                case "/UpdateDescription":
-                    String productID = request.getParameter("id");
-                    String productName = ProductDetailModel.getProductName(productID);
-                    request.setAttribute("proname", productName);
-                    request.setAttribute("proid", productID);
-                    ServletUtils.forward("/views/Account/UpdateProductDescription.jsp", request, response);
-                    break;
+
                 case "/Rate_Bidder":
                     int id1 = Integer.parseInt(request.getParameter("bidder"));
                     int pro_id1=Integer.parseInt(request.getParameter("pro_id"));
