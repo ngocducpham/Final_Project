@@ -8,7 +8,9 @@ import java.util.List;
 
 public class Check_Category_Model {
     public static Category Find_By_Cat_ID(int id) {
-        final String query = "select Cat_ID from products where Cat_ID = :Cat_ID";
+        final String query = "select c.Cat_ID\n" +
+                "                from products join categories c on c.Cat_ID = products.Cat_ID\n" +
+                "                where c.Cat_ID = :Cat_ID or Cparent_ID =:Cat_ID";
         try (Connection con1 = DBUtils.getConnection()) {
             List<Category> list = con1.createQuery(query)
                     .addParameter("Cat_ID", id)
