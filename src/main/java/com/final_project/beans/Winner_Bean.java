@@ -4,8 +4,8 @@ import java.time.LocalDateTime;
 
 public class Winner_Bean {
     private String owner_name, owner_email, Pname, winner_name, winner_email;
-    private LocalDateTime End_Time,Price_Time;
-    private int total_bid, winner_price,Pro_id,Pro_Auc_ID;
+    private LocalDateTime End_Time,Price_Time,min_price_time;
+    private int total_bid, winner_price,Pro_id,Pro_Auc_ID,winner_id;
 
     public Winner_Bean(String owner_name, String owner_email, String pname, String winner_name, String winner_email, LocalDateTime end_Time, int total_bid, int winner_price, int pro_id) {
         this.owner_name = owner_name;
@@ -19,12 +19,28 @@ public class Winner_Bean {
         Pro_id = pro_id;
     }
 
+    public LocalDateTime getMin_price_time() {
+        return min_price_time;
+    }
+
+    public void setMin_price_time(LocalDateTime min_price_time) {
+        this.min_price_time = min_price_time;
+    }
+
     public int getPro_Auc_ID() {
         return Pro_Auc_ID;
     }
 
     public void setPro_Auc_ID(int pro_Auc_ID) {
         Pro_Auc_ID = pro_Auc_ID;
+    }
+
+    public int getWinner_id() {
+        return winner_id;
+    }
+
+    public void setWinner_id(int winner_id) {
+        this.winner_id = winner_id;
     }
 
     public LocalDateTime getPrice_Time() {

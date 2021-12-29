@@ -11,14 +11,15 @@ public class Check_Win_Model {
         final String query = "select U1.Username          as owner_name,\n" +
                 "       U1.email             as owner_email,\n" +
                 "       p.Pname,\n" +
-                "       pa.Pro_Auc_ID,\n" +
+                "       pa.Pro_Auc_ID       as Pro_Auc_ID,\n" +
                 "       pa.End_Time,\n" +
                 "       pa.total_bid,\n" +
                 "       pa.Pro_ID,\n" +
                 "       pa.Current_Price as winner_price,\n" +
                 "       U2.Username          as winner_name,\n" +
                 "       U2.email             as winner_email,\n" +
-                "       min(a.Price_Time)\n" +
+                "       U2.User_ID           as winner_id," +
+                "       min(a.Price_Time)    as min_price_time\n" +
                 "from products p\n" +
                 "         left join magage m on p.Pro_ID = m.Pro_ID\n" +
                 "         left join users U1 on U1.User_ID = m.User_ID\n" +

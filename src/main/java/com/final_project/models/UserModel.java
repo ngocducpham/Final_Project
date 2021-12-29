@@ -310,6 +310,14 @@ public class UserModel {
         }
     }
 
-
-
+    public static void add_To_win_list(int Pro_Auc_ID, int User_ID) {
+        String sql = "insert into win_list (Pro_Auc_ID, User_ID)\n" +
+                "values (:Pro_Auc_ID,:User_ID);";
+        try (Connection conn = DBUtils.getConnection()) {
+            conn.createQuery(sql)
+                    .addParameter("Pro_Auc_ID", Pro_Auc_ID)
+                    .addParameter("User_ID", User_ID)
+                    .executeUpdate();
+        }
+    }
 }
