@@ -33,19 +33,13 @@
         <div class="profile ">
 
             <div class="top_header d-flex justify-content-between">
-                <h4 class="h__profile ">
-                    SẢN PHẨM ĐĂNG BÁN
-                </h4>
-                <div>
-                    <a class="btn btn-outline-success" role="button"
-                       href="${pageContext.request.contextPath}/Personal/My_Post_Products">
-                        <i class="fa fa-check" aria-hidden="true"> List</i>
-                    </a>
+                <div style="font-weight: bold;font-size: 36px">Đăng bán <span
+                        style="color:red;">sản phẩm</span>
                 </div>
 
             </div>
 
-            <div class="boxProfile ">
+            <div class="boxProfile mt-5">
                 <form action="" method="post" enctype="multipart/form-data">
                     <div class="form-row">
                         <div class="form-group col-md-6">
@@ -84,7 +78,7 @@
                     </div>
                         <%--Up hình--%>
                     <div class="form-group">
-                        <label for="img_main">Hình ảnh Chính</label>
+                        <label for="img_main">Hình ảnh chính</label>
                         <input type="file" required class="form-control background" name="img_main" id="img_main"
                                value="">
                     </div>
@@ -95,17 +89,17 @@
                                value="">
                     </div>
                     <div class="form-group">
-                        <label for="img2">Hình ảnh Phụ 2</label>
+                        <label for="img2">Hình ảnh phụ 2</label>
                         <input type="file" required class="form-control background" name="img2" id="img2"
                                value="">
                     </div>
                     <div class="form-group">
-                        <label for="img3">Hình ảnh Phụ 3</label>
+                        <label for="img3">Hình ảnh phụ 3</label>
                         <input type="file" required class="form-control background" name="img3" id="img3"
                                value="">
                     </div>
                     <div class="form-group">
-                        <label for="img4">Hình ảnh Phụ 4</label>
+                        <label for="img4">Hình ảnh phụ 4</label>
                         <input type="file" required class="form-control background" name="img4" id="img4"
                                value="">
                     </div>
