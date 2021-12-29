@@ -31,7 +31,7 @@ public class PersonalServlet extends HttpServlet {
             HttpSession session = request.getSession();
             User user = (User) session.getAttribute("authUser");
             boolean auth = (boolean) session.getAttribute("Verified");
-            if(!auth){
+            if (!auth) {
                 ServletUtils.forward("views/404/index.jsp", request, response);
             }
             switch (path) {
@@ -73,7 +73,7 @@ public class PersonalServlet extends HttpServlet {
                     break;
                 case "/Rate_Seller":
                     int id = Integer.parseInt(request.getParameter("seller_id"));
-                    int pro_id=Integer.parseInt(request.getParameter("pro_id"));
+                    int pro_id = Integer.parseInt(request.getParameter("pro_id"));
                     int Bidder_id = user.getUser_ID();
                     Rates r = RatesModel.Select(id, pro_id);
                     r.setBidder(Bidder_id);
@@ -86,7 +86,7 @@ public class PersonalServlet extends HttpServlet {
 
                 case "/Rate_Bidder":
                     int id1 = Integer.parseInt(request.getParameter("bidder"));
-                    int pro_id1=Integer.parseInt(request.getParameter("pro_id"));
+                    int pro_id1 = Integer.parseInt(request.getParameter("pro_id"));
                     int Seller_id = user.getUser_ID();
                     Rates r1 = RatesModel.Select1(id1, pro_id1);
                     r1.setSeller_ID(Seller_id);
@@ -116,7 +116,6 @@ public class PersonalServlet extends HttpServlet {
             }
         }
     }
-
 
 
     @Override
@@ -166,7 +165,7 @@ public class PersonalServlet extends HttpServlet {
         String query = "select description from products where Pro_ID = :proid";
         String oldDesc = "";
         try (Connection con = DBUtils.getConnection()) {
-             oldDesc = con.createQuery(query)
+            oldDesc = con.createQuery(query)
                     .addParameter("proid", proID)
                     .executeAndFetchFirst(String.class);
         }
@@ -223,7 +222,8 @@ public class PersonalServlet extends HttpServlet {
 
     private void Get_Request(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        UserModel.Add_Request(id);
+        if (!UserModel.Check_Request(id))
+            UserModel.Add_Request(id);
         ServletUtils.redirect("/", request, response);
     }
 
@@ -265,14 +265,13 @@ public class PersonalServlet extends HttpServlet {
         int Seller_ID = Integer.parseInt(request.getParameter("Seller_ID"));
         int Pro_ID = Integer.parseInt(request.getParameter("Pro_ID"));
         int Vote = Integer.parseInt(request.getParameter("Vote"));
-        String Comment= request.getParameter("Comment");
+        String Comment = request.getParameter("Comment");
         Rates p = new Rates(Seller_ID, Type, u.getUser_ID(), Pro_ID, Vote, Comment);
-        if(!RatesModel.Check_Bidder_Vote(p)){
+        if (!RatesModel.Check_Bidder_Vote(p)) {
             RatesModel.Insert(p);
-            if(Vote == 1){
+            if (Vote == 1) {
                 RatesModel.Point_Up(Seller_ID);
-            }
-            else {
+            } else {
                 RatesModel.Point_Down(Seller_ID);
             }
         }
@@ -288,14 +287,13 @@ public class PersonalServlet extends HttpServlet {
         int Bidder = Integer.parseInt(request.getParameter("Bidder"));
         int Pro_ID = Integer.parseInt(request.getParameter("Pro_ID"));
         int Vote = Integer.parseInt(request.getParameter("Vote"));
-        String Comment= request.getParameter("Comment");
+        String Comment = request.getParameter("Comment");
         Rates p = new Rates(u.getUser_ID(), Type, Bidder, Pro_ID, Vote, Comment);
-        if(!RatesModel.Check_SellerID_Vote(p)){
+        if (!RatesModel.Check_SellerID_Vote(p)) {
             RatesModel.Insert(p);
-            if(Vote == 1){
+            if (Vote == 1) {
                 RatesModel.Point_Up(Bidder);
-            }
-            else {
+            } else {
                 RatesModel.Point_Down(Bidder);
             }
         }

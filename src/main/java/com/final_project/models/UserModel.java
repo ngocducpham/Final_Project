@@ -119,6 +119,16 @@ public class UserModel {
         }
     }
 
+    public static Boolean Check_Request(int User_Id) {
+        final String query = "select Request_ID from request where User_ID=:User_Id;";
+        try (Connection conn = DBUtils.getConnection()) {
+            List<Integer> list = conn.createQuery(query)
+                    .addParameter("User_Id", User_Id)
+                    .executeAndFetch(Integer.class);
+            return list.size() != 0;
+        }
+    }
+
     public static void Add_Request(int id) {
         final String query = "Insert into auctionweb.request(user_id) values(:id)";
         try (Connection conn = DBUtils.getConnection()) {
@@ -260,7 +270,7 @@ public class UserModel {
                 "                p.Pro_ID,\n" +
                 "                pa.Current_Price as winner_price,\n" +
                 "                U2.Username          as username,\n" +
-                "                U2.User_ID           as winner_id"+
+                "                U2.User_ID           as winner_id" +
                 "         from products p\n" +
                 "                  left join magage m on p.Pro_ID = m.Pro_ID\n" +
                 "                  left join users U1 on U1.User_ID = m.User_ID\n" +
