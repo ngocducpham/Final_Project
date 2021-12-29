@@ -109,10 +109,10 @@
                         <img src="${pageContext.request.contextPath}/public/imgs/capcha.jpg" alt="Captcha_imgs">
                         <span class="captcha"></span>
                     </div>
-                    <button class="reload-btn"><i class="fas fa-redo-alt"></i></button>
+                    <button type="button" class="reload-btn" id="reload-btn"><i class="fas fa-redo-alt"></i></button>
                 </div>
                 <input type="text" placeholder="Enter captcha" maxlength="6" spellcheck="false" id="text-box" required>
-                <button class="check-btn">Check</button>
+                <button class="check-btn" id="check-btn">Check</button>
                 <div class="status-text"></div>
             </div>
 
