@@ -57,12 +57,12 @@ public class ProductDetailModel {
     }
 
     public static List<ProductDetail> bidHistory(String proAuID) {
-        String query = "select Pro_ID, username, Price_Time, Price_of_User\n" +
+        String query = "select Pro_ID, username, Price_Time, Price_of_User, u.User_ID\n" +
                 "from product_auction\n" +
                 "         join auction a on product_auction.Pro_Auc_ID = a.Pro_Auc_ID\n" +
                 "         join users u on u.User_ID = a.User_ID\n" +
-                "where a.Pro_Auc_ID = :id " +
-                "order by Price_of_User DESC ";
+                "where a.Pro_Auc_ID = :id\n" +
+                "order by Price_of_User DESC";
         try (Connection con = DBUtils.getConnection()) {
             return con.createQuery(query)
                     .addParameter("id", proAuID)
@@ -144,19 +144,20 @@ public class ProductDetailModel {
         }
     }
 
-    public static String currentBidder(String proAuID) {
-        String query = "select username\n" +
-                "from auction join users u on u.User_ID = auction.User_ID\n" +
+    public static ProductDetail currentBidder(String proAuID) {
+        String query = "select username, u.User_ID\n" +
+                "from auction\n" +
+                "         join users u on u.User_ID = auction.User_ID\n" +
                 "where Pro_Auc_ID = :id\n" +
                 "order by Price_of_User desc\n" +
-                "limit 1\n";
+                "limit 1";
         try (Connection con = DBUtils.getConnection()) {
-            List<String> result = con.createQuery(query)
+            List<ProductDetail> result = con.createQuery(query)
                     .addParameter("id", proAuID)
-                    .executeAndFetch(String.class);
+                    .executeAndFetch(ProductDetail.class);
             if (result.size() > 0)
                 return result.get(0);
-            return "";
+            return null;
         }
     }
 

@@ -8,7 +8,7 @@
 <jsp:useBean id="history" scope="request" type="java.util.List<com.final_project.beans.ProductDetail>"/>
 <jsp:useBean id="Verified" scope="session" type="java.lang.Boolean"/>
 <jsp:useBean id="authUser" scope="session" type="com.final_project.beans.User"/>
-<jsp:useBean id="currentBid" scope="request" type="java.lang.String"/>
+<jsp:useBean id="currentBid" scope="request" type="com.final_project.beans.ProductDetail"/>
 <jsp:useBean id="blacklist" scope="request" type="com.final_project.beans.MyIntType"/>
 <jsp:useBean id="bidderList" scope="request" type="java.util.List<com.final_project.beans.ProductDetail>"/>
 <jsp:useBean id="owner" scope="request" type="com.final_project.beans.ProductDetail"/>
@@ -173,9 +173,9 @@
                 nameContainer[i].innerText = "****" + name;
             }
             let currentBid = document.getElementById('current__bid');
-            let topBidName = '${currentBid}';
+            let topBidName = '${currentBid.username}';
             if(topBidName != '')
-            currentBid.innerText = '****' + topBidName.slice(Math.ceil(topBidName.length * 0.3));
+                currentBid.innerText = '****' + topBidName.slice(Math.ceil(topBidName.length * 0.3));
         </script>
     </jsp:attribute>
     <jsp:body>
