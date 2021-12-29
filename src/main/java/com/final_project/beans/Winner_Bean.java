@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 public class Winner_Bean {
     private String owner_name, owner_email, Pname, winner_name, winner_email;
     private LocalDateTime End_Time,Price_Time;
-    private int total_bid, winner_price,Pro_id;
+    private int total_bid, winner_price,Pro_id,Pro_Auc_ID;
 
     public Winner_Bean(String owner_name, String owner_email, String pname, String winner_name, String winner_email, LocalDateTime end_Time, int total_bid, int winner_price, int pro_id) {
         this.owner_name = owner_name;
@@ -17,6 +17,14 @@ public class Winner_Bean {
         this.total_bid = total_bid;
         this.winner_price = winner_price;
         Pro_id = pro_id;
+    }
+
+    public int getPro_Auc_ID() {
+        return Pro_Auc_ID;
+    }
+
+    public void setPro_Auc_ID(int pro_Auc_ID) {
+        Pro_Auc_ID = pro_Auc_ID;
     }
 
     public LocalDateTime getPrice_Time() {

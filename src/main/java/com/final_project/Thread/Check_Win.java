@@ -70,6 +70,8 @@ class ScheduledTask extends TimerTask {
 
                     // sua status san pham thanh 0
                     ManagerModel.blockProduct(wb.getPro_id());
+
+                    // them id nguoi thang va id san pham vao win_list
                 }
             }
         }
