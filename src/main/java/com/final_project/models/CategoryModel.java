@@ -45,7 +45,7 @@ public class CategoryModel {
     }
 
   public static void updateCateLv1(Category c) {
-    String Sql = "update categories set Cname = :Cname, Level = :Level where Cat_ID = :Cat_ID";
+    String Sql = "update categories set Cname = :Cname, Cparent_ID = null , Level = :Level where Cat_ID = :Cat_ID";
     try (Connection con = DBUtils.getConnection()) {
       con.createQuery(Sql)
               .addParameter("Cat_ID", c.getCat_ID())

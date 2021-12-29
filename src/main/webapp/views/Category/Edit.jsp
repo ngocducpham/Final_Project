@@ -21,12 +21,13 @@
 
                  selectChonCap.addEventListener('change', () => {
                      if (selectChonCap.value == 1) {
+                         document.getElementById('txtCatParentID').remove();
                          let backDrop = document.createElement('input');
                          backDrop.setAttribute('id','backdrop');
-                         backDrop.setAttribute('type','hidden');
+                         backDrop.className = 'hidden';
                          backDrop.setAttribute('id','backdrop');
-                         backDrop.setSelectionRange('name','Cparent_ID');
-                         backDrop.setSelectionRange('value','-1');
+                         backDrop.setAttribute('name','Cparent_ID');
+                         backDrop.setAttribute('value','-1');
                          document.getElementById('FormCategory').appendChild(backDrop);
 
                      } else if (selectChonCap.value == 2) {
