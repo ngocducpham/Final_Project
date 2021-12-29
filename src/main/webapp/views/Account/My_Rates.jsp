@@ -20,14 +20,14 @@
         <div class="card mt-10">
 
             <c:choose>
-                <c:when test="${Get_Rates.size() == 0}">
+                <c:when test="${Get_Rates.size()==0 }">
                     <div class="card-body">
                         <p class="card-text">Không có dữ liệu.</p>
                     </div>
                 </c:when>
                 <c:otherwise>
                     <div class="card-body">
-                        <table class="table table-hover text-md">
+                        <table class="table table-hover text-sm">
                             <thead>
                             <tr>
                                 <th>ID bidder rates</th>
@@ -39,7 +39,7 @@
                             </thead>
                             <tbody>
                             <c:forEach items="${Get_Rates}" var="c">
-                                <c:if test="${c.type == 1}">
+                                <c:if test="${c.type == 1 && c.seller_ID == authUser.user_ID}">
                                 <tr>
                                     <td>${c.bidder}
                                     </td>

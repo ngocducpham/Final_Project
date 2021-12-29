@@ -26,7 +26,7 @@
                         <input type="password" class="form-control" id="txtPass" name="Pass" readonly value="${users.pass}">
                     </div>
                 </div>
-                <div class="card-footer">
+                <div class="card-footer d-flex justify-between">
                     <a class="btn btn-outline-success" href="${pageContext.request.contextPath}/Admin/User/" role="button">
                         <i class="fa fa-backward" aria-hidden="true"></i>
                         List

@@ -64,7 +64,7 @@
 
                 </div>
 
-                <div class="card-footer">
+                <div class="card-footer d-flex justify-between">
                     <a class="btn btn-outline-success" href="${pageContext.request.contextPath}/Admin/Product/" role="button">
                         <i class="fa fa-backward" aria-hidden="true"></i>
                         List
