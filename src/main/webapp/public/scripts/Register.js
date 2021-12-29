@@ -30,6 +30,15 @@ $('#FormRegister').on('submit', function (e) {
         return;
     }
 
+    let d = document.getElementById('DOB').value.toString();
+    let Dob = parseInt(d.substring(6, 10));
+    let today = new Date();
+    let this_year = today.getFullYear();
+
+    if(this_year-Dob<18){
+        alert("you are not older than 18 !!!")
+    }
+
     if (capcha_check === false) {
         alert("capcha không đúng");
         return;
