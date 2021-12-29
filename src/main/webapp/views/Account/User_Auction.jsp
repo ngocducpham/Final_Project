@@ -92,7 +92,7 @@
                                 <div class='px-2 w-full text-center mt-2'>
                                     <a class='font-semibold w-full hover:underline'>${p.pname}</a>
                                     <div class='text-sm text-gray-500 font-semibold mt-3'>
-                                        Giá hiện tại:
+                                        Giá của bạn:
                                         <c:choose>
                                             <c:when test="${p.max_price >0}">
                                                 <span><fmt:formatNumber value="${p.max_price}" type="number"/> đ</span>

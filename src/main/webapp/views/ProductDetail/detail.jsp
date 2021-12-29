@@ -169,16 +169,15 @@
 
             let nameContainer = document.querySelectorAll('.bidderListName');
             for (let i = 0; i < bidderListName.length; i++) {
-                if('${authUser.user_ID}' != '${owner.user_ID}') {
+                if ('${authUser.user_ID}' != '${owner.user_ID}') {
                     let name = bidderListName[i].slice(Math.ceil(bidderListName[i].length * 0.3));
                     nameContainer[i].innerText = "****" + name;
-                }
-                else nameContainer[i].innerText = bidderListName[i];
+                } else nameContainer[i].innerText = bidderListName[i];
             }
             let currentBid = document.getElementById('current__bid');
             let topBidName = '${currentBid.username}';
             if (topBidName != '') {
-                if('${authUser.user_ID}' != '${owner.user_ID}')
+                if ('${authUser.user_ID}' != '${owner.user_ID}')
                     currentBid.innerText = '****' + topBidName.slice(Math.ceil(topBidName.length * 0.3));
                 else
                     currentBid.innerText = topBidName;
@@ -261,10 +260,9 @@
                             <div class='text-gray-600'>
                                 <div class='flex justify-between border-b-2 border-dashed font-medium  mb-3'>
                                     <div>Thông tin người bán:</div>
-                                    <a href="${pageContext.request.contextPath}/Personal/Rate_Seller?seller_id=${owner.user_ID}&pro_id=${proDetail.pro_ID}"
-                                       class="hover:underline">
-                                        <div>${owner.username}</div>
-                                    </a>
+
+                                    <div>${owner.username}</div>
+
                                 </div>
                                 <div class='flex justify-between border-b-2 border-dashed font-medium  mb-3'>
                                     <div>Thời điểm đăng bán:</div>
@@ -272,10 +270,8 @@
                                 </div>
                                 <div class='flex justify-between border-b-2 border-dashed font-medium mb-3'>
                                     <div>Người đặt giá cao nhất:</div>
-                                    <div>
-                                        <a id="current__bid"
-                                           href="${pageContext.request.contextPath}/Personal/Rate_Bidder?bidder=${currentBid.user_ID}&pro_id=${proDetail.pro_ID}"
-                                           class="hover:underline"> </a>
+                                    <div id="current__bid">
+
                                     </div>
 
                                 </div>

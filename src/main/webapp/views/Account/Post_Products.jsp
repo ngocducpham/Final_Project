@@ -36,7 +36,7 @@
                 <h4 class="h__profile ">
                     SẢN PHẨM ĐĂNG BÁN
                 </h4>
-                <div >
+                <div>
                     <a class="btn btn-outline-success" role="button"
                        href="${pageContext.request.contextPath}/Personal/My_Post_Products">
                         <i class="fa fa-check" aria-hidden="true"> List</i>
@@ -50,32 +50,27 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="pname">Tên sản phẩm</label>
-                            <input type="text" class="form-control background" name="Pname" id="pname"
-                                   placeholder="iPhone 13"
-                                   value="">
+                            <input type="text" required class="form-control background" name="Pname" id="pname"
+                            >
                         </div>
                         <div class="form-group col-md-6">
                             <label for="price">Giá khởi điểm</label>
-                            <input type="text" class="form-control background" name="Price" id="price"
-                                   value="" placeholder="16.000.000 VND">
+                            <input type="text" required class="form-control background" name="Price" id="price"
+                            >
                         </div>
                         <div class="form-group col-md-6">
                             <label for="step_price">Bước Giá</label>
-                            <input type="text" class="form-control background" name="Step-Price" id="step_price"
-                                   placeholder="500.000 VND"
-                                   value="">
+                            <input type="text" required class="form-control background" name="Step-Price" id="step_price"
+
+                            >
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="catid">Chọn danh mục</label>
                         <select class="custom-select" name="Cat_ID" id="catid">
-                            <option value="6">6--Quần áo</option>
-                            <option value="7">7--Giày dép</option>
-                            <option value="8">8--Dụng cụ thể thao</option>
-                            <option value="9">9--Thực phẩm hỗ trợ</option>
-                            <option value="10">10--Laptop</option>
-                            <option value="11">11--Điện thoại</option>
-                            <option value="12">12--Đồng hồ</option>
+                            <c:forEach items="${Category}" var="p">
+                                <option value="${p.cat_ID}">${p.cname}</option>
+                            </c:forEach>
                         </select>
                     </div>
 
@@ -90,28 +85,28 @@
                         <%--Up hình--%>
                     <div class="form-group">
                         <label for="img_main">Hình ảnh Chính</label>
-                        <input type="file" class="form-control background" name="img_main" id="img_main"
+                        <input type="file" required class="form-control background" name="img_main" id="img_main"
                                value="">
                     </div>
 
                     <div class="form-group">
                         <label for="img1">Hình ảnh phụ 1</label>
-                        <input type="file" class="form-control background" name="img1" id="img1"
+                        <input type="file" required class="form-control background" name="img1" id="img1"
                                value="">
                     </div>
                     <div class="form-group">
                         <label for="img2">Hình ảnh Phụ 2</label>
-                        <input type="file" class="form-control background" name="img2" id="img2"
+                        <input type="file" required class="form-control background" name="img2" id="img2"
                                value="">
                     </div>
                     <div class="form-group">
                         <label for="img3">Hình ảnh Phụ 3</label>
-                        <input type="file" class="form-control background" name="img3" id="img3"
+                        <input type="file" required class="form-control background" name="img3" id="img3"
                                value="">
                     </div>
                     <div class="form-group">
                         <label for="img4">Hình ảnh Phụ 4</label>
-                        <input type="file" class="form-control background" name="img4" id="img4"
+                        <input type="file" required class="form-control background" name="img4" id="img4"
                                value="">
                     </div>
 

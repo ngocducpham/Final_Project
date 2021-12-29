@@ -30,6 +30,7 @@ public class MailSender {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(fromServer));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mail_to));
+            message.setHeader("Content-Type", "text/plain; charset=UTF-8");
             message.setSubject(header);
             message.setText(content);
             Transport.send(message);
