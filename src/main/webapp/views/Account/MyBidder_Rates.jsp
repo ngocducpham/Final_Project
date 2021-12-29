@@ -28,7 +28,7 @@
                 </c:when>
                 <c:otherwise>
                     <div class="card-body">
-                        <table class="table table-hover text-md">
+                        <table class="table table-hover text-sm">
                             <thead>
                             <tr>
                                 <th>ID seller rates</th>
@@ -40,7 +40,7 @@
                             </thead>
                             <tbody>
                             <c:forEach items="${Get_Rates}" var="c">
-                                <c:if test="${c.type == 2}">
+                                <c:if test="${c.type == 2 && c.bidder == authUser.user_ID}">
                                 <tr>
                                     <td>${c.seller_ID}
                                     </td>

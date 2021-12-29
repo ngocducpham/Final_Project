@@ -56,7 +56,7 @@
                                value="${category.cname}">
                     </div>
                 </div>
-                <div class="card-footer">
+                <div class="card-footer d-flex justify-between">
                     <a class="btn btn-outline-success" href="${pageContext.request.contextPath}/Admin/Category/"
                        role="button">
                         <i class="fa fa-backward" aria-hidden="true"></i>
