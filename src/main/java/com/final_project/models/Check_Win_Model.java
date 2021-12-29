@@ -11,6 +11,7 @@ public class Check_Win_Model {
         final String query = "select U1.Username          as owner_name,\n" +
                 "       U1.email             as owner_email,\n" +
                 "       p.Pname,\n" +
+                "       pa.Pro_Auc_ID,\n" +
                 "       pa.End_Time,\n" +
                 "       pa.total_bid,\n" +
                 "       pa.Pro_ID,\n" +
