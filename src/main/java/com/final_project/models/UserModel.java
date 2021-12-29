@@ -18,7 +18,7 @@ public class UserModel {
     }
 
     public static void update(User u) {
-        String updateSql = "UPDATE users SET userrole = :userrole WHERE User_ID = :User_ID";
+        String updateSql = "UPDATE users SET userrole = :userrole, Seller_Expired_Date = date_add(NOW(), interval 7 day ) WHERE User_ID = :User_ID";
         try (Connection con = DBUtils.getConnection()) {
             con.createQuery(updateSql)
                     .addParameter("userrole", u.getUserrole())
