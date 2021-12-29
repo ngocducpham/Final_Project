@@ -58,7 +58,7 @@ public class BackGroundServlet extends HttpServlet implements Runnable {
 
                             // gui toi nguoi thang
                             String content_to_winner = "Congratulation " + wb.getWinner_name() + "\n" +
-                                    "You are the winner of product: " + wb.getPname() + " with price: " + wb.getWinner_price() + " after " + wb.getTotal_bid() + "\n" +
+                                    "You are the winner of product: " + wb.getPname() + " with price: " + wb.getWinner_price() + " after " + wb.getTotal_bid() + " bids" + "\n" +
                                     "at " + wb.getEnd_Time();
 
                             String mail_to_winner = wb.getWinner_email();
