@@ -3,28 +3,41 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<jsp:useBean id="category" scope="request" type="com.final_project.beans.Category" />
-<jsp:useBean id="categoriesss" scope="request" type="java.util.List<com.final_project.beans.Category>" />
+<jsp:useBean id="category" scope="request" type="com.final_project.beans.Category"/>
+<jsp:useBean id="categoriesss" scope="request" type="java.util.List<com.final_project.beans.Category>"/>
 
 <t:admin>
-    <jsp:attribute name="js" >
+    <jsp:attribute name="js">
 
              <script>
                  let danhMucCap1 = [];
                  <c:forEach items="${categoriesss}" var="c">
-                 danhMucCap1.push(["${c.cat_ID}","${c.cname}"]);
+                 danhMucCap1.push(["${c.cat_ID}", "${c.cname}"]);
                  </c:forEach>
 
                  let selectChonCap = document.getElementById('txtLevel');
 
                  let selectCap1;
 
-                 selectChonCap.addEventListener('change',()=>{
-                     if(selectChonCap.value == 2){
+                 selectChonCap.addEventListener('change', () => {
+                     if (selectChonCap.value == 1) {
+                         let backDrop = document.createElement('input');
+                         backDrop.setAttribute('id','backdrop');
+                         backDrop.setAttribute('type','hidden');
+                         backDrop.setAttribute('id','backdrop');
+                         backDrop.setSelectionRange('name','Cparent_ID');
+                         backDrop.setSelectionRange('value','-1');
+                         document.getElementById('FormCategory').appendChild(backDrop);
+
+                     } else if (selectChonCap.value == 2) {
+                         let backdrop = document.getElementById('backdrop');
+                         if (backdrop != null) {
+                             backdrop.remove();
+                         }
                          // tạo select, bỏ option vô select, bỏ select vô category1
                          selectCap1 = document.createElement('select');
-                         selectCap1.setAttribute('name','Cparent_ID');
-                         selectCap1.setAttribute('id','txtCatParentID');
+                         selectCap1.setAttribute('name', 'Cparent_ID');
+                         selectCap1.setAttribute('id', 'txtCatParentID');
                          selectCap1.classList.add("custom-select");
 
                          for (let index = 0; index < danhMucCap1.length; index++) {
@@ -37,8 +50,7 @@
 
                          let cardBody = document.querySelector('.category1');
                          cardBody.appendChild(selectCap1);
-                     }
-                     else{
+                     } else {
                          selectCap1.remove();
                      }
                  })
@@ -46,49 +58,53 @@
 
 
         </jsp:attribute>
-        <jsp:body>
-            <form action="" method="post" id="FormCategory">
-                <div class="card">
-                    <div class="card-header">
-                        Sửa danh mục
+    <jsp:body>
+        <form action="" method="post" id="FormCategory">
+            <input name="Cparent_ID" id="backdrop" type="hidden" value="-1">
+            <div class="card">
+                <div class="card-header">
+                    Sửa danh mục
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="txtCatID">#</label>
+                        <input type="text" class="form-control" id="txtCatID" name="Cat_ID" readonly
+                               value="${category.cat_ID}">
                     </div>
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="txtCatID">#</label>
-                            <input type="text" class="form-control" id="txtCatID" name="Cat_ID" readonly value="${category.cat_ID}">
-                        </div>
-                        <div class="form-group">
-                            <label for="txtCatName">Tên</label>
-                            <input type="text" class="form-control" id="txtCatName" name="Cname" autofocus value="${category.cname}">
-                        </div>
-                        <div class="form-group">
-                            <label for="txtLevel">Cấp danh mục</label>
-                        </div>
-                        <div class="input-group mb-3">
-                            <select class="custom-select" name="Level" id="txtLevel">
-                                <option value="1">Cấp 1</option>
-                                <option value="2">Cấp 2</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group category1 mt-4 ">
-                            <label class="pr-3">Mặt hàng</label>
-
-                        </div>
+                    <div class="form-group">
+                        <label for="txtCatName">Tên</label>
+                        <input type="text" class="form-control" id="txtCatName" name="Cname" autofocus
+                               value="${category.cname}">
                     </div>
-                    <div class="card-footer">
-                        <a class="btn btn-outline-success" href="${pageContext.request.contextPath}/Admin/Category/" role="button">
-                            <i class="fa fa-backward" aria-hidden="true"></i>
-                            List
-                        </a>
-                        <button type="submit" class="btn btn-primary text-blue-600"
-                                formaction="${pageContext.request.contextPath}/Admin/Category/Update">
-                            <i class="fa fa-check" aria-hidden="true"></i>
-                            Save
-                        </button>
+                    <div class="form-group">
+                        <label for="txtLevel">Cấp danh mục</label>
+                    </div>
+                    <div class="input-group mb-3">
+                        <select class="custom-select" name="Level" id="txtLevel">
+                            <option value="1">Cấp 1</option>
+                            <option value="2">Cấp 2</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group category1 mt-4 ">
+                        <label class="pr-3">Mặt hàng</label>
+
                     </div>
                 </div>
-            </form>
+                <div class="card-footer">
+                    <a class="btn btn-outline-success" href="${pageContext.request.contextPath}/Admin/Category/"
+                       role="button">
+                        <i class="fa fa-backward" aria-hidden="true"></i>
+                        List
+                    </a>
+                    <button type="submit" class="btn btn-primary text-blue-600"
+                            formaction="${pageContext.request.contextPath}/Admin/Category/Update">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                        Save
+                    </button>
+                </div>
+            </div>
+        </form>
 
     </jsp:body>
 

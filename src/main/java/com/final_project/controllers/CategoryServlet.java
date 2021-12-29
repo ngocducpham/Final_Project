@@ -121,7 +121,10 @@ public class CategoryServlet extends HttpServlet {
     int Cparent_ID =Integer.parseInt(request.getParameter("Cparent_ID"));
     int Level = Integer.parseInt(request.getParameter("Level"));
     Category c = new Category(id, Cname, Cparent_ID, Level);
-    CategoryModel.update(c);
+    if(Cparent_ID != -1)
+      CategoryModel.update(c);
+    else CategoryModel.updateCateLv1(c);
+
     ServletUtils.redirect("/Admin/Category", request, response);
   }
 
