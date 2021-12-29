@@ -156,7 +156,6 @@ public class RatesModel {
                 "                left join product_auction pa on p.Pro_ID = pa.Pro_ID\n" +
                 "                left join win_list wl on pa.Pro_Auc_ID = wl.Pro_Auc_ID\n" +
                 "                left join users u on u.User_ID = wl.User_ID\n" +
-                "                left join magage m on m.User_ID = u.User_ID\n" +
                 "                left join points p2 on u.User_ID = p2.User_ID\n" +
                 "                WHERE Type = 1";
         try (Connection conn = DBUtils.getConnection()) {

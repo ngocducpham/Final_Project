@@ -12,9 +12,12 @@
         <div style="font-weight: bold;font-size: 36px">Danh sách <span
                 style="color:red;">những người đánh giá bạn</span>
         </div>
-        <c:forEach items="${Get_Point}" var="g">
-            <div style="font-size: 30px; font-weight: bold;">Điểm của bạn:<span style="color: blue"> ${g.total}%</span></div>
-        </c:forEach>
+        <div class="mt-2">
+            <c:forEach items="${Get_Point}" var="g">
+                <div style="font-size: 30px; font-weight: bold;">Điểm của bạn:<span style="color: blue"> ${g.total}%</span></div>
+            </c:forEach>
+        </div>
+
         <div class="card mt-10">
 
             <c:choose>
