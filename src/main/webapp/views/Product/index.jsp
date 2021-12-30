@@ -8,9 +8,9 @@
     <jsp:body>
 
         <div class="card ">
-            <h4 class="card-header d-flex justify-content-between text-success">
+            <h3 class="card-header d-flex justify-content-between text-success font-weight-bold">
                 Danh sách sản phẩm
-            </h4>
+            </h3>
             <c:choose>
                 <c:when test="${products.size() == 0}">
                     <div class="card-body">
@@ -19,7 +19,7 @@
                 </c:when>
                 <c:otherwise>
                     <div class="card-body">
-                        <table class="table table-hover table-striped">
+                        <table class="table table-hover table-striped table-bordered">
                             <thead class="thead-dark">
                             <tr>
                                 <th>#</th>
@@ -34,15 +34,15 @@
                             <tbody>
                             <c:forEach items="${products}" var="c">
                                 <tr>
-                                    <td>${c.pro_ID}</td>
+                                    <td class="font-weight-bold">${c.pro_ID}</td>
                                     <td>${c.pname}</td>
                                     <td>
                                         <c:choose>
-                                            <c:when test="${c.status == 1}">
-                                                Đã duyệt
+                                            <c:when test="${c.status != 1}">
+                                                <div style="background: yellow">Không duyệt</div>
                                             </c:when>
                                             <c:otherwise>
-                                                Không duyệt
+                                                Đã duyệt
                                             </c:otherwise>
                                         </c:choose>
 
