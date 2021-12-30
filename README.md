@@ -1,5 +1,5 @@
 
-<img style="width:400px" src="https://raw.githubusercontent.com/ngocducpham/Final_Project/master/src/main/webapp/public/imgs/logowhite.svg"/><br /><br /><br />
+<img style="width:400px" src="https://raw.githubusercontent.com/ngocducpham/Final_Project/master/src/main/webapp/public/imgs/logowhite.svg"/><br /><br />
 
 
 # Workflow Auction
