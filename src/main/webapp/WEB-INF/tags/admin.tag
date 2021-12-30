@@ -47,7 +47,7 @@
                         <button type="button" class="btn btn-light w-full p-3 text-white mb-2 rounded-pill">
                             <a class="d-flex justify-content-center" href="${pageContext.request.contextPath}/Admin/Dashboard/">
                                 <span class="iconify h-5 w-5" data-icon="ant-design:home-filled"></span>
-                                <span class="mx-4 text-lg font-normal">
+                                <span class="mx-4 text-md font-normal">
                                     Trang chính
                                 </span>
                             </a>
@@ -57,7 +57,7 @@
                         <button type="button" class="btn btn-light w-full  p-3 text-white mb-2 rounded-pill">
                             <a class="d-flex justify-content-center" href="${pageContext.request.contextPath}/Admin/User/">
                                 <span class="iconify" data-icon="bx:bxs-user"></span>
-                                <span class="mx-4 text-lg font-normal">
+                                <span class="mx-4 text-md font-normal">
                                     Người dùng
                                 </span>
                             </a>
@@ -67,7 +67,7 @@
                         <button type="button" class="btn btn-light w-full  p-3 text-white mb-2 rounded-pill">
                             <a class="d-flex justify-content-center" href="${pageContext.request.contextPath}/Admin/Category/">
                                 <span class="w-5 h-5 iconify" data-icon="bx:bx-category"></span>
-                                <span class="mx-4 text-lg font-normal">
+                                <span class="mx-4 text-md font-normal">
                                      Danh mục
                                 </span>
                             </a>
@@ -77,7 +77,7 @@
                         <button type="button" class="btn btn-light w-full  p-3 text-white mb-2 rounded-pill">
                             <a class="d-flex justify-content-center" href="${pageContext.request.contextPath}/Admin/Product/">
                                 <span class="iconify" data-icon="gridicons:product"></span>
-                                <span class="mx-4 text-lg font-normal">
+                                <span class="mx-4 text-md font-normal">
                                       Sản phẩm
                                 </span>
                             </a>
@@ -87,7 +87,7 @@
                         <button type="button" class="btn btn-light w-full  p-3 text-white mb-2 rounded-pill">
                             <a class="d-flex justify-content-center" href="${pageContext.request.contextPath}/Admin/Request/">
                                 <span class="iconify" data-icon="bi:chat-dots-fill"></span>
-                                <span class="mx-4 text-lg font-normal">
+                                <span class="mx-4 text-md font-normal">
                                       Yêu cầu
                                 </span>
                             </a>
@@ -97,7 +97,7 @@
                         <button type="button" class="btn btn-light w-full  p-3 text-white mb-2 rounded-pill">
                             <a class="d-flex justify-content-center" href="javascript: $('#frmLogout').submit()">
                                 <span class="iconify" data-icon="entypo:log-out"></span>
-                                <span class="mx-4 text-lg font-normal">
+                                <span class="mx-4 text-md font-normal">
                                        Đăng xuất
                                 </span>
                             </a>
