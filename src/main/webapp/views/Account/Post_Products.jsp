@@ -28,13 +28,21 @@
 
             document.getElementsByName("End_Time")[0].min = today;
 
+            let price = document.getElementById('price');
+            let stepPrice = document.getElementById('step_price');
+
             document.getElementById('btnsubmitproduct').addEventListener('click', () => {
                 let form = document.getElementById('postproductform');
-
                 if (form.checkValidity()) {
-                    form.submit();
+                    if(isNumeric(price.value) && isNumeric(stepPrice.value))
+                        form.submit();
+                    else alert('Kiểm tra lại giá');
                 } else form.reportValidity();
             })
+
+            function isNumeric(value) {
+                return /^\d+$/.test(value);
+            }
         </script>
     </jsp:attribute>
     <jsp:body>
