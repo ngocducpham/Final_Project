@@ -231,6 +231,7 @@ public class UserModel {
                 "         select U1.User_ID           as owner_id,\n" +
                 "                U1.Username          as owner_name,\n" +
                 "                p.Pname,\n" +
+                "                p.status             as status,\n" +
                 "                pa.End_Time,\n" +
                 "                pa.total_bid,\n" +
                 "                p.Pro_ID,\n" +
@@ -258,10 +259,11 @@ public class UserModel {
                 "         select U1.User_ID           as owner_id,\n" +
                 "                U1.Username          as owner_name,\n" +
                 "                p.Pname,\n" +
+                "                p.status             as status,\n" +
                 "                pa.End_Time,\n" +
                 "                pa.total_bid,\n" +
                 "                p.Pro_ID,\n" +
-                "                pa.Current_Price as winner_price,\n" +
+                "                pa.Current_Price as max_price,\n" +
                 "                U2.Username          as username,\n" +
                 "                U2.User_ID           as winner_id" +
                 "         from products p\n" +

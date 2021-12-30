@@ -159,13 +159,26 @@
                                         <span><fmt:formatNumber value="${p.winner_price}"
                                                                 type="number"/> đ</span>
                                     </div>
-                                    <c:if test="${p.winner_id>0}">
-                                        <a href="${pageContext.request.contextPath}/Personal/Rate_Bidder?bidder=${p.winner_id}&pro_id=${p.pro_ID}"
-                                           class="hover:underline">
-                                            <div><i class="red fa fa-trophy fa-sm"> ${p.username}</i>
+<%--                                    <c:if test="${p.winner_id>0 && p.status == 0}">--%>
+
+<%--                                    </c:if>--%>
+                                    <c:choose>
+                                        <c:when test="${p.winner_id>0 && p.status == 0}">
+                                            <a href="${pageContext.request.contextPath}/Personal/Rate_Bidder?bidder=${p.winner_id}&pro_id=${p.pro_ID}"
+                                               class="hover:underline">
+                                                <div><i class="red fa fa-trophy fa-sm"> ${p.username}</i>
+                                                    <i class="fa fa-commenting" aria-hidden="true">
+                                                    </i>
+                                                </div>
+                                            </a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <div class="hover:underline">
+                                                <div><i class="red fa fa-trophy fa-sm"> ${p.username}</i>
+                                                </div>
                                             </div>
-                                        </a>
-                                    </c:if>
+                                        </c:otherwise>
+                                    </c:choose>
                                     <div class='timeContainer flex justify-around text-xs mt-3 font-semibold'>
                                         <div>
                                             <div class='days text-sm'>05</div>
