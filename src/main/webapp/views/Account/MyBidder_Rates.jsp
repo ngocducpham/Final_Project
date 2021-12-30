@@ -13,9 +13,7 @@
                 style="color:red;">những người đánh giá bạn</span>
         </div>
         <div class="mt-2">
-            <c:forEach items="${Get_Point}" var="g">
-                <div style="font-size: 30px; font-weight: bold;">Điểm của bạn:<span style="color: blue"> ${g.total}%</span></div>
-            </c:forEach>
+                <div style="font-size: 30px; font-weight: bold;">Điểm của bạn:<span style="color: blue"> ${Get_Point.get(0).total}%</span></div>
         </div>
 
         <div class="card mt-10">
