@@ -8,7 +8,7 @@
     <jsp:body>
 
         <div class="card ">
-            <h4 class="card-header d-flex justify-content-between">
+            <h4 class="card-header d-flex justify-content-between text-success font-weight-bold">
                 Danh sách yêu cầu nâng Seller
             </h4>
             <c:choose>
@@ -19,8 +19,8 @@
                 </c:when>
                 <c:otherwise>
                     <div class="card-body">
-                        <table class="table table-hover">
-                            <thead>
+                        <table class="table table-hover table-striped table-bordered">
+                            <thead class="thead-dark" >
                             <tr>
                                 <th>#</th>
                                 <th>ID người dùng</th>

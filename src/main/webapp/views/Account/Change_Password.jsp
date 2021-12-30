@@ -25,7 +25,7 @@
             document.getElementById('s').addEventListener("click", function (e) {
                 if (document.getElementById('new-pass').value !== document.getElementById('re-new-pass').value) {
                     e.preventDefault();
-                    alert("Passwords do not match!");
+                    alert("Password không khớp!");
                     window.location.reload();
                 }
             })
@@ -34,7 +34,7 @@
     <jsp:body>
         <div class="profile">
             <div class="top_header">
-                <p class="h__profile">Đổi Mật Khẩu</p>
+                <p class="h__profile text-danger">Đổi Mật Khẩu</p>
                 <button class="btn btn-warning small" id="open_edit">Đổi Mật Khẩu <i
                         class="fa fa-pencil"></i></button>
             </div>
@@ -44,26 +44,26 @@
                         <div class="form-group col-md-6">
                             <label for="old_pass">Nhập Mật Khẩu Cũ</label>
                             <input type="password" class="form-control background" name="old_pass" id="old_pass"
-                                   disabled
+                                   disabled required
                             >
                         </div>
                     </div>
                     <c:if test="${false_old_pass}">
-                        <div class='alert__login text-red-500 mt-3'>Sai Mật Khẩu Cũ</div>
+                        <div class='alert__login text-red-400'>Sai Mật Khẩu Cũ. Vui lòng nhập lại !</div>
                     </c:if>
                     <c:if test="${success_change_pass}">
-                        <div class='alert__login mt-3' style="color: limegreen">Đổi Mật Khẩu Thành Công</div>
+                        <div class='alert__login ' style="color: limegreen">Đổi Mật Khẩu Thành Công</div>
                     </c:if>
-                    <div class="form-row">
+                    <div class="form-row mt-3">
                         <div class="form-group col-md-6">
                             <label for="new-pass">Nhập Mật Khẩu Mới</label>
                             <input type="password" class="form-control background" name="new_pass" id="new-pass"
-                                   disabled>
+                                   disabled required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="re-new-pass">Xác Nhận Mật Khẩu Mới</label>
                             <input type="password" class="form-control background" name="re_new_pass" id="re-new-pass"
-                                   disabled>
+                                   disabled required>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-outline-success" id="s"><i class="fa fa-check"></i>

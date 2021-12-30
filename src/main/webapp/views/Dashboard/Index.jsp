@@ -71,7 +71,7 @@
             <div class="flex items-start justify-between">
                 <div class="flex flex-col w-full md:space-y-4">
                     <div class="mt-10 overflow-auto h-screen pb-24 px-4 md:px-6">
-                        <h1 class="text-4xl font-semibold text-gray-800 ">
+                        <h1 class="text-4xl font-semibold text-success ">
                             Wellcome back, Admin
                         </h1>
                         <h2 class="text-md text-gray-400">

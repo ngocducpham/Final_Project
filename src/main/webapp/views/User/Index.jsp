@@ -8,7 +8,7 @@
     <jsp:body>
 
         <div class="card">
-            <h3 class="card-header text-success font-weight-bold">
+            <h3 class="card-header d-flex justify-content-between text-success font-weight-bold">
                 Danh sách người dùng
             </h3>
             <c:choose>
