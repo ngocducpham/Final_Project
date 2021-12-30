@@ -136,30 +136,13 @@ public class RatesModel {
         }
     }
 
-    public static List<Rates> Get_Point1() {
-        final String query = "select ROUND(((up - down)/(up))*100, 1) as total from rates r\n" +
-                "                left join products p on p.Pro_ID = r.Pro_ID\n" +
-                "                left join product_auction pa on p.Pro_ID = pa.Pro_ID\n" +
-                "                left join magage m on p.Pro_ID = m.Pro_ID\n" +
-                "                left join users u on m.User_ID = u.User_ID\n" +
-                "                left join points p2 on u.User_ID = p2.User_ID\n" +
-                "                WHERE Type = 2";
+    public static List<Rates> Get_Point1(int uid) {
+        final String query = "select points.up / (points.down + points.up) * 100 as total, username\n" +
+                "from points join users u on u.User_ID = points.User_ID\n" +
+                "where u.User_ID = :uid";
         try (Connection conn = DBUtils.getConnection()) {
             return conn.createQuery(query)
-                    .executeAndFetch(Rates.class);
-        }
-    }
-
-    public static List<Rates> Get_Point2() {
-        final String query = "select ROUND(((up - down)/(up))*100,2) as total from rates r\n" +
-                "                left join products p on p.Pro_ID = r.Pro_ID\n" +
-                "                left join product_auction pa on p.Pro_ID = pa.Pro_ID\n" +
-                "                left join win_list wl on pa.Pro_Auc_ID = wl.Pro_Auc_ID\n" +
-                "                left join users u on u.User_ID = wl.User_ID\n" +
-                "                left join points p2 on u.User_ID = p2.User_ID\n" +
-                "                WHERE Type = 1";
-        try (Connection conn = DBUtils.getConnection()) {
-            return conn.createQuery(query)
+                    .addParameter("uid", uid)
                     .executeAndFetch(Rates.class);
         }
     }
