@@ -137,7 +137,7 @@ public class RatesModel {
     }
 
     public static List<Rates> Get_Point1(int uid) {
-        final String query = "select ROUND(points.up / (points.down + points.up) * 100) as total, username\n" +
+        final String query = "select ROUND((points.up) / (points.up + points.down) * 100, 1) as total, username\n" +
                 "from points join users u on u.User_ID = points.User_ID\n" +
                 "where u.User_ID = :uid";
         try (Connection conn = DBUtils.getConnection()) {
