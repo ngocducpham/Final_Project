@@ -86,7 +86,7 @@ public class ProductDetailServlet extends HttpServlet {
                 ServletUtils.sendMail_to_bid(userEmail, proName, bidPrice);
             }
         };
-        //sendMail.start();
+        sendMail.start();
 
         ServletUtils.redirect("/ProductDetail?id=" + proID, request, response);
     }

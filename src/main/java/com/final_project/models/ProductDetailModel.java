@@ -42,12 +42,11 @@ public class ProductDetailModel {
     }
 
     public static List<ProductDetail> get5ProductRelative(String catID) {
-        String query = "select Pname, pa.Pro_ID, Current_Price, End_Time, Total_Bid \n" +
+        String query = "select Pname, pa.Pro_ID, Current_Price, End_Time, Total_Bid\n" +
                 "from products\n" +
                 "         join product_auction pa on products.Pro_ID = pa.Pro_ID\n" +
                 "         join categories c on c.Cat_ID = products.Cat_ID\n" +
-                "where c.Cat_ID = :id \n" +
-                "   or Cparent_ID = :id \n" +
+                "where (c.Cat_ID = :id or Cparent_ID = :id) and Status = 1\n" +
                 "limit 5";
         try (Connection con = DBUtils.getConnection()) {
             return con.createQuery(query)

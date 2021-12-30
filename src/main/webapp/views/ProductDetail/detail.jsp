@@ -170,7 +170,7 @@
             let nameContainer = document.querySelectorAll('.bidderListName');
             for (let i = 0; i < bidderListName.length; i++) {
                 if ('${authUser.user_ID}' != '${owner.user_ID}') {
-                    let name = bidderListName[i].slice(Math.ceil(bidderListName[i].length * 0.3));
+                    let name = bidderListName[i].slice(Math.ceil(bidderListName[i].length * 0.5));
                     nameContainer[i].innerText = "****" + name;
                 } else nameContainer[i].innerText = bidderListName[i];
             }
@@ -178,7 +178,7 @@
             let topBidName = '${currentBid.username}';
             if (topBidName != '') {
                 if ('${authUser.user_ID}' != '${owner.user_ID}')
-                    currentBid.innerText = '****' + topBidName.slice(Math.ceil(topBidName.length * 0.3));
+                    currentBid.innerText = '****' + topBidName.slice(Math.ceil(topBidName.length * 0.5));
                 else
                     currentBid.innerText = topBidName;
             }
@@ -295,7 +295,7 @@
                                 <div class='flex justify-between border-b-2 border-dashed font-medium  mb-3'>
                                     <div>Bước giá:</div>
                                     <div>
-                                        <fmt:formatNumber value="${proDetail.distance_Price}" type="number"/>
+                                        <fmt:formatNumber value="${proDetail.distance_Price}" type="currency"/>
                                     </div>
                                 </div>
                             </div>

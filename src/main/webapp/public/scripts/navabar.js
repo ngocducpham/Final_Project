@@ -25,12 +25,7 @@ document.querySelectorAll('.bid__menu').forEach(e => {
     });
 });
 
-// submit form after user press enter in searchbox
-document.getElementById('nav__searchform').addEventListener('keydown', ev => {
-    if(ev.key === "Enter") {
-        ev.preventDefault();
-    }
-})
+
 
 document.getElementById('nav__searchproduct').addEventListener('keydown', ev => {
     if(ev.key === "Enter"){
