@@ -5,7 +5,7 @@
 # Workflow Auction
 > Đồ án môn học lập trình web
 
-Workflow Auction là ứng dụng web dùng để đấu giá sửa dụng Java EE.
+Workflow Auction là ứng dụng web dùng để đấu giá sửa dụng Java EE để phát triển.
 
 ## Cài đặt
 Project yêu cầu những thành phần dưới đây để khởi động
