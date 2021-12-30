@@ -102,7 +102,13 @@ public class UserServlet extends HttpServlet {
 
     private void deleteUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int id = Integer.parseInt(request.getParameter("User_ID"));
-        UserModel.delete(id);
+        UserModel.deleteUserAuction(id);
+        UserModel.deleteUserMagage(id);
+        UserModel.deleteUserPoint(id);
+        UserModel.deleteUserWinList(id);
+        UserModel.deleteUserFavorite(id);
+        UserModel.deleteUserRequest(id);
+        UserModel.deleteUser(id);
         ServletUtils.redirect("/Admin/User", request, response);
     }
 

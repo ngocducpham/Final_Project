@@ -74,11 +74,15 @@
 
 
                 </div>
-                <div class="card-footer d-flex justify-between">
+                <div class="card-footer">
                     <a class="btn btn-outline-success" href="${pageContext.request.contextPath}/Admin/User/" role="button">
                         <i class="fa fa-backward" aria-hidden="true"></i>
                         List
                     </a>
+                    <button type="submit" class="btn btn-danger text-red-600" formaction="${pageContext.request.contextPath}/Admin/User/Delete">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                        Delete
+                    </button>
                     <button type="submit" class="btn btn-primary text-blue-600" formaction="${pageContext.request.contextPath}/Admin/User/Update?Request_ID=${users.user_ID}">
                         <i class="fa fa-check" aria-hidden="true"></i>
                         Save

@@ -31,33 +31,36 @@
                             </thead>
                             <tbody>
                             <c:forEach items="${users}" var="c">
-                                <tr>
-                                    <td>${c.user_ID}</td>
-                                    <td>${c.username}</td>
-                                    <td>${c.email}</td>
-                                    <td>
-                                    <c:choose>
-                                        <c:when test="${c.userrole== 1}">
-                                            Bidder
-                                        </c:when>
-                                        <c:when test="${c.userrole== 2}">
-                                            Seller
-                                        </c:when>
-                                        <c:otherwise>
-                                           Admin
-                                        </c:otherwise>
-                                    </c:choose>
-                                    </td>
-                                    <td class="text-right">
-                                        <a title="Sửa người dùng" class="btn btn-sm btn-outline-primary" href="${pageContext.request.contextPath}/Admin/User/Edit?id=${c.user_ID}" role="button">
-                                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                                        </a>
+                                <c:if test="${c.user_ID != 7}">
+                                    <tr>
+                                        <td>${c.user_ID}</td>
+                                        <td>${c.username}</td>
+                                        <td>${c.email}</td>
+                                        <td>
+                                            <c:choose>
+                                                <c:when test="${c.userrole== 1}">
+                                                    Bidder
+                                                </c:when>
+                                                <c:when test="${c.userrole== 2}">
+                                                    Seller
+                                                </c:when>
+                                                <c:otherwise>
+                                                    Admin
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </td>
+                                        <td class="text-right">
+                                            <a title="Sửa người dùng" class="btn btn-sm btn-outline-primary" href="${pageContext.request.contextPath}/Admin/User/Edit?id=${c.user_ID}" role="button">
+                                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                            </a>
 
-                                        <a title="Reset mật khẩu" class="btn btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/Admin/User/Reset?id1=${c.user_ID}" role="button">
-                                            <i class="fa fa-key" aria-hidden="true"></i>
-                                        </a>
-                                    </td>
-                                </tr>
+                                            <a title="Reset mật khẩu" class="btn btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/Admin/User/Reset?id1=${c.user_ID}" role="button">
+                                                <i class="fa fa-key" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </c:if>
+
                             </c:forEach>
                             </tbody>
                         </table>

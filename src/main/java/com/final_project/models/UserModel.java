@@ -27,14 +27,7 @@ public class UserModel {
         }
     }
 
-    public static void delete(int id) {
-        String sql = "delete from users where User_ID = :User_ID";
-        try (Connection con = DBUtils.getConnection()) {
-            con.createQuery(sql)
-                    .addParameter("User_ID", id)
-                    .executeUpdate();
-        }
-    }
+
 
 
     public static User findById(int id) {
@@ -333,4 +326,68 @@ public class UserModel {
                     .executeUpdate();
         }
     }
+
+
+
+    public static void deleteUserAuction(int id) {
+        String Sql = "delete from auction where User_ID =:User_ID";
+        try (Connection con = DBUtils.getConnection()) {
+            con.createQuery(Sql)
+                    .addParameter("User_ID", id)
+                    .executeUpdate();
+        }
+    }
+    public static void deleteUserMagage(int id) {
+        String Sql = "delete from magage where User_ID =:User_ID";
+        try (Connection con = DBUtils.getConnection()) {
+            con.createQuery(Sql)
+                    .addParameter("User_ID", id)
+                    .executeUpdate();
+        }
+    }
+
+    public static void deleteUserPoint(int id) {
+        String Sql = "delete from points where User_ID =:User_ID";
+        try (Connection con = DBUtils.getConnection()) {
+            con.createQuery(Sql)
+                    .addParameter("User_ID", id)
+                    .executeUpdate();
+        }
+    }
+
+    public static void deleteUserWinList(int id) {
+        String Sql = "delete from win_list where User_ID =:User_ID";
+        try (Connection con = DBUtils.getConnection()) {
+            con.createQuery(Sql)
+                    .addParameter("User_ID", id)
+                    .executeUpdate();
+        }
+    }
+
+    public static void deleteUserFavorite(int id) {
+        String Sql = "delete from favorite where User_ID =:User_ID";
+        try (Connection con = DBUtils.getConnection()) {
+            con.createQuery(Sql)
+                    .addParameter("User_ID", id)
+                    .executeUpdate();
+        }
+    }
+
+    public static void deleteUserRequest(int id) {
+        String Sql = "delete from request where User_ID =:User_ID";
+        try (Connection con = DBUtils.getConnection()) {
+            con.createQuery(Sql)
+                    .addParameter("User_ID", id)
+                    .executeUpdate();
+        }
+    }
+    public static void deleteUser(int id) {
+        String sql = "delete from users where User_ID = :User_ID";
+        try (Connection con = DBUtils.getConnection()) {
+            con.createQuery(sql)
+                    .addParameter("User_ID", id)
+                    .executeUpdate();
+        }
+    }
+
 }
