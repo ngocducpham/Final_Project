@@ -5,6 +5,8 @@
 
 <jsp:useBean id="authUser" scope="session" type="com.final_project.beans.User"/>
 
+<jsp:useBean id="email_used" scope="session" type="java.lang.Boolean"/>
+
 <t:personal_page>
     <jsp:attribute name="css">
          <link rel="stylesheet"
@@ -58,6 +60,9 @@
                     <i class="fa fa-pencil"></i>
                 </button>
             </div>
+            <c:if test="${email_used}">
+                <div class='alert__login text-red-500 mt-3'>Email đã có người sử dụng</div>
+            </c:if>
             <div class="boxProfile">
                 <form method="post" id="personalForm">
                     <div class="form-row">

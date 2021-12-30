@@ -37,6 +37,7 @@ public class PersonalServlet extends HttpServlet {
             switch (path) {
                 case "/User_Information":
                     ServletUtils.forward("/views/Account/Personal.jsp", request, response);
+                    session.setAttribute("email_used",false);
                     break;
                 case "/User_Change_Password":
                     ServletUtils.forward("/views/Account/Change_Password.jsp", request, response);
@@ -195,11 +196,13 @@ public class PersonalServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("authUser");
-        User new_user = new User(user.getUser_ID(), new_name, new_email, user.getPass(), user.getUserrole(), new_address, new_dob, user.getSeller_Expired_date());
-
-        UserModel.Update_User_Information(new_name, new_email, new_address, new_dob, user.getUser_ID());
-
-        session.setAttribute("authUser", new_user);
+        try {
+            User new_user = new User(user.getUser_ID(), new_name, new_email, user.getPass(), user.getUserrole(), new_address, new_dob, user.getSeller_Expired_date());
+            UserModel.Update_User_Information(new_name, new_email, new_address, new_dob, user.getUser_ID());
+            session.setAttribute("authUser", new_user);
+        } catch (Exception e) {
+            session.setAttribute("email_used",true);
+        }
         ServletUtils.redirect("/Personal/User_Information", request, response);
     }
 

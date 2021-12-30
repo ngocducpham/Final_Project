@@ -25,6 +25,7 @@ public class PesonalFilter implements Filter {
         HttpSession session = request.getSession();
         if (session.getAttribute("false_old_pass") == null) {
             session.setAttribute("false_old_pass", false);
+            session.setAttribute("email_used",false);
             session.setAttribute("success_change_pass", false);
         }
         session.setAttribute("retUrl_Personal", request.getRequestURI() + "?" + request.getQueryString());
