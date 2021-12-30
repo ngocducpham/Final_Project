@@ -9,24 +9,24 @@
     <jsp:body>
 
         <div class="card ">
-            <h4 class="card-header d-flex justify-content-between">
+            <div class="card-header d-flex justify-content-between text-success font-weight-bold">
                 Danh sách danh mục
                 <a title="Thêm danh mục" class="btn btn-outline-success"
                    href="${pageContext.request.contextPath}/Admin/Category/Add"    role="button">
                     <i class="fa fa-plus" aria-hidden="true"></i>
                     Thêm
                 </a>
-            </h4>
+            </div>
             <c:choose>
                 <c:when test="${categories.size() == 0}">
                     <div class="card-body">
-                        <p class="card-text">Không có dữ liệu.</p>
+                        <p class="card-text text-danger font-weight-bold">Không có dữ liệu.</p>
                     </div>
                 </c:when>
                 <c:otherwise>
                     <div class="card-body">
-                        <table class="table table-hover">
-                            <thead>
+                        <table class="table table-hover table-bordered table-striped">
+                            <thead class="thead-dark">
                             <tr>
                                 <th>#</th>
                                 <th>Mặt hàng</th>
@@ -37,7 +37,7 @@
                             <tbody>
                             <c:forEach items="${categories}" var="c">
                                 <tr>
-                                    <td>${c.cat_ID}</td>
+                                    <td class="font-weight-bold">${c.cat_ID}</td>
                                     <td>${c.cname}</td>
                                     <td>
                                        ${c.cparent_ID}
