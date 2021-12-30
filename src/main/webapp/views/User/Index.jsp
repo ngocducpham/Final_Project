@@ -8,19 +8,19 @@
     <jsp:body>
 
         <div class="card">
-            <div class="card-header">
+            <h3 class="card-header text-success font-weight-bold">
                 Danh sách người dùng
-            </div>
+            </h3>
             <c:choose>
                 <c:when test="${users.size() == 0}">
                     <div class="card-body">
-                        <p class="card-text">Không có dữ liệu.</p>
+                        <p class="card-text text-danger">Không có dữ liệu.</p>
                     </div>
                 </c:when>
                 <c:otherwise>
                     <div class="card-body">
-                        <table class="table table-hover">
-                            <thead>
+                        <table class="table table-hover table-striped table-bordered">
+                            <thead class="thead-dark">
                             <tr>
                                 <th>#</th>
                                 <th>Tên user</th>
@@ -33,7 +33,7 @@
                             <c:forEach items="${users}" var="c">
                                 <c:if test="${c.user_ID != 7}">
                                     <tr>
-                                        <td>${c.user_ID}</td>
+                                        <td class="font-weight-bold">${c.user_ID}</td>
                                         <td>${c.username}</td>
                                         <td>${c.email}</td>
                                         <td>
