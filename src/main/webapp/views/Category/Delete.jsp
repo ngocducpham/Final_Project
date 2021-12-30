@@ -62,7 +62,7 @@
                         <i class="fa fa-backward" aria-hidden="true"></i>
                         List
                     </a>
-                    <button type="submit" class="btn  btn-danger text-red-600"
+                    <button type="submit" onclick="return confirm('Bạn có chắc muốn xóa dữ liệu này?')" class="btn  btn-danger text-red-600"
                             formaction="${pageContext.request.contextPath}/Admin/Category/Delete">
                         <i class="fa fa-trash" aria-hidden="true"></i>
                         Delete

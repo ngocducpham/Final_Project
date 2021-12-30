@@ -18,7 +18,7 @@
     <jsp:invoke fragment="css"/>
     <title>Admin Dashboard</title>
     <style>
-        a:hover {text-decoration: none; color: black}
+        a:hover {text-decoration: none; color: black;}
     </style>
 </head>
 
@@ -44,7 +44,7 @@
             <div class="mt-10 w-100">
                 <c:if test="${adminlogin}">
                     <div>
-                        <button type="button" class="btn btn-light w-full p-3 text-white mb-2 rounded-pill">
+                        <button  style="border-radius: 1vw;" type="button" class="btn btn-light w-full p-3 text-white mb-2 ">
                             <a class="d-flex justify-content-center" href="${pageContext.request.contextPath}/Admin/Dashboard/">
                                 <span class="iconify h-5 w-5" data-icon="ant-design:home-filled"></span>
                                 <span class="mx-4 text-md font-normal">
@@ -54,7 +54,7 @@
                         </button>
                     </div>
                     <div>
-                        <button type="button" class="btn btn-light w-full  p-3 text-white mb-2 rounded-pill">
+                        <button style="border-radius: 1vw;"  type="button" class="btn btn-light w-full  p-3 text-white mb-2">
                             <a class="d-flex justify-content-center" href="${pageContext.request.contextPath}/Admin/User/">
                                 <span class="iconify" data-icon="bx:bxs-user"></span>
                                 <span class="mx-4 text-md font-normal">
@@ -64,7 +64,7 @@
                         </button>
                     </div>
                     <div>
-                        <button type="button" class="btn btn-light w-full  p-3 text-white mb-2 rounded-pill">
+                        <button  style="border-radius: 1vw;" type="button" class="btn btn-light w-full  p-3 text-white mb-2">
                             <a class="d-flex justify-content-center" href="${pageContext.request.contextPath}/Admin/Category/">
                                 <span class="w-5 h-5 iconify" data-icon="bx:bx-category"></span>
                                 <span class="mx-4 text-md font-normal">
@@ -74,7 +74,7 @@
                         </button>
                     </div>
                     <div>
-                        <button type="button" class="btn btn-light w-full  p-3 text-white mb-2 rounded-pill">
+                        <button  style="border-radius: 1vw;" type="button" class="btn btn-light w-full  p-3 text-white mb-2 ">
                             <a class="d-flex justify-content-center" href="${pageContext.request.contextPath}/Admin/Product/">
                                 <span class="iconify" data-icon="gridicons:product"></span>
                                 <span class="mx-4 text-md font-normal">
@@ -84,7 +84,7 @@
                         </button>
                     </div>
                     <div>
-                        <button type="button" class="btn btn-light w-full  p-3 text-white mb-2 rounded-pill">
+                        <button  style="border-radius: 1vw;" type="button" class="btn btn-light w-full  p-3 text-white mb-2">
                             <a class="d-flex justify-content-center" href="${pageContext.request.contextPath}/Admin/Request/">
                                 <span class="iconify" data-icon="bi:chat-dots-fill"></span>
                                 <span class="mx-4 text-md font-normal">
@@ -94,7 +94,7 @@
                         </button>
                     </div>
                     <div>
-                        <button type="button" class="btn btn-light w-full  p-3 text-white mb-2 rounded-pill">
+                        <button  style="border-radius: 1vw;" type="button" class="btn btn-light w-full  p-3 text-white mb-2 ">
                             <a class="d-flex justify-content-center" href="javascript: $('#frmLogout').submit()">
                                 <span class="iconify" data-icon="entypo:log-out"></span>
                                 <span class="mx-4 text-md font-normal">

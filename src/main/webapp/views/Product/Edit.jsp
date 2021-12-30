@@ -29,11 +29,11 @@
                     </div>
                     <div class="form-group">
                         <label for="txtSdate">Thời gian bắt đầu</label>
-                        <input type="text" class="form-control" id="txtSdate" name="Start_Time" readonly value="${products.start_Time}">
+                        <input type="text" class="form-control" id="txtSdate" name="Start_Time" readonly value="${products.start_Time.toLocalDate()} ${products.start_Time.toLocalTime()}">
                     </div>
                     <div class="form-group">
                         <label for="txtEdate">Thời gian kết thúc</label>
-                        <input type="text" class="form-control" id="txtEdate" name="End_Time" readonly value="${products.end_Time}">
+                        <input type="text" class="form-control" id="txtEdate" name="End_Time" readonly value="${products.end_Time.toLocalDate()} ${products.end_Time.toLocalTime()}">
                     </div>
                     <div class="form-group">
                         <label for="txtTotal">Tổng bidder</label>

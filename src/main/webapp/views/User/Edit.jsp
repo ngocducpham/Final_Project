@@ -74,19 +74,22 @@
 
 
                 </div>
-                <div class="card-footer">
+                <div class="card-footer d-flex justify-content-between">
                     <a class="btn btn-outline-success" href="${pageContext.request.contextPath}/Admin/User/" role="button">
                         <i class="fa fa-backward" aria-hidden="true"></i>
                         List
                     </a>
-                    <button type="submit" class="btn btn-danger text-red-600" formaction="${pageContext.request.contextPath}/Admin/User/Delete">
-                        <i class="fa fa-trash" aria-hidden="true"></i>
-                        Delete
-                    </button>
-                    <button type="submit" class="btn btn-primary text-blue-600" formaction="${pageContext.request.contextPath}/Admin/User/Update?Request_ID=${users.user_ID}">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                        Save
-                    </button>
+                    <div>
+                        <button onclick="return confirm('Bạn có chắc muốn xóa dữ liệu này?')" type="submit" class="btn btn-danger text-red-600" formaction="${pageContext.request.contextPath}/Admin/User/Delete">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                            Delete
+                        </button>
+                        <button type="submit" class="btn btn-primary text-blue-600" formaction="${pageContext.request.contextPath}/Admin/User/Update?Request_ID=${users.user_ID}">
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                            Save
+                        </button>
+                    </div>
+
                 </div>
             </div>
         </form>
