@@ -8,7 +8,7 @@
     <jsp:body>
 
         <div class="card ">
-            <h4 class="card-header d-flex justify-content-between">
+            <h4 class="card-header d-flex justify-content-between text-success">
                 Danh sách sản phẩm
             </h4>
             <c:choose>
@@ -19,8 +19,8 @@
                 </c:when>
                 <c:otherwise>
                     <div class="card-body">
-                        <table class="table table-hover">
-                            <thead>
+                        <table class="table table-hover table-striped">
+                            <thead class="thead-dark">
                             <tr>
                                 <th>#</th>
                                 <th>Tên sản phẩm</th>
