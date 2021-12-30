@@ -1,4 +1,5 @@
 let capcha_check = false;
+let password_accept = false;
 let full_address = document.getElementById("full_address"),
     province = document.getElementById("ls_province"),
     district = document.getElementById("ls_district"),
@@ -22,6 +23,22 @@ home_address.addEventListener("keyup", function () {
     full_address.value = home_address.value + ", " + ward.options[ward.selectedIndex].text + ", " + district.options[district.selectedIndex].text + ", " + province.options[province.selectedIndex].text;
 })
 
+document.getElementById("password").addEventListener("keyup", function () {
+    let password = document.getElementById("password").value;
+    let check_error_password = document.getElementById("error_password");
+    let regexPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+    if (password === "") {
+        check_error_password.innerHTML = "Password không được để trống!"
+        password_accept = false;
+    } else if (!regexPassword.test(password)) {
+        check_error_password.innerHTML = "Password phải có chữ Hoa, chữ thường và số!"
+        password_accept = false;
+    } else {
+        check_error_password.innerHTML = "";
+        password_accept = true;
+    }
+})
+
 $('#FormRegister').on('submit', function (e) {
     e.preventDefault();
     const email = $('#email-address').val();
@@ -35,8 +52,13 @@ $('#FormRegister').on('submit', function (e) {
     let today = new Date();
     let this_year = today.getFullYear();
 
-    if(this_year-Dob<18){
+    if (this_year - Dob < 18) {
         alert("you are not older than 18 !!!")
+    }
+
+    if (password_accept === false) {
+        $('#password').select();
+        return;
     }
 
     if (capcha_check === false) {
@@ -91,9 +113,9 @@ checkBtn.addEventListener("click", e => {
     }
 });
 
-document.getElementById("reload-btn").addEventListener("click",e => {
+document.getElementById("reload-btn").addEventListener("click", e => {
     e.preventDefault();
-    captcha.innerText="";
+    captcha.innerText = "";
     getCaptcha();
 });
 

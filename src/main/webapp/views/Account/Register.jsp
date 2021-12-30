@@ -100,6 +100,7 @@
                            class='mt-2 w-full px-2 py-1 outline-none block border-2 rounded-md  border-gray-300'>
                     <div class='alert__password hidden text-red-600 mt-2 text-sm'>Mật khẩu không trùng khớp</div>
                 </div>
+                <span style="color: red" id="error_password"></span>
             </div>
 
             <div class="wrapper">
