@@ -14,13 +14,16 @@ Project yêu cầu những thành phần dưới đây để khởi động
 3. [Adopt Open JDK](https://adoptopenjdk.net/)
 4. [MySQL](https://www.mysql.com/)
 
-### Tạo project
+### 1. Tạo project
 Tại cửa sổ tạo project chọn `Get from VCS` → Copy và pass `https://github.com/ngocducpham/Final_Project` vào ô URL → Nhấn chọn `Clone`
 
-### Thiết lập môi trường
+### 2. Thiết lập môi trường
 1. Ở góc phía trên bên phải chọn `Add Configuration` 
 2. Trên cửa sổ vừa xuất hiện nhấn chọn `Add new`. Kéo xuống chọn `TomEE Server mục Local`
 3. Ở góc dưới cùng bên phải nhấp chọn `Fix` → Chọn `*:was exploded` → `OK`
+
+### 3. Nạp cơ sở dữ liệu
+Chạy file script `Database-Script.sql` được lưu trong project
 
 ## Chạy project
 Click vào nút Run hoặc dùng tổ hợp phím `Shift + F10`
