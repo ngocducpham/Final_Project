@@ -27,6 +27,7 @@ public class LoginFilter implements Filter {
         if (session.getAttribute("Verified") == null) {
             session.setAttribute("Verified", false);
             session.setAttribute("authUser", new User());
+            session.setAttribute("email_used",false);
         }
 
         List<Category> category = CategoryModel.findAll();

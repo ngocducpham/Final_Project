@@ -27,6 +27,22 @@
             var today = new Date().toISOString().slice(0, 16);
 
             document.getElementsByName("End_Time")[0].min = today;
+
+            let price = document.getElementById('price');
+            let stepPrice = document.getElementById('step_price');
+
+            document.getElementById('btnsubmitproduct').addEventListener('click', () => {
+                let form = document.getElementById('postproductform');
+                if (form.checkValidity()) {
+                    if(isNumeric(price.value) && isNumeric(stepPrice.value))
+                        form.submit();
+                    else alert('Kiểm tra lại giá');
+                } else form.reportValidity();
+            })
+
+            function isNumeric(value) {
+                return /^\d+$/.test(value);
+            }
         </script>
     </jsp:attribute>
     <jsp:body>
@@ -40,7 +56,7 @@
             </div>
 
             <div class="boxProfile mt-5">
-                <form action="" method="post" enctype="multipart/form-data">
+                <form id="postproductform" action="" method="post" enctype="multipart/form-data">
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="pname">Tên sản phẩm</label>
@@ -49,14 +65,12 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="price">Giá khởi điểm</label>
-                            <input type="text" required class="form-control background" name="Price" id="price"
-                            >
+                            <input type="number" required class="form-control background" name="Price" id="price">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="step_price">Bước Giá</label>
-                            <input type="text" required class="form-control background" name="Step-Price" id="step_price"
-
-                            >
+                            <input type="number" required class="form-control background" name="Step-Price"
+                                   id="step_price">
                         </div>
                     </div>
                     <div class="form-group">
@@ -80,28 +94,28 @@
                     <div class="form-group">
                         <label for="img_main">Hình ảnh chính</label>
                         <input type="file" required class="form-control background" name="img_main" id="img_main"
-                               value="">
+                               value="" accept=".jpg">
                     </div>
 
                     <div class="form-group">
                         <label for="img1">Hình ảnh phụ 1</label>
                         <input type="file" required class="form-control background" name="img1" id="img1"
-                               value="">
+                               value="" accept=".jpg">
                     </div>
                     <div class="form-group">
                         <label for="img2">Hình ảnh phụ 2</label>
                         <input type="file" required class="form-control background" name="img2" id="img2"
-                               value="">
+                               value="" accept=".jpg">
                     </div>
                     <div class="form-group">
                         <label for="img3">Hình ảnh phụ 3</label>
                         <input type="file" required class="form-control background" name="img3" id="img3"
-                               value="">
+                               value="" accept=".jpg">
                     </div>
                     <div class="form-group">
                         <label for="img4">Hình ảnh phụ 4</label>
                         <input type="file" required class="form-control background" name="img4" id="img4"
-                               value="">
+                               value="" accept=".jpg">
                     </div>
 
                     <div class="form-row">
@@ -112,7 +126,7 @@
                     </div>
 
                         <%--                Button--%>
-                    <button type="submit" class="btn btn-outline-success">
+                    <button id="btnsubmitproduct" type="button" class="btn btn-outline-success">
                         <i class="fa fa-check" aria-hidden="true"></i>
                         Lưu
                     </button>
