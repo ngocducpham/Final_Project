@@ -150,7 +150,7 @@
         <!-- Copyright -->
         <div class='mt-16'>
             <div class='h-1 border-t-2 border-gray-400'></div>
-            <div class='mt-5 text-center text-white text-lg font-medium'>© 2021 Workflow, Inc. All rights reserved.
+            <div class='mt-5 text-center text-white text-lg font-medium'>© 2022 Workflow, Inc. All rights reserved.
             </div>
         </div>
     </div>
